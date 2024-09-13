@@ -13,6 +13,7 @@ int LogTestFunc(void)
 
 int LogTestFunc1(void)
 {
+    int a =2;
     PrintLog("LogTestFunc1\n");
     return 0;
 }   
