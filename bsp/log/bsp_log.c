@@ -4,7 +4,6 @@
 #include "SEGGER_RTT_Conf.h"
 #include <stdio.h>
 
-
 void BSPLogInit()
 {
     SEGGER_RTT_Init();
@@ -31,4 +30,3 @@ void Float2Str(char *str, float va)
     else
         sprintf(str, "%d.%d", head, point);
 }
-
