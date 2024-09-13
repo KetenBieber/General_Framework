@@ -29,6 +29,7 @@ typedef int (*log_test_func)(void);
 typedef int (*log_test_func1)(void);
 typedef int (*log_test_func2)(void);
 typedef int (*log_test_func666)(void);
+typedef int (*log_test_func777)(void);
 /*----------------------------------variable----------------------------------*/
 
 /*-------------------------------------os-------------------------------------*/
