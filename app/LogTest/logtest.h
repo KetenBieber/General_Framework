@@ -26,8 +26,6 @@ extern "C"{
 #define LOG_TEST_TASK_PRIORITY 5
 /*----------------------------------typedef-----------------------------------*/
 typedef int (*log_test_func)(void);
-typedef int (*log_test_func1)(void);
-typedef int (*log_test_func2)(void);
 /*----------------------------------variable----------------------------------*/
 
 /*-------------------------------------os-------------------------------------*/
