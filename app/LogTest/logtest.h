@@ -27,7 +27,18 @@ extern "C"{
 /*-----------------------------------macro------------------------------------*/
 
 /*----------------------------------typedef-----------------------------------*/
-
+typedef struct 
+{
+    float kp;
+    float ki;
+    float kd;
+    float target;
+    float current;
+    float error;
+    float integral;
+    float derivative;
+    float output;
+}pid_controller;
 /*----------------------------------variable----------------------------------*/
 
 /*-------------------------------------os-------------------------------------*/
