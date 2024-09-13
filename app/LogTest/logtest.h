@@ -21,10 +21,6 @@ extern "C"{
 
 /*----------------------------------include-----------------------------------*/
 #include "bsp_log.h"
-#include "aciton.h"
-#include "motor.h"
-#include "freertos.h"
-#include "task.h"
 /*-----------------------------------macro------------------------------------*/
 #define LOG_TEST_TASK_STACK_SIZE 1024
 #define LOG_TEST_TASK_PRIORITY 5
