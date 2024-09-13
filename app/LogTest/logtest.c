@@ -7,6 +7,7 @@
 
 int LogTestFunc(void)
 {
+    int b =0;
     PrintLog("LogTestFunc\n");
     return 0;
 }
