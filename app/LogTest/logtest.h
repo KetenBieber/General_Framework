@@ -24,11 +24,12 @@ extern "C"{
 #include "aciton.h"
 #include "motor.h"
 #include "freertos.h"
+#include "task.h"
 /*-----------------------------------macro------------------------------------*/
 #define LOG_TEST_TASK_STACK_SIZE 1024
 #define LOG_TEST_TASK_PRIORITY 5
 /*----------------------------------typedef-----------------------------------*/
-
+typedef int (*log_test_func)(void);
 /*----------------------------------variable----------------------------------*/
 
 /*-------------------------------------os-------------------------------------*/
