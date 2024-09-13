@@ -28,6 +28,8 @@ extern "C"{
 typedef int (*log_test_func)(void);
 typedef int (*log_test_func1)(void);
 typedef int (*log_test_func2)(void);
+typedef int (*log_test_func3)(void);
+typedef int (*log_test_func4)(void);
 /*----------------------------------variable----------------------------------*/
 
 /*-------------------------------------os-------------------------------------*/
