@@ -28,17 +28,7 @@ extern "C"{
 #define LOG_TEST_TASK_STACK_SIZE 1024
 #define LOG_TEST_TASK_PRIORITY 5
 /*----------------------------------typedef-----------------------------------*/
-typedef struct
-{
-    float kp;
-    float ki;
-    float kd;
-    float target;
-    float current;
-    float error;
-    float output;
-} PID_t;
-}
+
 /*----------------------------------variable----------------------------------*/
 
 /*-------------------------------------os-------------------------------------*/
