@@ -24,6 +24,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+/* App层头文件接口 */
+#include "robot_task.h"
+/* Bsp层头文件接口 */
+#include "bsp_init.h"
+#include "bsp_log.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,7 +94,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  __disable_irq();
+  osTaskInit();
+  Bsp_Init();
+  __enable_irq();
+  LOG_CLEAR();
+  LOGINFO("FreeRTOS is Ready!\n");
   /* USER CODE END 2 */
 
   /* Init scheduler */

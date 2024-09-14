@@ -21,25 +21,17 @@ extern "C"{
 
 /*----------------------------------include-----------------------------------*/
 #include "bsp_log.h"
+#include "freertos.h"
 /*-----------------------------------macro------------------------------------*/
-#define LOG_TEST_TASK_STACK_SIZE 1024
-#define LOG_TEST_TASK_PRIORITY 5
+
 /*----------------------------------typedef-----------------------------------*/
-typedef int (*log_test_func)(void);
-typedef int (*log_test_func1)(void);
-typedef int (*log_test_func2)(void);
-typedef int (*log_test_func666)(void);
-typedef int (*log_test_func777)(void);
+
 /*----------------------------------variable----------------------------------*/
 
 /*-------------------------------------os-------------------------------------*/
 
 /*----------------------------------function----------------------------------*/
 
-/*------------------------------------test------------------------------------*/
-int a =1;
-int b =2;
-int c =3;
 #ifdef __cplusplus
 }
 #endif

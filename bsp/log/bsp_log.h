@@ -1,3 +1,16 @@
+/**
+ * @file bsp_log.h
+ * @author Keten (2863861004@qq.com)    --adapted from HNUY
+ * @brief 
+ * @version 0.1
+ * @date 2024-09-15
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ * @attention :
+ * @note :
+ * @versioninfo :
+ */
 #ifndef _BSP_LOG_H
 #define _BSP_LOG_H
 

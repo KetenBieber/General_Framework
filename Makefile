@@ -70,9 +70,11 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
 Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT_printf.c \
 Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT.c \
-bsp/log/bsp_log.c \
-app/Debug/debug.c \
-app/LogTest/logtest.c \
+Bsp/log/bsp_log.c \
+Bsp/dwt/bsp_dwt.c \
+App/debug/debug.c \
+App/logtest/logtest.c \
+App/robot.c \
 Src/sysmem.c \
 Src/syscalls.c  \
 
@@ -144,10 +146,12 @@ C_INCLUDES =  \
 -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
 -IMiddlewares/Third_Party/SEGGER/RTT \
 -IMiddlewares/Third_Party/SEGGER/Config \
--Ibsp/log \
--Iapp/Debug \
--Iapp/LogTest \
--Iapp/ \
+-IBsp/log \
+-IBsp/dwt \
+-IBsp/ \
+-IApp/debug \
+-IApp/logtest \
+-IApp/ \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
 -IDrivers/CMSIS/Include \
 -IMiddlewares/ST/ARM/DSP/Inc \

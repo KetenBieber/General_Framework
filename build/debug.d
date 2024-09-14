@@ -1,1 +1,1 @@
-build/debug.o: app/Debug/debug.c
+build/debug.o: App/debug/debug.c

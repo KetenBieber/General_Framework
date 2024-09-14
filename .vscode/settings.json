@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "freertos.h": "c"
+        "freertos.h": "c",
+        "compare": "c",
+        "cstdlib": "cpp"
     }
 }

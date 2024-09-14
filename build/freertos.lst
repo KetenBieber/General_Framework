@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 1
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 1
   28:Src/freertos.c **** 
   29:Src/freertos.c **** /* USER CODE END Includes */
   30:Src/freertos.c **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 2
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s 			page 2
 
 
   31:Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
@@ -87,100 +87,76 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 1
   54:Src/freertos.c ****   .stack_size = 128 * 4,
   55:Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
   56:Src/freertos.c **** };
-  57:Src/freertos.c **** /* Definitions for LogTestTaskHand */
-  58:Src/freertos.c **** osThreadId_t LogTestTaskHandHandle;
-  59:Src/freertos.c **** const osThreadAttr_t LogTestTaskHand_attributes = {
-  60:Src/freertos.c ****   .name = "LogTestTaskHand",
-  61:Src/freertos.c ****   .stack_size = 128 * 4,
-  62:Src/freertos.c ****   .priority = (osPriority_t) osPriorityLow,
-  63:Src/freertos.c **** };
-  64:Src/freertos.c **** /* Definitions for DebugTaskHandle */
-  65:Src/freertos.c **** osThreadId_t DebugTaskHandleHandle;
-  66:Src/freertos.c **** const osThreadAttr_t DebugTaskHandle_attributes = {
-  67:Src/freertos.c ****   .name = "DebugTaskHandle",
-  68:Src/freertos.c ****   .stack_size = 128 * 4,
-  69:Src/freertos.c ****   .priority = (osPriority_t) osPriorityLow,
-  70:Src/freertos.c **** };
-  71:Src/freertos.c **** 
-  72:Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
-  73:Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
-  74:Src/freertos.c **** 
-  75:Src/freertos.c **** /* USER CODE END FunctionPrototypes */
-  76:Src/freertos.c **** 
-  77:Src/freertos.c **** void StartDefaultTask(void *argument);
-  78:Src/freertos.c **** extern void LogTestTask(void *argument);
-  79:Src/freertos.c **** extern void DebugTask(void *argument);
-  80:Src/freertos.c **** 
-  81:Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
-  82:Src/freertos.c **** 
-  83:Src/freertos.c **** /**
-  84:Src/freertos.c ****   * @brief  FreeRTOS initialization
-  85:Src/freertos.c ****   * @param  None
-  86:Src/freertos.c ****   * @retval None
-  87:Src/freertos.c ****   */
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 3
+  57:Src/freertos.c **** 
+  58:Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+  59:Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
+  60:Src/freertos.c **** 
+  61:Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+  62:Src/freertos.c **** 
+  63:Src/freertos.c **** void StartDefaultTask(void *argument);
+  64:Src/freertos.c **** 
+  65:Src/freertos.c **** 
+  66:Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  67:Src/freertos.c **** 
+  68:Src/freertos.c **** /**
+  69:Src/freertos.c ****   * @brief  FreeRTOS initialization
+  70:Src/freertos.c ****   * @param  None
+  71:Src/freertos.c ****   * @retval None
+  72:Src/freertos.c ****   */
+  73:Src/freertos.c **** void MX_FREERTOS_Init(void) {
+  74:Src/freertos.c ****   /* USER CODE BEGIN Init */
+  75:Src/freertos.c **** 
+  76:Src/freertos.c ****   /* USER CODE END Init */
+  77:Src/freertos.c **** 
+  78:Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+  79:Src/freertos.c ****   /* add mutexes, ... */
+  80:Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+  81:Src/freertos.c **** 
+  82:Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+  83:Src/freertos.c ****   /* add semaphores, ... */
+  84:Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+  85:Src/freertos.c **** 
+  86:Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+  87:Src/freertos.c ****   /* start timers, add new ones, ... */
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s 			page 3
 
 
-  88:Src/freertos.c **** void MX_FREERTOS_Init(void) {
-  89:Src/freertos.c ****   /* USER CODE BEGIN Init */
-  90:Src/freertos.c **** 
-  91:Src/freertos.c ****   /* USER CODE END Init */
-  92:Src/freertos.c **** 
-  93:Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
-  94:Src/freertos.c ****   /* add mutexes, ... */
-  95:Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
-  96:Src/freertos.c **** 
-  97:Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
-  98:Src/freertos.c ****   /* add semaphores, ... */
-  99:Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
- 100:Src/freertos.c **** 
- 101:Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
- 102:Src/freertos.c ****   /* start timers, add new ones, ... */
- 103:Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
- 104:Src/freertos.c **** 
- 105:Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
- 106:Src/freertos.c ****   /* add queues, ... */
- 107:Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
- 108:Src/freertos.c **** 
- 109:Src/freertos.c ****   /* Create the thread(s) */
- 110:Src/freertos.c ****   /* creation of defaultTask */
- 111:Src/freertos.c ****   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
- 112:Src/freertos.c **** 
- 113:Src/freertos.c ****   /* creation of LogTestTaskHand */
- 114:Src/freertos.c ****   LogTestTaskHandHandle = osThreadNew(LogTestTask, NULL, &LogTestTaskHand_attributes);
- 115:Src/freertos.c **** 
- 116:Src/freertos.c ****   /* creation of DebugTaskHandle */
- 117:Src/freertos.c ****   DebugTaskHandleHandle = osThreadNew(DebugTask, NULL, &DebugTaskHandle_attributes);
- 118:Src/freertos.c **** 
- 119:Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
- 120:Src/freertos.c ****   /* add threads, ... */
- 121:Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
- 122:Src/freertos.c **** 
- 123:Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
- 124:Src/freertos.c ****   /* add events, ... */
- 125:Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
- 126:Src/freertos.c **** 
- 127:Src/freertos.c **** }
- 128:Src/freertos.c **** 
- 129:Src/freertos.c **** /* USER CODE BEGIN Header_StartDefaultTask */
- 130:Src/freertos.c **** /**
- 131:Src/freertos.c ****   * @brief  Function implementing the defaultTask thread.
- 132:Src/freertos.c ****   * @param  argument: Not used
- 133:Src/freertos.c ****   * @retval None
- 134:Src/freertos.c ****   */
- 135:Src/freertos.c **** /* USER CODE END Header_StartDefaultTask */
- 136:Src/freertos.c **** void StartDefaultTask(void *argument)
- 137:Src/freertos.c **** {
-  29              		.loc 1 137 1 view -0
+  88:Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+  89:Src/freertos.c **** 
+  90:Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+  91:Src/freertos.c ****   /* add queues, ... */
+  92:Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+  93:Src/freertos.c **** 
+  94:Src/freertos.c ****   /* Create the thread(s) */
+  95:Src/freertos.c ****   /* creation of defaultTask */
+  96:Src/freertos.c ****   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  97:Src/freertos.c **** 
+  98:Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+  99:Src/freertos.c ****   /* add threads, ... */
+ 100:Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 101:Src/freertos.c **** 
+ 102:Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 103:Src/freertos.c ****   /* add events, ... */
+ 104:Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 105:Src/freertos.c **** 
+ 106:Src/freertos.c **** }
+ 107:Src/freertos.c **** 
+ 108:Src/freertos.c **** /* USER CODE BEGIN Header_StartDefaultTask */
+ 109:Src/freertos.c **** /**
+ 110:Src/freertos.c ****   * @brief  Function implementing the defaultTask thread.
+ 111:Src/freertos.c ****   * @param  argument: Not used
+ 112:Src/freertos.c ****   * @retval None
+ 113:Src/freertos.c ****   */
+ 114:Src/freertos.c **** /* USER CODE END Header_StartDefaultTask */
+ 115:Src/freertos.c **** void StartDefaultTask(void *argument)
+ 116:Src/freertos.c **** {
+  29              		.loc 1 116 1 view -0
   30              		.cfi_startproc
   31              		@ Volatile: function does not return.
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              	.LVL0:
-  35              		.loc 1 137 1 is_stmt 0 view .LVU1
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 4
-
-
+  35              		.loc 1 116 1 is_stmt 0 view .LVU1
   36 0000 08B5     		push	{r3, lr}
   37              	.LCFI0:
   38              		.cfi_def_cfa_offset 8
@@ -188,209 +164,122 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 1
   40              		.cfi_offset 14, -4
   41              	.LVL1:
   42              	.L2:
- 138:Src/freertos.c ****   /* USER CODE BEGIN StartDefaultTask */
- 139:Src/freertos.c ****   /* Infinite loop */
- 140:Src/freertos.c ****   for(;;)
-  43              		.loc 1 140 3 is_stmt 1 view .LVU2
- 141:Src/freertos.c ****   {
- 142:Src/freertos.c ****     osDelay(1);
-  44              		.loc 1 142 5 discriminator 1 view .LVU3
-  45 0002 0120     		movs	r0, #1
-  46 0004 FFF7FEFF 		bl	osDelay
-  47              	.LVL2:
- 140:Src/freertos.c ****   {
-  48              		.loc 1 140 3 view .LVU4
-  49 0008 FBE7     		b	.L2
-  50              		.cfi_endproc
-  51              	.LFE139:
-  53              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
-  54              		.align	1
-  55              		.global	MX_FREERTOS_Init
-  56              		.syntax unified
-  57              		.thumb
-  58              		.thumb_func
-  60              	MX_FREERTOS_Init:
-  61              	.LFB138:
-  88:Src/freertos.c ****   /* USER CODE BEGIN Init */
-  62              		.loc 1 88 29 view -0
-  63              		.cfi_startproc
-  64              		@ args = 0, pretend = 0, frame = 0
-  65              		@ frame_needed = 0, uses_anonymous_args = 0
-  66 0000 08B5     		push	{r3, lr}
-  67              	.LCFI1:
-  68              		.cfi_def_cfa_offset 8
-  69              		.cfi_offset 3, -8
-  70              		.cfi_offset 14, -4
- 111:Src/freertos.c **** 
-  71              		.loc 1 111 3 view .LVU6
- 111:Src/freertos.c **** 
-  72              		.loc 1 111 23 is_stmt 0 view .LVU7
-  73 0002 0B4A     		ldr	r2, .L6
-  74 0004 0021     		movs	r1, #0
-  75 0006 0B48     		ldr	r0, .L6+4
-  76 0008 FFF7FEFF 		bl	osThreadNew
-  77              	.LVL3:
- 111:Src/freertos.c **** 
-  78              		.loc 1 111 21 discriminator 1 view .LVU8
-  79 000c 0A4B     		ldr	r3, .L6+8
-  80 000e 1860     		str	r0, [r3]
- 114:Src/freertos.c **** 
-  81              		.loc 1 114 3 is_stmt 1 view .LVU9
- 114:Src/freertos.c **** 
-  82              		.loc 1 114 27 is_stmt 0 view .LVU10
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 5
+ 117:Src/freertos.c ****   /* USER CODE BEGIN StartDefaultTask */
+ 118:Src/freertos.c ****   /* Infinite loop */
+ 119:Src/freertos.c ****   for(;;)
+  43              		.loc 1 119 3 is_stmt 1 view .LVU2
+ 120:Src/freertos.c ****   {
+ 121:Src/freertos.c ****     // 一般可以在这个任务线程完成一些比较额外的初始化工作(但还是建议�
+ 122:Src/freertos.c **** 
+ 123:Src/freertos.c ****     osThreadTerminate(defaultTaskHandle); // 避免空置和切换占用cpu
+  44              		.loc 1 123 5 discriminator 1 view .LVU3
+  45 0002 024B     		ldr	r3, .L4
+  46 0004 1868     		ldr	r0, [r3]
+  47 0006 FFF7FEFF 		bl	osThreadTerminate
+  48              	.LVL2:
+ 119:Src/freertos.c ****   {
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s 			page 4
 
 
-  83 0010 0A4A     		ldr	r2, .L6+12
-  84 0012 0021     		movs	r1, #0
-  85 0014 0A48     		ldr	r0, .L6+16
-  86 0016 FFF7FEFF 		bl	osThreadNew
-  87              	.LVL4:
- 114:Src/freertos.c **** 
-  88              		.loc 1 114 25 discriminator 1 view .LVU11
-  89 001a 0A4B     		ldr	r3, .L6+20
-  90 001c 1860     		str	r0, [r3]
- 117:Src/freertos.c **** 
-  91              		.loc 1 117 3 is_stmt 1 view .LVU12
- 117:Src/freertos.c **** 
-  92              		.loc 1 117 27 is_stmt 0 view .LVU13
-  93 001e 0A4A     		ldr	r2, .L6+24
-  94 0020 0021     		movs	r1, #0
-  95 0022 0A48     		ldr	r0, .L6+28
-  96 0024 FFF7FEFF 		bl	osThreadNew
-  97              	.LVL5:
- 117:Src/freertos.c **** 
-  98              		.loc 1 117 25 discriminator 1 view .LVU14
-  99 0028 094B     		ldr	r3, .L6+32
- 100 002a 1860     		str	r0, [r3]
- 127:Src/freertos.c **** 
- 101              		.loc 1 127 1 view .LVU15
- 102 002c 08BD     		pop	{r3, pc}
- 103              	.L7:
- 104 002e 00BF     		.align	2
- 105              	.L6:
- 106 0030 00000000 		.word	defaultTask_attributes
- 107 0034 00000000 		.word	StartDefaultTask
- 108 0038 00000000 		.word	defaultTaskHandle
- 109 003c 00000000 		.word	LogTestTaskHand_attributes
- 110 0040 00000000 		.word	LogTestTask
- 111 0044 00000000 		.word	LogTestTaskHandHandle
- 112 0048 00000000 		.word	DebugTaskHandle_attributes
- 113 004c 00000000 		.word	DebugTask
- 114 0050 00000000 		.word	DebugTaskHandleHandle
- 115              		.cfi_endproc
- 116              	.LFE138:
- 118              		.global	DebugTaskHandle_attributes
- 119              		.section	.rodata.str1.4,"aMS",%progbits,1
- 120              		.align	2
- 121              	.LC0:
- 122 0000 44656275 		.ascii	"DebugTaskHandle\000"
- 122      67546173 
- 122      6B48616E 
- 122      646C6500 
- 123              		.section	.rodata.DebugTaskHandle_attributes,"a"
- 124              		.align	2
- 127              	DebugTaskHandle_attributes:
- 128 0000 00000000 		.word	.LC0
- 129 0004 00000000 		.space	16
- 129      00000000 
- 129      00000000 
- 129      00000000 
- 130 0014 00020000 		.word	512
- 131 0018 08000000 		.word	8
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 6
+  49              		.loc 1 119 3 view .LVU4
+  50 000a FAE7     		b	.L2
+  51              	.L5:
+  52              		.align	2
+  53              	.L4:
+  54 000c 00000000 		.word	defaultTaskHandle
+  55              		.cfi_endproc
+  56              	.LFE139:
+  58              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+  59              		.align	1
+  60              		.global	MX_FREERTOS_Init
+  61              		.syntax unified
+  62              		.thumb
+  63              		.thumb_func
+  65              	MX_FREERTOS_Init:
+  66              	.LFB138:
+  73:Src/freertos.c ****   /* USER CODE BEGIN Init */
+  67              		.loc 1 73 29 view -0
+  68              		.cfi_startproc
+  69              		@ args = 0, pretend = 0, frame = 0
+  70              		@ frame_needed = 0, uses_anonymous_args = 0
+  71 0000 08B5     		push	{r3, lr}
+  72              	.LCFI1:
+  73              		.cfi_def_cfa_offset 8
+  74              		.cfi_offset 3, -8
+  75              		.cfi_offset 14, -4
+  96:Src/freertos.c **** 
+  76              		.loc 1 96 3 view .LVU6
+  96:Src/freertos.c **** 
+  77              		.loc 1 96 23 is_stmt 0 view .LVU7
+  78 0002 044A     		ldr	r2, .L8
+  79 0004 0021     		movs	r1, #0
+  80 0006 0448     		ldr	r0, .L8+4
+  81 0008 FFF7FEFF 		bl	osThreadNew
+  82              	.LVL3:
+  96:Src/freertos.c **** 
+  83              		.loc 1 96 21 discriminator 1 view .LVU8
+  84 000c 034B     		ldr	r3, .L8+8
+  85 000e 1860     		str	r0, [r3]
+ 106:Src/freertos.c **** 
+  86              		.loc 1 106 1 view .LVU9
+  87 0010 08BD     		pop	{r3, pc}
+  88              	.L9:
+  89 0012 00BF     		.align	2
+  90              	.L8:
+  91 0014 00000000 		.word	defaultTask_attributes
+  92 0018 00000000 		.word	StartDefaultTask
+  93 001c 00000000 		.word	defaultTaskHandle
+  94              		.cfi_endproc
+  95              	.LFE138:
+  97              		.global	defaultTask_attributes
+  98              		.section	.rodata.str1.4,"aMS",%progbits,1
+  99              		.align	2
+ 100              	.LC0:
+ 101 0000 64656661 		.ascii	"defaultTask\000"
+ 101      756C7454 
+ 101      61736B00 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s 			page 5
 
 
- 132 001c 00000000 		.space	8
- 132      00000000 
- 133              		.global	DebugTaskHandleHandle
- 134              		.section	.bss.DebugTaskHandleHandle,"aw",%nobits
- 135              		.align	2
- 138              	DebugTaskHandleHandle:
- 139 0000 00000000 		.space	4
- 140              		.global	LogTestTaskHand_attributes
- 141              		.section	.rodata.str1.4
- 142              		.align	2
- 143              	.LC1:
- 144 0010 4C6F6754 		.ascii	"LogTestTaskHand\000"
- 144      65737454 
- 144      61736B48 
- 144      616E6400 
- 145              		.section	.rodata.LogTestTaskHand_attributes,"a"
- 146              		.align	2
- 149              	LogTestTaskHand_attributes:
- 150 0000 10000000 		.word	.LC1
- 151 0004 00000000 		.space	16
- 151      00000000 
- 151      00000000 
- 151      00000000 
- 152 0014 00020000 		.word	512
- 153 0018 08000000 		.word	8
- 154 001c 00000000 		.space	8
- 154      00000000 
- 155              		.global	LogTestTaskHandHandle
- 156              		.section	.bss.LogTestTaskHandHandle,"aw",%nobits
- 157              		.align	2
- 160              	LogTestTaskHandHandle:
- 161 0000 00000000 		.space	4
- 162              		.global	defaultTask_attributes
- 163              		.section	.rodata.str1.4
- 164              		.align	2
- 165              	.LC2:
- 166 0020 64656661 		.ascii	"defaultTask\000"
- 166      756C7454 
- 166      61736B00 
- 167              		.section	.rodata.defaultTask_attributes,"a"
- 168              		.align	2
- 171              	defaultTask_attributes:
- 172 0000 20000000 		.word	.LC2
- 173 0004 00000000 		.space	16
- 173      00000000 
- 173      00000000 
- 173      00000000 
- 174 0014 00020000 		.word	512
- 175 0018 18000000 		.word	24
- 176 001c 00000000 		.space	8
- 176      00000000 
- 177              		.global	defaultTaskHandle
- 178              		.section	.bss.defaultTaskHandle,"aw",%nobits
- 179              		.align	2
- 182              	defaultTaskHandle:
- 183 0000 00000000 		.space	4
- 184              		.text
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 7
-
-
- 185              	.Letext0:
- 186              		.file 2 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
- 187              		.file 3 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
- 188              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s 			page 8
+ 102              		.section	.rodata.defaultTask_attributes,"a"
+ 103              		.align	2
+ 106              	defaultTask_attributes:
+ 107 0000 00000000 		.word	.LC0
+ 108 0004 00000000 		.space	16
+ 108      00000000 
+ 108      00000000 
+ 108      00000000 
+ 109 0014 00020000 		.word	512
+ 110 0018 18000000 		.word	24
+ 111 001c 00000000 		.space	8
+ 111      00000000 
+ 112              		.global	defaultTaskHandle
+ 113              		.section	.bss.defaultTaskHandle,"aw",%nobits
+ 114              		.align	2
+ 117              	defaultTaskHandle:
+ 118 0000 00000000 		.space	4
+ 119              		.text
+ 120              	.Letext0:
+ 121              		.file 2 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
+ 122              		.file 3 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
+ 123              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:21     .text.StartDefaultTask:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:27     .text.StartDefaultTask:00000000 StartDefaultTask
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:54     .text.MX_FREERTOS_Init:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:60     .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:106    .text.MX_FREERTOS_Init:00000030 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:171    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:182    .bss.defaultTaskHandle:00000000 defaultTaskHandle
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:149    .rodata.LogTestTaskHand_attributes:00000000 LogTestTaskHand_attributes
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:160    .bss.LogTestTaskHandHandle:00000000 LogTestTaskHandHandle
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:127    .rodata.DebugTaskHandle_attributes:00000000 DebugTaskHandle_attributes
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:138    .bss.DebugTaskHandleHandle:00000000 DebugTaskHandleHandle
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:120    .rodata.str1.4:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:124    .rodata.DebugTaskHandle_attributes:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:135    .bss.DebugTaskHandleHandle:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:146    .rodata.LogTestTaskHand_attributes:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:157    .bss.LogTestTaskHandHandle:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:168    .rodata.defaultTask_attributes:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\ccW39WNI.s:179    .bss.defaultTaskHandle:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:21     .text.StartDefaultTask:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:27     .text.StartDefaultTask:00000000 StartDefaultTask
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:54     .text.StartDefaultTask:0000000c $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:117    .bss.defaultTaskHandle:00000000 defaultTaskHandle
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:59     .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:65     .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:91     .text.MX_FREERTOS_Init:00000014 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:106    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:99     .rodata.str1.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:103    .rodata.defaultTask_attributes:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccmaefec.s:114    .bss.defaultTaskHandle:00000000 $d
 
 UNDEFINED SYMBOLS
-osDelay
+osThreadTerminate
 osThreadNew
-LogTestTask
-DebugTask

@@ -35,7 +35,12 @@ build/main.o: Src/main.c Inc/main.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- Inc/gpio.h Inc/main.h
+ Inc/gpio.h Inc/main.h App/robot_task.h App/logtest/logtest.h \
+ Bsp/log/bsp_log.h Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT.h \
+ Middlewares/Third_Party/SEGGER/RTT/../Config/SEGGER_RTT_Conf.h \
+ Middlewares/Third_Party/SEGGER/Config/SEGGER_RTT_Conf.h \
+ Middlewares/Third_Party/FreeRTOS/Source/include/freertos.h \
+ App/debug/debug.h Bsp/bsp_init.h Bsp/dwt/bsp_dwt.h
 Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Inc/stm32f4xx_hal_conf.h:
@@ -77,3 +82,13 @@ Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 Inc/gpio.h:
 Inc/main.h:
+App/robot_task.h:
+App/logtest/logtest.h:
+Bsp/log/bsp_log.h:
+Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT.h:
+Middlewares/Third_Party/SEGGER/RTT/../Config/SEGGER_RTT_Conf.h:
+Middlewares/Third_Party/SEGGER/Config/SEGGER_RTT_Conf.h:
+Middlewares/Third_Party/FreeRTOS/Source/include/freertos.h:
+App/debug/debug.h:
+Bsp/bsp_init.h:
+Bsp/dwt/bsp_dwt.h:

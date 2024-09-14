@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -20,15 +20,481 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
   19              		.file 1 "Src/main.c"
-  20              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
-  21              		.align	1
-  22              		.global	HAL_TIM_PeriodElapsedCallback
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	HAL_TIM_PeriodElapsedCallback:
-  28              	.LVL0:
-  29              	.LFB140:
+  20              		.section	.rodata.LogTestTask.str1.4,"aMS",%progbits,1
+  21              		.align	2
+  22              	.LC0:
+  23 0000 493A00   		.ascii	"I:\000"
+  24 0003 00       		.align	2
+  25              	.LC1:
+  26 0004 1B5B313B 		.ascii	"\033[1;32m\000"
+  26      33326D00 
+  27              		.align	2
+  28              	.LC2:
+  29 000c 20202573 		.ascii	"  %s%sLogTask is ready!\012\015\012%s\000"
+  29      25734C6F 
+  29      67546173 
+  29      6B206973 
+  29      20726561 
+  30 0029 000000   		.align	2
+  31              	.LC3:
+  32 002c 1B5B306D 		.ascii	"\033[0m\000"
+  32      00
+  33 0031 000000   		.align	2
+  34              	.LC4:
+  35 0034 573A00   		.ascii	"W:\000"
+  36 0037 00       		.align	2
+  37              	.LC5:
+  38 0038 1B5B313B 		.ascii	"\033[1;33m\000"
+  38      33336D00 
+  39              		.align	2
+  40              	.LC6:
+  41 0040 20202573 		.ascii	"  %s%ssomething maybe error! test_num is %d\012\015"
+  41      2573736F 
+  41      6D657468 
+  41      696E6720 
+  41      6D617962 
+  42 006d 0A257300 		.ascii	"\012%s\000"
+  43 0071 000000   		.align	2
+  44              	.LC7:
+  45 0074 453A00   		.ascii	"E:\000"
+  46 0077 00       		.align	2
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 2
+
+
+  47              	.LC8:
+  48 0078 1B5B313B 		.ascii	"\033[1;31m\000"
+  48      33316D00 
+  49              		.align	2
+  50              	.LC9:
+  51 0080 20202573 		.ascii	"  %s%ssomething must be error! test_num is %d\012\015"
+  51      2573736F 
+  51      6D657468 
+  51      696E6720 
+  51      6D757374 
+  52 00af 0A257300 		.ascii	"\012%s\000"
+  53              		.section	.text.LogTestTask,"ax",%progbits
+  54              		.align	1
+  55              		.global	LogTestTask
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  60              	LogTestTask:
+  61              	.LVL0:
+  62              	.LFB142:
+  63              		.file 2 "App/robot_task.h"
+   1:App/robot_task.h **** #pragma once
+   2:App/robot_task.h **** 
+   3:App/robot_task.h **** /* RTOS层及mcu main接口 */
+   4:App/robot_task.h **** #include "FreeRTOS.h"
+   5:App/robot_task.h **** #include "task.h"
+   6:App/robot_task.h **** #include "main.h"
+   7:App/robot_task.h **** #include "cmsis_os.h"
+   8:App/robot_task.h **** 
+   9:App/robot_task.h **** /* app 层接口头文件 */
+  10:App/robot_task.h **** #include "logtest.h"
+  11:App/robot_task.h **** #include "debug.h"
+  12:App/robot_task.h **** 
+  13:App/robot_task.h **** /* bsp 层接口头文件 */
+  14:App/robot_task.h **** #include "bsp_log.h"
+  15:App/robot_task.h **** 
+  16:App/robot_task.h **** /* Definitions for TaskHand */
+  17:App/robot_task.h **** osThreadId_t LogTestTaskHandHandle;
+  18:App/robot_task.h **** osThreadId_t DebugTaskHandleHandle;
+  19:App/robot_task.h **** 
+  20:App/robot_task.h **** /* Definitions for TaskFunc */
+  21:App/robot_task.h **** void LogTestTask(void *argument);
+  22:App/robot_task.h **** void DebugTask(void *argument);
+  23:App/robot_task.h **** 
+  24:App/robot_task.h **** /**
+  25:App/robot_task.h ****  * @brief os任务创建初始化函数
+  26:App/robot_task.h ****  * 
+  27:App/robot_task.h ****  */
+  28:App/robot_task.h **** void osTaskInit(void)
+  29:App/robot_task.h **** {
+  30:App/robot_task.h ****     const osThreadAttr_t LogTestTaskHand_attributes = {
+  31:App/robot_task.h ****     .name = "LogTestTaskHand",
+  32:App/robot_task.h ****     .stack_size = 128 * 4,
+  33:App/robot_task.h ****     .priority = (osPriority_t) osPriorityLow,
+  34:App/robot_task.h ****     };
+  35:App/robot_task.h ****     LogTestTaskHandHandle = osThreadNew(LogTestTask, NULL, &LogTestTaskHand_attributes);
+  36:App/robot_task.h **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 3
+
+
+  37:App/robot_task.h **** 
+  38:App/robot_task.h ****     const osThreadAttr_t DebugTaskHandle_attributes = {
+  39:App/robot_task.h ****     .name = "DebugTaskHandle",
+  40:App/robot_task.h ****     .stack_size = 128 * 4,
+  41:App/robot_task.h ****     .priority = (osPriority_t) osPriorityLow,
+  42:App/robot_task.h ****     };
+  43:App/robot_task.h ****     DebugTaskHandleHandle = osThreadNew(DebugTask, NULL, &DebugTaskHandle_attributes);
+  44:App/robot_task.h **** 
+  45:App/robot_task.h **** }
+  46:App/robot_task.h **** 
+  47:App/robot_task.h **** /**
+  48:App/robot_task.h ****  * @brief LogTest 任务函数
+  49:App/robot_task.h ****  *        测试打印日志的效果
+  50:App/robot_task.h ****  * 
+  51:App/robot_task.h ****  */
+  52:App/robot_task.h **** __attribute((noreturn)) void LogTestTask(void *argument)
+  53:App/robot_task.h **** {
+  64              		.loc 2 53 1 view -0
+  65              		.cfi_startproc
+  66              		@ Volatile: function does not return.
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69              		.loc 2 53 1 is_stmt 0 view .LVU1
+  70 0000 00B5     		push	{lr}
+  71              	.LCFI0:
+  72              		.cfi_def_cfa_offset 4
+  73              		.cfi_offset 14, -4
+  74 0002 83B0     		sub	sp, sp, #12
+  75              	.LCFI1:
+  76              		.cfi_def_cfa_offset 16
+  54:App/robot_task.h ****     static int test_num = 0;
+  77              		.loc 2 54 5 is_stmt 1 view .LVU2
+  55:App/robot_task.h ****     LOGINFO("LogTask is ready!\n");
+  78              		.loc 2 55 5 view .LVU3
+  79 0004 164B     		ldr	r3, .L8
+  80 0006 0093     		str	r3, [sp]
+  81 0008 164B     		ldr	r3, .L8+4
+  82 000a 174A     		ldr	r2, .L8+8
+  83 000c 1749     		ldr	r1, .L8+12
+  84 000e 0020     		movs	r0, #0
+  85              	.LVL1:
+  86              		.loc 2 55 5 is_stmt 0 view .LVU4
+  87 0010 FFF7FEFF 		bl	SEGGER_RTT_printf
+  88              	.LVL2:
+  89 0014 1BE0     		b	.L4
+  90              	.L6:
+  56:App/robot_task.h ****     for(;;)
+  57:App/robot_task.h ****     {
+  58:App/robot_task.h ****         if(test_num)
+  59:App/robot_task.h ****         {
+  60:App/robot_task.h ****             LOGWARNING("something maybe error! test_num is %d\n",test_num);
+  91              		.loc 2 60 13 is_stmt 1 view .LVU5
+  92 0016 124A     		ldr	r2, .L8
+  93 0018 0192     		str	r2, [sp, #4]
+  94 001a 0093     		str	r3, [sp]
+  95 001c 144B     		ldr	r3, .L8+16
+  96 001e 154A     		ldr	r2, .L8+20
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 4
+
+
+  97 0020 1549     		ldr	r1, .L8+24
+  98 0022 0020     		movs	r0, #0
+  99 0024 FFF7FEFF 		bl	SEGGER_RTT_printf
+ 100              	.LVL3:
+  61:App/robot_task.h ****             test_num = 0;
+ 101              		.loc 2 61 13 view .LVU6
+ 102              		.loc 2 61 22 is_stmt 0 view .LVU7
+ 103 0028 144B     		ldr	r3, .L8+28
+ 104 002a 0022     		movs	r2, #0
+ 105 002c 1A60     		str	r2, [r3]
+ 106 002e 12E0     		b	.L2
+ 107              	.L7:
+  62:App/robot_task.h ****         }
+  63:App/robot_task.h ****         if(!test_num)
+  64:App/robot_task.h ****         {
+  65:App/robot_task.h ****             LOGERROR("something must be error! test_num is %d\n",test_num);
+ 108              		.loc 2 65 13 is_stmt 1 view .LVU8
+ 109 0030 0B4A     		ldr	r2, .L8
+ 110 0032 0192     		str	r2, [sp, #4]
+ 111 0034 0093     		str	r3, [sp]
+ 112 0036 124B     		ldr	r3, .L8+32
+ 113 0038 124A     		ldr	r2, .L8+36
+ 114 003a 1349     		ldr	r1, .L8+40
+ 115 003c 0020     		movs	r0, #0
+ 116 003e FFF7FEFF 		bl	SEGGER_RTT_printf
+ 117              	.LVL4:
+  66:App/robot_task.h ****             test_num = 1;
+ 118              		.loc 2 66 13 view .LVU9
+ 119              		.loc 2 66 22 is_stmt 0 view .LVU10
+ 120 0042 0E4B     		ldr	r3, .L8+28
+ 121 0044 0122     		movs	r2, #1
+ 122 0046 1A60     		str	r2, [r3]
+ 123              	.L3:
+  67:App/robot_task.h ****         }
+  68:App/robot_task.h ****         osDelay(5);   
+ 124              		.loc 2 68 9 is_stmt 1 view .LVU11
+ 125 0048 0520     		movs	r0, #5
+ 126 004a FFF7FEFF 		bl	osDelay
+ 127              	.LVL5:
+  56:App/robot_task.h ****     {
+ 128              		.loc 2 56 5 view .LVU12
+ 129              	.L4:
+  56:App/robot_task.h ****     {
+ 130              		.loc 2 56 5 view .LVU13
+  58:App/robot_task.h ****         {
+ 131              		.loc 2 58 9 view .LVU14
+  58:App/robot_task.h ****         {
+ 132              		.loc 2 58 12 is_stmt 0 view .LVU15
+ 133 004e 0B4B     		ldr	r3, .L8+28
+ 134 0050 1B68     		ldr	r3, [r3]
+  58:App/robot_task.h ****         {
+ 135              		.loc 2 58 11 view .LVU16
+ 136 0052 002B     		cmp	r3, #0
+ 137 0054 DFD1     		bne	.L6
+ 138              	.L2:
+  63:App/robot_task.h ****         {
+ 139              		.loc 2 63 9 is_stmt 1 view .LVU17
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 5
+
+
+  63:App/robot_task.h ****         {
+ 140              		.loc 2 63 12 is_stmt 0 view .LVU18
+ 141 0056 094B     		ldr	r3, .L8+28
+ 142 0058 1B68     		ldr	r3, [r3]
+  63:App/robot_task.h ****         {
+ 143              		.loc 2 63 11 view .LVU19
+ 144 005a 002B     		cmp	r3, #0
+ 145 005c E8D0     		beq	.L7
+ 146 005e F3E7     		b	.L3
+ 147              	.L9:
+ 148              		.align	2
+ 149              	.L8:
+ 150 0060 2C000000 		.word	.LC3
+ 151 0064 00000000 		.word	.LC0
+ 152 0068 04000000 		.word	.LC1
+ 153 006c 0C000000 		.word	.LC2
+ 154 0070 34000000 		.word	.LC4
+ 155 0074 38000000 		.word	.LC5
+ 156 0078 40000000 		.word	.LC6
+ 157 007c 00000000 		.word	test_num.0
+ 158 0080 74000000 		.word	.LC7
+ 159 0084 78000000 		.word	.LC8
+ 160 0088 80000000 		.word	.LC9
+ 161              		.cfi_endproc
+ 162              	.LFE142:
+ 164              		.section	.text.DebugTask,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	DebugTask
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 171              	DebugTask:
+ 172              	.LFB143:
+  69:App/robot_task.h ****     }
+  70:App/robot_task.h **** }
+  71:App/robot_task.h **** 
+  72:App/robot_task.h **** /**
+  73:App/robot_task.h ****  * @brief 测试调试的函数任务
+  74:App/robot_task.h ****  * 
+  75:App/robot_task.h ****  */
+  76:App/robot_task.h **** __attribute((noreturn)) void DebugTask(void *argument)
+  77:App/robot_task.h **** {
+ 173              		.loc 2 77 1 is_stmt 1 view -0
+ 174              		.cfi_startproc
+ 175              		@ Volatile: function does not return.
+ 176              		@ args = 0, pretend = 0, frame = 0
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178              	.LVL6:
+ 179              		.loc 2 77 1 is_stmt 0 view .LVU21
+ 180 0000 08B5     		push	{r3, lr}
+ 181              	.LCFI2:
+ 182              		.cfi_def_cfa_offset 8
+ 183              		.cfi_offset 3, -8
+ 184              		.cfi_offset 14, -4
+ 185              	.LVL7:
+ 186              	.L11:
+  78:App/robot_task.h **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 6
+
+
+  79:App/robot_task.h ****     for(;;)
+ 187              		.loc 2 79 5 is_stmt 1 view .LVU22
+  80:App/robot_task.h ****     {
+  81:App/robot_task.h ****         
+  82:App/robot_task.h ****         osDelay(1);
+ 188              		.loc 2 82 9 discriminator 1 view .LVU23
+ 189 0002 0120     		movs	r0, #1
+ 190 0004 FFF7FEFF 		bl	osDelay
+ 191              	.LVL8:
+  79:App/robot_task.h ****     {
+ 192              		.loc 2 79 5 view .LVU24
+ 193 0008 FBE7     		b	.L11
+ 194              		.cfi_endproc
+ 195              	.LFE143:
+ 197              		.section	.rodata.osTaskInit.str1.4,"aMS",%progbits,1
+ 198              		.align	2
+ 199              	.LC10:
+ 200 0000 4C6F6754 		.ascii	"LogTestTaskHand\000"
+ 200      65737454 
+ 200      61736B48 
+ 200      616E6400 
+ 201              		.align	2
+ 202              	.LC11:
+ 203 0010 44656275 		.ascii	"DebugTaskHandle\000"
+ 203      67546173 
+ 203      6B48616E 
+ 203      646C6500 
+ 204              		.section	.text.osTaskInit,"ax",%progbits
+ 205              		.align	1
+ 206              		.global	osTaskInit
+ 207              		.syntax unified
+ 208              		.thumb
+ 209              		.thumb_func
+ 211              	osTaskInit:
+ 212              	.LFB141:
+  29:App/robot_task.h ****     const osThreadAttr_t LogTestTaskHand_attributes = {
+ 213              		.loc 2 29 1 view -0
+ 214              		.cfi_startproc
+ 215              		@ args = 0, pretend = 0, frame = 72
+ 216              		@ frame_needed = 0, uses_anonymous_args = 0
+ 217 0000 70B5     		push	{r4, r5, r6, lr}
+ 218              	.LCFI3:
+ 219              		.cfi_def_cfa_offset 16
+ 220              		.cfi_offset 4, -16
+ 221              		.cfi_offset 5, -12
+ 222              		.cfi_offset 6, -8
+ 223              		.cfi_offset 14, -4
+ 224 0002 92B0     		sub	sp, sp, #72
+ 225              	.LCFI4:
+ 226              		.cfi_def_cfa_offset 88
+  30:App/robot_task.h ****     .name = "LogTestTaskHand",
+ 227              		.loc 2 30 5 view .LVU26
+  30:App/robot_task.h ****     .name = "LogTestTaskHand",
+ 228              		.loc 2 30 26 is_stmt 0 view .LVU27
+ 229 0004 2426     		movs	r6, #36
+ 230 0006 3246     		mov	r2, r6
+ 231 0008 0021     		movs	r1, #0
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 7
+
+
+ 232 000a 0DEB0600 		add	r0, sp, r6
+ 233 000e FFF7FEFF 		bl	memset
+ 234              	.LVL9:
+ 235 0012 104B     		ldr	r3, .L15
+ 236 0014 0993     		str	r3, [sp, #36]
+ 237 0016 4FF40075 		mov	r5, #512
+ 238 001a 0E95     		str	r5, [sp, #56]
+ 239 001c 0824     		movs	r4, #8
+ 240 001e 0F94     		str	r4, [sp, #60]
+  35:App/robot_task.h **** 
+ 241              		.loc 2 35 5 is_stmt 1 view .LVU28
+  35:App/robot_task.h **** 
+ 242              		.loc 2 35 29 is_stmt 0 view .LVU29
+ 243 0020 0DEB0602 		add	r2, sp, r6
+ 244 0024 0021     		movs	r1, #0
+ 245 0026 0C48     		ldr	r0, .L15+4
+ 246 0028 FFF7FEFF 		bl	osThreadNew
+ 247              	.LVL10:
+  35:App/robot_task.h **** 
+ 248              		.loc 2 35 27 discriminator 1 view .LVU30
+ 249 002c 0B4B     		ldr	r3, .L15+8
+ 250 002e 1860     		str	r0, [r3]
+  38:App/robot_task.h ****     .name = "DebugTaskHandle",
+ 251              		.loc 2 38 5 is_stmt 1 view .LVU31
+  38:App/robot_task.h ****     .name = "DebugTaskHandle",
+ 252              		.loc 2 38 26 is_stmt 0 view .LVU32
+ 253 0030 3246     		mov	r2, r6
+ 254 0032 0021     		movs	r1, #0
+ 255 0034 6846     		mov	r0, sp
+ 256 0036 FFF7FEFF 		bl	memset
+ 257              	.LVL11:
+ 258 003a 094B     		ldr	r3, .L15+12
+ 259 003c 0093     		str	r3, [sp]
+ 260 003e 0595     		str	r5, [sp, #20]
+ 261 0040 0694     		str	r4, [sp, #24]
+  43:App/robot_task.h **** 
+ 262              		.loc 2 43 5 is_stmt 1 view .LVU33
+  43:App/robot_task.h **** 
+ 263              		.loc 2 43 29 is_stmt 0 view .LVU34
+ 264 0042 6A46     		mov	r2, sp
+ 265 0044 0021     		movs	r1, #0
+ 266 0046 0748     		ldr	r0, .L15+16
+ 267 0048 FFF7FEFF 		bl	osThreadNew
+ 268              	.LVL12:
+  43:App/robot_task.h **** 
+ 269              		.loc 2 43 27 discriminator 1 view .LVU35
+ 270 004c 064B     		ldr	r3, .L15+20
+ 271 004e 1860     		str	r0, [r3]
+  45:App/robot_task.h **** 
+ 272              		.loc 2 45 1 view .LVU36
+ 273 0050 12B0     		add	sp, sp, #72
+ 274              	.LCFI5:
+ 275              		.cfi_def_cfa_offset 16
+ 276              		@ sp needed
+ 277 0052 70BD     		pop	{r4, r5, r6, pc}
+ 278              	.L16:
+ 279              		.align	2
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 8
+
+
+ 280              	.L15:
+ 281 0054 00000000 		.word	.LC10
+ 282 0058 00000000 		.word	LogTestTask
+ 283 005c 00000000 		.word	LogTestTaskHandHandle
+ 284 0060 10000000 		.word	.LC11
+ 285 0064 00000000 		.word	DebugTask
+ 286 0068 00000000 		.word	DebugTaskHandleHandle
+ 287              		.cfi_endproc
+ 288              	.LFE141:
+ 290              		.section	.text.Bsp_Init,"ax",%progbits
+ 291              		.align	1
+ 292              		.global	Bsp_Init
+ 293              		.syntax unified
+ 294              		.thumb
+ 295              		.thumb_func
+ 297              	Bsp_Init:
+ 298              	.LFB144:
+ 299              		.file 3 "Bsp/bsp_init.h"
+   1:Bsp/bsp_init.h **** /**
+   2:Bsp/bsp_init.h ****  * @file bsp_init.h
+   3:Bsp/bsp_init.h ****  * @author Keten (2863861004@qq.com)
+   4:Bsp/bsp_init.h ****  * @brief bsp层 初始化文件 只初始化需要用的模块
+   5:Bsp/bsp_init.h ****  * @version 0.1
+   6:Bsp/bsp_init.h ****  * @date 2024-09-14
+   7:Bsp/bsp_init.h ****  * 
+   8:Bsp/bsp_init.h ****  * @copyright Copyright (c) 2024
+   9:Bsp/bsp_init.h ****  * 
+  10:Bsp/bsp_init.h ****  * @attention :
+  11:Bsp/bsp_init.h ****  * @note :
+  12:Bsp/bsp_init.h ****  * @versioninfo :
+  13:Bsp/bsp_init.h ****  */
+  14:Bsp/bsp_init.h **** #pragma once
+  15:Bsp/bsp_init.h **** 
+  16:Bsp/bsp_init.h **** #include "bsp_log.h"
+  17:Bsp/bsp_init.h **** #include "bsp_dwt.h"
+  18:Bsp/bsp_init.h **** 
+  19:Bsp/bsp_init.h **** void Bsp_Init()
+  20:Bsp/bsp_init.h **** {
+ 300              		.loc 3 20 1 is_stmt 1 view -0
+ 301              		.cfi_startproc
+ 302              		@ args = 0, pretend = 0, frame = 0
+ 303              		@ frame_needed = 0, uses_anonymous_args = 0
+ 304 0000 08B5     		push	{r3, lr}
+ 305              	.LCFI6:
+ 306              		.cfi_def_cfa_offset 8
+ 307              		.cfi_offset 3, -8
+ 308              		.cfi_offset 14, -4
+  21:Bsp/bsp_init.h ****     BSPLogInit();
+ 309              		.loc 3 21 5 view .LVU38
+ 310 0002 FFF7FEFF 		bl	BSPLogInit
+ 311              	.LVL13:
+  22:Bsp/bsp_init.h ****     /* stm32f4 芯片主频 168MHz */
+  23:Bsp/bsp_init.h ****     DWT_Init(168);
+ 312              		.loc 3 23 5 view .LVU39
+ 313 0006 A820     		movs	r0, #168
+ 314 0008 FFF7FEFF 		bl	DWT_Init
+ 315              	.LVL14:
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 9
+
+
+  24:Bsp/bsp_init.h **** }
+ 316              		.loc 3 24 1 is_stmt 0 view .LVU40
+ 317 000c 08BD     		pop	{r3, pc}
+ 318              		.cfi_endproc
+ 319              	.LFE144:
+ 321              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 322              		.align	1
+ 323              		.global	HAL_TIM_PeriodElapsedCallback
+ 324              		.syntax unified
+ 325              		.thumb
+ 326              		.thumb_func
+ 328              	HAL_TIM_PeriodElapsedCallback:
+ 329              	.LVL15:
+ 330              	.LFB147:
    1:Src/main.c    **** /* USER CODE BEGIN Header */
    2:Src/main.c    **** /**
    3:Src/main.c    ****   ******************************************************************************
@@ -55,235 +521,245 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
   24:Src/main.c    **** /* Private includes ----------------------------------------------------------*/
   25:Src/main.c    **** /* USER CODE BEGIN Includes */
   26:Src/main.c    **** 
-  27:Src/main.c    **** /* USER CODE END Includes */
-  28:Src/main.c    **** 
-  29:Src/main.c    **** /* Private typedef -----------------------------------------------------------*/
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 2
-
-
-  30:Src/main.c    **** /* USER CODE BEGIN PTD */
-  31:Src/main.c    **** 
-  32:Src/main.c    **** /* USER CODE END PTD */
+  27:Src/main.c    **** /* App层头文件接口 */
+  28:Src/main.c    **** #include "robot_task.h"
+  29:Src/main.c    **** /* Bsp层头文件接口 */
+  30:Src/main.c    **** #include "bsp_init.h"
+  31:Src/main.c    **** #include "bsp_log.h"
+  32:Src/main.c    **** /* USER CODE END Includes */
   33:Src/main.c    **** 
-  34:Src/main.c    **** /* Private define ------------------------------------------------------------*/
-  35:Src/main.c    **** /* USER CODE BEGIN PD */
+  34:Src/main.c    **** /* Private typedef -----------------------------------------------------------*/
+  35:Src/main.c    **** /* USER CODE BEGIN PTD */
   36:Src/main.c    **** 
-  37:Src/main.c    **** /* USER CODE END PD */
+  37:Src/main.c    **** /* USER CODE END PTD */
   38:Src/main.c    **** 
-  39:Src/main.c    **** /* Private macro -------------------------------------------------------------*/
-  40:Src/main.c    **** /* USER CODE BEGIN PM */
+  39:Src/main.c    **** /* Private define ------------------------------------------------------------*/
+  40:Src/main.c    **** /* USER CODE BEGIN PD */
   41:Src/main.c    **** 
-  42:Src/main.c    **** /* USER CODE END PM */
+  42:Src/main.c    **** /* USER CODE END PD */
   43:Src/main.c    **** 
-  44:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
-  45:Src/main.c    **** 
-  46:Src/main.c    **** /* USER CODE BEGIN PV */
-  47:Src/main.c    **** 
-  48:Src/main.c    **** /* USER CODE END PV */
-  49:Src/main.c    **** 
-  50:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
-  51:Src/main.c    **** void SystemClock_Config(void);
-  52:Src/main.c    **** void MX_FREERTOS_Init(void);
-  53:Src/main.c    **** /* USER CODE BEGIN PFP */
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 10
+
+
+  44:Src/main.c    **** /* Private macro -------------------------------------------------------------*/
+  45:Src/main.c    **** /* USER CODE BEGIN PM */
+  46:Src/main.c    **** 
+  47:Src/main.c    **** /* USER CODE END PM */
+  48:Src/main.c    **** 
+  49:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
+  50:Src/main.c    **** 
+  51:Src/main.c    **** /* USER CODE BEGIN PV */
+  52:Src/main.c    **** 
+  53:Src/main.c    **** /* USER CODE END PV */
   54:Src/main.c    **** 
-  55:Src/main.c    **** /* USER CODE END PFP */
-  56:Src/main.c    **** 
-  57:Src/main.c    **** /* Private user code ---------------------------------------------------------*/
-  58:Src/main.c    **** /* USER CODE BEGIN 0 */
+  55:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+  56:Src/main.c    **** void SystemClock_Config(void);
+  57:Src/main.c    **** void MX_FREERTOS_Init(void);
+  58:Src/main.c    **** /* USER CODE BEGIN PFP */
   59:Src/main.c    **** 
-  60:Src/main.c    **** /* USER CODE END 0 */
+  60:Src/main.c    **** /* USER CODE END PFP */
   61:Src/main.c    **** 
-  62:Src/main.c    **** /**
-  63:Src/main.c    ****   * @brief  The application entry point.
-  64:Src/main.c    ****   * @retval int
-  65:Src/main.c    ****   */
-  66:Src/main.c    **** int main(void)
-  67:Src/main.c    **** {
-  68:Src/main.c    **** 
-  69:Src/main.c    ****   /* USER CODE BEGIN 1 */
-  70:Src/main.c    **** 
-  71:Src/main.c    ****   /* USER CODE END 1 */
-  72:Src/main.c    **** 
-  73:Src/main.c    ****   /* MCU Configuration--------------------------------------------------------*/
-  74:Src/main.c    **** 
-  75:Src/main.c    ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  76:Src/main.c    ****   HAL_Init();
+  62:Src/main.c    **** /* Private user code ---------------------------------------------------------*/
+  63:Src/main.c    **** /* USER CODE BEGIN 0 */
+  64:Src/main.c    **** 
+  65:Src/main.c    **** /* USER CODE END 0 */
+  66:Src/main.c    **** 
+  67:Src/main.c    **** /**
+  68:Src/main.c    ****   * @brief  The application entry point.
+  69:Src/main.c    ****   * @retval int
+  70:Src/main.c    ****   */
+  71:Src/main.c    **** int main(void)
+  72:Src/main.c    **** {
+  73:Src/main.c    **** 
+  74:Src/main.c    ****   /* USER CODE BEGIN 1 */
+  75:Src/main.c    **** 
+  76:Src/main.c    ****   /* USER CODE END 1 */
   77:Src/main.c    **** 
-  78:Src/main.c    ****   /* USER CODE BEGIN Init */
+  78:Src/main.c    ****   /* MCU Configuration--------------------------------------------------------*/
   79:Src/main.c    **** 
-  80:Src/main.c    ****   /* USER CODE END Init */
-  81:Src/main.c    **** 
-  82:Src/main.c    ****   /* Configure the system clock */
-  83:Src/main.c    ****   SystemClock_Config();
+  80:Src/main.c    ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  81:Src/main.c    ****   HAL_Init();
+  82:Src/main.c    **** 
+  83:Src/main.c    ****   /* USER CODE BEGIN Init */
   84:Src/main.c    **** 
-  85:Src/main.c    ****   /* USER CODE BEGIN SysInit */
+  85:Src/main.c    ****   /* USER CODE END Init */
   86:Src/main.c    **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 3
+  87:Src/main.c    ****   /* Configure the system clock */
+  88:Src/main.c    ****   SystemClock_Config();
+  89:Src/main.c    **** 
+  90:Src/main.c    ****   /* USER CODE BEGIN SysInit */
+  91:Src/main.c    **** 
+  92:Src/main.c    ****   /* USER CODE END SysInit */
+  93:Src/main.c    **** 
+  94:Src/main.c    ****   /* Initialize all configured peripherals */
+  95:Src/main.c    ****   MX_GPIO_Init();
+  96:Src/main.c    ****   /* USER CODE BEGIN 2 */
+  97:Src/main.c    ****   __disable_irq();
+  98:Src/main.c    ****   osTaskInit();
+  99:Src/main.c    ****   Bsp_Init();
+ 100:Src/main.c    ****   __enable_irq();
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 11
 
 
-  87:Src/main.c    ****   /* USER CODE END SysInit */
-  88:Src/main.c    **** 
-  89:Src/main.c    ****   /* Initialize all configured peripherals */
-  90:Src/main.c    ****   MX_GPIO_Init();
-  91:Src/main.c    ****   /* USER CODE BEGIN 2 */
-  92:Src/main.c    **** 
-  93:Src/main.c    ****   /* USER CODE END 2 */
-  94:Src/main.c    **** 
-  95:Src/main.c    ****   /* Init scheduler */
-  96:Src/main.c    ****   osKernelInitialize();
-  97:Src/main.c    **** 
-  98:Src/main.c    ****   /* Call init function for freertos objects (in cmsis_os2.c) */
-  99:Src/main.c    ****   MX_FREERTOS_Init();
- 100:Src/main.c    **** 
- 101:Src/main.c    ****   /* Start scheduler */
- 102:Src/main.c    ****   osKernelStart();
- 103:Src/main.c    **** 
- 104:Src/main.c    ****   /* We should never get here as control is now taken by the scheduler */
- 105:Src/main.c    **** 
- 106:Src/main.c    ****   /* Infinite loop */
- 107:Src/main.c    ****   /* USER CODE BEGIN WHILE */
- 108:Src/main.c    ****   while (1)
- 109:Src/main.c    ****   {
- 110:Src/main.c    ****     /* USER CODE END WHILE */
- 111:Src/main.c    **** 
- 112:Src/main.c    ****     /* USER CODE BEGIN 3 */
- 113:Src/main.c    ****   }
- 114:Src/main.c    ****   /* USER CODE END 3 */
- 115:Src/main.c    **** }
- 116:Src/main.c    **** 
- 117:Src/main.c    **** /**
- 118:Src/main.c    ****   * @brief System Clock Configuration
- 119:Src/main.c    ****   * @retval None
- 120:Src/main.c    ****   */
- 121:Src/main.c    **** void SystemClock_Config(void)
- 122:Src/main.c    **** {
- 123:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 124:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 125:Src/main.c    **** 
- 126:Src/main.c    ****   /** Configure the main internal regulator output voltage
- 127:Src/main.c    ****   */
- 128:Src/main.c    ****   __HAL_RCC_PWR_CLK_ENABLE();
- 129:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
- 130:Src/main.c    **** 
- 131:Src/main.c    ****   /** Initializes the RCC Oscillators according to the specified parameters
- 132:Src/main.c    ****   * in the RCC_OscInitTypeDef structure.
- 133:Src/main.c    ****   */
- 134:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
- 135:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 136:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 137:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 138:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 4;
- 139:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 168;
- 140:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
- 141:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
- 142:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 143:Src/main.c    ****   {
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 4
+ 101:Src/main.c    ****   LOG_CLEAR();
+ 102:Src/main.c    ****   LOGINFO("FreeRTOS is Ready!\n");
+ 103:Src/main.c    ****   /* USER CODE END 2 */
+ 104:Src/main.c    **** 
+ 105:Src/main.c    ****   /* Init scheduler */
+ 106:Src/main.c    ****   osKernelInitialize();
+ 107:Src/main.c    **** 
+ 108:Src/main.c    ****   /* Call init function for freertos objects (in cmsis_os2.c) */
+ 109:Src/main.c    ****   MX_FREERTOS_Init();
+ 110:Src/main.c    **** 
+ 111:Src/main.c    ****   /* Start scheduler */
+ 112:Src/main.c    ****   osKernelStart();
+ 113:Src/main.c    **** 
+ 114:Src/main.c    ****   /* We should never get here as control is now taken by the scheduler */
+ 115:Src/main.c    **** 
+ 116:Src/main.c    ****   /* Infinite loop */
+ 117:Src/main.c    ****   /* USER CODE BEGIN WHILE */
+ 118:Src/main.c    ****   while (1)
+ 119:Src/main.c    ****   {
+ 120:Src/main.c    ****     /* USER CODE END WHILE */
+ 121:Src/main.c    **** 
+ 122:Src/main.c    ****     /* USER CODE BEGIN 3 */
+ 123:Src/main.c    ****   }
+ 124:Src/main.c    ****   /* USER CODE END 3 */
+ 125:Src/main.c    **** }
+ 126:Src/main.c    **** 
+ 127:Src/main.c    **** /**
+ 128:Src/main.c    ****   * @brief System Clock Configuration
+ 129:Src/main.c    ****   * @retval None
+ 130:Src/main.c    ****   */
+ 131:Src/main.c    **** void SystemClock_Config(void)
+ 132:Src/main.c    **** {
+ 133:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 134:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 135:Src/main.c    **** 
+ 136:Src/main.c    ****   /** Configure the main internal regulator output voltage
+ 137:Src/main.c    ****   */
+ 138:Src/main.c    ****   __HAL_RCC_PWR_CLK_ENABLE();
+ 139:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 140:Src/main.c    **** 
+ 141:Src/main.c    ****   /** Initializes the RCC Oscillators according to the specified parameters
+ 142:Src/main.c    ****   * in the RCC_OscInitTypeDef structure.
+ 143:Src/main.c    ****   */
+ 144:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 145:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 146:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 147:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 148:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 4;
+ 149:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 168;
+ 150:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 151:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
+ 152:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 153:Src/main.c    ****   {
+ 154:Src/main.c    ****     Error_Handler();
+ 155:Src/main.c    ****   }
+ 156:Src/main.c    **** 
+ 157:Src/main.c    ****   /** Initializes the CPU, AHB and APB buses clocks
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 12
 
 
- 144:Src/main.c    ****     Error_Handler();
- 145:Src/main.c    ****   }
- 146:Src/main.c    **** 
- 147:Src/main.c    ****   /** Initializes the CPU, AHB and APB buses clocks
- 148:Src/main.c    ****   */
- 149:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 150:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 151:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 152:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 153:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
- 154:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
- 155:Src/main.c    **** 
- 156:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
- 157:Src/main.c    ****   {
- 158:Src/main.c    ****     Error_Handler();
- 159:Src/main.c    ****   }
- 160:Src/main.c    **** }
- 161:Src/main.c    **** 
- 162:Src/main.c    **** /* USER CODE BEGIN 4 */
- 163:Src/main.c    **** 
- 164:Src/main.c    **** /* USER CODE END 4 */
+ 158:Src/main.c    ****   */
+ 159:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 160:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 161:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 162:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 163:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+ 164:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
  165:Src/main.c    **** 
- 166:Src/main.c    **** /**
- 167:Src/main.c    ****   * @brief  Period elapsed callback in non blocking mode
- 168:Src/main.c    ****   * @note   This function is called  when TIM2 interrupt took place, inside
- 169:Src/main.c    ****   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
- 170:Src/main.c    ****   * a global variable "uwTick" used as application time base.
- 171:Src/main.c    ****   * @param  htim : TIM handle
- 172:Src/main.c    ****   * @retval None
- 173:Src/main.c    ****   */
- 174:Src/main.c    **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
- 175:Src/main.c    **** {
-  30              		.loc 1 175 1 view -0
-  31              		.cfi_startproc
-  32              		@ args = 0, pretend = 0, frame = 0
-  33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34              		.loc 1 175 1 is_stmt 0 view .LVU1
-  35 0000 08B5     		push	{r3, lr}
-  36              	.LCFI0:
-  37              		.cfi_def_cfa_offset 8
-  38              		.cfi_offset 3, -8
-  39              		.cfi_offset 14, -4
- 176:Src/main.c    ****   /* USER CODE BEGIN Callback 0 */
- 177:Src/main.c    **** 
- 178:Src/main.c    ****   /* USER CODE END Callback 0 */
- 179:Src/main.c    ****   if (htim->Instance == TIM2) {
-  40              		.loc 1 179 3 is_stmt 1 view .LVU2
-  41              		.loc 1 179 11 is_stmt 0 view .LVU3
-  42 0002 0368     		ldr	r3, [r0]
-  43              		.loc 1 179 6 view .LVU4
-  44 0004 B3F1804F 		cmp	r3, #1073741824
-  45 0008 00D0     		beq	.L4
-  46              	.LVL1:
-  47              	.L1:
- 180:Src/main.c    ****     HAL_IncTick();
- 181:Src/main.c    ****   }
- 182:Src/main.c    ****   /* USER CODE BEGIN Callback 1 */
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 5
+ 166:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+ 167:Src/main.c    ****   {
+ 168:Src/main.c    ****     Error_Handler();
+ 169:Src/main.c    ****   }
+ 170:Src/main.c    **** }
+ 171:Src/main.c    **** 
+ 172:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 173:Src/main.c    **** 
+ 174:Src/main.c    **** /* USER CODE END 4 */
+ 175:Src/main.c    **** 
+ 176:Src/main.c    **** /**
+ 177:Src/main.c    ****   * @brief  Period elapsed callback in non blocking mode
+ 178:Src/main.c    ****   * @note   This function is called  when TIM2 interrupt took place, inside
+ 179:Src/main.c    ****   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+ 180:Src/main.c    ****   * a global variable "uwTick" used as application time base.
+ 181:Src/main.c    ****   * @param  htim : TIM handle
+ 182:Src/main.c    ****   * @retval None
+ 183:Src/main.c    ****   */
+ 184:Src/main.c    **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+ 185:Src/main.c    **** {
+ 331              		.loc 1 185 1 is_stmt 1 view -0
+ 332              		.cfi_startproc
+ 333              		@ args = 0, pretend = 0, frame = 0
+ 334              		@ frame_needed = 0, uses_anonymous_args = 0
+ 335              		.loc 1 185 1 is_stmt 0 view .LVU42
+ 336 0000 08B5     		push	{r3, lr}
+ 337              	.LCFI7:
+ 338              		.cfi_def_cfa_offset 8
+ 339              		.cfi_offset 3, -8
+ 340              		.cfi_offset 14, -4
+ 186:Src/main.c    ****   /* USER CODE BEGIN Callback 0 */
+ 187:Src/main.c    **** 
+ 188:Src/main.c    ****   /* USER CODE END Callback 0 */
+ 189:Src/main.c    ****   if (htim->Instance == TIM2) {
+ 341              		.loc 1 189 3 is_stmt 1 view .LVU43
+ 342              		.loc 1 189 11 is_stmt 0 view .LVU44
+ 343 0002 0368     		ldr	r3, [r0]
+ 344              		.loc 1 189 6 view .LVU45
+ 345 0004 B3F1804F 		cmp	r3, #1073741824
+ 346 0008 00D0     		beq	.L22
+ 347              	.LVL16:
+ 348              	.L19:
+ 190:Src/main.c    ****     HAL_IncTick();
+ 191:Src/main.c    ****   }
+ 192:Src/main.c    ****   /* USER CODE BEGIN Callback 1 */
+ 193:Src/main.c    **** 
+ 194:Src/main.c    ****   /* USER CODE END Callback 1 */
+ 195:Src/main.c    **** }
+ 349              		.loc 1 195 1 view .LVU46
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 13
 
 
- 183:Src/main.c    **** 
- 184:Src/main.c    ****   /* USER CODE END Callback 1 */
- 185:Src/main.c    **** }
-  48              		.loc 1 185 1 view .LVU5
-  49 000a 08BD     		pop	{r3, pc}
-  50              	.LVL2:
-  51              	.L4:
- 180:Src/main.c    ****     HAL_IncTick();
-  52              		.loc 1 180 5 is_stmt 1 view .LVU6
-  53 000c FFF7FEFF 		bl	HAL_IncTick
-  54              	.LVL3:
-  55              		.loc 1 185 1 is_stmt 0 view .LVU7
-  56 0010 FBE7     		b	.L1
-  57              		.cfi_endproc
-  58              	.LFE140:
-  60              		.section	.text.Error_Handler,"ax",%progbits
-  61              		.align	1
-  62              		.global	Error_Handler
-  63              		.syntax unified
-  64              		.thumb
-  65              		.thumb_func
-  67              	Error_Handler:
-  68              	.LFB141:
- 186:Src/main.c    **** 
- 187:Src/main.c    **** /**
- 188:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
- 189:Src/main.c    ****   * @retval None
- 190:Src/main.c    ****   */
- 191:Src/main.c    **** void Error_Handler(void)
- 192:Src/main.c    **** {
-  69              		.loc 1 192 1 is_stmt 1 view -0
-  70              		.cfi_startproc
-  71              		@ Volatile: function does not return.
-  72              		@ args = 0, pretend = 0, frame = 0
-  73              		@ frame_needed = 0, uses_anonymous_args = 0
-  74              		@ link register save eliminated.
- 193:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
- 194:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
- 195:Src/main.c    ****   __disable_irq();
-  75              		.loc 1 195 3 view .LVU9
-  76              	.LBB4:
-  77              	.LBI4:
-  78              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+ 350 000a 08BD     		pop	{r3, pc}
+ 351              	.LVL17:
+ 352              	.L22:
+ 190:Src/main.c    ****     HAL_IncTick();
+ 353              		.loc 1 190 5 is_stmt 1 view .LVU47
+ 354 000c FFF7FEFF 		bl	HAL_IncTick
+ 355              	.LVL18:
+ 356              		.loc 1 195 1 is_stmt 0 view .LVU48
+ 357 0010 FBE7     		b	.L19
+ 358              		.cfi_endproc
+ 359              	.LFE147:
+ 361              		.section	.text.Error_Handler,"ax",%progbits
+ 362              		.align	1
+ 363              		.global	Error_Handler
+ 364              		.syntax unified
+ 365              		.thumb
+ 366              		.thumb_func
+ 368              	Error_Handler:
+ 369              	.LFB148:
+ 196:Src/main.c    **** 
+ 197:Src/main.c    **** /**
+ 198:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 199:Src/main.c    ****   * @retval None
+ 200:Src/main.c    ****   */
+ 201:Src/main.c    **** void Error_Handler(void)
+ 202:Src/main.c    **** {
+ 370              		.loc 1 202 1 is_stmt 1 view -0
+ 371              		.cfi_startproc
+ 372              		@ Volatile: function does not return.
+ 373              		@ args = 0, pretend = 0, frame = 0
+ 374              		@ frame_needed = 0, uses_anonymous_args = 0
+ 375              		@ link register save eliminated.
+ 203:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 204:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 205:Src/main.c    ****   __disable_irq();
+ 376              		.loc 1 205 3 view .LVU50
+ 377              	.LBB8:
+ 378              	.LBI8:
+ 379              		.file 4 "Drivers/CMSIS/Include/cmsis_gcc.h"
    1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
    2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
@@ -298,13 +774,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
   12:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
   13:Drivers/CMSIS/Include/cmsis_gcc.h ****  * not use this file except in compliance with the License.
   14:Drivers/CMSIS/Include/cmsis_gcc.h ****  * You may obtain a copy of the License at
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 6
-
-
   15:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
   16:Drivers/CMSIS/Include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
   17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
   18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 14
+
+
   19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
   20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
@@ -358,13 +834,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
   69:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   70:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32        /* deprecated */
   71:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 7
-
-
   72:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   73:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
   75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 15
+
+
   76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
   77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
@@ -418,13 +894,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  126:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details This default implementations initialized all data and additional bss
  127:Drivers/CMSIS/Include/cmsis_gcc.h ****            sections relying on .copy.table and .zero.table specified properly
  128:Drivers/CMSIS/Include/cmsis_gcc.h ****            in the used linker script.
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 8
-
-
  129:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  130:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  131:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE __NO_RETURN void __cmsis_start(void)
  132:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 16
+
+
  133:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern void _start(void) __NO_RETURN;
  134:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  135:Drivers/CMSIS/Include/cmsis_gcc.h ****   typedef struct {
@@ -478,13 +954,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  183:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  184:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  185:Drivers/CMSIS/Include/cmsis_gcc.h **** #if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3U)
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 9
-
-
  186:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __STACK_SEAL
  187:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __STACK_SEAL              __StackSeal
  188:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  189:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 17
+
+
  190:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __TZ_STACK_SEAL_SIZE
  191:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __TZ_STACK_SEAL_SIZE      8U
  192:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -538,13 +1014,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  240:Drivers/CMSIS/Include/cmsis_gcc.h ****            a low-power state until one of a number of events occurs.
  241:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  242:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __WFE()                             __ASM volatile ("wfe":::"memory")
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 10
-
-
  243:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  244:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  245:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  246:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Send Event
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 18
+
+
  247:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Send Event is a hint instruction. It causes an event to be signaled to the CPU.
  248:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  249:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __SEV()                             __ASM volatile ("sev")
@@ -598,13 +1074,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  297:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  298:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  299:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM ("rev %0, %1" : __CMSIS_GCC_OUT_REG (result) : __CMSIS_GCC_USE_REG (value) );
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 11
-
-
  300:Drivers/CMSIS/Include/cmsis_gcc.h ****   return result;
  301:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  302:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  303:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 19
+
+
  304:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  305:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  306:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Reverse byte order (16 bit)
@@ -658,13 +1134,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  354:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  355:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  356:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 12
-
-
  357:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  358:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Breakpoint
  359:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Causes the processor to enter Debug state.
  360:Drivers/CMSIS/Include/cmsis_gcc.h ****            Debug tools can use this to investigate system state when the instruction at a particula
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 20
+
+
  361:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  is ignored by the processor.
  362:Drivers/CMSIS/Include/cmsis_gcc.h ****                  If required, a debugger can use it to store additional information about the break
  363:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -718,13 +1194,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  411:Drivers/CMSIS/Include/cmsis_gcc.h ****      ARM GCC 7.3 and possibly earlier will optimise this test away, leaving a
  412:Drivers/CMSIS/Include/cmsis_gcc.h ****      single CLZ instruction.
  413:Drivers/CMSIS/Include/cmsis_gcc.h ****    */
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 13
-
-
  414:Drivers/CMSIS/Include/cmsis_gcc.h ****   if (value == 0U)
  415:Drivers/CMSIS/Include/cmsis_gcc.h ****   {
  416:Drivers/CMSIS/Include/cmsis_gcc.h ****     return 32U;
  417:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 21
+
+
  418:Drivers/CMSIS/Include/cmsis_gcc.h ****   return __builtin_clz(value);
  419:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  420:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -778,13 +1254,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  468:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  469:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  470:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 14
-
-
  471:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   LDR Exclusive (32 bit)
  472:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a exclusive LDR instruction for 32 bit values.
  473:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
  474:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint32_t at (*ptr)
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 22
+
+
  475:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  476:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __LDREXW(volatile uint32_t *addr)
  477:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -838,13 +1314,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  525:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          1  Function failed
  526:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  527:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __STREXW(uint32_t value, volatile uint32_t *addr)
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 15
-
-
  528:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  529:Drivers/CMSIS/Include/cmsis_gcc.h ****    uint32_t result;
  530:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  531:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("strex %0, %2, %1" : "=&r" (result), "=Q" (*addr) : "r" (value) );
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 23
+
+
  532:Drivers/CMSIS/Include/cmsis_gcc.h ****    return(result);
  533:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  534:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -898,13 +1374,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  582:Drivers/CMSIS/Include/cmsis_gcc.h ****   __RES; \
  583:Drivers/CMSIS/Include/cmsis_gcc.h ****  })
  584:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 16
-
-
  585:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  586:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  587:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Rotate Right with Extend (32 bit)
  588:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Moves each bit of a bitstring right by one bit.
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 24
+
+
  589:Drivers/CMSIS/Include/cmsis_gcc.h ****            The carry input is shifted in at the left end of the bitstring.
  590:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  Value to rotate
  591:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Rotated value
@@ -958,13 +1434,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  639:Drivers/CMSIS/Include/cmsis_gcc.h ****     */
  640:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrht %0, [%1]" : "=r" (result) : "r" (ptr) : "memory" );
  641:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 17
-
-
  642:Drivers/CMSIS/Include/cmsis_gcc.h ****    return ((uint16_t) result);    /* Add explicit type cast here */
  643:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  644:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  645:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 25
+
+
  646:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  647:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   LDRT Unprivileged (32 bit)
  648:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a Unprivileged LDRT instruction for 32 bit values.
@@ -1018,13 +1494,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  696:Drivers/CMSIS/Include/cmsis_gcc.h **** #else  /* ((defined (__ARM_ARCH_7M__      ) && (__ARM_ARCH_7M__      == 1)) || \
  697:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
  698:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1))    ) */
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 18
-
-
  699:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  700:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  701:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Signed Saturate
  702:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Saturates a signed value.
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 26
+
+
  703:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to be saturated
  704:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    sat  Bit position to saturate to (1..32)
  705:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             Saturated value
@@ -1078,13 +1554,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  753:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  754:Drivers/CMSIS/Include/cmsis_gcc.h **** #if ((defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)) || \
  755:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_BASE__ ) && (__ARM_ARCH_8M_BASE__ == 1))    )
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 19
-
-
  756:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  757:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Load-Acquire (8 bit)
  758:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a LDAB instruction for 8 bit value.
  759:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 27
+
+
  760:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             value of type uint8_t at (*ptr)
  761:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  762:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint8_t __LDAB(volatile uint8_t *ptr)
@@ -1138,13 +1614,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  810:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  811:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  812:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 20
-
-
  813:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  814:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Store-Release (16 bit)
  815:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a STLH instruction for 16 bit values.
  816:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 28
+
+
  817:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  818:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  819:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __STLH(uint16_t value, volatile uint16_t *ptr)
@@ -1198,13 +1674,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  867:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  868:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Load-Acquire Exclusive (32 bit)
  869:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a LDA exclusive instruction for 32 bit values.
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 21
-
-
  870:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
  871:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint32_t at (*ptr)
  872:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  873:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __LDAEX(volatile uint32_t *ptr)
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 29
+
+
  874:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  875:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
  876:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1258,13 +1734,13 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  924:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __STLEX(uint32_t value, volatile uint32_t *ptr)
  925:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  926:Drivers/CMSIS/Include/cmsis_gcc.h ****    uint32_t result;
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 22
-
-
  927:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  928:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("stlex %0, %2, %1" : "=&r" (result), "=Q" (*ptr) : "r" ((uint32_t)value) : "memo
  929:Drivers/CMSIS/Include/cmsis_gcc.h ****    return(result);
  930:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 30
+
+
  931:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  932:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif /* ((defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)) || \
  933:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_8M_BASE__ ) && (__ARM_ARCH_8M_BASE__ == 1))    ) */
@@ -1295,343 +1771,471 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 1
  958:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  959:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  960:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
-  79              		.loc 2 960 27 view .LVU10
-  80              	.LBB5:
+ 380              		.loc 4 960 27 view .LVU51
+ 381              	.LBB9:
  961:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  962:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
-  81              		.loc 2 962 3 view .LVU11
-  82              		.syntax unified
-  83              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-  84 0000 72B6     		cpsid i
-  85              	@ 0 "" 2
-  86              		.thumb
-  87              		.syntax unified
-  88              	.L6:
-  89              	.LBE5:
-  90              	.LBE4:
- 196:Src/main.c    ****   while (1)
-  91              		.loc 1 196 3 view .LVU12
- 197:Src/main.c    ****   {
- 198:Src/main.c    ****   }
-  92              		.loc 1 198 3 view .LVU13
- 196:Src/main.c    ****   while (1)
-  93              		.loc 1 196 9 view .LVU14
-  94 0002 FEE7     		b	.L6
-  95              		.cfi_endproc
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 23
+ 382              		.loc 4 962 3 view .LVU52
+ 383              		.syntax unified
+ 384              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 385 0000 72B6     		cpsid i
+ 386              	@ 0 "" 2
+ 387              		.thumb
+ 388              		.syntax unified
+ 389              	.L24:
+ 390              	.LBE9:
+ 391              	.LBE8:
+ 206:Src/main.c    ****   while (1)
+ 392              		.loc 1 206 3 view .LVU53
+ 207:Src/main.c    ****   {
+ 208:Src/main.c    ****   }
+ 393              		.loc 1 208 3 view .LVU54
+ 206:Src/main.c    ****   while (1)
+ 394              		.loc 1 206 9 view .LVU55
+ 395 0002 FEE7     		b	.L24
+ 396              		.cfi_endproc
+ 397              	.LFE148:
+ 399              		.section	.text.SystemClock_Config,"ax",%progbits
+ 400              		.align	1
+ 401              		.global	SystemClock_Config
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 31
 
 
-  96              	.LFE141:
-  98              		.section	.text.SystemClock_Config,"ax",%progbits
-  99              		.align	1
- 100              		.global	SystemClock_Config
- 101              		.syntax unified
- 102              		.thumb
- 103              		.thumb_func
- 105              	SystemClock_Config:
- 106              	.LFB139:
- 122:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 107              		.loc 1 122 1 view -0
- 108              		.cfi_startproc
- 109              		@ args = 0, pretend = 0, frame = 80
- 110              		@ frame_needed = 0, uses_anonymous_args = 0
- 111 0000 00B5     		push	{lr}
- 112              	.LCFI1:
- 113              		.cfi_def_cfa_offset 4
- 114              		.cfi_offset 14, -4
- 115 0002 95B0     		sub	sp, sp, #84
- 116              	.LCFI2:
- 117              		.cfi_def_cfa_offset 88
- 123:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 118              		.loc 1 123 3 view .LVU16
- 123:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 119              		.loc 1 123 22 is_stmt 0 view .LVU17
- 120 0004 3022     		movs	r2, #48
- 121 0006 0021     		movs	r1, #0
- 122 0008 08A8     		add	r0, sp, #32
- 123 000a FFF7FEFF 		bl	memset
- 124              	.LVL4:
- 124:Src/main.c    **** 
- 125              		.loc 1 124 3 is_stmt 1 view .LVU18
- 124:Src/main.c    **** 
- 126              		.loc 1 124 22 is_stmt 0 view .LVU19
- 127 000e 0023     		movs	r3, #0
- 128 0010 0393     		str	r3, [sp, #12]
- 129 0012 0493     		str	r3, [sp, #16]
- 130 0014 0593     		str	r3, [sp, #20]
- 131 0016 0693     		str	r3, [sp, #24]
- 132 0018 0793     		str	r3, [sp, #28]
- 128:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
- 133              		.loc 1 128 3 is_stmt 1 view .LVU20
- 134              	.LBB6:
- 128:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
- 135              		.loc 1 128 3 view .LVU21
- 136 001a 0193     		str	r3, [sp, #4]
- 128:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
- 137              		.loc 1 128 3 view .LVU22
- 138 001c 204A     		ldr	r2, .L13
- 139 001e 116C     		ldr	r1, [r2, #64]
- 140 0020 41F08051 		orr	r1, r1, #268435456
- 141 0024 1164     		str	r1, [r2, #64]
- 128:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
- 142              		.loc 1 128 3 view .LVU23
- 143 0026 126C     		ldr	r2, [r2, #64]
- 144 0028 02F08052 		and	r2, r2, #268435456
- 145 002c 0192     		str	r2, [sp, #4]
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 24
+ 402              		.syntax unified
+ 403              		.thumb
+ 404              		.thumb_func
+ 406              	SystemClock_Config:
+ 407              	.LFB146:
+ 132:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 408              		.loc 1 132 1 view -0
+ 409              		.cfi_startproc
+ 410              		@ args = 0, pretend = 0, frame = 80
+ 411              		@ frame_needed = 0, uses_anonymous_args = 0
+ 412 0000 00B5     		push	{lr}
+ 413              	.LCFI8:
+ 414              		.cfi_def_cfa_offset 4
+ 415              		.cfi_offset 14, -4
+ 416 0002 95B0     		sub	sp, sp, #84
+ 417              	.LCFI9:
+ 418              		.cfi_def_cfa_offset 88
+ 133:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 419              		.loc 1 133 3 view .LVU57
+ 133:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 420              		.loc 1 133 22 is_stmt 0 view .LVU58
+ 421 0004 3022     		movs	r2, #48
+ 422 0006 0021     		movs	r1, #0
+ 423 0008 08A8     		add	r0, sp, #32
+ 424 000a FFF7FEFF 		bl	memset
+ 425              	.LVL19:
+ 134:Src/main.c    **** 
+ 426              		.loc 1 134 3 is_stmt 1 view .LVU59
+ 134:Src/main.c    **** 
+ 427              		.loc 1 134 22 is_stmt 0 view .LVU60
+ 428 000e 0023     		movs	r3, #0
+ 429 0010 0393     		str	r3, [sp, #12]
+ 430 0012 0493     		str	r3, [sp, #16]
+ 431 0014 0593     		str	r3, [sp, #20]
+ 432 0016 0693     		str	r3, [sp, #24]
+ 433 0018 0793     		str	r3, [sp, #28]
+ 138:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 434              		.loc 1 138 3 is_stmt 1 view .LVU61
+ 435              	.LBB10:
+ 138:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 436              		.loc 1 138 3 view .LVU62
+ 437 001a 0193     		str	r3, [sp, #4]
+ 138:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 438              		.loc 1 138 3 view .LVU63
+ 439 001c 204A     		ldr	r2, .L31
+ 440 001e 116C     		ldr	r1, [r2, #64]
+ 441 0020 41F08051 		orr	r1, r1, #268435456
+ 442 0024 1164     		str	r1, [r2, #64]
+ 138:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 443              		.loc 1 138 3 view .LVU64
+ 444 0026 126C     		ldr	r2, [r2, #64]
+ 445 0028 02F08052 		and	r2, r2, #268435456
+ 446 002c 0192     		str	r2, [sp, #4]
+ 138:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 447              		.loc 1 138 3 view .LVU65
+ 448 002e 019A     		ldr	r2, [sp, #4]
+ 449              	.LBE10:
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 32
 
 
- 128:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
- 146              		.loc 1 128 3 view .LVU24
- 147 002e 019A     		ldr	r2, [sp, #4]
- 148              	.LBE6:
- 128:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
- 149              		.loc 1 128 3 view .LVU25
- 129:Src/main.c    **** 
- 150              		.loc 1 129 3 view .LVU26
- 151              	.LBB7:
- 129:Src/main.c    **** 
- 152              		.loc 1 129 3 view .LVU27
- 153 0030 0293     		str	r3, [sp, #8]
- 129:Src/main.c    **** 
- 154              		.loc 1 129 3 view .LVU28
- 155 0032 1C4B     		ldr	r3, .L13+4
- 156 0034 1A68     		ldr	r2, [r3]
- 157 0036 42F48042 		orr	r2, r2, #16384
- 158 003a 1A60     		str	r2, [r3]
- 129:Src/main.c    **** 
- 159              		.loc 1 129 3 view .LVU29
- 160 003c 1B68     		ldr	r3, [r3]
- 161 003e 03F48043 		and	r3, r3, #16384
- 162 0042 0293     		str	r3, [sp, #8]
- 129:Src/main.c    **** 
- 163              		.loc 1 129 3 view .LVU30
- 164 0044 029B     		ldr	r3, [sp, #8]
- 165              	.LBE7:
- 129:Src/main.c    **** 
- 166              		.loc 1 129 3 view .LVU31
- 134:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 167              		.loc 1 134 3 view .LVU32
- 134:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
- 168              		.loc 1 134 36 is_stmt 0 view .LVU33
- 169 0046 0123     		movs	r3, #1
- 170 0048 0893     		str	r3, [sp, #32]
- 135:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 171              		.loc 1 135 3 is_stmt 1 view .LVU34
- 135:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 172              		.loc 1 135 30 is_stmt 0 view .LVU35
- 173 004a 4FF48033 		mov	r3, #65536
- 174 004e 0993     		str	r3, [sp, #36]
- 136:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 175              		.loc 1 136 3 is_stmt 1 view .LVU36
- 136:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
- 176              		.loc 1 136 34 is_stmt 0 view .LVU37
- 177 0050 0222     		movs	r2, #2
- 178 0052 0E92     		str	r2, [sp, #56]
- 137:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 4;
- 179              		.loc 1 137 3 is_stmt 1 view .LVU38
- 137:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 4;
- 180              		.loc 1 137 35 is_stmt 0 view .LVU39
- 181 0054 4FF48003 		mov	r3, #4194304
- 182 0058 0F93     		str	r3, [sp, #60]
- 138:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 168;
- 183              		.loc 1 138 3 is_stmt 1 view .LVU40
- 138:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 168;
- 184              		.loc 1 138 30 is_stmt 0 view .LVU41
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 25
+ 138:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 450              		.loc 1 138 3 view .LVU66
+ 139:Src/main.c    **** 
+ 451              		.loc 1 139 3 view .LVU67
+ 452              	.LBB11:
+ 139:Src/main.c    **** 
+ 453              		.loc 1 139 3 view .LVU68
+ 454 0030 0293     		str	r3, [sp, #8]
+ 139:Src/main.c    **** 
+ 455              		.loc 1 139 3 view .LVU69
+ 456 0032 1C4B     		ldr	r3, .L31+4
+ 457 0034 1A68     		ldr	r2, [r3]
+ 458 0036 42F48042 		orr	r2, r2, #16384
+ 459 003a 1A60     		str	r2, [r3]
+ 139:Src/main.c    **** 
+ 460              		.loc 1 139 3 view .LVU70
+ 461 003c 1B68     		ldr	r3, [r3]
+ 462 003e 03F48043 		and	r3, r3, #16384
+ 463 0042 0293     		str	r3, [sp, #8]
+ 139:Src/main.c    **** 
+ 464              		.loc 1 139 3 view .LVU71
+ 465 0044 029B     		ldr	r3, [sp, #8]
+ 466              	.LBE11:
+ 139:Src/main.c    **** 
+ 467              		.loc 1 139 3 view .LVU72
+ 144:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 468              		.loc 1 144 3 view .LVU73
+ 144:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 469              		.loc 1 144 36 is_stmt 0 view .LVU74
+ 470 0046 0123     		movs	r3, #1
+ 471 0048 0893     		str	r3, [sp, #32]
+ 145:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 472              		.loc 1 145 3 is_stmt 1 view .LVU75
+ 145:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 473              		.loc 1 145 30 is_stmt 0 view .LVU76
+ 474 004a 4FF48033 		mov	r3, #65536
+ 475 004e 0993     		str	r3, [sp, #36]
+ 146:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 476              		.loc 1 146 3 is_stmt 1 view .LVU77
+ 146:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 477              		.loc 1 146 34 is_stmt 0 view .LVU78
+ 478 0050 0222     		movs	r2, #2
+ 479 0052 0E92     		str	r2, [sp, #56]
+ 147:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 4;
+ 480              		.loc 1 147 3 is_stmt 1 view .LVU79
+ 147:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 4;
+ 481              		.loc 1 147 35 is_stmt 0 view .LVU80
+ 482 0054 4FF48003 		mov	r3, #4194304
+ 483 0058 0F93     		str	r3, [sp, #60]
+ 148:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 168;
+ 484              		.loc 1 148 3 is_stmt 1 view .LVU81
+ 148:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 168;
+ 485              		.loc 1 148 30 is_stmt 0 view .LVU82
+ 486 005a 0423     		movs	r3, #4
+ 487 005c 1093     		str	r3, [sp, #64]
+ 149:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 488              		.loc 1 149 3 is_stmt 1 view .LVU83
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 33
 
 
- 185 005a 0423     		movs	r3, #4
- 186 005c 1093     		str	r3, [sp, #64]
- 139:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
- 187              		.loc 1 139 3 is_stmt 1 view .LVU42
- 139:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
- 188              		.loc 1 139 30 is_stmt 0 view .LVU43
- 189 005e A821     		movs	r1, #168
- 190 0060 1191     		str	r1, [sp, #68]
- 140:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
- 191              		.loc 1 140 3 is_stmt 1 view .LVU44
- 140:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
- 192              		.loc 1 140 30 is_stmt 0 view .LVU45
- 193 0062 1292     		str	r2, [sp, #72]
- 141:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 194              		.loc 1 141 3 is_stmt 1 view .LVU46
- 141:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 195              		.loc 1 141 30 is_stmt 0 view .LVU47
- 196 0064 1393     		str	r3, [sp, #76]
- 142:Src/main.c    ****   {
- 197              		.loc 1 142 3 is_stmt 1 view .LVU48
- 142:Src/main.c    ****   {
- 198              		.loc 1 142 7 is_stmt 0 view .LVU49
- 199 0066 08A8     		add	r0, sp, #32
- 200 0068 FFF7FEFF 		bl	HAL_RCC_OscConfig
- 201              	.LVL5:
- 142:Src/main.c    ****   {
- 202              		.loc 1 142 6 discriminator 1 view .LVU50
- 203 006c 98B9     		cbnz	r0, .L11
- 149:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 204              		.loc 1 149 3 is_stmt 1 view .LVU51
- 149:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 205              		.loc 1 149 31 is_stmt 0 view .LVU52
- 206 006e 0F23     		movs	r3, #15
- 207 0070 0393     		str	r3, [sp, #12]
- 151:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 208              		.loc 1 151 3 is_stmt 1 view .LVU53
- 151:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 209              		.loc 1 151 34 is_stmt 0 view .LVU54
- 210 0072 0223     		movs	r3, #2
- 211 0074 0493     		str	r3, [sp, #16]
- 152:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
- 212              		.loc 1 152 3 is_stmt 1 view .LVU55
- 152:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
- 213              		.loc 1 152 35 is_stmt 0 view .LVU56
- 214 0076 0023     		movs	r3, #0
- 215 0078 0593     		str	r3, [sp, #20]
- 153:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
- 216              		.loc 1 153 3 is_stmt 1 view .LVU57
- 153:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
- 217              		.loc 1 153 36 is_stmt 0 view .LVU58
- 218 007a 4FF4A053 		mov	r3, #5120
- 219 007e 0693     		str	r3, [sp, #24]
- 154:Src/main.c    **** 
- 220              		.loc 1 154 3 is_stmt 1 view .LVU59
- 154:Src/main.c    **** 
- 221              		.loc 1 154 36 is_stmt 0 view .LVU60
- 222 0080 4FF48053 		mov	r3, #4096
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 26
+ 149:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 489              		.loc 1 149 30 is_stmt 0 view .LVU84
+ 490 005e A821     		movs	r1, #168
+ 491 0060 1191     		str	r1, [sp, #68]
+ 150:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
+ 492              		.loc 1 150 3 is_stmt 1 view .LVU85
+ 150:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
+ 493              		.loc 1 150 30 is_stmt 0 view .LVU86
+ 494 0062 1292     		str	r2, [sp, #72]
+ 151:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 495              		.loc 1 151 3 is_stmt 1 view .LVU87
+ 151:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 496              		.loc 1 151 30 is_stmt 0 view .LVU88
+ 497 0064 1393     		str	r3, [sp, #76]
+ 152:Src/main.c    ****   {
+ 498              		.loc 1 152 3 is_stmt 1 view .LVU89
+ 152:Src/main.c    ****   {
+ 499              		.loc 1 152 7 is_stmt 0 view .LVU90
+ 500 0066 08A8     		add	r0, sp, #32
+ 501 0068 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 502              	.LVL20:
+ 152:Src/main.c    ****   {
+ 503              		.loc 1 152 6 discriminator 1 view .LVU91
+ 504 006c 98B9     		cbnz	r0, .L29
+ 159:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 505              		.loc 1 159 3 is_stmt 1 view .LVU92
+ 159:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 506              		.loc 1 159 31 is_stmt 0 view .LVU93
+ 507 006e 0F23     		movs	r3, #15
+ 508 0070 0393     		str	r3, [sp, #12]
+ 161:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 509              		.loc 1 161 3 is_stmt 1 view .LVU94
+ 161:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 510              		.loc 1 161 34 is_stmt 0 view .LVU95
+ 511 0072 0223     		movs	r3, #2
+ 512 0074 0493     		str	r3, [sp, #16]
+ 162:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+ 513              		.loc 1 162 3 is_stmt 1 view .LVU96
+ 162:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+ 514              		.loc 1 162 35 is_stmt 0 view .LVU97
+ 515 0076 0023     		movs	r3, #0
+ 516 0078 0593     		str	r3, [sp, #20]
+ 163:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+ 517              		.loc 1 163 3 is_stmt 1 view .LVU98
+ 163:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+ 518              		.loc 1 163 36 is_stmt 0 view .LVU99
+ 519 007a 4FF4A053 		mov	r3, #5120
+ 520 007e 0693     		str	r3, [sp, #24]
+ 164:Src/main.c    **** 
+ 521              		.loc 1 164 3 is_stmt 1 view .LVU100
+ 164:Src/main.c    **** 
+ 522              		.loc 1 164 36 is_stmt 0 view .LVU101
+ 523 0080 4FF48053 		mov	r3, #4096
+ 524 0084 0793     		str	r3, [sp, #28]
+ 166:Src/main.c    ****   {
+ 525              		.loc 1 166 3 is_stmt 1 view .LVU102
+ 166:Src/main.c    ****   {
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 34
 
 
- 223 0084 0793     		str	r3, [sp, #28]
- 156:Src/main.c    ****   {
- 224              		.loc 1 156 3 is_stmt 1 view .LVU61
- 156:Src/main.c    ****   {
- 225              		.loc 1 156 7 is_stmt 0 view .LVU62
- 226 0086 0521     		movs	r1, #5
- 227 0088 03A8     		add	r0, sp, #12
- 228 008a FFF7FEFF 		bl	HAL_RCC_ClockConfig
- 229              	.LVL6:
- 156:Src/main.c    ****   {
- 230              		.loc 1 156 6 discriminator 1 view .LVU63
- 231 008e 20B9     		cbnz	r0, .L12
- 160:Src/main.c    **** 
- 232              		.loc 1 160 1 view .LVU64
- 233 0090 15B0     		add	sp, sp, #84
- 234              	.LCFI3:
- 235              		.cfi_remember_state
- 236              		.cfi_def_cfa_offset 4
- 237              		@ sp needed
- 238 0092 5DF804FB 		ldr	pc, [sp], #4
- 239              	.L11:
- 240              	.LCFI4:
- 241              		.cfi_restore_state
- 144:Src/main.c    ****   }
- 242              		.loc 1 144 5 is_stmt 1 view .LVU65
- 243 0096 FFF7FEFF 		bl	Error_Handler
- 244              	.LVL7:
- 245              	.L12:
- 158:Src/main.c    ****   }
- 246              		.loc 1 158 5 view .LVU66
- 247 009a FFF7FEFF 		bl	Error_Handler
- 248              	.LVL8:
- 249              	.L14:
- 250 009e 00BF     		.align	2
- 251              	.L13:
- 252 00a0 00380240 		.word	1073887232
- 253 00a4 00700040 		.word	1073770496
- 254              		.cfi_endproc
- 255              	.LFE139:
- 257              		.section	.text.main,"ax",%progbits
- 258              		.align	1
- 259              		.global	main
- 260              		.syntax unified
- 261              		.thumb
- 262              		.thumb_func
- 264              	main:
- 265              	.LFB138:
-  67:Src/main.c    **** 
- 266              		.loc 1 67 1 view -0
- 267              		.cfi_startproc
- 268              		@ Volatile: function does not return.
- 269              		@ args = 0, pretend = 0, frame = 0
- 270              		@ frame_needed = 0, uses_anonymous_args = 0
- 271 0000 08B5     		push	{r3, lr}
- 272              	.LCFI5:
- 273              		.cfi_def_cfa_offset 8
- 274              		.cfi_offset 3, -8
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 27
+ 526              		.loc 1 166 7 is_stmt 0 view .LVU103
+ 527 0086 0521     		movs	r1, #5
+ 528 0088 03A8     		add	r0, sp, #12
+ 529 008a FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 530              	.LVL21:
+ 166:Src/main.c    ****   {
+ 531              		.loc 1 166 6 discriminator 1 view .LVU104
+ 532 008e 20B9     		cbnz	r0, .L30
+ 170:Src/main.c    **** 
+ 533              		.loc 1 170 1 view .LVU105
+ 534 0090 15B0     		add	sp, sp, #84
+ 535              	.LCFI10:
+ 536              		.cfi_remember_state
+ 537              		.cfi_def_cfa_offset 4
+ 538              		@ sp needed
+ 539 0092 5DF804FB 		ldr	pc, [sp], #4
+ 540              	.L29:
+ 541              	.LCFI11:
+ 542              		.cfi_restore_state
+ 154:Src/main.c    ****   }
+ 543              		.loc 1 154 5 is_stmt 1 view .LVU106
+ 544 0096 FFF7FEFF 		bl	Error_Handler
+ 545              	.LVL22:
+ 546              	.L30:
+ 168:Src/main.c    ****   }
+ 547              		.loc 1 168 5 view .LVU107
+ 548 009a FFF7FEFF 		bl	Error_Handler
+ 549              	.LVL23:
+ 550              	.L32:
+ 551 009e 00BF     		.align	2
+ 552              	.L31:
+ 553 00a0 00380240 		.word	1073887232
+ 554 00a4 00700040 		.word	1073770496
+ 555              		.cfi_endproc
+ 556              	.LFE146:
+ 558              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 559              		.align	2
+ 560              	.LC12:
+ 561 0000 20201B5B 		.ascii	"  \033[2J\000"
+ 561      324A00
+ 562 0007 00       		.align	2
+ 563              	.LC13:
+ 564 0008 20202573 		.ascii	"  %s%sFreeRTOS is Ready!\012\015\012%s\000"
+ 564      25734672 
+ 564      65655254 
+ 564      4F532069 
+ 564      73205265 
+ 565              		.section	.text.main,"ax",%progbits
+ 566              		.align	1
+ 567              		.global	main
+ 568              		.syntax unified
+ 569              		.thumb
+ 570              		.thumb_func
+ 572              	main:
+ 573              	.LFB145:
+  72:Src/main.c    **** 
+ 574              		.loc 1 72 1 view -0
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 35
 
 
- 275              		.cfi_offset 14, -4
-  76:Src/main.c    **** 
- 276              		.loc 1 76 3 view .LVU68
- 277 0002 FFF7FEFF 		bl	HAL_Init
- 278              	.LVL9:
-  83:Src/main.c    **** 
- 279              		.loc 1 83 3 view .LVU69
- 280 0006 FFF7FEFF 		bl	SystemClock_Config
- 281              	.LVL10:
-  90:Src/main.c    ****   /* USER CODE BEGIN 2 */
- 282              		.loc 1 90 3 view .LVU70
- 283 000a FFF7FEFF 		bl	MX_GPIO_Init
- 284              	.LVL11:
-  96:Src/main.c    **** 
- 285              		.loc 1 96 3 view .LVU71
- 286 000e FFF7FEFF 		bl	osKernelInitialize
- 287              	.LVL12:
-  99:Src/main.c    **** 
- 288              		.loc 1 99 3 view .LVU72
- 289 0012 FFF7FEFF 		bl	MX_FREERTOS_Init
- 290              	.LVL13:
- 102:Src/main.c    **** 
- 291              		.loc 1 102 3 view .LVU73
- 292 0016 FFF7FEFF 		bl	osKernelStart
- 293              	.LVL14:
- 294              	.L16:
- 108:Src/main.c    ****   {
- 295              		.loc 1 108 3 view .LVU74
- 113:Src/main.c    ****   /* USER CODE END 3 */
- 296              		.loc 1 113 3 view .LVU75
- 108:Src/main.c    ****   {
- 297              		.loc 1 108 9 view .LVU76
- 298 001a FEE7     		b	.L16
- 299              		.cfi_endproc
- 300              	.LFE138:
- 302              		.text
- 303              	.Letext0:
- 304              		.file 3 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
- 305              		.file 4 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
- 306              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 307              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 308              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 309              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 310              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 311              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 312              		.file 11 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 313              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 314              		.file 13 "Inc/gpio.h"
- 315              		.file 14 "<built-in>"
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s 			page 28
+ 575              		.cfi_startproc
+ 576              		@ Volatile: function does not return.
+ 577              		@ args = 0, pretend = 0, frame = 0
+ 578              		@ frame_needed = 0, uses_anonymous_args = 0
+ 579 0000 00B5     		push	{lr}
+ 580              	.LCFI12:
+ 581              		.cfi_def_cfa_offset 4
+ 582              		.cfi_offset 14, -4
+ 583 0002 83B0     		sub	sp, sp, #12
+ 584              	.LCFI13:
+ 585              		.cfi_def_cfa_offset 16
+  81:Src/main.c    **** 
+ 586              		.loc 1 81 3 view .LVU109
+ 587 0004 FFF7FEFF 		bl	HAL_Init
+ 588              	.LVL24:
+  88:Src/main.c    **** 
+ 589              		.loc 1 88 3 view .LVU110
+ 590 0008 FFF7FEFF 		bl	SystemClock_Config
+ 591              	.LVL25:
+  95:Src/main.c    ****   /* USER CODE BEGIN 2 */
+ 592              		.loc 1 95 3 view .LVU111
+ 593 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 594              	.LVL26:
+  97:Src/main.c    ****   osTaskInit();
+ 595              		.loc 1 97 3 view .LVU112
+ 596              	.LBB12:
+ 597              	.LBI12:
+ 960:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 598              		.loc 4 960 27 view .LVU113
+ 599              	.LBB13:
+ 600              		.loc 4 962 3 view .LVU114
+ 601              		.syntax unified
+ 602              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 603 0010 72B6     		cpsid i
+ 604              	@ 0 "" 2
+ 605              		.thumb
+ 606              		.syntax unified
+ 607              	.LBE13:
+ 608              	.LBE12:
+  98:Src/main.c    ****   Bsp_Init();
+ 609              		.loc 1 98 3 view .LVU115
+ 610 0012 FFF7FEFF 		bl	osTaskInit
+ 611              	.LVL27:
+  99:Src/main.c    ****   __enable_irq();
+ 612              		.loc 1 99 3 view .LVU116
+ 613 0016 FFF7FEFF 		bl	Bsp_Init
+ 614              	.LVL28:
+ 100:Src/main.c    ****   LOG_CLEAR();
+ 615              		.loc 1 100 3 view .LVU117
+ 616              	.LBB14:
+ 617              	.LBI14:
+ 949:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 618              		.loc 4 949 27 view .LVU118
+ 619              	.LBB15:
+ 951:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 620              		.loc 4 951 3 view .LVU119
+ 621              		.syntax unified
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 36
+
+
+ 622              	@ 951 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 623 001a 62B6     		cpsie i
+ 624              	@ 0 "" 2
+ 625              		.thumb
+ 626              		.syntax unified
+ 627              	.LBE15:
+ 628              	.LBE14:
+ 101:Src/main.c    ****   LOGINFO("FreeRTOS is Ready!\n");
+ 629              		.loc 1 101 3 view .LVU120
+ 630 001c 0949     		ldr	r1, .L36
+ 631 001e 0020     		movs	r0, #0
+ 632 0020 FFF7FEFF 		bl	SEGGER_RTT_WriteString
+ 633              	.LVL29:
+ 102:Src/main.c    ****   /* USER CODE END 2 */
+ 634              		.loc 1 102 3 view .LVU121
+ 635 0024 084B     		ldr	r3, .L36+4
+ 636 0026 0093     		str	r3, [sp]
+ 637 0028 084B     		ldr	r3, .L36+8
+ 638 002a 094A     		ldr	r2, .L36+12
+ 639 002c 0949     		ldr	r1, .L36+16
+ 640 002e 0020     		movs	r0, #0
+ 641 0030 FFF7FEFF 		bl	SEGGER_RTT_printf
+ 642              	.LVL30:
+ 106:Src/main.c    **** 
+ 643              		.loc 1 106 3 view .LVU122
+ 644 0034 FFF7FEFF 		bl	osKernelInitialize
+ 645              	.LVL31:
+ 109:Src/main.c    **** 
+ 646              		.loc 1 109 3 view .LVU123
+ 647 0038 FFF7FEFF 		bl	MX_FREERTOS_Init
+ 648              	.LVL32:
+ 112:Src/main.c    **** 
+ 649              		.loc 1 112 3 view .LVU124
+ 650 003c FFF7FEFF 		bl	osKernelStart
+ 651              	.LVL33:
+ 652              	.L34:
+ 118:Src/main.c    ****   {
+ 653              		.loc 1 118 3 view .LVU125
+ 123:Src/main.c    ****   /* USER CODE END 3 */
+ 654              		.loc 1 123 3 view .LVU126
+ 118:Src/main.c    ****   {
+ 655              		.loc 1 118 9 view .LVU127
+ 656 0040 FEE7     		b	.L34
+ 657              	.L37:
+ 658 0042 00BF     		.align	2
+ 659              	.L36:
+ 660 0044 00000000 		.word	.LC12
+ 661 0048 2C000000 		.word	.LC3
+ 662 004c 00000000 		.word	.LC0
+ 663 0050 04000000 		.word	.LC1
+ 664 0054 08000000 		.word	.LC13
+ 665              		.cfi_endproc
+ 666              	.LFE145:
+ 668              		.section	.bss.test_num.0,"aw",%nobits
+ 669              		.align	2
+ 672              	test_num.0:
+ 673 0000 00000000 		.space	4
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 37
+
+
+ 674              		.global	DebugTaskHandleHandle
+ 675              		.section	.bss.DebugTaskHandleHandle,"aw",%nobits
+ 676              		.align	2
+ 679              	DebugTaskHandleHandle:
+ 680 0000 00000000 		.space	4
+ 681              		.global	LogTestTaskHandHandle
+ 682              		.section	.bss.LogTestTaskHandHandle,"aw",%nobits
+ 683              		.align	2
+ 686              	LogTestTaskHandHandle:
+ 687 0000 00000000 		.space	4
+ 688              		.text
+ 689              	.Letext0:
+ 690              		.file 5 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
+ 691              		.file 6 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
+ 692              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 693              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 694              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 695              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 696              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 697              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 698              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 699              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 700              		.file 15 "Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT.h"
+ 701              		.file 16 "Inc/gpio.h"
+ 702              		.file 17 "Bsp/dwt/bsp_dwt.h"
+ 703              		.file 18 "Bsp/log/bsp_log.h"
+ 704              		.file 19 "<built-in>"
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:21     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:27     .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:61     .text.Error_Handler:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:67     .text.Error_Handler:00000000 Error_Handler
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:99     .text.SystemClock_Config:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:105    .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:252    .text.SystemClock_Config:000000a0 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:258    .text.main:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\ccMKXYOG.s:264    .text.main:00000000 main
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:21     .rodata.LogTestTask.str1.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:54     .text.LogTestTask:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:60     .text.LogTestTask:00000000 LogTestTask
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:150    .text.LogTestTask:00000060 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:672    .bss.test_num.0:00000000 test_num.0
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:165    .text.DebugTask:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:171    .text.DebugTask:00000000 DebugTask
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:198    .rodata.osTaskInit.str1.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:205    .text.osTaskInit:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:211    .text.osTaskInit:00000000 osTaskInit
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:281    .text.osTaskInit:00000054 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:686    .bss.LogTestTaskHandHandle:00000000 LogTestTaskHandHandle
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:679    .bss.DebugTaskHandleHandle:00000000 DebugTaskHandleHandle
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:291    .text.Bsp_Init:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:297    .text.Bsp_Init:00000000 Bsp_Init
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:322    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:328    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:362    .text.Error_Handler:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:368    .text.Error_Handler:00000000 Error_Handler
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:400    .text.SystemClock_Config:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:406    .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:553    .text.SystemClock_Config:000000a0 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:559    .rodata.main.str1.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:566    .text.main:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:572    .text.main:00000000 main
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:660    .text.main:00000044 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:669    .bss.test_num.0:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:676    .bss.DebugTaskHandleHandle:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccGFbVND.s:683    .bss.LogTestTaskHandHandle:00000000 $d
 
 UNDEFINED SYMBOLS
-HAL_IncTick
+SEGGER_RTT_printf
+osDelay
 memset
+osThreadNew
+BSPLogInit
+DWT_Init
+HAL_IncTick
 HAL_RCC_OscConfig
 HAL_RCC_ClockConfig
 HAL_Init
 MX_GPIO_Init
+SEGGER_RTT_WriteString
 osKernelInitialize
 MX_FREERTOS_Init
 osKernelStart

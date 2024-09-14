@@ -54,20 +54,6 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for LogTestTaskHand */
-osThreadId_t LogTestTaskHandHandle;
-const osThreadAttr_t LogTestTaskHand_attributes = {
-  .name = "LogTestTaskHand",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityLow,
-};
-/* Definitions for DebugTaskHandle */
-osThreadId_t DebugTaskHandleHandle;
-const osThreadAttr_t DebugTaskHandle_attributes = {
-  .name = "DebugTaskHandle",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityLow,
-};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -75,8 +61,7 @@ const osThreadAttr_t DebugTaskHandle_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
-extern void LogTestTask(void *argument);
-extern void DebugTask(void *argument);
+
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -110,12 +95,6 @@ void MX_FREERTOS_Init(void) {
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
-  /* creation of LogTestTaskHand */
-  LogTestTaskHandHandle = osThreadNew(LogTestTask, NULL, &LogTestTaskHand_attributes);
-
-  /* creation of DebugTaskHandle */
-  DebugTaskHandleHandle = osThreadNew(DebugTask, NULL, &DebugTaskHandle_attributes);
-
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -139,7 +118,9 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    // 一般可以在这个任务线程完成一些比较额外的初始化工作(但还是建议分app,实现不同的app数据池被限制在自己的线程中)
+
+    osThreadTerminate(defaultTaskHandle); // 避免空置和切换占用cpu
   }
   /* USER CODE END StartDefaultTask */
 }
