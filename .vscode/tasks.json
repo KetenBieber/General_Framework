@@ -5,12 +5,56 @@
         {
             "label": "build task",         // 任务标签
             "type": "shell",               // 任务类型,因为要调用mingw32-make,是在终端(CMD)里运行的,所以是shell任务
-            "command": "mingw32-make -j16",// 要执行的任务命令
-            "problemMatcher": [],          
+            "command": "mingw32-make -j18",// 任务命令,线程数可以根据自己的电脑修改,建议与cpu核数相同，一般来说，建议将并行任务数设置为不超过逻辑处理器数的 1.5 倍到 2 倍
+            "problemMatcher": [],        
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
-        }
+        },
+        {
+            /* 从dap调试器下载 */
+            "label": "download dap",
+            "type": "shell",
+            /* 设定为在下载前编译 */
+            "command":"mingw32-make -j18 ; mingw32-make download_dap", // "mingw32-make -j24 ; mingw32-make download_dap",
+            /* 如果没有修改代码，编译任务不会消耗时间 */
+
+            /* group字段
+                用于将任务分组，并指定任务的类型和默认形态
+                kind:"build" :将任务分组为测试任务
+                isDefault:true :将任务设置为默认任务
+             */
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            /* 从jlink调试器下载 */
+            "label": "download jlink", // 要使用此任务,需添加jlink的环境变量
+            "type": "shell",
+            "command":"mingw32-make -j18 ; mingw32-make download_jlink", // "mingw32-make -j24 ; mingw32-make download_jlink"
+            "group": {
+                "kind": "build",
+                "isDefault": true,
+            }
+        },
+        {
+            /* 打开日志调试终端任务 */
+            "label": "log",
+            "type": "shell",
+            /* 打开RTT终端命令 */
+            "command":"JlinkRTTClient",
+            "args": [],
+            "problemMatcher": [],
+            /* 添加任务依赖 */
+            "dependsOn":[
+                "build task",
+            ]
+            // 若使用daplink,则将log任务设置为依赖于jlink launch任务,保证jlink launch任务先于log任务执行
+        },
     ]
+
 }

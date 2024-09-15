@@ -18,7 +18,7 @@
 
 void Bsp_Init()
 {
-    BSPLogInit();
     /* stm32f4 芯片主频 168MHz */
-    DWT_Init(168);
+    DWT_Init(168);    
+    BSPLogInit();
 }

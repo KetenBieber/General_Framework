@@ -20,7 +20,7 @@
                 "openocd_dap.cfg", // 配置文件已经在根目录提供,若要修改以此类推,openocd的路径下的share/scripts中有各种写好的配置文件
             ],
             "runToEntryPoint": "main", // 调试时在main函数入口停下
-            "showDevDebugOutput": "raw", // 查看详细的调试输出
+            "showDevDebugOutput": "none", // 查看详细的调试输出
             "rtos": "FreeRTOS",
             "preLaunchTask": "build task",//先运行Build任务编译项目,取消注释即可使用
             "liveWatch": {
@@ -39,7 +39,6 @@
             "type": "cortex-debug",
             "device": "STM32F407ZG",
             "runToEntryPoint": "main",
-            "showDevDebugOutput": "raw", // 查看详细的调试输出
             "showDevDebugOutput": "none",
             "servertype": "jlink",
             "interface": "swd",
@@ -49,8 +48,8 @@
             "liveWatch": {
                 "enabled": true,
                 "samplesPerSecond": 4
-            }
-            //"preLaunchTask": "log", // 调试时同时开启RTT viewer窗口,若daplink使用jlinkGDBserver启动,需要先开始调试再打开log
+            },
+            // "preLaunchTask": "log", // 调试时同时开启RTT viewer窗口,若daplink使用jlinkGDBserver启动,需要先开始调试再打开log
             // 若想要在调试前编译并且打开log,可只使用log的prelaunch task并为log任务添加depends on依赖
         },
         {

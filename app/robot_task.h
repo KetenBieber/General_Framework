@@ -58,15 +58,17 @@ __attribute((noreturn)) void LogTestTask(void *argument)
     {
         if(test_num)
         {
-            LOGWARNING("something maybe error! test_num is %d\n",test_num);
+            LOGINFO("HELLO WORLD!");
+            LOGWARNING("Fuck!the number is %d",test_num);
             test_num = 0;
         }
         if(!test_num)
         {
-            LOGERROR("something must be error! test_num is %d\n",test_num);
+            LOGINFO("FUCK WORLD!");
+            LOGERROR("shit!the number is %d",test_num);
             test_num = 1;
         }
-        osDelay(5);   
+        osDelay(10);   
     }
 }
 
