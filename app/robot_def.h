@@ -14,8 +14,12 @@
 #pragma once 
 
 
-#define ONE_BOARD // 单板控制整车
-#define CONTROL_WITH_ROS // 单板 + pc上位机控制
+#define ONE_BOARD 1// 单板控制整车
+#define CONTROL_WITH_ROS 0 // 单板 + pc上位机控制
+
+/* 调试选项 */
+#define USE_SYSTEMVIEW 1// 使用systemview调试
+#define USE_LOG 1// 使用日志系统
 
 /* 机器人重要参数定义 */
 

@@ -1,0 +1,247 @@
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"SEGGER_RTT_Syscalls_GCC.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c"
+  20              		.section	.text._write,"ax",%progbits
+  21              		.align	1
+  22              		.global	_write
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	_write:
+  28              	.LVL0:
+  29              	.LFB0:
+   1:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** /*********************************************************************
+   2:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                    SEGGER Microcontroller GmbH                     *
+   3:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                        The Embedded Experts                        *
+   4:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** **********************************************************************
+   5:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+   6:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *            (c) 1995 - 2021 SEGGER Microcontroller GmbH             *
+   7:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+   8:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *       www.segger.com     Support: support@segger.com               *
+   9:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  10:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** **********************************************************************
+  11:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  12:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *       SEGGER SystemView * Real-time application analysis           *
+  13:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  14:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** **********************************************************************
+  15:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  16:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * All rights reserved.                                               *
+  17:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  18:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * SEGGER strongly recommends to not make any changes                 *
+  19:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * to or modify the source code of this software in order to stay     *
+  20:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * compatible with the SystemView and RTT protocol, and J-Link.       *
+  21:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  22:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * Redistribution and use in source and binary forms, with or         *
+  23:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * without modification, are permitted provided that the following    *
+  24:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * condition is met:                                                  *
+  25:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  26:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * o Redistributions of source code must retain the above copyright   *
+  27:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   notice, this condition and the following disclaimer.             *
+  28:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  29:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND             *
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s 			page 2
+
+
+  30:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,        *
+  31:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF           *
+  32:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE           *
+  33:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * DISCLAIMED. IN NO EVENT SHALL SEGGER Microcontroller BE LIABLE FOR *
+  34:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR           *
+  35:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT  *
+  36:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;    *
+  37:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF      *
+  38:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT          *
+  39:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE  *
+  40:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH   *
+  41:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * DAMAGE.                                                            *
+  42:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  43:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** **********************************************************************
+  44:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  45:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *       SystemView version: 3.30                                    *
+  46:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *                                                                    *
+  47:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** **********************************************************************
+  48:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** ---------------------------END-OF-HEADER------------------------------
+  49:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** File    : SEGGER_RTT_Syscalls_GCC.c
+  50:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** Purpose : Low-level functions for using printf() via RTT in GCC.
+  51:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****           To use RTT for printf output, include this file in your 
+  52:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****           application.
+  53:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** Revision: $Rev: 20755 $
+  54:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** ----------------------------------------------------------------------
+  55:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** */
+  56:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** #if (defined __GNUC__) && !(defined __SES_ARM) && !(defined __CROSSWORKS_ARM) && !(defined __ARMCC_
+  57:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** 
+  58:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** #include <reent.h>  // required for _write_r
+  59:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** #include "SEGGER_RTT.h"
+  60:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** 
+  61:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** 
+  62:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** /*********************************************************************
+  63:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+  64:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *       Types
+  65:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+  66:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** **********************************************************************
+  67:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** */
+  68:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** //
+  69:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** // If necessary define the _reent struct
+  70:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** // to match the one passed by the used standard library.
+  71:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** //
+  72:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** struct _reent;
+  73:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** 
+  74:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** /*********************************************************************
+  75:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+  76:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *       Function prototypes
+  77:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+  78:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** **********************************************************************
+  79:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** */
+  80:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** _ssize_t _write  (int file, const void *ptr, size_t len);
+  81:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** _ssize_t _write_r(struct _reent *r, int file, const void *ptr, size_t len);
+  82:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** 
+  83:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** /*********************************************************************
+  84:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+  85:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *       Global functions
+  86:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s 			page 3
+
+
+  87:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** **********************************************************************
+  88:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** */
+  89:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** 
+  90:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** /*********************************************************************
+  91:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+  92:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *       _write()
+  93:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+  94:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * Function description
+  95:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   Low-level write function.
+  96:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   libc subroutines will use this system routine for output to all files,
+  97:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   including stdout.
+  98:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   Write data via RTT.
+  99:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** */
+ 100:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** _ssize_t _write(int file, const void *ptr, size_t len) {
+  30              		.loc 1 100 56 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 100 56 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 1446     		mov	r4, r2
+ 101:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****   (void) file;  /* Not used, avoid warning */
+  41              		.loc 1 101 3 is_stmt 1 view .LVU2
+ 102:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****   SEGGER_RTT_Write(0, ptr, len);
+  42              		.loc 1 102 3 view .LVU3
+  43 0004 0020     		movs	r0, #0
+  44              	.LVL1:
+  45              		.loc 1 102 3 is_stmt 0 view .LVU4
+  46 0006 FFF7FEFF 		bl	SEGGER_RTT_Write
+  47              	.LVL2:
+ 103:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****   return len;
+  48              		.loc 1 103 3 is_stmt 1 view .LVU5
+ 104:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** }
+  49              		.loc 1 104 1 is_stmt 0 view .LVU6
+  50 000a 2046     		mov	r0, r4
+  51 000c 10BD     		pop	{r4, pc}
+  52              		.loc 1 104 1 view .LVU7
+  53              		.cfi_endproc
+  54              	.LFE0:
+  56              		.section	.text._write_r,"ax",%progbits
+  57              		.align	1
+  58              		.global	_write_r
+  59              		.syntax unified
+  60              		.thumb
+  61              		.thumb_func
+  63              	_write_r:
+  64              	.LVL3:
+  65              	.LFB1:
+ 105:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** 
+ 106:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** /*********************************************************************
+ 107:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+ 108:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *       _write_r()
+ 109:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s 			page 4
+
+
+ 110:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** * Function description
+ 111:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   Low-level reentrant write function.
+ 112:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   libc subroutines will use this system routine for output to all files,
+ 113:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   including stdout.
+ 114:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** *   Write data via RTT.
+ 115:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** */
+ 116:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** _ssize_t _write_r(struct _reent *r, int file, const void *ptr, size_t len) {
+  66              		.loc 1 116 76 is_stmt 1 view -0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70              		.loc 1 116 76 is_stmt 0 view .LVU9
+  71 0000 10B5     		push	{r4, lr}
+  72              	.LCFI1:
+  73              		.cfi_def_cfa_offset 8
+  74              		.cfi_offset 4, -8
+  75              		.cfi_offset 14, -4
+  76 0002 1146     		mov	r1, r2
+  77              	.LVL4:
+  78              		.loc 1 116 76 view .LVU10
+  79 0004 1C46     		mov	r4, r3
+ 117:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****   (void) file;  /* Not used, avoid warning */
+  80              		.loc 1 117 3 is_stmt 1 view .LVU11
+ 118:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****   (void) r;     /* Not used, avoid warning */
+  81              		.loc 1 118 3 view .LVU12
+ 119:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****   SEGGER_RTT_Write(0, ptr, len);
+  82              		.loc 1 119 3 view .LVU13
+  83 0006 1A46     		mov	r2, r3
+  84              	.LVL5:
+  85              		.loc 1 119 3 is_stmt 0 view .LVU14
+  86 0008 0020     		movs	r0, #0
+  87              	.LVL6:
+  88              		.loc 1 119 3 view .LVU15
+  89 000a FFF7FEFF 		bl	SEGGER_RTT_Write
+  90              	.LVL7:
+ 120:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c ****   return len;
+  91              		.loc 1 120 3 is_stmt 1 view .LVU16
+ 121:Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c **** }
+  92              		.loc 1 121 1 is_stmt 0 view .LVU17
+  93 000e 2046     		mov	r0, r4
+  94 0010 10BD     		pop	{r4, pc}
+  95              		.loc 1 121 1 view .LVU18
+  96              		.cfi_endproc
+  97              	.LFE1:
+  99              		.text
+ 100              	.Letext0:
+ 101              		.file 2 "C:/msys64/mingw64/lib/gcc/arm-none-eabi/13.3.0/include/stddef.h"
+ 102              		.file 3 "C:/msys64/mingw64/arm-none-eabi/include/sys/_types.h"
+ 103              		.file 4 "C:/msys64/mingw64/arm-none-eabi/include/sys/reent.h"
+ 104              		.file 5 "C:/msys64/mingw64/arm-none-eabi/include/sys/lock.h"
+ 105              		.file 6 "Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT.h"
+ 106              		.file 7 "C:/msys64/mingw64/arm-none-eabi/include/reent.h"
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 SEGGER_RTT_Syscalls_GCC.c
+C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s:21     .text._write:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s:27     .text._write:00000000 _write
+C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s:57     .text._write_r:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\cceax10e.s:63     .text._write_r:00000000 _write_r
+
+UNDEFINED SYMBOLS
+SEGGER_RTT_Write

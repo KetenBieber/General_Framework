@@ -6,6 +6,13 @@ build/freertos.o: Src/freertos.c \
  Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
  Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
+ Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW_FreeRTOS.h \
+ Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW.h \
+ Middlewares/Third_Party/SystemView/SEGGER/SEGGER.h \
+ Middlewares/Third_Party/SystemView/Config/Global.h \
+ Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW_ConfDefaults.h \
+ Middlewares/Third_Party/SystemView/Config/SEGGER_SYSVIEW_Conf.h \
+ Middlewares/Third_Party/SystemView/Config/SEGGER_RTT_Conf.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  Middlewares/Third_Party/FreeRTOS/Source/include/list.h Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
@@ -42,6 +49,13 @@ Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW_FreeRTOS.h:
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW.h:
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER.h:
+Middlewares/Third_Party/SystemView/Config/Global.h:
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW_ConfDefaults.h:
+Middlewares/Third_Party/SystemView/Config/SEGGER_SYSVIEW_Conf.h:
+Middlewares/Third_Party/SystemView/Config/SEGGER_RTT_Conf.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 Inc/main.h:

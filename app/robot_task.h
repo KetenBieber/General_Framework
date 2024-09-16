@@ -15,33 +15,43 @@
 #include "bsp_log.h"
 
 /* Definitions for TaskHand */
-osThreadId_t LogTestTaskHandHandle;
-osThreadId_t DebugTaskHandleHandle;
+osThreadId_t LogTaskHandle;
+osThreadId_t DebugTaskHandle;
+osThreadId_t MotorTaskHandle;
+
 
 /* Definitions for TaskFunc */
-void LogTestTask(void *argument);
+void LogTask(void *argument);
 void DebugTask(void *argument);
-
+void MotorTask(void *argument);
 /**
  * @brief os任务创建初始化函数
  * 
  */
 void osTaskInit(void)
 {
-    const osThreadAttr_t LogTestTaskHand_attributes = {
-    .name = "LogTestTaskHand",
+    const osThreadAttr_t LogTaskHandle_attributes = {
+    .name = "LogTaskHandle",
     .stack_size = 128 * 4,
-    .priority = (osPriority_t) osPriorityLow,
+    .priority = (osPriority_t) osPriorityNormal,
     };
-    LogTestTaskHandHandle = osThreadNew(LogTestTask, NULL, &LogTestTaskHand_attributes);
+    LogTaskHandle = osThreadNew(LogTask, NULL, &LogTaskHandle_attributes);
 
 
     const osThreadAttr_t DebugTaskHandle_attributes = {
     .name = "DebugTaskHandle",
     .stack_size = 128 * 4,
-    .priority = (osPriority_t) osPriorityLow,
+    .priority = (osPriority_t) osPriorityNormal,
     };
-    DebugTaskHandleHandle = osThreadNew(DebugTask, NULL, &DebugTaskHandle_attributes);
+    DebugTaskHandle = osThreadNew(DebugTask, NULL, &DebugTaskHandle_attributes);
+
+
+    const osThreadAttr_t MotorTaskHandle_attributes = {
+    .name = "MotorTaskHandle",
+    .stack_size = 128 * 4,
+    .priority = (osPriority_t) osPriorityNormal,
+    };
+    MotorTaskHandle = osThreadNew(MotorTask, NULL, &MotorTaskHandle_attributes);
 
 }
 
@@ -50,25 +60,13 @@ void osTaskInit(void)
  *        测试打印日志的效果
  * 
  */
-__attribute((noreturn)) void LogTestTask(void *argument)
+__attribute((noreturn)) void LogTask(void *argument)
 {
-    static int test_num = 0;
-    LOGINFO("LogTask is ready!\n");
+
     for(;;)
     {
-        if(test_num)
-        {
-            LOGINFO("HELLO WORLD!");
-            LOGWARNING("Fuck!the number is %d",test_num);
-            test_num = 0;
-        }
-        if(!test_num)
-        {
-            LOGINFO("FUCK WORLD!");
-            LOGERROR("shit!the number is %d",test_num);
-            test_num = 1;
-        }
-        osDelay(10);   
+        LOGINFO("LogTask is running!");
+        osDelay(1);   
     }
 }
 
@@ -81,7 +79,17 @@ __attribute((noreturn)) void DebugTask(void *argument)
 
     for(;;)
     {
-        
+        LOGINFO("DebugTask is running!");
+        osDelay(1);
+    }
+}
+
+__attribute((noreturn)) void MotorTask(void *argument)
+{
+
+    for(;;)
+    {
+        LOGINFO("MotorTask is running!");
         osDelay(1);
     }
 }

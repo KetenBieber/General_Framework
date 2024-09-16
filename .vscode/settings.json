@@ -2,6 +2,11 @@
     "files.associations": {
         "freertos.h": "c",
         "compare": "c",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "freertosconfig.h": "c",
+        "bsp_log.h": "c",
+        "robot_def.h": "c",
+        "robot_task.h": "c",
+        "segger_sysview.h": "c"
     }
 }

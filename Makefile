@@ -68,8 +68,12 @@ Middlewares/Third_Party/FreeRTOS/Source/timers.c \
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
-Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT_printf.c \
-Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT.c \
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_printf.c \
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT.c \
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW_FreeRTOS.c \
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW.c \
+Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c \
+Middlewares/Third_Party/SystemView/Config/SEGGER_SYSVIEW_Config_FreeRTOS.c \
 Bsp/log/bsp_log.c \
 Bsp/dwt/bsp_dwt.c \
 App/debug/debug.c \
@@ -81,7 +85,7 @@ Src/syscalls.c  \
 # ASM sources 添加汇编文件
 ASM_SOURCES =  \
 startup_stm32f407xx.s \
-Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT_ASM_ARMv7M.s 
+Middlewares/Third_Party/SEGGER/SEGGER_RTT_ASM_ARMv7M.s 
 
 # ASM sources
 ASMM_SOURCES = 
@@ -144,8 +148,8 @@ C_INCLUDES =  \
 -IMiddlewares/Third_Party/FreeRTOS/Source/include \
 -IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 \
 -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
--IMiddlewares/Third_Party/SEGGER/RTT \
--IMiddlewares/Third_Party/SEGGER/Config \
+-IMiddlewares/Third_Party/SystemView/SEGGER \
+-IMiddlewares/Third_Party/SystemView/Config \
 -IBsp/log \
 -IBsp/dwt \
 -IBsp/ \

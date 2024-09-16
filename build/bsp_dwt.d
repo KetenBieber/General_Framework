@@ -24,9 +24,9 @@ build/bsp_dwt.o: Bsp/dwt/bsp_dwt.c Bsp/dwt/bsp_dwt.h Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- Bsp/log/bsp_log.h Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT.h \
- Middlewares/Third_Party/SEGGER/RTT/../Config/SEGGER_RTT_Conf.h \
- Middlewares/Third_Party/SEGGER/Config/SEGGER_RTT_Conf.h
+ Bsp/log/bsp_log.h Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT.h \
+ Middlewares/Third_Party/SystemView/SEGGER/../Config/SEGGER_RTT_Conf.h \
+ Middlewares/Third_Party/SystemView/Config/SEGGER_RTT_Conf.h
 Bsp/dwt/bsp_dwt.h:
 Inc/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -57,6 +57,6 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Bsp/log/bsp_log.h:
-Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT.h:
-Middlewares/Third_Party/SEGGER/RTT/../Config/SEGGER_RTT_Conf.h:
-Middlewares/Third_Party/SEGGER/Config/SEGGER_RTT_Conf.h:
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT.h:
+Middlewares/Third_Party/SystemView/SEGGER/../Config/SEGGER_RTT_Conf.h:
+Middlewares/Third_Party/SystemView/Config/SEGGER_RTT_Conf.h:
