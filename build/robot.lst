@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -48,26 +48,33 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   38      33316D00 
   39              		.align	2
   40              	.LC6:
-  41 0040 20202573 		.ascii	"  %s%sLogTask is being DELAY!!! dt= [%f] ms\015\012"
+  41 0040 20202573 		.ascii	"  %s%sLogTask will be blocked!\015\012%s\000"
   41      25734C6F 
   41      67546173 
-  41      6B206973 
-  41      20626569 
-  42 006d 257300   		.ascii	"%s\000"
-  43              		.global	__aeabi_f2d
-  44              		.section	.text.LogTask,"ax",%progbits
-  45              		.align	1
-  46              		.global	LogTask
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 2
+  41      6B207769 
+  41      6C6C2062 
+  42 0063 00       		.align	2
+  43              	.LC7:
+  44 0064 20202573 		.ascii	"  %s%sLogTask is being DELAY!!! dt= [%f] ms\015\012"
+  44      25734C6F 
+  44      67546173 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 2
 
 
-  47              		.syntax unified
-  48              		.thumb
-  49              		.thumb_func
-  51              	LogTask:
-  52              	.LVL0:
-  53              	.LFB143:
-  54              		.file 2 "App/robot_task.h"
+  44      6B206973 
+  44      20626569 
+  45 0091 257300   		.ascii	"%s\000"
+  46              		.global	__aeabi_f2d
+  47              		.section	.text.LogTask,"ax",%progbits
+  48              		.align	1
+  49              		.global	LogTask
+  50              		.syntax unified
+  51              		.thumb
+  52              		.thumb_func
+  54              	LogTask:
+  55              	.LVL0:
+  56              	.LFB143:
+  57              		.file 2 "App/robot_task.h"
    1:App/robot_task.h **** 
    2:App/robot_task.h **** #pragma once
    3:App/robot_task.h **** 
@@ -111,6 +118,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   41:App/robot_task.h **** 
   42:App/robot_task.h ****     const osThreadAttr_t DebugTaskHandle_attributes = {
   43:App/robot_task.h ****     .name = "DebugTaskHandle",
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 3
+
+
   44:App/robot_task.h ****     .stack_size = 128 * 4,
   45:App/robot_task.h ****     .priority = (osPriority_t) osPriorityNormal,
   46:App/robot_task.h ****     };
@@ -118,9 +128,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   48:App/robot_task.h **** 
   49:App/robot_task.h **** 
   50:App/robot_task.h ****     const osThreadAttr_t MotorTaskHandle_attributes = {
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 3
-
-
   51:App/robot_task.h ****     .name = "MotorTaskHandle",
   52:App/robot_task.h ****     .stack_size = 128 * 4,
   53:App/robot_task.h ****     .priority = (osPriority_t) osPriorityNormal,
@@ -136,453 +143,531 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   63:App/robot_task.h ****  */
   64:App/robot_task.h **** __attribute((noreturn)) void LogTask(void *argument)
   65:App/robot_task.h **** {
-  55              		.loc 2 65 1 view -0
-  56              		.cfi_startproc
-  57              		@ Volatile: function does not return.
-  58              		@ args = 0, pretend = 0, frame = 0
-  59              		@ frame_needed = 0, uses_anonymous_args = 0
-  60              		.loc 2 65 1 is_stmt 0 view .LVU1
-  61 0000 00B5     		push	{lr}
-  62              	.LCFI0:
-  63              		.cfi_def_cfa_offset 4
-  64              		.cfi_offset 14, -4
-  65 0002 85B0     		sub	sp, sp, #20
-  66              	.LCFI1:
-  67              		.cfi_def_cfa_offset 24
+  58              		.loc 2 65 1 view -0
+  59              		.cfi_startproc
+  60              		@ Volatile: function does not return.
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63              		.loc 2 65 1 is_stmt 0 view .LVU1
+  64 0000 00B5     		push	{lr}
+  65              	.LCFI0:
+  66              		.cfi_def_cfa_offset 4
+  67              		.cfi_offset 14, -4
+  68 0002 85B0     		sub	sp, sp, #20
+  69              	.LCFI1:
+  70              		.cfi_def_cfa_offset 24
   66:App/robot_task.h ****     static float Log_start;
-  68              		.loc 2 66 5 is_stmt 1 view .LVU2
+  71              		.loc 2 66 5 is_stmt 1 view .LVU2
   67:App/robot_task.h ****     static float Log_dt;
-  69              		.loc 2 67 5 view .LVU3
+  72              		.loc 2 67 5 view .LVU3
   68:App/robot_task.h ****     int i=0;
-  70              		.loc 2 68 5 view .LVU4
-  71              	.LVL1:
-  72              		.loc 2 68 9 is_stmt 0 view .LVU5
-  73 0004 0024     		movs	r4, #0
-  74 0006 25E0     		b	.L6
-  75              	.LVL2:
-  76              	.L3:
+  73              		.loc 2 68 5 view .LVU4
+  74              	.LVL1:
+  75              		.loc 2 68 9 is_stmt 0 view .LVU5
+  76 0004 0024     		movs	r4, #0
+  77 0006 25E0     		b	.L6
+  78              	.LVL2:
+  79              	.L3:
   69:App/robot_task.h ****     for(;;)
   70:App/robot_task.h ****     {
   71:App/robot_task.h ****         Log_start = DWT_GetTimeline_ms();
   72:App/robot_task.h ****         LOGINFO("LogTask is running!");
-  73:App/robot_task.h ****         while(i<=100000)
+  73:App/robot_task.h ****         LOGERROR("LogTask will be blocked!");
+  74:App/robot_task.h ****         while(i<=100000)
+  75:App/robot_task.h ****         {
+  76:App/robot_task.h ****             i++;
+  80              		.loc 2 76 13 is_stmt 1 view .LVU6
+  81              		.loc 2 76 14 is_stmt 0 view .LVU7
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 4
+
+
+  82 0008 0134     		adds	r4, r4, #1
+  83              	.LVL3:
+  84              	.L2:
   74:App/robot_task.h ****         {
-  75:App/robot_task.h ****             i++;
-  77              		.loc 2 75 13 is_stmt 1 view .LVU6
-  78              		.loc 2 75 14 is_stmt 0 view .LVU7
-  79 0008 0134     		adds	r4, r4, #1
-  80              	.LVL3:
-  81              	.L2:
-  73:App/robot_task.h ****         {
-  82              		.loc 2 73 16 is_stmt 1 view .LVU8
-  83 000a 194B     		ldr	r3, .L9
-  84 000c 9C42     		cmp	r4, r3
-  85 000e FBDD     		ble	.L3
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 4
-
-
-  76:App/robot_task.h ****         }
-  77:App/robot_task.h ****         Log_dt = DWT_GetTimeline_ms() - Log_start;
-  86              		.loc 2 77 9 view .LVU9
-  87              		.loc 2 77 18 is_stmt 0 view .LVU10
-  88 0010 FFF7FEFF 		bl	DWT_GetTimeline_ms
-  89              	.LVL4:
-  90              		.loc 2 77 39 discriminator 1 view .LVU11
-  91 0014 174B     		ldr	r3, .L9+4
-  92 0016 D3ED007A 		vldr.32	s15, [r3]
-  93 001a 30EE670A 		vsub.f32	s0, s0, s15
-  94              		.loc 2 77 16 discriminator 1 view .LVU12
-  95 001e 164B     		ldr	r3, .L9+8
-  96 0020 83ED000A 		vstr.32	s0, [r3]
-  78:App/robot_task.h ****         if(Log_dt > 1)
-  97              		.loc 2 78 9 is_stmt 1 view .LVU13
-  98              		.loc 2 78 11 is_stmt 0 view .LVU14
-  99 0024 F7EE007A 		vmov.f32	s15, #1.0e+0
- 100 0028 B4EEE70A 		vcmpe.f32	s0, s15
- 101 002c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 102 0030 0DDD     		ble	.L4
-  79:App/robot_task.h ****         {
-  80:App/robot_task.h ****             LOGERROR("LogTask is being DELAY!!! dt= [%f] ms", Log_dt);
- 103              		.loc 2 80 13 is_stmt 1 view .LVU15
- 104 0032 124B     		ldr	r3, .L9+12
- 105 0034 0293     		str	r3, [sp, #8]
- 106 0036 10EE100A 		vmov	r0, s0
- 107 003a FFF7FEFF 		bl	__aeabi_f2d
- 108              	.LVL5:
- 109 003e CDE90001 		strd	r0, [sp]
- 110 0042 0F4B     		ldr	r3, .L9+16
- 111 0044 0F4A     		ldr	r2, .L9+20
- 112 0046 1049     		ldr	r1, .L9+24
- 113 0048 0020     		movs	r0, #0
- 114 004a FFF7FEFF 		bl	SEGGER_RTT_printf
- 115              	.LVL6:
- 116              	.L4:
-  81:App/robot_task.h ****         }
-  82:App/robot_task.h ****         osDelay(2);   
- 117              		.loc 2 82 9 view .LVU16
- 118 004e 0220     		movs	r0, #2
- 119 0050 FFF7FEFF 		bl	osDelay
- 120              	.LVL7:
+  85              		.loc 2 74 16 is_stmt 1 view .LVU8
+  86 000a 1D4B     		ldr	r3, .L9
+  87 000c 9C42     		cmp	r4, r3
+  88 000e FBDD     		ble	.L3
+  77:App/robot_task.h ****         }
+  78:App/robot_task.h ****         Log_dt = DWT_GetTimeline_ms() - Log_start;
+  89              		.loc 2 78 9 view .LVU9
+  90              		.loc 2 78 18 is_stmt 0 view .LVU10
+  91 0010 FFF7FEFF 		bl	DWT_GetTimeline_ms
+  92              	.LVL4:
+  93              		.loc 2 78 39 discriminator 1 view .LVU11
+  94 0014 1B4B     		ldr	r3, .L9+4
+  95 0016 D3ED007A 		vldr.32	s15, [r3]
+  96 001a 30EE670A 		vsub.f32	s0, s0, s15
+  97              		.loc 2 78 16 discriminator 1 view .LVU12
+  98 001e 1A4B     		ldr	r3, .L9+8
+  99 0020 83ED000A 		vstr.32	s0, [r3]
+  79:App/robot_task.h ****         if(Log_dt > 1)
+ 100              		.loc 2 79 9 is_stmt 1 view .LVU13
+ 101              		.loc 2 79 11 is_stmt 0 view .LVU14
+ 102 0024 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 103 0028 B4EEE70A 		vcmpe.f32	s0, s15
+ 104 002c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 105 0030 0DDD     		ble	.L4
+  80:App/robot_task.h ****         {
+  81:App/robot_task.h ****             LOGERROR("LogTask is being DELAY!!! dt= [%f] ms", Log_dt);
+ 106              		.loc 2 81 13 is_stmt 1 view .LVU15
+ 107 0032 164B     		ldr	r3, .L9+12
+ 108 0034 0293     		str	r3, [sp, #8]
+ 109 0036 10EE100A 		vmov	r0, s0
+ 110 003a FFF7FEFF 		bl	__aeabi_f2d
+ 111              	.LVL5:
+ 112 003e CDE90001 		strd	r0, [sp]
+ 113 0042 134B     		ldr	r3, .L9+16
+ 114 0044 134A     		ldr	r2, .L9+20
+ 115 0046 1449     		ldr	r1, .L9+24
+ 116 0048 0020     		movs	r0, #0
+ 117 004a FFF7FEFF 		bl	SEGGER_RTT_printf
+ 118              	.LVL6:
+ 119              	.L4:
+  82:App/robot_task.h ****         }
+  83:App/robot_task.h ****         osDelay(2);   
+ 120              		.loc 2 83 9 view .LVU16
+ 121 004e 0220     		movs	r0, #2
+ 122 0050 FFF7FEFF 		bl	osDelay
+ 123              	.LVL7:
   69:App/robot_task.h ****     {
- 121              		.loc 2 69 5 view .LVU17
- 122              	.L6:
+ 124              		.loc 2 69 5 view .LVU17
+ 125              	.L6:
   69:App/robot_task.h ****     {
- 123              		.loc 2 69 5 view .LVU18
+ 126              		.loc 2 69 5 view .LVU18
   71:App/robot_task.h ****         LOGINFO("LogTask is running!");
- 124              		.loc 2 71 9 view .LVU19
+ 127              		.loc 2 71 9 view .LVU19
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 5
+
+
   71:App/robot_task.h ****         LOGINFO("LogTask is running!");
- 125              		.loc 2 71 21 is_stmt 0 view .LVU20
- 126 0054 FFF7FEFF 		bl	DWT_GetTimeline_ms
- 127              	.LVL8:
+ 128              		.loc 2 71 21 is_stmt 0 view .LVU20
+ 129 0054 FFF7FEFF 		bl	DWT_GetTimeline_ms
+ 130              	.LVL8:
   71:App/robot_task.h ****         LOGINFO("LogTask is running!");
- 128              		.loc 2 71 19 discriminator 1 view .LVU21
- 129 0058 064B     		ldr	r3, .L9+4
- 130 005a 83ED000A 		vstr.32	s0, [r3]
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 5
+ 131              		.loc 2 71 19 discriminator 1 view .LVU21
+ 132 0058 0A4B     		ldr	r3, .L9+4
+ 133 005a 83ED000A 		vstr.32	s0, [r3]
+  72:App/robot_task.h ****         LOGERROR("LogTask will be blocked!");
+ 134              		.loc 2 72 9 is_stmt 1 view .LVU22
+ 135 005e 0B4D     		ldr	r5, .L9+12
+ 136 0060 0095     		str	r5, [sp]
+ 137 0062 0E4B     		ldr	r3, .L9+28
+ 138 0064 0E4A     		ldr	r2, .L9+32
+ 139 0066 0F49     		ldr	r1, .L9+36
+ 140 0068 0020     		movs	r0, #0
+ 141 006a FFF7FEFF 		bl	SEGGER_RTT_printf
+ 142              	.LVL9:
+  73:App/robot_task.h ****         while(i<=100000)
+ 143              		.loc 2 73 9 view .LVU23
+ 144 006e 0095     		str	r5, [sp]
+ 145 0070 074B     		ldr	r3, .L9+16
+ 146 0072 084A     		ldr	r2, .L9+20
+ 147 0074 0C49     		ldr	r1, .L9+40
+ 148 0076 0020     		movs	r0, #0
+ 149 0078 FFF7FEFF 		bl	SEGGER_RTT_printf
+ 150              	.LVL10:
+  74:App/robot_task.h ****         {
+ 151              		.loc 2 74 9 view .LVU24
+  74:App/robot_task.h ****         {
+ 152              		.loc 2 74 14 is_stmt 0 view .LVU25
+ 153 007c C5E7     		b	.L2
+ 154              	.L10:
+ 155 007e 00BF     		.align	2
+ 156              	.L9:
+ 157 0080 A0860100 		.word	100000
+ 158 0084 00000000 		.word	Log_start.5
+ 159 0088 00000000 		.word	Log_dt.4
+ 160 008c 2C000000 		.word	.LC3
+ 161 0090 34000000 		.word	.LC4
+ 162 0094 38000000 		.word	.LC5
+ 163 0098 64000000 		.word	.LC7
+ 164 009c 00000000 		.word	.LC0
+ 165 00a0 04000000 		.word	.LC1
+ 166 00a4 0C000000 		.word	.LC2
+ 167 00a8 40000000 		.word	.LC6
+ 168              		.cfi_endproc
+ 169              	.LFE143:
+ 171              		.section	.rodata.DebugTask.str1.4,"aMS",%progbits,1
+ 172              		.align	2
+ 173              	.LC8:
+ 174 0000 20202573 		.ascii	"  %s%sDebugTask is running!\015\012%s\000"
+ 174      25734465 
+ 174      62756754 
+ 174      61736B20 
+ 174      69732072 
+ 175              		.align	2
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 6
 
 
-  72:App/robot_task.h ****         while(i<=100000)
- 131              		.loc 2 72 9 is_stmt 1 view .LVU22
- 132 005e 074B     		ldr	r3, .L9+12
- 133 0060 0093     		str	r3, [sp]
- 134 0062 0A4B     		ldr	r3, .L9+28
- 135 0064 0A4A     		ldr	r2, .L9+32
- 136 0066 0B49     		ldr	r1, .L9+36
- 137 0068 0020     		movs	r0, #0
- 138 006a FFF7FEFF 		bl	SEGGER_RTT_printf
- 139              	.LVL9:
-  73:App/robot_task.h ****         {
- 140              		.loc 2 73 9 view .LVU23
-  73:App/robot_task.h ****         {
- 141              		.loc 2 73 14 is_stmt 0 view .LVU24
- 142 006e CCE7     		b	.L2
- 143              	.L10:
- 144              		.align	2
- 145              	.L9:
- 146 0070 A0860100 		.word	100000
- 147 0074 00000000 		.word	Log_start.5
- 148 0078 00000000 		.word	Log_dt.4
- 149 007c 2C000000 		.word	.LC3
- 150 0080 34000000 		.word	.LC4
- 151 0084 38000000 		.word	.LC5
- 152 0088 40000000 		.word	.LC6
- 153 008c 00000000 		.word	.LC0
- 154 0090 04000000 		.word	.LC1
- 155 0094 0C000000 		.word	.LC2
- 156              		.cfi_endproc
- 157              	.LFE143:
- 159              		.section	.rodata.DebugTask.str1.4,"aMS",%progbits,1
- 160              		.align	2
- 161              	.LC7:
- 162 0000 20202573 		.ascii	"  %s%sDebugTask is running!\015\012%s\000"
- 162      25734465 
- 162      62756754 
- 162      61736B20 
- 162      69732072 
- 163              		.align	2
- 164              	.LC8:
- 165 0020 20202573 		.ascii	"  %s%sDebugTask is being DELAY!!! dt= [%f] ms\015\012"
- 165      25734465 
- 165      62756754 
- 165      61736B20 
- 165      69732062 
- 166 004f 257300   		.ascii	"%s\000"
- 167              		.section	.text.DebugTask,"ax",%progbits
- 168              		.align	1
- 169              		.global	DebugTask
- 170              		.syntax unified
- 171              		.thumb
- 172              		.thumb_func
- 174              	DebugTask:
- 175              	.LFB144:
-  83:App/robot_task.h ****     }
-  84:App/robot_task.h **** }
-  85:App/robot_task.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 6
+ 176              	.LC9:
+ 177 0020 20202573 		.ascii	"  %s%sDebugTask will be blocked!\015\012%s\000"
+ 177      25734465 
+ 177      62756754 
+ 177      61736B20 
+ 177      77696C6C 
+ 178 0045 000000   		.align	2
+ 179              	.LC10:
+ 180 0048 20202573 		.ascii	"  %s%sDebugTask is being DELAY!!! dt= [%f] ms\015\012"
+ 180      25734465 
+ 180      62756754 
+ 180      61736B20 
+ 180      69732062 
+ 181 0077 257300   		.ascii	"%s\000"
+ 182              		.section	.text.DebugTask,"ax",%progbits
+ 183              		.align	1
+ 184              		.global	DebugTask
+ 185              		.syntax unified
+ 186              		.thumb
+ 187              		.thumb_func
+ 189              	DebugTask:
+ 190              	.LFB144:
+  84:App/robot_task.h ****     }
+  85:App/robot_task.h **** }
+  86:App/robot_task.h **** 
+  87:App/robot_task.h **** /**
+  88:App/robot_task.h ****  * @brief 测试调试的函数任务
+  89:App/robot_task.h ****  * 
+  90:App/robot_task.h ****  */
+  91:App/robot_task.h **** __attribute((noreturn)) void DebugTask(void *argument)
+  92:App/robot_task.h **** {
+ 191              		.loc 2 92 1 is_stmt 1 view -0
+ 192              		.cfi_startproc
+ 193              		@ Volatile: function does not return.
+ 194              		@ args = 0, pretend = 0, frame = 0
+ 195              		@ frame_needed = 0, uses_anonymous_args = 0
+ 196              	.LVL11:
+ 197              		.loc 2 92 1 is_stmt 0 view .LVU27
+ 198 0000 00B5     		push	{lr}
+ 199              	.LCFI2:
+ 200              		.cfi_def_cfa_offset 4
+ 201              		.cfi_offset 14, -4
+ 202 0002 85B0     		sub	sp, sp, #20
+ 203              	.LCFI3:
+ 204              		.cfi_def_cfa_offset 24
+ 205 0004 0FE0     		b	.L14
+ 206              	.LVL12:
+ 207              	.L17:
+  93:App/robot_task.h ****     static float Debug_start;
+  94:App/robot_task.h ****     static float Debug_dt;
+  95:App/robot_task.h ****     for(;;)
+  96:App/robot_task.h ****     {
+  97:App/robot_task.h ****         Debug_start = DWT_GetTimeline_ms();
+  98:App/robot_task.h ****         LOGINFO("DebugTask is running!");
+  99:App/robot_task.h ****         LOGERROR("DebugTask will be blocked!");
+ 100:App/robot_task.h ****         Debug_dt = DWT_GetTimeline_ms() - Debug_start;
+ 101:App/robot_task.h ****         if(Debug_dt > 1)
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 7
 
 
-  86:App/robot_task.h **** /**
-  87:App/robot_task.h ****  * @brief 测试调试的函数任务
-  88:App/robot_task.h ****  * 
-  89:App/robot_task.h ****  */
-  90:App/robot_task.h **** __attribute((noreturn)) void DebugTask(void *argument)
-  91:App/robot_task.h **** {
- 176              		.loc 2 91 1 is_stmt 1 view -0
- 177              		.cfi_startproc
- 178              		@ Volatile: function does not return.
- 179              		@ args = 0, pretend = 0, frame = 0
- 180              		@ frame_needed = 0, uses_anonymous_args = 0
- 181              	.LVL10:
- 182              		.loc 2 91 1 is_stmt 0 view .LVU26
- 183 0000 00B5     		push	{lr}
- 184              	.LCFI2:
- 185              		.cfi_def_cfa_offset 4
- 186              		.cfi_offset 14, -4
- 187 0002 85B0     		sub	sp, sp, #20
- 188              	.LCFI3:
- 189              		.cfi_def_cfa_offset 24
- 190 0004 10E0     		b	.L14
- 191              	.LVL11:
- 192              	.L17:
-  92:App/robot_task.h ****     static float Debug_start;
-  93:App/robot_task.h ****     static float Debug_dt;
-  94:App/robot_task.h ****     for(;;)
+ 102:App/robot_task.h ****         {
+ 103:App/robot_task.h ****             LOGERROR("DebugTask is being DELAY!!! dt= [%f] ms", Debug_dt);
+ 208              		.loc 2 103 13 is_stmt 1 view .LVU28
+ 209 0006 0295     		str	r5, [sp, #8]
+ 210 0008 10EE100A 		vmov	r0, s0
+ 211 000c FFF7FEFF 		bl	__aeabi_f2d
+ 212              	.LVL13:
+ 213 0010 CDE90001 		strd	r0, [sp]
+ 214 0014 164B     		ldr	r3, .L18
+ 215 0016 174A     		ldr	r2, .L18+4
+ 216 0018 1749     		ldr	r1, .L18+8
+ 217 001a 0020     		movs	r0, #0
+ 218 001c FFF7FEFF 		bl	SEGGER_RTT_printf
+ 219              	.LVL14:
+ 220              	.L12:
+ 104:App/robot_task.h ****         }
+ 105:App/robot_task.h ****         osDelay(1);
+ 221              		.loc 2 105 9 view .LVU29
+ 222 0020 0120     		movs	r0, #1
+ 223 0022 FFF7FEFF 		bl	osDelay
+ 224              	.LVL15:
   95:App/robot_task.h ****     {
-  96:App/robot_task.h ****         Debug_start = DWT_GetTimeline_ms();
+ 225              		.loc 2 95 5 view .LVU30
+ 226              	.L14:
+  93:App/robot_task.h ****     static float Debug_start;
+ 227              		.loc 2 93 5 view .LVU31
+  94:App/robot_task.h ****     for(;;)
+ 228              		.loc 2 94 5 view .LVU32
+  95:App/robot_task.h ****     {
+ 229              		.loc 2 95 5 view .LVU33
   97:App/robot_task.h ****         LOGINFO("DebugTask is running!");
-  98:App/robot_task.h ****         Debug_dt = DWT_GetTimeline_ms() - Debug_start;
-  99:App/robot_task.h ****         if(Debug_dt > 1)
- 100:App/robot_task.h ****         {
- 101:App/robot_task.h ****             LOGERROR("DebugTask is being DELAY!!! dt= [%f] ms", Debug_dt);
- 193              		.loc 2 101 13 is_stmt 1 view .LVU27
- 194 0006 174B     		ldr	r3, .L18
- 195 0008 0293     		str	r3, [sp, #8]
- 196 000a 10EE100A 		vmov	r0, s0
- 197 000e FFF7FEFF 		bl	__aeabi_f2d
- 198              	.LVL12:
- 199 0012 CDE90001 		strd	r0, [sp]
- 200 0016 144B     		ldr	r3, .L18+4
- 201 0018 144A     		ldr	r2, .L18+8
- 202 001a 1549     		ldr	r1, .L18+12
- 203 001c 0020     		movs	r0, #0
- 204 001e FFF7FEFF 		bl	SEGGER_RTT_printf
- 205              	.LVL13:
- 206              	.L12:
- 102:App/robot_task.h ****         }
- 103:App/robot_task.h ****         osDelay(1);
- 207              		.loc 2 103 9 view .LVU28
- 208 0022 0120     		movs	r0, #1
- 209 0024 FFF7FEFF 		bl	osDelay
- 210              	.LVL14:
-  94:App/robot_task.h ****     {
- 211              		.loc 2 94 5 view .LVU29
- 212              	.L14:
-  92:App/robot_task.h ****     static float Debug_start;
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 7
+ 230              		.loc 2 97 9 view .LVU34
+  97:App/robot_task.h ****         LOGINFO("DebugTask is running!");
+ 231              		.loc 2 97 23 is_stmt 0 view .LVU35
+ 232 0026 FFF7FEFF 		bl	DWT_GetTimeline_ms
+ 233              	.LVL16:
+  97:App/robot_task.h ****         LOGINFO("DebugTask is running!");
+ 234              		.loc 2 97 21 discriminator 1 view .LVU36
+ 235 002a 144C     		ldr	r4, .L18+12
+ 236 002c 84ED000A 		vstr.32	s0, [r4]
+  98:App/robot_task.h ****         LOGERROR("DebugTask will be blocked!");
+ 237              		.loc 2 98 9 is_stmt 1 view .LVU37
+ 238 0030 134D     		ldr	r5, .L18+16
+ 239 0032 0095     		str	r5, [sp]
+ 240 0034 134B     		ldr	r3, .L18+20
+ 241 0036 144A     		ldr	r2, .L18+24
+ 242 0038 1449     		ldr	r1, .L18+28
+ 243 003a 0020     		movs	r0, #0
+ 244 003c FFF7FEFF 		bl	SEGGER_RTT_printf
+ 245              	.LVL17:
+  99:App/robot_task.h ****         Debug_dt = DWT_GetTimeline_ms() - Debug_start;
+ 246              		.loc 2 99 9 view .LVU38
+ 247 0040 0095     		str	r5, [sp]
+ 248 0042 0B4B     		ldr	r3, .L18
+ 249 0044 0B4A     		ldr	r2, .L18+4
+ 250 0046 1249     		ldr	r1, .L18+32
+ 251 0048 0020     		movs	r0, #0
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 8
 
 
- 213              		.loc 2 92 5 view .LVU30
-  93:App/robot_task.h ****     for(;;)
- 214              		.loc 2 93 5 view .LVU31
-  94:App/robot_task.h ****     {
- 215              		.loc 2 94 5 view .LVU32
-  96:App/robot_task.h ****         LOGINFO("DebugTask is running!");
- 216              		.loc 2 96 9 view .LVU33
-  96:App/robot_task.h ****         LOGINFO("DebugTask is running!");
- 217              		.loc 2 96 23 is_stmt 0 view .LVU34
- 218 0028 FFF7FEFF 		bl	DWT_GetTimeline_ms
- 219              	.LVL15:
-  96:App/robot_task.h ****         LOGINFO("DebugTask is running!");
- 220              		.loc 2 96 21 discriminator 1 view .LVU35
- 221 002c 114C     		ldr	r4, .L18+16
- 222 002e 84ED000A 		vstr.32	s0, [r4]
-  97:App/robot_task.h ****         Debug_dt = DWT_GetTimeline_ms() - Debug_start;
- 223              		.loc 2 97 9 is_stmt 1 view .LVU36
- 224 0032 0C4B     		ldr	r3, .L18
- 225 0034 0093     		str	r3, [sp]
- 226 0036 104B     		ldr	r3, .L18+20
- 227 0038 104A     		ldr	r2, .L18+24
- 228 003a 1149     		ldr	r1, .L18+28
- 229 003c 0020     		movs	r0, #0
- 230 003e FFF7FEFF 		bl	SEGGER_RTT_printf
- 231              	.LVL16:
-  98:App/robot_task.h ****         if(Debug_dt > 1)
- 232              		.loc 2 98 9 view .LVU37
-  98:App/robot_task.h ****         if(Debug_dt > 1)
- 233              		.loc 2 98 20 is_stmt 0 view .LVU38
- 234 0042 FFF7FEFF 		bl	DWT_GetTimeline_ms
- 235              	.LVL17:
-  98:App/robot_task.h ****         if(Debug_dt > 1)
- 236              		.loc 2 98 41 discriminator 1 view .LVU39
- 237 0046 D4ED007A 		vldr.32	s15, [r4]
- 238 004a 30EE670A 		vsub.f32	s0, s0, s15
-  98:App/robot_task.h ****         if(Debug_dt > 1)
- 239              		.loc 2 98 18 discriminator 1 view .LVU40
- 240 004e 0D4B     		ldr	r3, .L18+32
- 241 0050 83ED000A 		vstr.32	s0, [r3]
-  99:App/robot_task.h ****         {
- 242              		.loc 2 99 9 is_stmt 1 view .LVU41
-  99:App/robot_task.h ****         {
- 243              		.loc 2 99 11 is_stmt 0 view .LVU42
- 244 0054 F7EE007A 		vmov.f32	s15, #1.0e+0
- 245 0058 B4EEE70A 		vcmpe.f32	s0, s15
- 246 005c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 247 0060 D1DC     		bgt	.L17
- 248 0062 DEE7     		b	.L12
- 249              	.L19:
- 250              		.align	2
- 251              	.L18:
- 252 0064 2C000000 		.word	.LC3
- 253 0068 34000000 		.word	.LC4
- 254 006c 38000000 		.word	.LC5
- 255 0070 20000000 		.word	.LC8
- 256 0074 00000000 		.word	Debug_start.3
- 257 0078 00000000 		.word	.LC0
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 8
+ 252 004a FFF7FEFF 		bl	SEGGER_RTT_printf
+ 253              	.LVL18:
+ 100:App/robot_task.h ****         if(Debug_dt > 1)
+ 254              		.loc 2 100 9 view .LVU39
+ 100:App/robot_task.h ****         if(Debug_dt > 1)
+ 255              		.loc 2 100 20 is_stmt 0 view .LVU40
+ 256 004e FFF7FEFF 		bl	DWT_GetTimeline_ms
+ 257              	.LVL19:
+ 100:App/robot_task.h ****         if(Debug_dt > 1)
+ 258              		.loc 2 100 41 discriminator 1 view .LVU41
+ 259 0052 D4ED007A 		vldr.32	s15, [r4]
+ 260 0056 30EE670A 		vsub.f32	s0, s0, s15
+ 100:App/robot_task.h ****         if(Debug_dt > 1)
+ 261              		.loc 2 100 18 discriminator 1 view .LVU42
+ 262 005a 0E4B     		ldr	r3, .L18+36
+ 263 005c 83ED000A 		vstr.32	s0, [r3]
+ 101:App/robot_task.h ****         {
+ 264              		.loc 2 101 9 is_stmt 1 view .LVU43
+ 101:App/robot_task.h ****         {
+ 265              		.loc 2 101 11 is_stmt 0 view .LVU44
+ 266 0060 F7EE007A 		vmov.f32	s15, #1.0e+0
+ 267 0064 B4EEE70A 		vcmpe.f32	s0, s15
+ 268 0068 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 269 006c CBDC     		bgt	.L17
+ 270 006e D7E7     		b	.L12
+ 271              	.L19:
+ 272              		.align	2
+ 273              	.L18:
+ 274 0070 34000000 		.word	.LC4
+ 275 0074 38000000 		.word	.LC5
+ 276 0078 48000000 		.word	.LC10
+ 277 007c 00000000 		.word	Debug_start.3
+ 278 0080 2C000000 		.word	.LC3
+ 279 0084 00000000 		.word	.LC0
+ 280 0088 04000000 		.word	.LC1
+ 281 008c 00000000 		.word	.LC8
+ 282 0090 20000000 		.word	.LC9
+ 283 0094 00000000 		.word	Debug_dt.2
+ 284              		.cfi_endproc
+ 285              	.LFE144:
+ 287              		.section	.rodata.MotorTask.str1.4,"aMS",%progbits,1
+ 288              		.align	2
+ 289              	.LC11:
+ 290 0000 20202573 		.ascii	"  %s%sMotorTask is running!\015\012%s\000"
+ 290      25734D6F 
+ 290      746F7254 
+ 290      61736B20 
+ 290      69732072 
+ 291              		.align	2
+ 292              	.LC12:
+ 293 0020 20202573 		.ascii	"  %s%sMotorTask will be blocked!\015\012%s\000"
+ 293      25734D6F 
+ 293      746F7254 
+ 293      61736B20 
+ 293      77696C6C 
+ 294 0045 000000   		.align	2
+ 295              	.LC13:
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 9
 
 
- 258 007c 04000000 		.word	.LC1
- 259 0080 00000000 		.word	.LC7
- 260 0084 00000000 		.word	Debug_dt.2
- 261              		.cfi_endproc
- 262              	.LFE144:
- 264              		.section	.rodata.MotorTask.str1.4,"aMS",%progbits,1
- 265              		.align	2
- 266              	.LC9:
- 267 0000 20202573 		.ascii	"  %s%sMotorTask is running!\015\012%s\000"
- 267      25734D6F 
- 267      746F7254 
- 267      61736B20 
- 267      69732072 
- 268              		.align	2
- 269              	.LC10:
- 270 0020 20202573 		.ascii	"  %s%sMotorTask is being DELAY!!! dt= [%f] ms\015\012"
- 270      25734D6F 
- 270      746F7254 
- 270      61736B20 
- 270      69732062 
- 271 004f 257300   		.ascii	"%s\000"
- 272              		.section	.text.MotorTask,"ax",%progbits
- 273              		.align	1
- 274              		.global	MotorTask
- 275              		.syntax unified
- 276              		.thumb
- 277              		.thumb_func
- 279              	MotorTask:
- 280              	.LFB145:
- 104:App/robot_task.h ****     }
- 105:App/robot_task.h **** }
- 106:App/robot_task.h **** 
- 107:App/robot_task.h **** __attribute((noreturn)) void MotorTask(void *argument)
- 108:App/robot_task.h **** {
- 281              		.loc 2 108 1 is_stmt 1 view -0
- 282              		.cfi_startproc
- 283              		@ Volatile: function does not return.
- 284              		@ args = 0, pretend = 0, frame = 0
- 285              		@ frame_needed = 0, uses_anonymous_args = 0
- 286              	.LVL18:
- 287              		.loc 2 108 1 is_stmt 0 view .LVU44
- 288 0000 00B5     		push	{lr}
- 289              	.LCFI4:
- 290              		.cfi_def_cfa_offset 4
- 291              		.cfi_offset 14, -4
- 292 0002 85B0     		sub	sp, sp, #20
- 293              	.LCFI5:
- 294              		.cfi_def_cfa_offset 24
- 295 0004 10E0     		b	.L23
- 296              	.LVL19:
- 297              	.L26:
- 109:App/robot_task.h ****     static float Motor_start;
- 110:App/robot_task.h ****     static float Motor_dt;
- 111:App/robot_task.h ****     for(;;)
- 112:App/robot_task.h ****     {
- 113:App/robot_task.h ****         Motor_start = DWT_GetTimeline_ms();
- 114:App/robot_task.h ****         LOGINFO("MotorTask is running!");
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 9
+ 296 0048 573A00   		.ascii	"W:\000"
+ 297 004b 00       		.align	2
+ 298              	.LC14:
+ 299 004c 1B5B313B 		.ascii	"\033[1;33m\000"
+ 299      33336D00 
+ 300              		.align	2
+ 301              	.LC15:
+ 302 0054 20202573 		.ascii	"  %s%sPlease make some protection!\015\012%s\000"
+ 302      2573506C 
+ 302      65617365 
+ 302      206D616B 
+ 302      6520736F 
+ 303 007b 00       		.align	2
+ 304              	.LC16:
+ 305 007c 20202573 		.ascii	"  %s%sMotorTask is being DELAY!!! dt= [%f] ms\015\012"
+ 305      25734D6F 
+ 305      746F7254 
+ 305      61736B20 
+ 305      69732062 
+ 306 00ab 257300   		.ascii	"%s\000"
+ 307              		.section	.text.MotorTask,"ax",%progbits
+ 308              		.align	1
+ 309              		.global	MotorTask
+ 310              		.syntax unified
+ 311              		.thumb
+ 312              		.thumb_func
+ 314              	MotorTask:
+ 315              	.LFB145:
+ 106:App/robot_task.h ****     }
+ 107:App/robot_task.h **** }
+ 108:App/robot_task.h **** 
+ 109:App/robot_task.h **** __attribute((noreturn)) void MotorTask(void *argument)
+ 110:App/robot_task.h **** {
+ 316              		.loc 2 110 1 is_stmt 1 view -0
+ 317              		.cfi_startproc
+ 318              		@ Volatile: function does not return.
+ 319              		@ args = 0, pretend = 0, frame = 0
+ 320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 321              	.LVL20:
+ 322              		.loc 2 110 1 is_stmt 0 view .LVU46
+ 323 0000 00B5     		push	{lr}
+ 324              	.LCFI4:
+ 325              		.cfi_def_cfa_offset 4
+ 326              		.cfi_offset 14, -4
+ 327 0002 85B0     		sub	sp, sp, #20
+ 328              	.LCFI5:
+ 329              		.cfi_def_cfa_offset 24
+ 330 0004 0FE0     		b	.L23
+ 331              	.LVL21:
+ 332              	.L26:
+ 111:App/robot_task.h ****     static float Motor_start;
+ 112:App/robot_task.h ****     static float Motor_dt;
+ 113:App/robot_task.h ****     for(;;)
+ 114:App/robot_task.h ****     {
+ 115:App/robot_task.h ****         Motor_start = DWT_GetTimeline_ms();
+ 116:App/robot_task.h ****         LOGINFO("MotorTask is running!");
+ 117:App/robot_task.h ****         LOGERROR("MotorTask will be blocked!");
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 10
 
 
- 115:App/robot_task.h ****         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
- 116:App/robot_task.h ****         if(Motor_dt > 1)
- 117:App/robot_task.h ****         {
- 118:App/robot_task.h ****             LOGERROR("MotorTask is being DELAY!!! dt= [%f] ms", Motor_dt);
- 298              		.loc 2 118 13 is_stmt 1 view .LVU45
- 299 0006 174B     		ldr	r3, .L27
- 300 0008 0293     		str	r3, [sp, #8]
- 301 000a 10EE100A 		vmov	r0, s0
- 302 000e FFF7FEFF 		bl	__aeabi_f2d
- 303              	.LVL20:
- 304 0012 CDE90001 		strd	r0, [sp]
- 305 0016 144B     		ldr	r3, .L27+4
- 306 0018 144A     		ldr	r2, .L27+8
- 307 001a 1549     		ldr	r1, .L27+12
- 308 001c 0020     		movs	r0, #0
- 309 001e FFF7FEFF 		bl	SEGGER_RTT_printf
- 310              	.LVL21:
- 311              	.L21:
- 119:App/robot_task.h ****         }
- 120:App/robot_task.h ****         osDelay(1);
- 312              		.loc 2 120 9 view .LVU46
- 313 0022 0120     		movs	r0, #1
- 314 0024 FFF7FEFF 		bl	osDelay
- 315              	.LVL22:
- 111:App/robot_task.h ****     {
- 316              		.loc 2 111 5 view .LVU47
- 317              	.L23:
- 109:App/robot_task.h ****     static float Motor_start;
- 318              		.loc 2 109 5 view .LVU48
- 110:App/robot_task.h ****     for(;;)
- 319              		.loc 2 110 5 view .LVU49
- 111:App/robot_task.h ****     {
- 320              		.loc 2 111 5 view .LVU50
- 113:App/robot_task.h ****         LOGINFO("MotorTask is running!");
- 321              		.loc 2 113 9 view .LVU51
- 113:App/robot_task.h ****         LOGINFO("MotorTask is running!");
- 322              		.loc 2 113 23 is_stmt 0 view .LVU52
- 323 0028 FFF7FEFF 		bl	DWT_GetTimeline_ms
- 324              	.LVL23:
- 113:App/robot_task.h ****         LOGINFO("MotorTask is running!");
- 325              		.loc 2 113 21 discriminator 1 view .LVU53
- 326 002c 114C     		ldr	r4, .L27+16
- 327 002e 84ED000A 		vstr.32	s0, [r4]
- 114:App/robot_task.h ****         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
- 328              		.loc 2 114 9 is_stmt 1 view .LVU54
- 329 0032 0C4B     		ldr	r3, .L27
- 330 0034 0093     		str	r3, [sp]
- 331 0036 104B     		ldr	r3, .L27+20
- 332 0038 104A     		ldr	r2, .L27+24
- 333 003a 1149     		ldr	r1, .L27+28
- 334 003c 0020     		movs	r0, #0
- 335 003e FFF7FEFF 		bl	SEGGER_RTT_printf
- 336              	.LVL24:
- 115:App/robot_task.h ****         if(Motor_dt > 1)
- 337              		.loc 2 115 9 view .LVU55
- 115:App/robot_task.h ****         if(Motor_dt > 1)
- 338              		.loc 2 115 20 is_stmt 0 view .LVU56
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 10
+ 118:App/robot_task.h ****         LOGWARNING("Please make some protection!");
+ 119:App/robot_task.h ****         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
+ 120:App/robot_task.h ****         if(Motor_dt > 1)
+ 121:App/robot_task.h ****         {
+ 122:App/robot_task.h ****             LOGERROR("MotorTask is being DELAY!!! dt= [%f] ms", Motor_dt);
+ 333              		.loc 2 122 13 is_stmt 1 view .LVU47
+ 334 0006 0294     		str	r4, [sp, #8]
+ 335 0008 10EE100A 		vmov	r0, s0
+ 336 000c FFF7FEFF 		bl	__aeabi_f2d
+ 337              	.LVL22:
+ 338 0010 CDE90001 		strd	r0, [sp]
+ 339 0014 1A4B     		ldr	r3, .L27
+ 340 0016 1B4A     		ldr	r2, .L27+4
+ 341 0018 1B49     		ldr	r1, .L27+8
+ 342 001a 0020     		movs	r0, #0
+ 343 001c FFF7FEFF 		bl	SEGGER_RTT_printf
+ 344              	.LVL23:
+ 345              	.L21:
+ 123:App/robot_task.h ****         }
+ 124:App/robot_task.h ****         osDelay(1);
+ 346              		.loc 2 124 9 view .LVU48
+ 347 0020 0120     		movs	r0, #1
+ 348 0022 FFF7FEFF 		bl	osDelay
+ 349              	.LVL24:
+ 113:App/robot_task.h ****     {
+ 350              		.loc 2 113 5 view .LVU49
+ 351              	.L23:
+ 111:App/robot_task.h ****     static float Motor_start;
+ 352              		.loc 2 111 5 view .LVU50
+ 112:App/robot_task.h ****     for(;;)
+ 353              		.loc 2 112 5 view .LVU51
+ 113:App/robot_task.h ****     {
+ 354              		.loc 2 113 5 view .LVU52
+ 115:App/robot_task.h ****         LOGINFO("MotorTask is running!");
+ 355              		.loc 2 115 9 view .LVU53
+ 115:App/robot_task.h ****         LOGINFO("MotorTask is running!");
+ 356              		.loc 2 115 23 is_stmt 0 view .LVU54
+ 357 0026 FFF7FEFF 		bl	DWT_GetTimeline_ms
+ 358              	.LVL25:
+ 115:App/robot_task.h ****         LOGINFO("MotorTask is running!");
+ 359              		.loc 2 115 21 discriminator 1 view .LVU55
+ 360 002a 184D     		ldr	r5, .L27+12
+ 361 002c 85ED000A 		vstr.32	s0, [r5]
+ 116:App/robot_task.h ****         LOGERROR("MotorTask will be blocked!");
+ 362              		.loc 2 116 9 is_stmt 1 view .LVU56
+ 363 0030 174C     		ldr	r4, .L27+16
+ 364 0032 0094     		str	r4, [sp]
+ 365 0034 174B     		ldr	r3, .L27+20
+ 366 0036 184A     		ldr	r2, .L27+24
+ 367 0038 1849     		ldr	r1, .L27+28
+ 368 003a 0020     		movs	r0, #0
+ 369 003c FFF7FEFF 		bl	SEGGER_RTT_printf
+ 370              	.LVL26:
+ 117:App/robot_task.h ****         LOGWARNING("Please make some protection!");
+ 371              		.loc 2 117 9 view .LVU57
+ 372 0040 0094     		str	r4, [sp]
+ 373 0042 0F4B     		ldr	r3, .L27
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 11
 
 
- 339 0042 FFF7FEFF 		bl	DWT_GetTimeline_ms
- 340              	.LVL25:
- 115:App/robot_task.h ****         if(Motor_dt > 1)
- 341              		.loc 2 115 41 discriminator 1 view .LVU57
- 342 0046 D4ED007A 		vldr.32	s15, [r4]
- 343 004a 30EE670A 		vsub.f32	s0, s0, s15
- 115:App/robot_task.h ****         if(Motor_dt > 1)
- 344              		.loc 2 115 18 discriminator 1 view .LVU58
- 345 004e 0D4B     		ldr	r3, .L27+32
- 346 0050 83ED000A 		vstr.32	s0, [r3]
- 116:App/robot_task.h ****         {
- 347              		.loc 2 116 9 is_stmt 1 view .LVU59
- 116:App/robot_task.h ****         {
- 348              		.loc 2 116 11 is_stmt 0 view .LVU60
- 349 0054 F7EE007A 		vmov.f32	s15, #1.0e+0
- 350 0058 B4EEE70A 		vcmpe.f32	s0, s15
- 351 005c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 352 0060 D1DC     		bgt	.L26
- 353 0062 DEE7     		b	.L21
- 354              	.L28:
- 355              		.align	2
- 356              	.L27:
- 357 0064 2C000000 		.word	.LC3
- 358 0068 34000000 		.word	.LC4
- 359 006c 38000000 		.word	.LC5
- 360 0070 20000000 		.word	.LC10
- 361 0074 00000000 		.word	Motor_start.1
- 362 0078 00000000 		.word	.LC0
- 363 007c 04000000 		.word	.LC1
- 364 0080 00000000 		.word	.LC9
- 365 0084 00000000 		.word	Motor_dt.0
- 366              		.cfi_endproc
- 367              	.LFE145:
- 369              		.section	.text.Bsp_Init,"ax",%progbits
- 370              		.align	1
- 371              		.global	Bsp_Init
- 372              		.syntax unified
- 373              		.thumb
- 374              		.thumb_func
- 376              	Bsp_Init:
- 377              	.LFB137:
- 378              		.file 3 "Bsp/bsp_init.h"
+ 374 0044 0F4A     		ldr	r2, .L27+4
+ 375 0046 1649     		ldr	r1, .L27+32
+ 376 0048 0020     		movs	r0, #0
+ 377 004a FFF7FEFF 		bl	SEGGER_RTT_printf
+ 378              	.LVL27:
+ 118:App/robot_task.h ****         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
+ 379              		.loc 2 118 9 view .LVU58
+ 380 004e 0094     		str	r4, [sp]
+ 381 0050 144B     		ldr	r3, .L27+36
+ 382 0052 154A     		ldr	r2, .L27+40
+ 383 0054 1549     		ldr	r1, .L27+44
+ 384 0056 0020     		movs	r0, #0
+ 385 0058 FFF7FEFF 		bl	SEGGER_RTT_printf
+ 386              	.LVL28:
+ 119:App/robot_task.h ****         if(Motor_dt > 1)
+ 387              		.loc 2 119 9 view .LVU59
+ 119:App/robot_task.h ****         if(Motor_dt > 1)
+ 388              		.loc 2 119 20 is_stmt 0 view .LVU60
+ 389 005c FFF7FEFF 		bl	DWT_GetTimeline_ms
+ 390              	.LVL29:
+ 119:App/robot_task.h ****         if(Motor_dt > 1)
+ 391              		.loc 2 119 41 discriminator 1 view .LVU61
+ 392 0060 D5ED007A 		vldr.32	s15, [r5]
+ 393 0064 30EE670A 		vsub.f32	s0, s0, s15
+ 119:App/robot_task.h ****         if(Motor_dt > 1)
+ 394              		.loc 2 119 18 discriminator 1 view .LVU62
+ 395 0068 114B     		ldr	r3, .L27+48
+ 396 006a 83ED000A 		vstr.32	s0, [r3]
+ 120:App/robot_task.h ****         {
+ 397              		.loc 2 120 9 is_stmt 1 view .LVU63
+ 120:App/robot_task.h ****         {
+ 398              		.loc 2 120 11 is_stmt 0 view .LVU64
+ 399 006e F7EE007A 		vmov.f32	s15, #1.0e+0
+ 400 0072 B4EEE70A 		vcmpe.f32	s0, s15
+ 401 0076 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 402 007a C4DC     		bgt	.L26
+ 403 007c D0E7     		b	.L21
+ 404              	.L28:
+ 405 007e 00BF     		.align	2
+ 406              	.L27:
+ 407 0080 34000000 		.word	.LC4
+ 408 0084 38000000 		.word	.LC5
+ 409 0088 7C000000 		.word	.LC16
+ 410 008c 00000000 		.word	Motor_start.1
+ 411 0090 2C000000 		.word	.LC3
+ 412 0094 00000000 		.word	.LC0
+ 413 0098 04000000 		.word	.LC1
+ 414 009c 00000000 		.word	.LC11
+ 415 00a0 20000000 		.word	.LC12
+ 416 00a4 48000000 		.word	.LC13
+ 417 00a8 4C000000 		.word	.LC14
+ 418 00ac 54000000 		.word	.LC15
+ 419 00b0 00000000 		.word	Motor_dt.0
+ 420              		.cfi_endproc
+ 421              	.LFE145:
+ 423              		.section	.text.Bsp_Init,"ax",%progbits
+ 424              		.align	1
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 12
+
+
+ 425              		.global	Bsp_Init
+ 426              		.syntax unified
+ 427              		.thumb
+ 428              		.thumb_func
+ 430              	Bsp_Init:
+ 431              	.LFB137:
+ 432              		.file 3 "Bsp/bsp_init.h"
    1:Bsp/bsp_init.h **** /**
    2:Bsp/bsp_init.h ****  * @file bsp_init.h
    3:Bsp/bsp_init.h ****  * @author Keten (2863861004@qq.com)
@@ -598,199 +683,196 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   13:Bsp/bsp_init.h ****  */
   14:Bsp/bsp_init.h **** #pragma once
   15:Bsp/bsp_init.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 11
-
-
   16:Bsp/bsp_init.h **** #include "bsp_log.h"
   17:Bsp/bsp_init.h **** #include "bsp_dwt.h"
   18:Bsp/bsp_init.h **** 
   19:Bsp/bsp_init.h **** void Bsp_Init()
   20:Bsp/bsp_init.h **** {
- 379              		.loc 3 20 1 is_stmt 1 view -0
- 380              		.cfi_startproc
- 381              		@ args = 0, pretend = 0, frame = 0
- 382              		@ frame_needed = 0, uses_anonymous_args = 0
- 383 0000 08B5     		push	{r3, lr}
- 384              	.LCFI6:
- 385              		.cfi_def_cfa_offset 8
- 386              		.cfi_offset 3, -8
- 387              		.cfi_offset 14, -4
+ 433              		.loc 3 20 1 is_stmt 1 view -0
+ 434              		.cfi_startproc
+ 435              		@ args = 0, pretend = 0, frame = 0
+ 436              		@ frame_needed = 0, uses_anonymous_args = 0
+ 437 0000 08B5     		push	{r3, lr}
+ 438              	.LCFI6:
+ 439              		.cfi_def_cfa_offset 8
+ 440              		.cfi_offset 3, -8
+ 441              		.cfi_offset 14, -4
   21:Bsp/bsp_init.h ****     /* stm32f4 芯片主频 168MHz */
   22:Bsp/bsp_init.h ****     DWT_Init(168);    
- 388              		.loc 3 22 5 view .LVU62
- 389 0002 A820     		movs	r0, #168
- 390 0004 FFF7FEFF 		bl	DWT_Init
- 391              	.LVL26:
+ 442              		.loc 3 22 5 view .LVU66
+ 443 0002 A820     		movs	r0, #168
+ 444 0004 FFF7FEFF 		bl	DWT_Init
+ 445              	.LVL30:
   23:Bsp/bsp_init.h ****     BSPLogInit();
- 392              		.loc 3 23 5 view .LVU63
- 393 0008 FFF7FEFF 		bl	BSPLogInit
- 394              	.LVL27:
+ 446              		.loc 3 23 5 view .LVU67
+ 447 0008 FFF7FEFF 		bl	BSPLogInit
+ 448              	.LVL31:
   24:Bsp/bsp_init.h **** }
- 395              		.loc 3 24 1 is_stmt 0 view .LVU64
- 396 000c 08BD     		pop	{r3, pc}
- 397              		.cfi_endproc
- 398              	.LFE137:
- 400              		.section	.rodata.osTaskInit.str1.4,"aMS",%progbits,1
- 401              		.align	2
- 402              	.LC11:
- 403 0000 4C6F6754 		.ascii	"LogTaskHandle\000"
- 403      61736B48 
- 403      616E646C 
- 403      6500
- 404 000e 0000     		.align	2
- 405              	.LC12:
- 406 0010 44656275 		.ascii	"DebugTaskHandle\000"
- 406      67546173 
- 406      6B48616E 
- 406      646C6500 
- 407              		.align	2
- 408              	.LC13:
- 409 0020 4D6F746F 		.ascii	"MotorTaskHandle\000"
- 409      72546173 
- 409      6B48616E 
- 409      646C6500 
- 410              		.section	.text.osTaskInit,"ax",%progbits
- 411              		.align	1
- 412              		.global	osTaskInit
- 413              		.syntax unified
- 414              		.thumb
- 415              		.thumb_func
- 417              	osTaskInit:
- 418              	.LFB142:
+ 449              		.loc 3 24 1 is_stmt 0 view .LVU68
+ 450 000c 08BD     		pop	{r3, pc}
+ 451              		.cfi_endproc
+ 452              	.LFE137:
+ 454              		.section	.rodata.osTaskInit.str1.4,"aMS",%progbits,1
+ 455              		.align	2
+ 456              	.LC17:
+ 457 0000 4C6F6754 		.ascii	"LogTaskHandle\000"
+ 457      61736B48 
+ 457      616E646C 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 13
+
+
+ 457      6500
+ 458 000e 0000     		.align	2
+ 459              	.LC18:
+ 460 0010 44656275 		.ascii	"DebugTaskHandle\000"
+ 460      67546173 
+ 460      6B48616E 
+ 460      646C6500 
+ 461              		.align	2
+ 462              	.LC19:
+ 463 0020 4D6F746F 		.ascii	"MotorTaskHandle\000"
+ 463      72546173 
+ 463      6B48616E 
+ 463      646C6500 
+ 464              		.section	.text.osTaskInit,"ax",%progbits
+ 465              		.align	1
+ 466              		.global	osTaskInit
+ 467              		.syntax unified
+ 468              		.thumb
+ 469              		.thumb_func
+ 471              	osTaskInit:
+ 472              	.LFB142:
   33:App/robot_task.h ****     const osThreadAttr_t LogTaskHandle_attributes = {
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 12
-
-
- 419              		.loc 2 33 1 is_stmt 1 view -0
- 420              		.cfi_startproc
- 421              		@ args = 0, pretend = 0, frame = 112
- 422              		@ frame_needed = 0, uses_anonymous_args = 0
- 423 0000 70B5     		push	{r4, r5, r6, lr}
- 424              	.LCFI7:
- 425              		.cfi_def_cfa_offset 16
- 426              		.cfi_offset 4, -16
- 427              		.cfi_offset 5, -12
- 428              		.cfi_offset 6, -8
- 429              		.cfi_offset 14, -4
- 430 0002 9CB0     		sub	sp, sp, #112
- 431              	.LCFI8:
- 432              		.cfi_def_cfa_offset 128
+ 473              		.loc 2 33 1 is_stmt 1 view -0
+ 474              		.cfi_startproc
+ 475              		@ args = 0, pretend = 0, frame = 112
+ 476              		@ frame_needed = 0, uses_anonymous_args = 0
+ 477 0000 70B5     		push	{r4, r5, r6, lr}
+ 478              	.LCFI7:
+ 479              		.cfi_def_cfa_offset 16
+ 480              		.cfi_offset 4, -16
+ 481              		.cfi_offset 5, -12
+ 482              		.cfi_offset 6, -8
+ 483              		.cfi_offset 14, -4
+ 484 0002 9CB0     		sub	sp, sp, #112
+ 485              	.LCFI8:
+ 486              		.cfi_def_cfa_offset 128
   34:App/robot_task.h ****     .name = "LogTaskHandle",
- 433              		.loc 2 34 5 view .LVU66
+ 487              		.loc 2 34 5 view .LVU70
   34:App/robot_task.h ****     .name = "LogTaskHandle",
- 434              		.loc 2 34 26 is_stmt 0 view .LVU67
- 435 0004 2426     		movs	r6, #36
- 436 0006 3246     		mov	r2, r6
- 437 0008 0021     		movs	r1, #0
- 438 000a 13A8     		add	r0, sp, #76
- 439 000c FFF7FEFF 		bl	memset
- 440              	.LVL28:
- 441 0010 174B     		ldr	r3, .L33
- 442 0012 1393     		str	r3, [sp, #76]
- 443 0014 4FF40075 		mov	r5, #512
- 444 0018 1895     		str	r5, [sp, #96]
- 445 001a 1824     		movs	r4, #24
- 446 001c 1994     		str	r4, [sp, #100]
+ 488              		.loc 2 34 26 is_stmt 0 view .LVU71
+ 489 0004 2426     		movs	r6, #36
+ 490 0006 3246     		mov	r2, r6
+ 491 0008 0021     		movs	r1, #0
+ 492 000a 13A8     		add	r0, sp, #76
+ 493 000c FFF7FEFF 		bl	memset
+ 494              	.LVL32:
+ 495 0010 174B     		ldr	r3, .L33
+ 496 0012 1393     		str	r3, [sp, #76]
+ 497 0014 4FF40075 		mov	r5, #512
+ 498 0018 1895     		str	r5, [sp, #96]
+ 499 001a 1824     		movs	r4, #24
+ 500 001c 1994     		str	r4, [sp, #100]
   39:App/robot_task.h **** 
- 447              		.loc 2 39 5 is_stmt 1 view .LVU68
+ 501              		.loc 2 39 5 is_stmt 1 view .LVU72
   39:App/robot_task.h **** 
- 448              		.loc 2 39 21 is_stmt 0 view .LVU69
- 449 001e 13AA     		add	r2, sp, #76
- 450 0020 0021     		movs	r1, #0
- 451 0022 1448     		ldr	r0, .L33+4
- 452 0024 FFF7FEFF 		bl	osThreadNew
- 453              	.LVL29:
-  39:App/robot_task.h **** 
- 454              		.loc 2 39 19 discriminator 1 view .LVU70
- 455 0028 134B     		ldr	r3, .L33+8
- 456 002a 1860     		str	r0, [r3]
-  42:App/robot_task.h ****     .name = "DebugTaskHandle",
- 457              		.loc 2 42 5 is_stmt 1 view .LVU71
-  42:App/robot_task.h ****     .name = "DebugTaskHandle",
- 458              		.loc 2 42 26 is_stmt 0 view .LVU72
- 459 002c 3246     		mov	r2, r6
- 460 002e 0021     		movs	r1, #0
- 461 0030 0AA8     		add	r0, sp, #40
- 462 0032 FFF7FEFF 		bl	memset
- 463              	.LVL30:
- 464 0036 114B     		ldr	r3, .L33+12
- 465 0038 0A93     		str	r3, [sp, #40]
- 466 003a 0F95     		str	r5, [sp, #60]
- 467 003c 1094     		str	r4, [sp, #64]
-  47:App/robot_task.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 13
+ 502              		.loc 2 39 21 is_stmt 0 view .LVU73
+ 503 001e 13AA     		add	r2, sp, #76
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 14
 
 
- 468              		.loc 2 47 5 is_stmt 1 view .LVU73
+ 504 0020 0021     		movs	r1, #0
+ 505 0022 1448     		ldr	r0, .L33+4
+ 506 0024 FFF7FEFF 		bl	osThreadNew
+ 507              	.LVL33:
+  39:App/robot_task.h **** 
+ 508              		.loc 2 39 19 discriminator 1 view .LVU74
+ 509 0028 134B     		ldr	r3, .L33+8
+ 510 002a 1860     		str	r0, [r3]
+  42:App/robot_task.h ****     .name = "DebugTaskHandle",
+ 511              		.loc 2 42 5 is_stmt 1 view .LVU75
+  42:App/robot_task.h ****     .name = "DebugTaskHandle",
+ 512              		.loc 2 42 26 is_stmt 0 view .LVU76
+ 513 002c 3246     		mov	r2, r6
+ 514 002e 0021     		movs	r1, #0
+ 515 0030 0AA8     		add	r0, sp, #40
+ 516 0032 FFF7FEFF 		bl	memset
+ 517              	.LVL34:
+ 518 0036 114B     		ldr	r3, .L33+12
+ 519 0038 0A93     		str	r3, [sp, #40]
+ 520 003a 0F95     		str	r5, [sp, #60]
+ 521 003c 1094     		str	r4, [sp, #64]
   47:App/robot_task.h **** 
- 469              		.loc 2 47 23 is_stmt 0 view .LVU74
- 470 003e 0AAA     		add	r2, sp, #40
- 471 0040 0021     		movs	r1, #0
- 472 0042 0F48     		ldr	r0, .L33+16
- 473 0044 FFF7FEFF 		bl	osThreadNew
- 474              	.LVL31:
+ 522              		.loc 2 47 5 is_stmt 1 view .LVU77
   47:App/robot_task.h **** 
- 475              		.loc 2 47 21 discriminator 1 view .LVU75
- 476 0048 0E4B     		ldr	r3, .L33+20
- 477 004a 1860     		str	r0, [r3]
+ 523              		.loc 2 47 23 is_stmt 0 view .LVU78
+ 524 003e 0AAA     		add	r2, sp, #40
+ 525 0040 0021     		movs	r1, #0
+ 526 0042 0F48     		ldr	r0, .L33+16
+ 527 0044 FFF7FEFF 		bl	osThreadNew
+ 528              	.LVL35:
+  47:App/robot_task.h **** 
+ 529              		.loc 2 47 21 discriminator 1 view .LVU79
+ 530 0048 0E4B     		ldr	r3, .L33+20
+ 531 004a 1860     		str	r0, [r3]
   50:App/robot_task.h ****     .name = "MotorTaskHandle",
- 478              		.loc 2 50 5 is_stmt 1 view .LVU76
+ 532              		.loc 2 50 5 is_stmt 1 view .LVU80
   50:App/robot_task.h ****     .name = "MotorTaskHandle",
- 479              		.loc 2 50 26 is_stmt 0 view .LVU77
- 480 004c 3246     		mov	r2, r6
- 481 004e 0021     		movs	r1, #0
- 482 0050 01A8     		add	r0, sp, #4
- 483 0052 FFF7FEFF 		bl	memset
- 484              	.LVL32:
- 485 0056 0C4B     		ldr	r3, .L33+24
- 486 0058 0193     		str	r3, [sp, #4]
- 487 005a 0695     		str	r5, [sp, #24]
- 488 005c 0794     		str	r4, [sp, #28]
+ 533              		.loc 2 50 26 is_stmt 0 view .LVU81
+ 534 004c 3246     		mov	r2, r6
+ 535 004e 0021     		movs	r1, #0
+ 536 0050 01A8     		add	r0, sp, #4
+ 537 0052 FFF7FEFF 		bl	memset
+ 538              	.LVL36:
+ 539 0056 0C4B     		ldr	r3, .L33+24
+ 540 0058 0193     		str	r3, [sp, #4]
+ 541 005a 0695     		str	r5, [sp, #24]
+ 542 005c 0794     		str	r4, [sp, #28]
   55:App/robot_task.h **** 
- 489              		.loc 2 55 5 is_stmt 1 view .LVU78
+ 543              		.loc 2 55 5 is_stmt 1 view .LVU82
   55:App/robot_task.h **** 
- 490              		.loc 2 55 23 is_stmt 0 view .LVU79
- 491 005e 01AA     		add	r2, sp, #4
- 492 0060 0021     		movs	r1, #0
- 493 0062 0A48     		ldr	r0, .L33+28
- 494 0064 FFF7FEFF 		bl	osThreadNew
- 495              	.LVL33:
+ 544              		.loc 2 55 23 is_stmt 0 view .LVU83
+ 545 005e 01AA     		add	r2, sp, #4
+ 546 0060 0021     		movs	r1, #0
+ 547 0062 0A48     		ldr	r0, .L33+28
+ 548 0064 FFF7FEFF 		bl	osThreadNew
+ 549              	.LVL37:
   55:App/robot_task.h **** 
- 496              		.loc 2 55 21 discriminator 1 view .LVU80
- 497 0068 094B     		ldr	r3, .L33+32
- 498 006a 1860     		str	r0, [r3]
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 15
+
+
+ 550              		.loc 2 55 21 discriminator 1 view .LVU84
+ 551 0068 094B     		ldr	r3, .L33+32
+ 552 006a 1860     		str	r0, [r3]
   57:App/robot_task.h **** 
- 499              		.loc 2 57 1 view .LVU81
- 500 006c 1CB0     		add	sp, sp, #112
- 501              	.LCFI9:
- 502              		.cfi_def_cfa_offset 16
- 503              		@ sp needed
- 504 006e 70BD     		pop	{r4, r5, r6, pc}
- 505              	.L34:
- 506              		.align	2
- 507              	.L33:
- 508 0070 00000000 		.word	.LC11
- 509 0074 00000000 		.word	LogTask
- 510 0078 00000000 		.word	LogTaskHandle
- 511 007c 10000000 		.word	.LC12
- 512 0080 00000000 		.word	DebugTask
- 513 0084 00000000 		.word	DebugTaskHandle
- 514 0088 20000000 		.word	.LC13
- 515 008c 00000000 		.word	MotorTask
- 516 0090 00000000 		.word	MotorTaskHandle
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 14
-
-
- 517              		.cfi_endproc
- 518              	.LFE142:
- 520              		.section	.text.Robot_Init,"ax",%progbits
- 521              		.align	1
- 522              		.global	Robot_Init
- 523              		.syntax unified
- 524              		.thumb
- 525              		.thumb_func
- 527              	Robot_Init:
- 528              	.LFB146:
+ 553              		.loc 2 57 1 view .LVU85
+ 554 006c 1CB0     		add	sp, sp, #112
+ 555              	.LCFI9:
+ 556              		.cfi_def_cfa_offset 16
+ 557              		@ sp needed
+ 558 006e 70BD     		pop	{r4, r5, r6, pc}
+ 559              	.L34:
+ 560              		.align	2
+ 561              	.L33:
+ 562 0070 00000000 		.word	.LC17
+ 563 0074 00000000 		.word	LogTask
+ 564 0078 00000000 		.word	LogTaskHandle
+ 565 007c 10000000 		.word	.LC18
+ 566 0080 00000000 		.word	DebugTask
+ 567 0084 00000000 		.word	DebugTaskHandle
+ 568 0088 20000000 		.word	.LC19
+ 569 008c 00000000 		.word	MotorTask
+ 570 0090 00000000 		.word	MotorTaskHandle
+ 571              		.cfi_endproc
+ 572              	.LFE142:
+ 574              		.section	.text.Robot_Init,"ax",%progbits
+ 575              		.align	1
+ 576              		.global	Robot_Init
+ 577              		.syntax unified
+ 578              		.thumb
+ 579              		.thumb_func
+ 581              	Robot_Init:
+ 582              	.LFB146:
    1:App/robot.c   **** /**
    2:App/robot.c   ****  * @file robot.c
    3:App/robot.c   ****  * @author Keten (2863861004@qq.com)
@@ -816,31 +898,31 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   23:App/robot.c   **** 
   24:App/robot.c   **** /* 更多特色功能可以在这里通过宏开关来决定是否使用 */
   25:App/robot.c   **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 16
+
+
   26:App/robot.c   **** void Robot_Init()
   27:App/robot.c   **** {
- 529              		.loc 1 27 1 is_stmt 1 view -0
- 530              		.cfi_startproc
- 531              		@ args = 0, pretend = 0, frame = 0
- 532              		@ frame_needed = 0, uses_anonymous_args = 0
- 533 0000 08B5     		push	{r3, lr}
- 534              	.LCFI10:
- 535              		.cfi_def_cfa_offset 8
- 536              		.cfi_offset 3, -8
- 537              		.cfi_offset 14, -4
+ 583              		.loc 1 27 1 is_stmt 1 view -0
+ 584              		.cfi_startproc
+ 585              		@ args = 0, pretend = 0, frame = 0
+ 586              		@ frame_needed = 0, uses_anonymous_args = 0
+ 587 0000 08B5     		push	{r3, lr}
+ 588              	.LCFI10:
+ 589              		.cfi_def_cfa_offset 8
+ 590              		.cfi_offset 3, -8
+ 591              		.cfi_offset 14, -4
   28:App/robot.c   ****     /* 关闭中断，防止在初始化过程中发生中断 */
   29:App/robot.c   ****     __disable_irq();
- 538              		.loc 1 29 5 view .LVU83
- 539              	.LBB6:
- 540              	.LBI6:
- 541              		.file 4 "Drivers/CMSIS/Include/cmsis_gcc.h"
+ 592              		.loc 1 29 5 view .LVU87
+ 593              	.LBB6:
+ 594              	.LBI6:
+ 595              		.file 4 "Drivers/CMSIS/Include/cmsis_gcc.h"
    1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
    2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
    4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V5.4.1
    5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     27. May 2021
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 15
-
-
    6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
    7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
    8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2021 Arm Limited. All rights reserved.
@@ -876,6 +958,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   38:Drivers/CMSIS/Include/cmsis_gcc.h **** 
   39:Drivers/CMSIS/Include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
   40:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ASM
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 17
+
+
   41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
   42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
@@ -898,9 +983,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   60:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   61:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED
   62:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 16
-
-
   63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
   65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
@@ -936,6 +1018,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
   95:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
   96:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   97:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 18
+
+
   98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
   99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
  100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
@@ -958,9 +1043,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  117:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __COMPILER_BARRIER()                   __ASM volatile("":::"memory")
  118:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  119:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 17
-
-
  120:Drivers/CMSIS/Include/cmsis_gcc.h **** /* #########################  Startup and Lowlevel Init  ######################## */
  121:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  122:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __PROGRAM_START
@@ -996,6 +1078,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  152:Drivers/CMSIS/Include/cmsis_gcc.h ****     for(uint32_t i=0u; i<pTable->wlen; ++i) {
  153:Drivers/CMSIS/Include/cmsis_gcc.h ****       pTable->dest[i] = pTable->src[i];
  154:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 19
+
+
  155:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
  156:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  157:Drivers/CMSIS/Include/cmsis_gcc.h ****   for (__zero_table_t const* pTable = &__zero_table_start__; pTable < &__zero_table_end__; ++pTable
@@ -1018,9 +1103,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  174:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __STACK_LIMIT             __StackLimit
  175:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  176:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 18
-
-
  177:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE
  178:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE            __Vectors
  179:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -1056,6 +1138,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  209:Drivers/CMSIS/Include/cmsis_gcc.h **** */
  210:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  211:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Define macros for porting to both thumb1 and thumb2.
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 20
+
+
  212:Drivers/CMSIS/Include/cmsis_gcc.h ****  * For thumb1, use low register (r0-r7), specified by constraint "l"
  213:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Otherwise, use general registers, specified by constraint "r" */
  214:Drivers/CMSIS/Include/cmsis_gcc.h **** #if defined (__thumb__) && !defined (__thumb2__)
@@ -1078,9 +1163,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  231:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Wait For Interrupt
  232:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Wait For Interrupt is a hint instruction that suspends execution until one of a number o
  233:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 19
-
-
  234:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __WFI()                             __ASM volatile ("wfi":::"memory")
  235:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  236:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1116,6 +1198,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  266:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Acts as a special kind of Data Memory Barrier.
  267:Drivers/CMSIS/Include/cmsis_gcc.h ****            It completes when all explicit memory accesses before this instruction complete.
  268:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 21
+
+
  269:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __DSB(void)
  270:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  271:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("dsb 0xF":::"memory");
@@ -1138,9 +1223,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  288:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Reverses the byte order in unsigned integer value. For example, 0x12345678 becomes 0x785
  289:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  Value to reverse
  290:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Reversed value
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 20
-
-
  291:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  292:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __REV(uint32_t value)
  293:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -1176,6 +1258,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  323:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  Value to reverse
  324:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Reversed value
  325:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 22
+
+
  326:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE int16_t __REVSH(int16_t value)
  327:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  328:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (__GNUC__ > 4) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)
@@ -1198,9 +1283,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  345:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  346:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
  347:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 21
-
-
  348:Drivers/CMSIS/Include/cmsis_gcc.h ****   op2 %= 32U;
  349:Drivers/CMSIS/Include/cmsis_gcc.h ****   if (op2 == 0U)
  350:Drivers/CMSIS/Include/cmsis_gcc.h ****   {
@@ -1236,6 +1318,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  380:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM ("rbit %0, %1" : "=r" (result) : "r" (value) );
  381:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  382:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t s = (4U /*sizeof(v)*/ * 8U) - 1U; /* extra shift needed at end */
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 23
+
+
  383:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  384:Drivers/CMSIS/Include/cmsis_gcc.h ****   result = value;                      /* r will be reversed bits of v; first get LSB of v */
  385:Drivers/CMSIS/Include/cmsis_gcc.h ****   for (value >>= 1U; value != 0U; value >>= 1U)
@@ -1258,9 +1343,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  402:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  403:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint8_t __CLZ(uint32_t value)
  404:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 22
-
-
  405:Drivers/CMSIS/Include/cmsis_gcc.h ****   /* Even though __builtin_clz produces a CLZ instruction on ARM, formally
  406:Drivers/CMSIS/Include/cmsis_gcc.h ****      __builtin_clz(0) is undefined behaviour, so handle this case specially.
  407:Drivers/CMSIS/Include/cmsis_gcc.h ****      This guarantees ARM-compatible results if happening to compile on a non-ARM
@@ -1296,6 +1378,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  437:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrexb %0, %1" : "=r" (result) : "Q" (*addr) );
  438:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  439:Drivers/CMSIS/Include/cmsis_gcc.h ****     /* Prior to GCC 4.8, "Q" will be expanded to [rx, #0] which is not
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 24
+
+
  440:Drivers/CMSIS/Include/cmsis_gcc.h ****        accepted by assembler. So has to use following less efficient pattern.
  441:Drivers/CMSIS/Include/cmsis_gcc.h ****     */
  442:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrexb %0, [%1]" : "=r" (result) : "r" (addr) : "memory" );
@@ -1318,9 +1403,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  459:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrexh %0, %1" : "=r" (result) : "Q" (*addr) );
  460:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
  461:Drivers/CMSIS/Include/cmsis_gcc.h ****     /* Prior to GCC 4.8, "Q" will be expanded to [rx, #0] which is not
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 23
-
-
  462:Drivers/CMSIS/Include/cmsis_gcc.h ****        accepted by assembler. So has to use following less efficient pattern.
  463:Drivers/CMSIS/Include/cmsis_gcc.h ****     */
  464:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrexh %0, [%1]" : "=r" (result) : "r" (addr) : "memory" );
@@ -1356,6 +1438,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  494:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  495:Drivers/CMSIS/Include/cmsis_gcc.h ****    uint32_t result;
  496:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 25
+
+
  497:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("strexb %0, %2, %1" : "=&r" (result), "=Q" (*addr) : "r" ((uint32_t)value) );
  498:Drivers/CMSIS/Include/cmsis_gcc.h ****    return(result);
  499:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -1378,9 +1463,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  516:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  517:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  518:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 24
-
-
  519:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  520:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   STR Exclusive (32 bit)
  521:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a exclusive STR instruction for 32 bit values.
@@ -1416,6 +1498,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  551:Drivers/CMSIS/Include/cmsis_gcc.h **** #if ((defined (__ARM_ARCH_7M__      ) && (__ARM_ARCH_7M__      == 1)) || \
  552:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
  553:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1))    )
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 26
+
+
  554:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  555:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Signed Saturate
  556:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Saturates a signed value.
@@ -1438,9 +1523,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  573:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  ARG1  Value to be saturated
  574:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  ARG2  Bit position to saturate to (0..31)
  575:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             Saturated value
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 25
-
-
  576:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  577:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __USAT(ARG1, ARG2) \
  578:Drivers/CMSIS/Include/cmsis_gcc.h **** __extension__ \
@@ -1476,6 +1558,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  608:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint8_t __LDRBT(volatile uint8_t *ptr)
  609:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  610:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 27
+
+
  611:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  612:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (__GNUC__ > 4) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)
  613:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrbt %0, %1" : "=r" (result) : "Q" (*ptr) );
@@ -1498,9 +1583,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  630:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint16_t __LDRHT(volatile uint16_t *ptr)
  631:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  632:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 26
-
-
  633:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  634:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (__GNUC__ > 4) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)
  635:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldrht %0, %1" : "=r" (result) : "Q" (*ptr) );
@@ -1536,6 +1618,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  665:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  666:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  667:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __STRBT(uint8_t value, volatile uint8_t *ptr)
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 28
+
+
  668:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  669:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("strbt %1, %0" : "=Q" (*ptr) : "r" ((uint32_t)value) );
  670:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -1558,9 +1643,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  687:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a Unprivileged STRT instruction for 32 bit values.
  688:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  689:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 27
-
-
  690:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  691:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __STRT(uint32_t value, volatile uint32_t *ptr)
  692:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -1596,6 +1678,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  722:Drivers/CMSIS/Include/cmsis_gcc.h ****   return val;
  723:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  724:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 29
+
+
  725:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  726:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Unsigned Saturate
  727:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Saturates an unsigned value.
@@ -1618,9 +1703,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  744:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
  745:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
  746:Drivers/CMSIS/Include/cmsis_gcc.h ****   return (uint32_t)val;
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 28
-
-
  747:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  748:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  749:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif /* ((defined (__ARM_ARCH_7M__      ) && (__ARM_ARCH_7M__      == 1)) || \
@@ -1656,6 +1738,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  779:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
  780:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  781:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldah %0, %1" : "=r" (result) : "Q" (*ptr) : "memory" );
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 30
+
+
  782:Drivers/CMSIS/Include/cmsis_gcc.h ****    return ((uint16_t) result);
  783:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  784:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1678,9 +1763,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  801:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  802:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Store-Release (8 bit)
  803:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a STLB instruction for 8 bit values.
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 29
-
-
  804:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  805:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  806:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -1716,6 +1798,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  836:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  837:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  838:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Load-Acquire Exclusive (8 bit)
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 31
+
+
  839:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a LDAB exclusive instruction for 8 bit value.
  840:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
  841:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             value of type uint8_t at (*ptr)
@@ -1738,9 +1823,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  858:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint16_t __LDAEXH(volatile uint16_t *ptr)
  859:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  860:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 30
-
-
  861:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  862:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("ldaexh %0, %1" : "=r" (result) : "Q" (*ptr) : "memory" );
  863:Drivers/CMSIS/Include/cmsis_gcc.h ****    return ((uint16_t) result);
@@ -1776,6 +1858,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  893:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  894:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("stlexb %0, %2, %1" : "=&r" (result), "=Q" (*ptr) : "r" ((uint32_t)value) : "mem
  895:Drivers/CMSIS/Include/cmsis_gcc.h ****    return(result);
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 32
+
+
  896:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  897:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  898:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1798,9 +1883,6 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  915:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  916:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  917:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Store-Release Exclusive (32 bit)
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 31
-
-
  918:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a STL exclusive instruction for 32 bit values.
  919:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  920:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
@@ -1836,6 +1918,9 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  950:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  951:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
  952:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 33
+
+
  953:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  954:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  955:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1844,158 +1929,155 @@ ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 1
  958:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  959:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  960:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
- 542              		.loc 4 960 27 view .LVU84
- 543              	.LBB7:
+ 596              		.loc 4 960 27 view .LVU88
+ 597              	.LBB7:
  961:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  962:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
- 544              		.loc 4 962 3 view .LVU85
- 545              		.syntax unified
- 546              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 547 0002 72B6     		cpsid i
- 548              	@ 0 "" 2
- 549              		.thumb
- 550              		.syntax unified
- 551              	.LBE7:
- 552              	.LBE6:
+ 598              		.loc 4 962 3 view .LVU89
+ 599              		.syntax unified
+ 600              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 601 0002 72B6     		cpsid i
+ 602              	@ 0 "" 2
+ 603              		.thumb
+ 604              		.syntax unified
+ 605              	.LBE7:
+ 606              	.LBE6:
   30:App/robot.c   **** 
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 32
-
-
   31:App/robot.c   ****     osTaskInit();
- 553              		.loc 1 31 5 view .LVU86
- 554 0004 FFF7FEFF 		bl	osTaskInit
- 555              	.LVL34:
+ 607              		.loc 1 31 5 view .LVU90
+ 608 0004 FFF7FEFF 		bl	osTaskInit
+ 609              	.LVL38:
   32:App/robot.c   ****     Bsp_Init();
- 556              		.loc 1 32 5 view .LVU87
- 557 0008 FFF7FEFF 		bl	Bsp_Init
- 558              	.LVL35:
+ 610              		.loc 1 32 5 view .LVU91
+ 611 0008 FFF7FEFF 		bl	Bsp_Init
+ 612              	.LVL39:
   33:App/robot.c   ****     
   34:App/robot.c   ****   /* 使用systemview需要在系统调度前初始化 */
   35:App/robot.c   **** #ifdef USE_SYSTEMVIEW
   36:App/robot.c   ****   SEGGER_SYSVIEW_Conf();
- 559              		.loc 1 36 3 view .LVU88
- 560 000c FFF7FEFF 		bl	SEGGER_SYSVIEW_Conf
- 561              	.LVL36:
+ 613              		.loc 1 36 3 view .LVU92
+ 614 000c FFF7FEFF 		bl	SEGGER_SYSVIEW_Conf
+ 615              	.LVL40:
   37:App/robot.c   **** #endif    
   38:App/robot.c   **** 
   39:App/robot.c   ****     /*初始化完成，开启中断 */
   40:App/robot.c   ****     __enable_irq();
- 562              		.loc 1 40 5 view .LVU89
- 563              	.LBB8:
- 564              	.LBI8:
+ 616              		.loc 1 40 5 view .LVU93
+ 617              	.LBB8:
+ 618              	.LBI8:
  949:Drivers/CMSIS/Include/cmsis_gcc.h **** {
- 565              		.loc 4 949 27 view .LVU90
- 566              	.LBB9:
+ 619              		.loc 4 949 27 view .LVU94
+ 620              	.LBB9:
  951:Drivers/CMSIS/Include/cmsis_gcc.h **** }
- 567              		.loc 4 951 3 view .LVU91
- 568              		.syntax unified
- 569              	@ 951 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 570 0010 62B6     		cpsie i
- 571              	@ 0 "" 2
- 572              		.thumb
- 573              		.syntax unified
- 574              	.LBE9:
- 575              	.LBE8:
+ 621              		.loc 4 951 3 view .LVU95
+ 622              		.syntax unified
+ 623              	@ 951 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 624 0010 62B6     		cpsie i
+ 625              	@ 0 "" 2
+ 626              		.thumb
+ 627              		.syntax unified
+ 628              	.LBE9:
+ 629              	.LBE8:
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 34
+
+
   41:App/robot.c   **** }
- 576              		.loc 1 41 1 is_stmt 0 view .LVU92
- 577 0012 08BD     		pop	{r3, pc}
- 578              		.cfi_endproc
- 579              	.LFE146:
- 581              		.section	.bss.Motor_dt.0,"aw",%nobits
- 582              		.align	2
- 585              	Motor_dt.0:
- 586 0000 00000000 		.space	4
- 587              		.section	.bss.Motor_start.1,"aw",%nobits
- 588              		.align	2
- 591              	Motor_start.1:
- 592 0000 00000000 		.space	4
- 593              		.section	.bss.Debug_dt.2,"aw",%nobits
- 594              		.align	2
- 597              	Debug_dt.2:
- 598 0000 00000000 		.space	4
- 599              		.section	.bss.Debug_start.3,"aw",%nobits
- 600              		.align	2
- 603              	Debug_start.3:
- 604 0000 00000000 		.space	4
- 605              		.section	.bss.Log_dt.4,"aw",%nobits
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 33
-
-
- 606              		.align	2
- 609              	Log_dt.4:
- 610 0000 00000000 		.space	4
- 611              		.section	.bss.Log_start.5,"aw",%nobits
- 612              		.align	2
- 615              	Log_start.5:
- 616 0000 00000000 		.space	4
- 617              		.global	MotorTaskHandle
- 618              		.section	.bss.MotorTaskHandle,"aw",%nobits
- 619              		.align	2
- 622              	MotorTaskHandle:
- 623 0000 00000000 		.space	4
- 624              		.global	DebugTaskHandle
- 625              		.section	.bss.DebugTaskHandle,"aw",%nobits
- 626              		.align	2
- 629              	DebugTaskHandle:
- 630 0000 00000000 		.space	4
- 631              		.global	LogTaskHandle
- 632              		.section	.bss.LogTaskHandle,"aw",%nobits
- 633              		.align	2
- 636              	LogTaskHandle:
- 637 0000 00000000 		.space	4
- 638              		.text
- 639              	.Letext0:
- 640              		.file 5 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
- 641              		.file 6 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
- 642              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
- 643              		.file 8 "Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT.h"
- 644              		.file 9 "Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW.h"
- 645              		.file 10 "Bsp/dwt/bsp_dwt.h"
- 646              		.file 11 "Bsp/log/bsp_log.h"
- 647              		.file 12 "<built-in>"
-ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s 			page 34
+ 630              		.loc 1 41 1 is_stmt 0 view .LVU96
+ 631 0012 08BD     		pop	{r3, pc}
+ 632              		.cfi_endproc
+ 633              	.LFE146:
+ 635              		.section	.bss.Motor_dt.0,"aw",%nobits
+ 636              		.align	2
+ 639              	Motor_dt.0:
+ 640 0000 00000000 		.space	4
+ 641              		.section	.bss.Motor_start.1,"aw",%nobits
+ 642              		.align	2
+ 645              	Motor_start.1:
+ 646 0000 00000000 		.space	4
+ 647              		.section	.bss.Debug_dt.2,"aw",%nobits
+ 648              		.align	2
+ 651              	Debug_dt.2:
+ 652 0000 00000000 		.space	4
+ 653              		.section	.bss.Debug_start.3,"aw",%nobits
+ 654              		.align	2
+ 657              	Debug_start.3:
+ 658 0000 00000000 		.space	4
+ 659              		.section	.bss.Log_dt.4,"aw",%nobits
+ 660              		.align	2
+ 663              	Log_dt.4:
+ 664 0000 00000000 		.space	4
+ 665              		.section	.bss.Log_start.5,"aw",%nobits
+ 666              		.align	2
+ 669              	Log_start.5:
+ 670 0000 00000000 		.space	4
+ 671              		.global	MotorTaskHandle
+ 672              		.section	.bss.MotorTaskHandle,"aw",%nobits
+ 673              		.align	2
+ 676              	MotorTaskHandle:
+ 677 0000 00000000 		.space	4
+ 678              		.global	DebugTaskHandle
+ 679              		.section	.bss.DebugTaskHandle,"aw",%nobits
+ 680              		.align	2
+ 683              	DebugTaskHandle:
+ 684 0000 00000000 		.space	4
+ 685              		.global	LogTaskHandle
+ 686              		.section	.bss.LogTaskHandle,"aw",%nobits
+ 687              		.align	2
+ 690              	LogTaskHandle:
+ 691 0000 00000000 		.space	4
+ 692              		.text
+ 693              	.Letext0:
+ 694              		.file 5 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
+ 695              		.file 6 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
+ 696              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 697              		.file 8 "Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT.h"
+ 698              		.file 9 "Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW.h"
+ 699              		.file 10 "Bsp/dwt/bsp_dwt.h"
+ 700              		.file 11 "Bsp/log/bsp_log.h"
+ 701              		.file 12 "<built-in>"
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s 			page 35
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 robot.c
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:21     .rodata.LogTask.str1.4:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:45     .text.LogTask:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:51     .text.LogTask:00000000 LogTask
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:146    .text.LogTask:00000070 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:615    .bss.Log_start.5:00000000 Log_start.5
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:609    .bss.Log_dt.4:00000000 Log_dt.4
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:160    .rodata.DebugTask.str1.4:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:168    .text.DebugTask:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:174    .text.DebugTask:00000000 DebugTask
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:252    .text.DebugTask:00000064 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:603    .bss.Debug_start.3:00000000 Debug_start.3
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:597    .bss.Debug_dt.2:00000000 Debug_dt.2
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:265    .rodata.MotorTask.str1.4:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:273    .text.MotorTask:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:279    .text.MotorTask:00000000 MotorTask
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:357    .text.MotorTask:00000064 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:591    .bss.Motor_start.1:00000000 Motor_start.1
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:585    .bss.Motor_dt.0:00000000 Motor_dt.0
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:370    .text.Bsp_Init:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:376    .text.Bsp_Init:00000000 Bsp_Init
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:401    .rodata.osTaskInit.str1.4:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:411    .text.osTaskInit:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:417    .text.osTaskInit:00000000 osTaskInit
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:508    .text.osTaskInit:00000070 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:636    .bss.LogTaskHandle:00000000 LogTaskHandle
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:629    .bss.DebugTaskHandle:00000000 DebugTaskHandle
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:622    .bss.MotorTaskHandle:00000000 MotorTaskHandle
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:521    .text.Robot_Init:00000000 $t
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:527    .text.Robot_Init:00000000 Robot_Init
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:582    .bss.Motor_dt.0:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:588    .bss.Motor_start.1:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:594    .bss.Debug_dt.2:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:600    .bss.Debug_start.3:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:606    .bss.Log_dt.4:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:612    .bss.Log_start.5:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:619    .bss.MotorTaskHandle:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:626    .bss.DebugTaskHandle:00000000 $d
-C:\Users\KETEN_~1\AppData\Local\Temp\cc4ZPlms.s:633    .bss.LogTaskHandle:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:21     .rodata.LogTask.str1.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:48     .text.LogTask:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:54     .text.LogTask:00000000 LogTask
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:157    .text.LogTask:00000080 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:669    .bss.Log_start.5:00000000 Log_start.5
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:663    .bss.Log_dt.4:00000000 Log_dt.4
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:172    .rodata.DebugTask.str1.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:183    .text.DebugTask:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:189    .text.DebugTask:00000000 DebugTask
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:274    .text.DebugTask:00000070 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:657    .bss.Debug_start.3:00000000 Debug_start.3
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:651    .bss.Debug_dt.2:00000000 Debug_dt.2
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:288    .rodata.MotorTask.str1.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:308    .text.MotorTask:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:314    .text.MotorTask:00000000 MotorTask
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:407    .text.MotorTask:00000080 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:645    .bss.Motor_start.1:00000000 Motor_start.1
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:639    .bss.Motor_dt.0:00000000 Motor_dt.0
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:424    .text.Bsp_Init:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:430    .text.Bsp_Init:00000000 Bsp_Init
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:455    .rodata.osTaskInit.str1.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:465    .text.osTaskInit:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:471    .text.osTaskInit:00000000 osTaskInit
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:562    .text.osTaskInit:00000070 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:690    .bss.LogTaskHandle:00000000 LogTaskHandle
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:683    .bss.DebugTaskHandle:00000000 DebugTaskHandle
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:676    .bss.MotorTaskHandle:00000000 MotorTaskHandle
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:575    .text.Robot_Init:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:581    .text.Robot_Init:00000000 Robot_Init
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:636    .bss.Motor_dt.0:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:642    .bss.Motor_start.1:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:648    .bss.Debug_dt.2:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:654    .bss.Debug_start.3:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:660    .bss.Log_dt.4:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:666    .bss.Log_start.5:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:673    .bss.MotorTaskHandle:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:680    .bss.DebugTaskHandle:00000000 $d
+C:\Users\KETEN_~1\AppData\Local\Temp\ccoxZYzr.s:687    .bss.LogTaskHandle:00000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_f2d

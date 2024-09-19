@@ -70,6 +70,7 @@ __attribute((noreturn)) void LogTask(void *argument)
     {
         Log_start = DWT_GetTimeline_ms();
         LOGINFO("LogTask is running!");
+        LOGERROR("LogTask will be blocked!");
         while(i<=100000)
         {
             i++;
@@ -95,6 +96,7 @@ __attribute((noreturn)) void DebugTask(void *argument)
     {
         Debug_start = DWT_GetTimeline_ms();
         LOGINFO("DebugTask is running!");
+        LOGERROR("DebugTask will be blocked!");
         Debug_dt = DWT_GetTimeline_ms() - Debug_start;
         if(Debug_dt > 1)
         {
@@ -112,6 +114,8 @@ __attribute((noreturn)) void MotorTask(void *argument)
     {
         Motor_start = DWT_GetTimeline_ms();
         LOGINFO("MotorTask is running!");
+        LOGERROR("MotorTask will be blocked!");
+        LOGWARNING("Please make some protection!");
         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
         if(Motor_dt > 1)
         {
