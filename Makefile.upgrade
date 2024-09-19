@@ -36,12 +36,12 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Src/main.c \
-Src/gpio.c \
-Src/freertos.c \
-Src/stm32f4xx_it.c \
-Src/stm32f4xx_hal_msp.c \
-Src/stm32f4xx_hal_timebase_tim.c \
+Core/Src/main.c \
+Core/Src/gpio.c \
+Core/Src/freertos.c \
+Core/Src/stm32f4xx_it.c \
+Core/Src/stm32f4xx_hal_msp.c \
+Core/Src/stm32f4xx_hal_timebase_tim.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
@@ -57,7 +57,7 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
-Src/system_stm32f4xx.c \
+Core/Src/system_stm32f4xx.c \
 Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
 Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
 Middlewares/Third_Party/FreeRTOS/Source/list.c \
@@ -79,13 +79,13 @@ Bsp/dwt/bsp_dwt.c \
 App/debug/debug.c \
 App/logtest/logtest.c \
 App/robot.c \
-Src/sysmem.c \
-Src/syscalls.c  \
+Core/Src/sysmem.c \
+Core/Src/syscalls.c  \
 
 # ASM sources 添加汇编文件
 ASM_SOURCES =  \
 startup_stm32f407xx.s \
-Middlewares/Third_Party/SEGGER/SEGGER_RTT_ASM_ARMv7M.s 
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_ASM_ARMv7M.s \
 
 # ASM sources
 ASMM_SOURCES = 
@@ -138,11 +138,11 @@ C_DEFS =  \
 
 # AS includes
 AS_INCLUDES =  \
--IInc
+-ICore/Inc
 
 # C includes
 C_INCLUDES =  \
--IInc \
+-ICore/Inc \
 -IDrivers/STM32F4xx_HAL_Driver/Inc \
 -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy \
 -IMiddlewares/Third_Party/FreeRTOS/Source/include \
