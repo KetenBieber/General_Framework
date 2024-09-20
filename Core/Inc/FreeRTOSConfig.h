@@ -169,6 +169,7 @@ standard names. */
 /* 添加systemview的支持项 */
 #define INCLUDE_xTaskGetIdleTaskHandle  1
 #define INCLUDE_pxTaskGetStackStart     1
+#define USE_SYSTEMVIEW_TO_TRACE 0
 /* USER CODE END Defines */
 
 #endif /* FREERTOS_CONFIG_H */

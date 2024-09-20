@@ -7,6 +7,7 @@
         "bsp_log.h": "c",
         "robot_def.h": "c",
         "robot_task.h": "c",
-        "segger_sysview.h": "c"
+        "segger_sysview.h": "c",
+        "string.h": "c"
     }
 }

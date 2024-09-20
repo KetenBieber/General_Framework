@@ -15,7 +15,7 @@ set(CMAKE_OBJDUMP arm-none-eabi-objdump)
 set(SIZE arm-none-eabi-size) 
 set(CMAKE_AR arm-none-eabi-ar)
 set(CMAKE_CXX_STANDARD 17) # 指定c++标准
-set(CMAKE_C_STANDARD 11) # 指定c标准
+set(CMAKE_C_STANDARD 17) # 指定c标准
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 生成编译命令的JSON文件
 # 指定工程名称和语言类型
 project(new_build C CXX ASM)  
@@ -25,25 +25,10 @@ set(CMAKE_BUILD_TYPE Debug) # Debug Release RelWithDebInfo MinSizeRel
 
 # board specific settings, arch/fpu/instruction
 set(MCU_FLAGS -mcpu=cortex-m4 -mthumb -mthumb-interwork -mfloat-abi=hard -mfpu=fpv4-sp-d16)
-set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/ToolChain/STM32F407IGHX_FLASH.ld") # 指定链接脚本
-set(CMSISCORE "${CMAKE_SOURCE_DIR}/Drivers/CMSIS")
-set(DSP_NAME "libCMSISDSP.a") # 指定DSP库名称
-link_directories(${CMAKE_SOURCE_DIR}/ExtLibs/DSP/Lib) # 指定DSP库路径
+set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/ToolChain/STM32F407ZGTx_FLASH.ld") # 指定链接脚本
 
-# 构建选项
-option(USE_EIGEN  ON) # 是否使用Eigen库
 # option(BUILD_DSP ON) # 是否编译DSP库,若要定制须修改DSP/Source/CMakeLists.txt
 # 定义选项
-option(BUILD_DSP "是否编译DSP库" ON)
-
-# 打印选项值以进行调试
-message(STATUS "USE_EIGEN is set to ${USE_EIGEN}")
-message(STATUS "BUILD_DSP is set to ${BUILD_DSP}")
-
-
-if(BUILD_DSP)
-    add_subdirectory(${CMAKE_SOURCE_DIR}/ExtLibs/DSP/Source)
-endif()
 
 # Generic compiler settings for optimization and basic link lib
 add_compile_options(-pipe ${MCU_FLAGS} -Wall -Werror -fmessage-length=0 # basic options
@@ -71,29 +56,26 @@ add_definitions(
 # add inc 添加头文件路径
 # .cmake是cmake的脚本文件，用于定义构建系统的配置和行为
 include(${CMAKE_SOURCE_DIR}/ToolChain/find_header.cmake) # 递归包含头文件的函数，添加该文件的位置
-if(${USE_EIGEN})
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/ExtLibs/Eigen3)
-endif()
+# 使用函数，传入根目录下的子目录名，递归包含所有子目录
+include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/App)
+include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Bsp)
 include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Core)
 include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Drivers)
 include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Middlewares)
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Inc)
+include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Module)
 
 # add source, only surfix .c .cpp 添加源文件路径 
 # GLOB_RECURSE 递归查找 将匹配的文件路径存储在变量 SOURCES 中
 file(GLOB_RECURSE SOURCES
-    "Drivers/*.c"
-    "Src/*.c"
-    "Middlewares/*.c"
-    "Core/*.cpp"
-    "Core/*.cc"
-    "Core/*.hpp"
+    "${CMAKE_SOURCE_DIR}/**/*.c"
+    "${CMAKE_SOURCE_DIR}/**/*.cpp"
+    "${CMAKE_SOURCE_DIR}/**/*.cc"
+    "${CMAKE_SOURCE_DIR}/**/*.hpp"
 )
-
 # 汇编文件路径
 set(ASM_SOURCES
 Toolchain/startup_stm32f407xx.s
-Middlewares/Third_Party/SEGGER/RTT/SEGGER_RTT_ASM_ARMv7M.s
+Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_ASM_ARMv7M.s
 )
 # "-x assembler-with-cpp" 标志告诉编译器，这些汇编文件在编译之前需要经过c的预处理
 # 在嵌入式开发中这样做就可以支持宏 和 其他预处理指令
@@ -117,14 +99,6 @@ endif ()
 
 # build binary and hex file 生成目标.elf 可执行文件
 add_executable(${PROJECT_NAME}.elf  ${SOURCES} ${ASM_SOURCES} ${LINKER_SCRIPT})
-
-# 通过之前的 options 选项，判断是否链接DSP库
-if(BUILD_DSP)
-add_dependencies(${PROJECT_NAME}.elf CMSISDSP) # build DSP lib
-target_link_libraries(${PROJECT_NAME}.elf ${DSP_NAME}) # link DSP lib
-    # target_link_libraries(${PROJECT_NAME}.elf CMSISDSP) # link DSP lib
-endif()
-
 
 # add_custom_command 添加自定义构建步骤
 add_custom_command(
