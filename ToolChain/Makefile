@@ -13,7 +13,7 @@
 ######################################
 # target
 ######################################
-TARGET = ../new_build
+TARGET = new_build
 
 
 ######################################
@@ -241,7 +241,11 @@ clean:
 # download directl without debugging 下载目标到调试器
 #######################################
 download_dap:
-	openocd -f openocd_dap.cfg -c init -c halt -c "flash write_image erase $(BUILD_DIR)/$(TARGET).bin 0x08000000" -c reset -c shutdown
+	openocd -f ./openocd_dap.cfg -c init -c halt -c "flash write_image erase $(BUILD_DIR)/$(TARGET).bin 0x08000000" -c reset -c shutdown
 download_jlink:
-	JFlash -openprj'stm32.jflash' -open'$(BUILD_DIR)/$(TARGET).hex',0x8000000 -auto -startapp -exit
+	JFlash -openprj'./stm32.jflash' -open'$(BUILD_DIR)/$(TARGET).hex',0x8000000 -auto -startapp -exit
+
+# 这段代码的原理是：通过调用外部工具Opencd，通过配置文件openocd_dap.cfg，将下载的bin文件下载到目标地址0x08000000，然后复位目标板子。
+# 其实就是把原本需要一行一行输入的命令写到一个文件里，然后通过openocd -f xxx.cfg的方式执行这个文件。
+# 这里的openocd_dap.cfg文件是我自己写的，里面的内容是：
 # *** EOF ***

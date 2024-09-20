@@ -29,63 +29,63 @@ OPT = -Og
 # paths
 #######################################
 # Build path
-BUILD_DIR = build
+BUILD_DIR = ../build
 
 ######################################
 # source
 ######################################
 # C sources
 C_SOURCES =  \
-Core/Src/main.c \
-Core/Src/gpio.c \
-Core/Src/freertos.c \
-Core/Src/stm32f4xx_it.c \
-Core/Src/stm32f4xx_hal_msp.c \
-Core/Src/stm32f4xx_hal_timebase_tim.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
-Core/Src/system_stm32f4xx.c \
-Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
-Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
-Middlewares/Third_Party/FreeRTOS/Source/list.c \
-Middlewares/Third_Party/FreeRTOS/Source/queue.c \
-Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c \
-Middlewares/Third_Party/FreeRTOS/Source/tasks.c \
-Middlewares/Third_Party/FreeRTOS/Source/timers.c \
-Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c \
-Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
-Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
-Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_printf.c \
-Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT.c \
-Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW_FreeRTOS.c \
-Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW.c \
-Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c \
-Middlewares/Third_Party/SystemView/Config/SEGGER_SYSVIEW_Config_FreeRTOS.c \
-Bsp/log/bsp_log.c \
-Bsp/dwt/bsp_dwt.c \
-App/debug/debug.c \
-App/logtest/logtest.c \
-App/robot.c \
-Core/Src/sysmem.c \
-Core/Src/syscalls.c  \
+../Core/Src/main.c \
+../Core/Src/gpio.c \
+../Core/Src/freertos.c \
+../Core/Src/stm32f4xx_it.c \
+../Core/Src/stm32f4xx_hal_msp.c \
+../Core/Src/stm32f4xx_hal_timebase_tim.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
+../Core/Src/system_stm32f4xx.c \
+../Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
+../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
+../Middlewares/Third_Party/FreeRTOS/Source/list.c \
+../Middlewares/Third_Party/FreeRTOS/Source/queue.c \
+../Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c \
+../Middlewares/Third_Party/FreeRTOS/Source/tasks.c \
+../Middlewares/Third_Party/FreeRTOS/Source/timers.c \
+../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c \
+../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
+../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
+../Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_printf.c \
+../Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT.c \
+../Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW_FreeRTOS.c \
+../Middlewares/Third_Party/SystemView/SEGGER/SEGGER_SYSVIEW.c \
+../Middlewares/Third_Party/SystemView/SEGGER/Syscalls/SEGGER_RTT_Syscalls_GCC.c \
+../Middlewares/Third_Party/SystemView/Config/SEGGER_SYSVIEW_Config_FreeRTOS.c \
+../Bsp/log/bsp_log.c \
+../Bsp/dwt/bsp_dwt.c \
+../App/debug/debug.c \
+../App/logtest/logtest.c \
+../App/robot.c \
+../Core/Src/sysmem.c \
+../Core/Src/syscalls.c  \
 
 # ASM sources 添加汇编文件
 ASM_SOURCES =  \
 startup_stm32f407xx.s \
-Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_ASM_ARMv7M.s \
+../Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_ASM_ARMv7M.s \
 
 # ASM sources
 ASMM_SOURCES = 
@@ -138,27 +138,27 @@ C_DEFS =  \
 
 # AS includes
 AS_INCLUDES =  \
--ICore/Inc
+-I../Core/Inc
 
 # C includes
 C_INCLUDES =  \
--ICore/Inc \
--IDrivers/STM32F4xx_HAL_Driver/Inc \
--IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy \
--IMiddlewares/Third_Party/FreeRTOS/Source/include \
--IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 \
--IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
--IMiddlewares/Third_Party/SystemView/SEGGER \
--IMiddlewares/Third_Party/SystemView/Config \
--IBsp/log \
--IBsp/dwt \
--IBsp/ \
--IApp/debug \
--IApp/logtest \
--IApp/ \
--IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
--IDrivers/CMSIS/Include \
--IMiddlewares/ST/ARM/DSP/Inc \
+-I../Core/Inc \
+-I../Drivers/STM32F4xx_HAL_Driver/Inc \
+-I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy \
+-I../Middlewares/Third_Party/FreeRTOS/Source/include \
+-I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 \
+-I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
+-I../Middlewares/Third_Party/SystemView/SEGGER \
+-I../Middlewares/Third_Party/SystemView/Config \
+-I../Bsp/log \
+-I../Bsp/dwt \
+-I../Bsp/ \
+-I../App/debug \
+-I../App/logtest \
+-I../App/ \
+-I../Drivers/CMSIS/Device/ST/STM32F4xx/Include \
+-I../Drivers/CMSIS/Include \
+-I../Middlewares/ST/ARM/DSP/Inc \
 
 
 # compile gcc flags
@@ -185,7 +185,7 @@ LDSCRIPT = STM32F407ZGTx_FLASH.ld
 LIBS = -lc -lm -lnosys  \
 -l:libarm_cortexM4lf_math.a
 LIBDIR =  \
--LMiddlewares/ST/ARM/DSP/Lib
+-L../Middlewares/ST/ARM/DSP/Lib
 LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 
 # default action: build all
@@ -241,7 +241,11 @@ clean:
 # download directl without debugging 下载目标到调试器
 #######################################
 download_dap:
-	openocd -f openocd_dap.cfg -c init -c halt -c "flash write_image erase $(BUILD_DIR)/$(TARGET).bin 0x08000000" -c reset -c shutdown
+	openocd -f ./openocd_dap.cfg -c init -c halt -c "flash write_image erase $(BUILD_DIR)/$(TARGET).bin 0x08000000" -c reset -c shutdown
 download_jlink:
-	JFlash -openprj'stm32.jflash' -open'$(BUILD_DIR)/$(TARGET).hex',0x8000000 -auto -startapp -exit
+	JFlash -openprj'./stm32.jflash' -open'$(BUILD_DIR)/$(TARGET).hex',0x8000000 -auto -startapp -exit
+
+# 这段代码的原理是：通过调用外部工具Opencd，通过配置文件openocd_dap.cfg，将下载的bin文件下载到目标地址0x08000000，然后复位目标板子。
+# 其实就是把原本需要一行一行输入的命令写到一个文件里，然后通过openocd -f xxx.cfg的方式执行这个文件。
+# 这里的openocd_dap.cfg文件是我自己写的，里面的内容是：
 # *** EOF ***
