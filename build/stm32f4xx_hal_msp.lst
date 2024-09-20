@@ -1,0 +1,199 @@
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccqkiMHJ.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32f4xx_hal_msp.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "../Core/Src/stm32f4xx_hal_msp.c"
+  20              		.section	.text.HAL_MspInit,"ax",%progbits
+  21              		.align	1
+  22              		.global	HAL_MspInit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	HAL_MspInit:
+  28              	.LFB134:
+   1:../Core/Src/stm32f4xx_hal_msp.c **** 
+   2:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN Header */
+   3:../Core/Src/stm32f4xx_hal_msp.c **** /**
+   4:../Core/Src/stm32f4xx_hal_msp.c ****   ******************************************************************************
+   5:../Core/Src/stm32f4xx_hal_msp.c ****   * @file         stm32f4xx_hal_msp.c
+   6:../Core/Src/stm32f4xx_hal_msp.c ****   * @brief        This file provides code for the MSP Initialization
+   7:../Core/Src/stm32f4xx_hal_msp.c ****   *               and de-Initialization codes.
+   8:../Core/Src/stm32f4xx_hal_msp.c ****   ******************************************************************************
+   9:../Core/Src/stm32f4xx_hal_msp.c ****   * @attention
+  10:../Core/Src/stm32f4xx_hal_msp.c ****   *
+  11:../Core/Src/stm32f4xx_hal_msp.c ****   * Copyright (c) 2024 STMicroelectronics.
+  12:../Core/Src/stm32f4xx_hal_msp.c ****   * All rights reserved.
+  13:../Core/Src/stm32f4xx_hal_msp.c ****   *
+  14:../Core/Src/stm32f4xx_hal_msp.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  15:../Core/Src/stm32f4xx_hal_msp.c ****   * in the root directory of this software component.
+  16:../Core/Src/stm32f4xx_hal_msp.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  17:../Core/Src/stm32f4xx_hal_msp.c ****   *
+  18:../Core/Src/stm32f4xx_hal_msp.c ****   ******************************************************************************
+  19:../Core/Src/stm32f4xx_hal_msp.c ****   */
+  20:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END Header */
+  21:../Core/Src/stm32f4xx_hal_msp.c **** 
+  22:../Core/Src/stm32f4xx_hal_msp.c **** /* Includes ------------------------------------------------------------------*/
+  23:../Core/Src/stm32f4xx_hal_msp.c **** #include "main.h"
+  24:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN Includes */
+  25:../Core/Src/stm32f4xx_hal_msp.c **** 
+  26:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END Includes */
+  27:../Core/Src/stm32f4xx_hal_msp.c **** 
+  28:../Core/Src/stm32f4xx_hal_msp.c **** /* Private typedef -----------------------------------------------------------*/
+  29:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN TD */
+  30:../Core/Src/stm32f4xx_hal_msp.c **** 
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccqkiMHJ.s 			page 2
+
+
+  31:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END TD */
+  32:../Core/Src/stm32f4xx_hal_msp.c **** 
+  33:../Core/Src/stm32f4xx_hal_msp.c **** /* Private define ------------------------------------------------------------*/
+  34:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN Define */
+  35:../Core/Src/stm32f4xx_hal_msp.c **** 
+  36:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END Define */
+  37:../Core/Src/stm32f4xx_hal_msp.c **** 
+  38:../Core/Src/stm32f4xx_hal_msp.c **** /* Private macro -------------------------------------------------------------*/
+  39:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN Macro */
+  40:../Core/Src/stm32f4xx_hal_msp.c **** 
+  41:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END Macro */
+  42:../Core/Src/stm32f4xx_hal_msp.c **** 
+  43:../Core/Src/stm32f4xx_hal_msp.c **** /* Private variables ---------------------------------------------------------*/
+  44:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN PV */
+  45:../Core/Src/stm32f4xx_hal_msp.c **** 
+  46:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END PV */
+  47:../Core/Src/stm32f4xx_hal_msp.c **** 
+  48:../Core/Src/stm32f4xx_hal_msp.c **** /* Private function prototypes -----------------------------------------------*/
+  49:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN PFP */
+  50:../Core/Src/stm32f4xx_hal_msp.c **** 
+  51:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END PFP */
+  52:../Core/Src/stm32f4xx_hal_msp.c **** 
+  53:../Core/Src/stm32f4xx_hal_msp.c **** /* External functions --------------------------------------------------------*/
+  54:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN ExternalFunctions */
+  55:../Core/Src/stm32f4xx_hal_msp.c **** 
+  56:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END ExternalFunctions */
+  57:../Core/Src/stm32f4xx_hal_msp.c **** 
+  58:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN 0 */
+  59:../Core/Src/stm32f4xx_hal_msp.c **** 
+  60:../Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END 0 */
+  61:../Core/Src/stm32f4xx_hal_msp.c **** /**
+  62:../Core/Src/stm32f4xx_hal_msp.c ****   * Initializes the Global MSP.
+  63:../Core/Src/stm32f4xx_hal_msp.c ****   */
+  64:../Core/Src/stm32f4xx_hal_msp.c **** void HAL_MspInit(void)
+  65:../Core/Src/stm32f4xx_hal_msp.c **** {
+  29              		.loc 1 65 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 00B5     		push	{lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 14, -4
+  37 0002 83B0     		sub	sp, sp, #12
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 16
+  66:../Core/Src/stm32f4xx_hal_msp.c **** 
+  67:../Core/Src/stm32f4xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 0 */
+  68:../Core/Src/stm32f4xx_hal_msp.c **** 
+  69:../Core/Src/stm32f4xx_hal_msp.c ****   /* USER CODE END MspInit 0 */
+  70:../Core/Src/stm32f4xx_hal_msp.c **** 
+  71:../Core/Src/stm32f4xx_hal_msp.c ****   __HAL_RCC_SYSCFG_CLK_ENABLE();
+  40              		.loc 1 71 3 view .LVU1
+  41              	.LBB2:
+  42              		.loc 1 71 3 view .LVU2
+  43 0004 0022     		movs	r2, #0
+  44 0006 0092     		str	r2, [sp]
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccqkiMHJ.s 			page 3
+
+
+  45              		.loc 1 71 3 view .LVU3
+  46 0008 0D4B     		ldr	r3, .L3
+  47 000a 596C     		ldr	r1, [r3, #68]
+  48 000c 41F48041 		orr	r1, r1, #16384
+  49 0010 5964     		str	r1, [r3, #68]
+  50              		.loc 1 71 3 view .LVU4
+  51 0012 596C     		ldr	r1, [r3, #68]
+  52 0014 01F48041 		and	r1, r1, #16384
+  53 0018 0091     		str	r1, [sp]
+  54              		.loc 1 71 3 view .LVU5
+  55 001a 0099     		ldr	r1, [sp]
+  56              	.LBE2:
+  57              		.loc 1 71 3 view .LVU6
+  72:../Core/Src/stm32f4xx_hal_msp.c ****   __HAL_RCC_PWR_CLK_ENABLE();
+  58              		.loc 1 72 3 view .LVU7
+  59              	.LBB3:
+  60              		.loc 1 72 3 view .LVU8
+  61 001c 0192     		str	r2, [sp, #4]
+  62              		.loc 1 72 3 view .LVU9
+  63 001e 196C     		ldr	r1, [r3, #64]
+  64 0020 41F08051 		orr	r1, r1, #268435456
+  65 0024 1964     		str	r1, [r3, #64]
+  66              		.loc 1 72 3 view .LVU10
+  67 0026 1B6C     		ldr	r3, [r3, #64]
+  68 0028 03F08053 		and	r3, r3, #268435456
+  69 002c 0193     		str	r3, [sp, #4]
+  70              		.loc 1 72 3 view .LVU11
+  71 002e 019B     		ldr	r3, [sp, #4]
+  72              	.LBE3:
+  73              		.loc 1 72 3 view .LVU12
+  73:../Core/Src/stm32f4xx_hal_msp.c **** 
+  74:../Core/Src/stm32f4xx_hal_msp.c ****   /* System interrupt init*/
+  75:../Core/Src/stm32f4xx_hal_msp.c ****   /* PendSV_IRQn interrupt configuration */
+  76:../Core/Src/stm32f4xx_hal_msp.c ****   HAL_NVIC_SetPriority(PendSV_IRQn, 15, 0);
+  74              		.loc 1 76 3 view .LVU13
+  75 0030 0F21     		movs	r1, #15
+  76 0032 6FF00100 		mvn	r0, #1
+  77 0036 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  78              	.LVL0:
+  77:../Core/Src/stm32f4xx_hal_msp.c **** 
+  78:../Core/Src/stm32f4xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 1 */
+  79:../Core/Src/stm32f4xx_hal_msp.c **** 
+  80:../Core/Src/stm32f4xx_hal_msp.c ****   /* USER CODE END MspInit 1 */
+  81:../Core/Src/stm32f4xx_hal_msp.c **** }
+  79              		.loc 1 81 1 is_stmt 0 view .LVU14
+  80 003a 03B0     		add	sp, sp, #12
+  81              	.LCFI2:
+  82              		.cfi_def_cfa_offset 4
+  83              		@ sp needed
+  84 003c 5DF804FB 		ldr	pc, [sp], #4
+  85              	.L4:
+  86              		.align	2
+  87              	.L3:
+  88 0040 00380240 		.word	1073887232
+  89              		.cfi_endproc
+  90              	.LFE134:
+  92              		.text
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccqkiMHJ.s 			page 4
+
+
+  93              	.Letext0:
+  94              		.file 2 "../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+  95              		.file 3 "C:/msys64/mingw64/arm-none-eabi/include/machine/_default_types.h"
+  96              		.file 4 "C:/msys64/mingw64/arm-none-eabi/include/sys/_stdint.h"
+  97              		.file 5 "../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ARM GAS  C:\Users\KETEN_~1\AppData\Local\Temp\ccqkiMHJ.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_msp.c
+C:\Users\KETEN_~1\AppData\Local\Temp\ccqkiMHJ.s:21     .text.HAL_MspInit:00000000 $t
+C:\Users\KETEN_~1\AppData\Local\Temp\ccqkiMHJ.s:27     .text.HAL_MspInit:00000000 HAL_MspInit
+C:\Users\KETEN_~1\AppData\Local\Temp\ccqkiMHJ.s:88     .text.HAL_MspInit:00000040 $d
+
+UNDEFINED SYMBOLS
+HAL_NVIC_SetPriority

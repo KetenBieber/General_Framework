@@ -1,2 +1,0 @@
-C:/c_plusplus_try/new_build/build/CMakeFiles/ALL_BUILD.dir
-C:/c_plusplus_try/new_build/build/CMakeFiles/ZERO_CHECK.dir
