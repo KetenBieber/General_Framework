@@ -13,6 +13,7 @@
 
 /* bsp 层接口头文件 */
 #include "bsp_log.h"
+#include "bsp_dwt.h"
 
 /* Definitions for TaskHand */
 osThreadId_t LogTaskHandle;
@@ -56,17 +57,30 @@ void osTaskInit(void)
 }
 
 /**
- * @brief LogTest 任务函数
+ * @brief LogTask 任务函数
  *        测试打印日志的效果
- * 
+ * @attention 需要添加测试模块进行时间监测！
  */
 __attribute((noreturn)) void LogTask(void *argument)
 {
-
+    static float Log_start;
+    static float Log_dt;
+    int i=0;
     for(;;)
     {
+        Log_start = DWT_GetTimeline_ms();
         LOGINFO("LogTask is running!");
-        osDelay(1);   
+        LOGERROR("LogTask will be blocked!");
+        while(i<=100000)
+        {
+            i++;
+        }
+        Log_dt = DWT_GetTimeline_ms() - Log_start;
+        if(Log_dt > 1)
+        {
+            LOGERROR("LogTask is being DELAY!!! dt= [%f] ms", Log_dt);
+        }
+        osDelay(2);   
     }
 }
 
@@ -76,20 +90,37 @@ __attribute((noreturn)) void LogTask(void *argument)
  */
 __attribute((noreturn)) void DebugTask(void *argument)
 {
-
+    static float Debug_start;
+    static float Debug_dt;
     for(;;)
     {
+        Debug_start = DWT_GetTimeline_ms();
         LOGINFO("DebugTask is running!");
+        LOGERROR("DebugTask will be blocked!");
+        Debug_dt = DWT_GetTimeline_ms() - Debug_start;
+        if(Debug_dt > 1)
+        {
+            LOGERROR("DebugTask is being DELAY!!! dt= [%f] ms", Debug_dt);
+        }
         osDelay(1);
     }
 }
 
 __attribute((noreturn)) void MotorTask(void *argument)
 {
-
+    static float Motor_start;
+    static float Motor_dt;
     for(;;)
     {
+        Motor_start = DWT_GetTimeline_ms();
         LOGINFO("MotorTask is running!");
+        LOGERROR("MotorTask will be blocked!");
+        LOGWARNING("Please make some protection!");
+        Motor_dt = DWT_GetTimeline_ms() - Motor_start;
+        if(Motor_dt > 1)
+        {
+            LOGERROR("MotorTask is being DELAY!!! dt= [%f] ms", Motor_dt);
+        }
         osDelay(1);
     }
 }
