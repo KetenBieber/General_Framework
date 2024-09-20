@@ -487,6 +487,9 @@ void xPortPendSVHandler( void )
 
 void xPortSysTickHandler( void )
 {
+	/* 添加systemview依赖项 */
+	traceISR_ENTER();
+
 	/* The SysTick runs at the lowest interrupt priority, so when this interrupt
 	executes all interrupts must be unmasked.  There is therefore no need to
 	save and then restore the interrupt mask value as its value is already
@@ -499,6 +502,13 @@ void xPortSysTickHandler( void )
 			/* A context switch is required.  Context switching is performed in
 			the PendSV interrupt.  Pend the PendSV interrupt. */
 			portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;
+			/* 添加systemview依赖项 */
+			traceISR_EXIT_TO_SCHEDULER();
+		}
+		else
+		{
+			/* 添加systemview依赖项 */
+			traceISR_EXIT();
 		}
 	}
 	portENABLE_INTERRUPTS();
