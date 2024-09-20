@@ -80,7 +80,6 @@ C_SOURCES =  \
 ../App/logtest/logtest.c \
 ../App/robot.c \
 ../Core/Src/sysmem.c \
-../Core/Src/syscalls.c  \
 
 # ASM sources 添加汇编文件
 ASM_SOURCES =  \

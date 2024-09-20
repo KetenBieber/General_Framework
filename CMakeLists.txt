@@ -35,7 +35,7 @@ add_compile_options(-pipe ${MCU_FLAGS} -Wall -Werror -fmessage-length=0 # basic 
 -ffunction-sections -fdata-sections -fno-common # optimize options 
 )
 add_link_options(-pipe ${MCU_FLAGS} -T${LINKER_SCRIPT} -Wl,--no-warn-rwx-segments # close RWX warning
--lc -lstdc++ -lm -lnosys # lib options
+-lc -lstdc++ -lm  # lib options
 -Wl,--gc-sections -flto -specs=nano.specs -specs=nosys.specs # optimize options
 -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map -Wl,--cref -Wl,--print-memory-usage # map options
 ) # if your executable is too large , try option '-s' to strip symbols
@@ -67,11 +67,15 @@ include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Module)
 # add source, only surfix .c .cpp 添加源文件路径 
 # GLOB_RECURSE 递归查找 将匹配的文件路径存储在变量 SOURCES 中
 file(GLOB_RECURSE SOURCES
-    "${CMAKE_SOURCE_DIR}/**/*.c"
-    "${CMAKE_SOURCE_DIR}/**/*.cpp"
-    "${CMAKE_SOURCE_DIR}/**/*.cc"
-    "${CMAKE_SOURCE_DIR}/**/*.hpp"
+    "Drivers/*.c"
+    "Core/*.c"
+    "Middlewares/*.c"
+    "App/*.c"
+    "Bsp/*.c"
+    "Module/*.c"
+    "test/*.c"
 )
+
 # 汇编文件路径
 set(ASM_SOURCES
 Toolchain/startup_stm32f407xx.s

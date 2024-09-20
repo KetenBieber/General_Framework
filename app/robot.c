@@ -11,8 +11,8 @@
  * @note :
  * @versioninfo :
  */
-#include "bsp_init.h"
 #include "robot.h"
+#include "bsp_init.h"
 #include "robot_def.h"
 #include "robot_task.h"
 
