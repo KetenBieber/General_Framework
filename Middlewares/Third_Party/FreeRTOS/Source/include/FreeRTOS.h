@@ -62,7 +62,7 @@ extern "C" {
 #include "portable.h"
 
 /* 添加systemview依赖项 */
-#include "SEGGER_SYSVIEW_FreeRTOS.h"
+#include "SEGGER_SYSVIEW_FREERTOS.h"
 
 /* Must be defaulted before configUSE_NEWLIB_REENTRANT is used below. */
 #ifndef configUSE_NEWLIB_REENTRANT
