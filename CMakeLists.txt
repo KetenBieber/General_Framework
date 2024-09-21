@@ -112,4 +112,4 @@ add_custom_command(
     COMMENT "Building hex & bin file..." # 这些注释在构建过程中显示
     COMMENT "EXCUTABLE SIZE:"
     COMMAND ${SIZE} ${PROJECT_NAME}.elf # 使用size工具显示elf文件的大小信息
-    )
+)
