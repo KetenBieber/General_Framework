@@ -56,7 +56,7 @@
             /* 清除build目录下生成的可执行文件 */
             "label": "clean",
             "type": "shell",
-            /* 使用MSYS2下bash终端，支持Linux下的所有命令 */
+            /* 使用MSYS2下bash终端，因为其支持Linux下的所有命令 */
             "command": "workspace_path=$(cygpath \"${workspaceFolder}\") && cd \"$workspace_path/build\" && rm -rf *",
             /* 添加options项，区分默认使用powershell终端，这样就可以直接打开MSYS2下的bash终端 */
             "options": {
@@ -67,7 +67,14 @@
                     "args": ["-l", "-c"]
                 }
             }
-        }
+        },
+        {
+            /* 使用cmake构建，生成可执行文件 */
+            "label": "build_by_cmake",
+            "type": "shell",
+            "command": "cd build ; cmake -G \"Ninja\" .. ; ninja",
+            "dependsOn": ["clean"] // 添加依赖项，每次构建都必须删除原build目录下的东西 
+        },
     ]
 
 }
