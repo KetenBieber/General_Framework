@@ -32,7 +32,7 @@ void Robot_Init()
     Bsp_Init();
     
   /* 使用systemview需要在系统调度前初始化 */
-#ifdef USE_SYSTEMVIEW
+#ifndef DISABLE_SYSVIEW_SYSTEM
   SEGGER_SYSVIEW_Conf();
 #endif    
 

@@ -130,10 +130,14 @@ MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 # AS defines
 AS_DEFS = 
 
+# 注意查看这下面的宏，这里定义了一些宏，通过这些宏可以控制代码的编译
 # C defines
 C_DEFS =  \
 -DUSE_HAL_DRIVER \
--DSTM32F407xx
+-DSTM32F407xx \
+# -DDISABLE_LOG_SYSTEM \
+# -DDISABLE_SYSVIEW_SYSTEM
+
 
 
 # AS includes
