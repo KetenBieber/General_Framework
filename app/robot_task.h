@@ -65,20 +65,17 @@ __attribute((noreturn)) void LogTask(void *argument)
 {
     static float Log_start;
     static float Log_dt;
-    int i=0;
+    static char sLog_dt[20];
     for(;;)
     {
         Log_start = DWT_GetTimeline_ms();
         LOGINFO("LogTask is running!");
-        LOGERROR("LogTask will be blocked!");
-        while(i<=100000)
-        {
-            i++;
-        }
         Log_dt = DWT_GetTimeline_ms() - Log_start;
+        Float2Str(sLog_dt,Log_dt);
+        LOGWARNING("LogTask last time is %s",sLog_dt);
         if(Log_dt > 1)
         {
-            LOGERROR("LogTask is being DELAY!!! dt= [%f] ms", Log_dt);
+            LOGERROR("LogTask is being DELAY!!! dt= [%s] ms", sLog_dt);
         }
         osDelay(2);   
     }
@@ -92,15 +89,17 @@ __attribute((noreturn)) void DebugTask(void *argument)
 {
     static float Debug_start;
     static float Debug_dt;
+    static char sDebug_dt[20];
     for(;;)
     {
         Debug_start = DWT_GetTimeline_ms();
         LOGINFO("DebugTask is running!");
-        LOGERROR("DebugTask will be blocked!");
         Debug_dt = DWT_GetTimeline_ms() - Debug_start;
+        Float2Str(sDebug_dt,Debug_dt);
+        LOGWARNING("DebugTask last time is %s",sDebug_dt);
         if(Debug_dt > 1)
         {
-            LOGERROR("DebugTask is being DELAY!!! dt= [%f] ms", Debug_dt);
+            LOGERROR("DebugTask is being DELAY!!! dt= [%s] ms", sDebug_dt);
         }
         osDelay(1);
     }
@@ -110,16 +109,17 @@ __attribute((noreturn)) void MotorTask(void *argument)
 {
     static float Motor_start;
     static float Motor_dt;
+    static char sMotor_dt[20];
     for(;;)
     {
         Motor_start = DWT_GetTimeline_ms();
         LOGINFO("MotorTask is running!");
-        LOGERROR("MotorTask will be blocked!");
-        LOGWARNING("Please make some protection!");
         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
+        Float2Str(sMotor_dt,Motor_dt);
+        LOGWARNING("MotorTask last time is %s",sMotor_dt);
         if(Motor_dt > 1)
         {
-            LOGERROR("MotorTask is being DELAY!!! dt= [%f] ms", Motor_dt);
+            LOGERROR("MotorTask is being DELAY!!! dt= [%s] ms", sMotor_dt);
         }
         osDelay(1);
     }
