@@ -113,3 +113,13 @@ add_custom_command(
     COMMENT "EXCUTABLE SIZE:"
     COMMAND ${SIZE} ${PROJECT_NAME}.elf # 使用size工具显示elf文件的大小信息
 )
+
+# 定义下载目标
+add_custom_target(download_jlink
+    # COMMAND openocd -f interface/jlink.cfg -c "transport select swd" -f target/stm32f4x.cfg -c "program ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex verify reset exit"
+    COMMAND JFlash -openprj'./ToolChain/stm32.jflash' -open'${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex',0x8000000 -auto -startapp -exit
+    DEPENDS ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex
+    COMMENT "Downloading ${PROJECT_NAME}.hex to target using OpenOCD"
+)
+
+

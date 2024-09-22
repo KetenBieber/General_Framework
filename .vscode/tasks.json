@@ -69,11 +69,19 @@
             }
         },
         {
-            /* 使用cmake构建，生成可执行文件 */
+            /* 使用cmake构建项目，编译生成可执行文件 */
             "label": "build_by_cmake",
             "type": "shell",
             "command": "cd build ; cmake -G \"Ninja\" .. ; ninja",
             "dependsOn": ["clean"] // 添加依赖项，每次构建都必须删除原build目录下的东西 
+        },
+        {
+            /* 使用cmake构建项目，编译生成可执行项目之后，烧录到单片机中 */
+            "label": "download_jlink_after_cmake",
+            "type": "shell",
+            /* 暂时没有找到为什么不能通过ninja下载的原因 */
+            "command": "mingw32-make -C ToolChain download_jlink",
+            "dependsOn": ["build_by_cmake"]
         },
     ]
 
