@@ -135,8 +135,9 @@ AS_DEFS =
 C_DEFS =  \
 -DUSE_HAL_DRIVER \
 -DSTM32F407xx \
+-DUSE_FULL_ASSERT \
 # -DDISABLE_LOG_SYSTEM \
-# -DDISABLE_SYSVIEW_SYSTEM
+# -DDISABLE_SYSVIEW_SYSTEM \
 
 
 
@@ -247,7 +248,7 @@ clean:
 download_dap:
 	openocd -f ./openocd_dap.cfg -c init -c halt -c "flash write_image erase $(BUILD_DIR)/$(TARGET).bin 0x08000000" -c reset -c shutdown
 download_jlink:
-	JFlash -openprj'./stm32.jflash' -open'$(BUILD_DIR)/$(TARGET).hex',0x8000000 -auto -startapp -exit
+	JFlash -openprj'./STM32F407ZGT6.jflash' -open'$(BUILD_DIR)/$(TARGET).hex',0x8000000 -auto -startapp -exit
 # download_jlink:
 # 	openocd -f openocd_jlink.cfg -c init -c halt -c "flash write_image erase $(BUILD_DIR)/$(TARGET).hex $(OPENOCD_FLASH_START)" -c reset -c shutdown
 # 这段代码的原理是：通过调用外部工具Opencd，通过配置文件openocd_dap.cfg，将下载的bin文件下载到目标地址0x08000000，然后复位目标板子。

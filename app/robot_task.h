@@ -117,6 +117,7 @@ __attribute((noreturn)) void MotorTask(void *argument)
         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
         Float2Str(sMotor_dt,Motor_dt);
         LOGWARNING("MotorTask last time is %s",sMotor_dt);
+        assert_param(sMotor_dt == NULL);
         if(Motor_dt > 1)
         {
             LOGERROR("MotorTask is being DELAY!!! dt= [%s] ms", sMotor_dt);
