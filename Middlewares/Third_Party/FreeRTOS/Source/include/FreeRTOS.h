@@ -410,6 +410,7 @@ hold explicit before calling the code. */
 #endif
 
 /* The following event macros are embedded in the kernel API calls. */
+
 #ifndef traceMOVED_TASK_TO_READY_STATE
 	#define traceMOVED_TASK_TO_READY_STATE( pxTCB )
 #endif
@@ -571,11 +572,11 @@ hold explicit before calling the code. */
 #endif
 
 #ifndef traceMALLOC
-	#define traceMALLOC( pvAddress, uiSize )
+    #define traceMALLOC( pvAddress, uiSize )
 #endif
 
 #ifndef traceFREE
-	#define traceFREE( pvAddress, uiSize )
+    #define traceFREE( pvAddress, uiSize )
 #endif
 
 #ifndef traceEVENT_GROUP_CREATE

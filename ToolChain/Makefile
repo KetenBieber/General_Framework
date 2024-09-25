@@ -38,6 +38,9 @@ BUILD_DIR = ../build
 C_SOURCES =  \
 ../Core/Src/main.c \
 ../Core/Src/gpio.c \
+../Core/Src/usart.c \
+../Core/Src/can.c \
+../Core/Src/dma.c \
 ../Core/Src/freertos.c \
 ../Core/Src/stm32f4xx_it.c \
 ../Core/Src/stm32f4xx_hal_msp.c \
@@ -57,6 +60,8 @@ C_SOURCES =  \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
 ../Core/Src/system_stm32f4xx.c \
 ../Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
 ../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
@@ -76,6 +81,7 @@ C_SOURCES =  \
 ../Middlewares/Third_Party/SystemView/Config/SEGGER_SYSVIEW_Config_FreeRTOS.c \
 ../Bsp/log/bsp_log.c \
 ../Bsp/dwt/bsp_dwt.c \
+../Bsp/usart/bsp_usart.c \
 ../App/debug/debug.c \
 ../App/logtest/logtest.c \
 ../App/robot.c \
@@ -136,6 +142,7 @@ C_DEFS =  \
 -DUSE_HAL_DRIVER \
 -DSTM32F407xx \
 -DUSE_FULL_ASSERT \
+-DUSE_RTOS_FOR_UART
 # -DDISABLE_LOG_SYSTEM \
 # -DDISABLE_SYSVIEW_SYSTEM \
 
@@ -157,6 +164,7 @@ C_INCLUDES =  \
 -I../Middlewares/Third_Party/SystemView/Config \
 -I../Bsp/log \
 -I../Bsp/dwt \
+-I../Bsp/usart \
 -I../Bsp/ \
 -I../App/debug \
 -I../App/logtest \

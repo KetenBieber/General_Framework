@@ -30,12 +30,13 @@
                 "ARM_MATH_MATRIX_CHECK", // 启用矩阵运算的检查功能
                 "ARM_MATH_ROUNDING", // 启用数学运算的舍入功能
                 "ARM_MATH_LOOPUNROLL", // 启用循环展开优化
-                "DISABLEFLOAT16" // 禁用16位浮点数支持
+                "DISABLEFLOAT16", // 禁用16位浮点数支持
+                "USE_RTOS_FOR_UART",// 使用RTOS来管理串口
+                "USE_FULL_ASSERT"
             ],
             "cStandard": "c17", // 指定c语言标准为C 17
             "cppStandard": "c++17", // 指定c++语言标准为c++ 17
             "intelliSenseMode": "gcc-arm", // 
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],

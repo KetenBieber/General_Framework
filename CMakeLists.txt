@@ -51,6 +51,8 @@ add_definitions(
     -DARM_MATH_ROUNDING 
     -DARM_MATH_LOOPUNROLL 
     -DDISABLEFLOAT16
+    -DUSE_FULL_ASSERT
+    -DUSE_RTOS_FOR_UART
     # -DDISABLE_LOG_SYSTEM
     # -DDISABLE_SYSVIEW_SYSTEM
     ) # need -D<macro> to define macro

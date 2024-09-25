@@ -9,6 +9,9 @@
         "robot_task.h": "c",
         "segger_sysview.h": "c",
         "string.h": "c",
-        "robot.h": "c"
+        "robot.h": "c",
+        "queue.h": "c",
+        "semphr.h": "c",
+        "usart.h": "c"
     }
 }
