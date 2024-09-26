@@ -8,19 +8,16 @@
  * @copyright Copyright (c) 2024
  * 
  * @attention : 如果不是发现底层错误，不要轻易修改bsp层
- *              貌似有点思维误区了，我需要的只是先把接口引入，然后爽用罢了
- *             创建串口实例时，创建一个串口类型的结构体，把需要的接口提供给这个结构体，然后在初始化串口的时候，把这个结构体传入
- *             bsp层是唯一操作hal库函数的，所以在这里直接引入hal库的头文件
- *              学院应该不会轻易改用rtos，所以代码和rtos 的一些api 耦合
+ *             bsp层在设计之初就是为了解耦，app和module层借助bsp层来实现hal库中的操作
+ *              学院应该不会轻易改用rtos，所以代码和 freertos 的一些api 耦合
  *              在这里还是采用了scml的写法，直接去修改it.c中的代码，将自己的代码嵌入，移植的时候需要多加注意！
- *              设计的时候同时要考虑module层的调用，如何服务于module层？我这样一个bsp层，module层需要怎么用？
- *              module层需要做的事情：只有把自己的包的信息装填好，就是准备一个uart_package_t，关于hal库的操作需要bsp层操作！
- *                  1.创建一个串口实例和串口数据包，然后需要做数据装填
+ *              module层需要做的事情：只有把自己的包的信息装填好，就是准备一个uart_package_t
+ *                  1.做好数据装填，创建一个串口实例；在初始化函数内部会动态创建一个串口实例，如果创建失败的话会自动清除
  *                  2.自己实现串口的回调函数，用于数据解析
  *                  3.调用bsp层提供的初始化函数，初始化串口，完成队列创建以及数据装载和回调函数注册的工作
- *              但其实module层也只是提供各种接口，真正调用还是在app层
- *              所以更多还是在module层做函数指针的封装，到时可以直接向其提供bsp层的接口，bsp层由于需要和hal库和rtos层打交道，比较难封装
- *            如果使用rtos，需要在调用自己实例初始化之后，执行一次rtos于uart的初始化，之后就可以使用rtos的接口了
+ *                  4.通过调用结构体中提供的rtos接口来使用rtos api
+ *                  5.module层服务于app层，请为app层暴露出你的接口！
+ *      
  * 
  *              
  * @note :
@@ -96,20 +93,19 @@ typedef struct
  * @brief 串口设备注册函数，用户通过创建一个实例指针和串口数据包，然后通过调用此函数以及将实例传入本函数来获取返回值的实例
  *        实现串口设备的动态注册，如果创建失败会自动free内存
  * 
- * @param uart_config 
- * @param queue_handler 
- * @param queue_length 
- * @param queue_data 
+ * @param uart_config     uart_package_t* 串口数据包
+ * @param queue_length    uint32_t 队列中所能存储的元素数
+ * @param queue_data      size_t 队列元素的大小，使用 sizeof() 获取，注意数据类型是size_t
  * @return Uart_Instance_t* NULL 创建失败
  *                          实例  创建成功
  */
-Uart_Instance_t* Uart_Register(uart_package_t *uart_config,void **queue_handler,uint32_t queue_length,size_t queue_data);
+Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length,size_t queue_data);
 
 /**
  * @brief 串口中断管理函数
  *        这个插入在hal库的it.c代码中，可以强行把hal库对应的串口中断管理转移到这边进行处理
  * 
- * @param uart_instance 
+ * @param uart_instance 串口设备实例
  * @return uint8_t --- 1 :success
  *                 --- 0 :failed
  */

@@ -31,14 +31,14 @@ static rtos_interface_t rtos_interface_for_uart = {
 };
 
 /* uart实例数组，所有注册了uart的模块信息会被保存在这里 */
-static uint8_t idx;
+static uint8_t idx = 0;
 static Uart_Instance_t *Usart_Device[DEVICE_UART_CNT] = {NULL};
 
-static uint8_t uart_rtos_init(Uart_Instance_t* uart_instance,void **queue_handler,uint32_t queue_length,size_t queue_data);
+static uint8_t uart_rtos_init(Uart_Instance_t* uart_instance,uint32_t queue_length,size_t queue_data);
 static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance);
 
 
-Uart_Instance_t* Uart_Register(uart_package_t *uart_config,void **queue_handler,uint32_t queue_length,size_t queue_data)
+Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length,size_t queue_data)
 {   
     if(uart_config == NULL)
     {
@@ -67,7 +67,7 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,void **queue_handler,
     if(uart_instance == NULL)
     {
         LOGERROR("malloc failed!");
-        assert_param(uart_instance != NULL);// 内存溢出！立刻进入死循环
+        return NULL;
     }
     memset(uart_instance,0,sizeof(Uart_Instance_t));// 初始化uart实例
 
@@ -81,7 +81,7 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,void **queue_handler,
 
 
     /* rtos层接口初始化挂载 */
-    if(uart_rtos_init(uart_instance,queue_handler,queue_length,queue_data) != 1)
+    if(uart_rtos_init(uart_instance,queue_length,queue_data) != 1)
     {
         free(uart_instance);
         return NULL;
@@ -95,15 +95,14 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,void **queue_handler,
 
 /**
  * @brief rtos对uart的支持初始化函数 static
- * 
+ *      
  * @param uart_instance 
- * @param queue_handler 
  * @param queue_length 
  * @param queue_data 
  * @return uint8_t --- 1 :success
  *                 --- 0 :failed
  */
-static uint8_t uart_rtos_init(Uart_Instance_t* uart_instance,void **queue_handler,uint32_t queue_length,size_t queue_data)
+static uint8_t uart_rtos_init(Uart_Instance_t* uart_instance,uint32_t queue_length,size_t queue_data)
 {
     if(uart_instance == NULL)
     {
@@ -111,31 +110,20 @@ static uint8_t uart_rtos_init(Uart_Instance_t* uart_instance,void **queue_handle
         return 0;
     }
     uart_instance->rtos_for_uart = &rtos_interface_for_uart;
-
-    if(queue_handler == NULL)
+    // 注册获取一个freertos 队列句柄
+    QueueHandle_t queue = xQueueCreate(queue_length,queue_data);
+    if(queue == NULL)
     {
-        /* 用户没有创建队列句柄并传入 */
-        LOGERROR("queue_handler is NULL!");
+        /* 如果队列创建失败 */
+        LOGERROR("queue for uart create failed!");
         return 0;
     }
     else
     {
-        // 注册获取一个freertos 队列句柄
-        QueueHandle_t queue = xQueueCreate(queue_length,queue_data);
-        if(queue == NULL)
-        {
-            /* 如果队列创建失败 */
-            LOGERROR("queue for uart create failed!");
-            return 0;
-        }
-        else
-        {
-            // 如果队列创建成功，将队列句柄传递给rtos接口
-            *queue_handler = queue;
-            // 函数挂载
-            uart_instance->rtos_for_uart->xQueue = *queue_handler;
-        }
+        // 如果队列创建成功，将队列句柄传递给rtos接口
+        uart_instance->rtos_for_uart->xQueue = queue;
     }
+    
     return 1;
 }
 
@@ -173,7 +161,7 @@ static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance)
 {
     if(uart_instance == NULL)
     {
-        LOGINFO("Rx_Idle_Callback failed!");
+        LOGERROR("Rx_Idle_Callback failed!");
         return 0;
     }
 
@@ -193,7 +181,7 @@ static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance)
     }
     else
     {
-        LOGINFO("uart_callback is NULL!");
+        LOGERROR("uart_callback is NULL!");
         return 0;
     }
 
