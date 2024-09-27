@@ -82,6 +82,9 @@ C_SOURCES =  \
 ../Bsp/log/bsp_log.c \
 ../Bsp/dwt/bsp_dwt.c \
 ../Bsp/usart/bsp_usart.c \
+../Bsp/can/bsp_can.c \
+../Bsp/gpio/bsp_gpio.c \
+../Bsp/topics/bsp_topics.c \
 ../App/debug/debug.c \
 ../App/logtest/logtest.c \
 ../App/robot.c \
@@ -165,6 +168,9 @@ C_INCLUDES =  \
 -I../Bsp/log \
 -I../Bsp/dwt \
 -I../Bsp/usart \
+-I../Bsp/gpio \
+-I../Bsp/can \
+-I../Bsp/topics \
 -I../Bsp/ \
 -I../App/debug \
 -I../App/logtest \

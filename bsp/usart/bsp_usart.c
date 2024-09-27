@@ -34,7 +34,7 @@ static rtos_interface_t rtos_interface_for_uart = {
 static uint8_t idx = 0;
 static Uart_Instance_t *Usart_Device[DEVICE_UART_CNT] = {NULL};
 
-static uint8_t uart_rtos_init(Uart_Instance_t* uart_instance,uint32_t queue_length,size_t queue_data);
+static uint8_t Uart_Rtos_Init(Uart_Instance_t* uart_instance,uint32_t queue_length,size_t queue_data);
 static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance);
 
 
@@ -81,7 +81,7 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length
 
 
     /* rtos层接口初始化挂载 */
-    if(uart_rtos_init(uart_instance,queue_length,queue_data) != 1)
+    if(Uart_Rtos_Init(uart_instance,queue_length,queue_data) != 1)
     {
         free(uart_instance);
         return NULL;
@@ -102,7 +102,7 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length
  * @return uint8_t --- 1 :success
  *                 --- 0 :failed
  */
-static uint8_t uart_rtos_init(Uart_Instance_t* uart_instance,uint32_t queue_length,size_t queue_data)
+static uint8_t Uart_Rtos_Init(Uart_Instance_t* uart_instance,uint32_t queue_length,size_t queue_data)
 {
     if(uart_instance == NULL)
     {

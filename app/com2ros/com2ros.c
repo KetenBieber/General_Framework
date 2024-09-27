@@ -1,9 +1,9 @@
 /**
- * @file bsp_can.c
+ * @file com2ros.c
  * @author Keten (2863861004@qq.com)
  * @brief 
  * @version 0.1
- * @date 2024-09-26
+ * @date 2024-09-27
  * 
  * @copyright Copyright (c) 2024
  * 
@@ -11,4 +11,8 @@
  * @note :
  * @versioninfo :
  */
-#include "bsp_can.h"
+#include "com2ros.h"
+
+
+
+

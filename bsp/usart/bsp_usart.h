@@ -12,12 +12,15 @@
  *              学院应该不会轻易改用rtos，所以代码和 freertos 的一些api 耦合
  *              在这里还是采用了scml的写法，直接去修改it.c中的代码，将自己的代码嵌入，移植的时候需要多加注意！
  *              module层需要做的事情：只有把自己的包的信息装填好，就是准备一个uart_package_t
- *                  1.做好数据装填，创建一个串口实例；在初始化函数内部会动态创建一个串口实例，如果创建失败的话会自动清除
+ *                  1.在初始化接口中做好数据装填，创建一个串口实例；在初始化函数内部会动态创建一个串口实例，如果创建失败的话会自动清除
  *                  2.自己实现串口的回调函数，用于数据解析
  *                  3.调用bsp层提供的初始化函数，初始化串口，完成队列创建以及数据装载和回调函数注册的工作
  *                  4.通过调用结构体中提供的rtos接口来使用rtos api
  *                  5.module层服务于app层，请为app层暴露出你的接口！
- *      
+ *              app层需要做的事情：只需要调用module层提供的接口，然后在回调函数中实现自己的业务逻辑
+ *                  1.创建实例并且extern
+ *                  2.调用初始化函数
+ *                  3.it.c中包含app层的.h，以便获取串口实例
  * 
  *              
  * @note :
@@ -48,6 +51,9 @@ extern "C"{
 #define DEVICE_UART_CNT 8 // 学院设计的外设板至多分配8个串口
 #define UART_RXBUFF_LIMIT 256 // 如果协议需要更大的buff,请修改这里
 /*----------------------------------typedef-----------------------------------*/
+/* 前向声明 */
+typedef struct Uart_Instance_t Uart_Instance_t;
+
 #ifdef USE_RTOS
 /* 引入FREERTOS接口 */
 /* 其实相当于为module层露出了rtos的接口，只要挂载了对应的rtos api，就可以调用 */
@@ -65,7 +71,7 @@ typedef struct
  * @param uart_device 串口设备实例，记得在回调函数内部定义局部实例获取强转之后的void* 
  * @param rx_buf_num  收到的数据量，这个就是你串口一次中断收到的数据量，可以用于解析
  */
-typedef uint8_t (*uart_callback_t)(void* uart_device,uint32_t rx_buf_num);// 定义回调函数类型
+typedef uint8_t (*uart_callback_t)(Uart_Instance_t* uart_device,uint32_t rx_buf_num);// 定义回调函数类型
 
 /* 串口包数据结构体类型 */
 typedef struct
@@ -77,7 +83,7 @@ typedef struct
 }uart_package_t;
 
 /* uart instance 串口设备实例 */
-typedef struct
+struct Uart_Instance_t
 {
 #ifdef USE_RTOS
     /* rtos的接口 */
@@ -85,10 +91,9 @@ typedef struct
 #endif
     /* 串口接收包结构体 */
     uart_package_t *uart_package;
-}Uart_Instance_t;
+};
 
 /*----------------------------------function----------------------------------*/
-
 /**
  * @brief 串口设备注册函数，用户通过创建一个实例指针和串口数据包，然后通过调用此函数以及将实例传入本函数来获取返回值的实例
  *        实现串口设备的动态注册，如果创建失败会自动free内存
