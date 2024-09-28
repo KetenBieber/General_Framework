@@ -14,5 +14,5 @@
         "semphr.h": "c",
         "usart.h": "c"
     },
-    "C_Cpp.default.compilerPath": "C:\\msys64\\mingw64\\bin\\arm-none-eabi-gcc.exe"
+    "C_Cpp.default.compilerPath": "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
 }

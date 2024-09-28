@@ -71,7 +71,7 @@ typedef struct
  * @param uart_device 串口设备实例，记得在回调函数内部定义局部实例获取强转之后的void* 
  * @param rx_buf_num  收到的数据量，这个就是你串口一次中断收到的数据量，可以用于解析
  */
-typedef uint8_t (*uart_callback_t)(Uart_Instance_t* uart_device,uint32_t rx_buf_num);// 定义回调函数类型
+typedef uint8_t (*uart_callback_t)(Uart_Instance_t* uart_device,uint16_t rx_buf_num);// 定义回调函数类型
 
 /* 串口包数据结构体类型 */
 typedef struct
@@ -91,6 +91,7 @@ struct Uart_Instance_t
 #endif
     /* 串口接收包结构体 */
     uart_package_t *uart_package;
+    
 };
 
 /*----------------------------------function----------------------------------*/

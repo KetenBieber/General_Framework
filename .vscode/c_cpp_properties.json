@@ -21,23 +21,24 @@
                 "${workspaceFolder}/**"
             ],
             "defines": [
-                "_DEBUG", // 用于启动调试相关的代码
-                "UNICODE", // 启用unicode支持
-                "_UNICODE", // 
-                "USE_HAL_DRIVER", // 使用HAL驱动程序库
-                "STM32F407xx", // 目标微控制器型号
-                "ARM_MATH_CM4", // 使用ARM Cortex-M4 处理器的数学库
-                "ARM_MATH_MATRIX_CHECK", // 启用矩阵运算的检查功能
-                "ARM_MATH_ROUNDING", // 启用数学运算的舍入功能
-                "ARM_MATH_LOOPUNROLL", // 启用循环展开优化
-                "DISABLEFLOAT16", // 禁用16位浮点数支持
-                "USE_RTOS_FOR_UART",// 使用RTOS来管理串口
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "USE_HAL_DRIVER",
+                "STM32F407xx",
+                "ARM_MATH_CM4",
+                "ARM_MATH_MATRIX_CHECK",
+                "ARM_MATH_ROUNDING",
+                "ARM_MATH_LOOPUNROLL",
+                "DISABLEFLOAT16",
+                "USE_RTOS_FOR_UART",
                 "USE_FULL_ASSERT"
             ],
-            "cStandard": "c17", // 指定c语言标准为C 17
-            "cppStandard": "c++17", // 指定c++语言标准为c++ 17
-            "intelliSenseMode": "gcc-arm", // 
-            "configurationProvider": "ms-vscode.cmake-tools"
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-arm",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "compilerPath": "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
         }
     ],
     "version": 4
