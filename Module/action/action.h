@@ -64,18 +64,16 @@ typedef struct
 }robot_info_from_action;
 
 /* Action设备实例，使用时需创建完实例和接口 */
-typedef struct
+typedef struct 
 {
     Uart_Instance_t *action_uart_instance;// 继承自串口设备
     action_original_info *action_orin_data;// 存放未经处理的action数据
 #ifdef USE_DIFF_GET_DATA
     robot_info_from_action *action_diff_data;// 存放经过差分运算过后的action数据
 #endif
-    uint8_t (*action_init)(void*, Uart_Instance_t *);// 初始化函数指针
     uint8_t (*action_get_data)(uint8_t *, action_original_info*, robot_info_from_action* );// 获取action返回的值
     uint8_t (*action_refresh_data)(void);// 刷新action模块初始值
     uint8_t (*action_task)(void* action_instance);
-
 }Action_Instance_t;
 
 /*----------------------------------function----------------------------------*/
@@ -83,11 +81,10 @@ typedef struct
 /**
  * @brief action实例初始化函数
  * 
- * @param action_instance 
  * @param action_uart 
- * @return uint8_t 
+ * @return Action_Instance_t 
  */
-uint8_t Action_Init(void *action_instance,Uart_Instance_t *action_uart);
+Action_Instance_t* Action_Init(Uart_Instance_t *action_uart);
 
 
 /**

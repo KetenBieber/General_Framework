@@ -85,7 +85,7 @@ C_SOURCES =  \
 ../Bsp/can/bsp_can.c \
 ../Bsp/gpio/bsp_gpio.c \
 ../Bsp/topics/bsp_topics.c \
-../App/debug/debug.c \
+../App/Action_Sensor/Action_Sensor.c \
 ../App/logtest/logtest.c \
 ../App/robot.c \
 ../Module/action/action.c \
@@ -173,7 +173,7 @@ C_INCLUDES =  \
 -I../Bsp/can \
 -I../Bsp/topics \
 -I../Bsp/ \
--I../App/debug \
+-I../App/Action_Sensor \
 -I../App/logtest \
 -I../App \
 -I../Module/action \

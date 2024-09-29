@@ -16,7 +16,7 @@
 #include "robot_def.h"
 #include "robot_task.h"
 
-#ifdef USE_SYSTEMVIEW
+#ifndef DISABLE_SYSVIEW_SYSTEM
 /* 添加systemview支持项 */
 #include "SEGGER_SYSVIEW.h"
 #endif

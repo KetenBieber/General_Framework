@@ -23,9 +23,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-/* bsp层接�? */
+/* bsp层接口 */
 #include "bsp_usart.h"
-#include "debug.h"
+/* app层接口 */
+#include "Action_Sensor.h"
 
 
 /* USER CODE END Includes */

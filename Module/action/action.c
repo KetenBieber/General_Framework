@@ -23,23 +23,28 @@ union
 }action_posture;
 
 
-uint8_t Action_Init(void *action_instance,Uart_Instance_t *action_uart)
+Action_Instance_t* Action_Init(Uart_Instance_t *action_uart)
 {
-    Action_Instance_t *temp_action_instance = action_instance;
-    if(action_instance == NULL)
-    {
-        LOGERROR("action is not prepared!");
-        return 0;
-    }
     if(action_uart == NULL)
     {
         LOGERROR("action uart is not prepared!");
-        return 0;
+        return NULL;
     }
-
+    Action_Instance_t *temp_action_instance = (Action_Instance_t*)malloc(sizeof(Action_Instance_t));
+    if(temp_action_instance == NULL)
+    {
+        /* 如果malloc失败了 */
+        LOGERROR("action malloc failed!");
+        return NULL;
+    }
     /* 挂载外部接口 */
-    temp_action_instance->action_uart_instance->rtos_for_uart = action_uart->rtos_for_uart;
-    /* 直接挂载，没有进行检查了，后来者可以来这里做更多的检查，可以检查设备的各个参数有无配置好 */
+    if(action_uart->rtos_for_uart ==NULL || action_uart->uart_package == NULL)
+    {
+        LOGERROR("action_uart have somethong is not vaild!");
+        free(temp_action_instance);
+        temp_action_instance = NULL;
+        return NULL;
+    }
     temp_action_instance->action_uart_instance = action_uart;
 
     /* 挂载内部接口 */
@@ -47,22 +52,27 @@ uint8_t Action_Init(void *action_instance,Uart_Instance_t *action_uart)
     if(temp_action_instance->action_orin_data == NULL)
     {
         LOGERROR("action_orin_data malloc failed!");
-        return 0;
+        free(temp_action_instance);
+        temp_action_instance = NULL;
+        return NULL;
     }
     memset(temp_action_instance->action_orin_data,0,sizeof(action_original_info));
-    
+
     temp_action_instance->action_diff_data = (robot_info_from_action*)malloc(sizeof(robot_info_from_action));
     if(temp_action_instance->action_diff_data == NULL)
     {
         LOGERROR("action_diff_data malloc failed!");
-        return 0;
+        free(temp_action_instance);
+        temp_action_instance = NULL;
+        return NULL;
     }
     memset(temp_action_instance->action_diff_data,0,sizeof(robot_info_from_action));
+    /* 挂载函数指针 */
     temp_action_instance->action_get_data = Action_GetData;
     temp_action_instance->action_refresh_data = Action_RefreshData;
     temp_action_instance->action_task = Action_Task;
     LOGINFO("action is prepared!");
-    return 1;
+    return temp_action_instance;
 }
 
 

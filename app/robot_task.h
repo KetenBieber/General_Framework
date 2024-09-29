@@ -7,25 +7,24 @@
 #include "main.h"
 #include "cmsis_os.h"
 
-/* app 层接口头文件 */
-#include "logtest.h"
-#include "debug.h"
-#include "debug.h"
-
 /* bsp 层接口头文件 */
 #include "bsp_log.h"
 #include "bsp_dwt.h"
 #include "bsp_bitband.h"
 
+/* app 层接口头文件 */
+#include "logtest.h"
+#include "Action_Sensor.h"
+
 /* Definitions for TaskHand */
 osThreadId_t LogTaskHandle;
-extern osThreadId_t DebugTaskHandle;
+extern osThreadId_t Action_SensorTaskHandle;
 osThreadId_t MotorTaskHandle;
 
 
 /* Definitions for TaskFunc */
 void LogTask(void *argument);
-void DebugTask(void *argument);
+void Action_SensorTask(void *argument);
 void MotorTask(void *argument);
 /**
  * @brief os任务创建初始化函数
@@ -41,12 +40,12 @@ void osTaskInit(void)
     LogTaskHandle = osThreadNew(LogTask, NULL, &LogTaskHandle_attributes);
 
 
-    const osThreadAttr_t DebugTaskHandle_attributes = {
-    .name = "DebugTaskHandle",
+    const osThreadAttr_t Action_SensorTaskHandle_attributes = {
+    .name = "Action_SensorTaskHandle",
     .stack_size = 128 * 4,
     .priority = (osPriority_t) osPriorityNormal,
     };
-    DebugTaskHandle = osThreadNew(DebugTask, NULL, &DebugTaskHandle_attributes);
+    Action_SensorTaskHandle = osThreadNew(Action_SensorTask, NULL, &Action_SensorTaskHandle_attributes);
 
 
     const osThreadAttr_t MotorTaskHandle_attributes = {
@@ -71,7 +70,7 @@ __attribute((noreturn)) void LogTask(void *argument)
     for(;;)
     {
         Log_start = DWT_GetTimeline_ms();
-        // LOGINFO("LogTask is running!");
+        LOGINFO("LogTask is running!");
         Log_dt = DWT_GetTimeline_ms() - Log_start;
         Float2Str(sLog_dt,Log_dt);
         PEout(12) = 1;
@@ -79,7 +78,7 @@ __attribute((noreturn)) void LogTask(void *argument)
         {
             LOGERROR("LogTask is being DELAY!!! dt= [%s] ms", sLog_dt);
         }
-        osDelay(200);   
+        osDelay(1);   
     }
 }
 
@@ -92,7 +91,7 @@ __attribute((noreturn)) void MotorTask(void *argument)
     for(;;)
     {
         Motor_start = DWT_GetTimeline_ms();
-        // LOGINFO("MotorTask is running!");
+        LOGINFO("MotorTask is running!");
         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
         Float2Str(sMotor_dt,Motor_dt);
         PEout(12) = 0;
@@ -100,7 +99,7 @@ __attribute((noreturn)) void MotorTask(void *argument)
         {
             LOGERROR("MotorTask is being DELAY!!! dt= [%s] ms", sMotor_dt);
         }
-        osDelay(1000);
+        osDelay(1);
     }
 }
 

@@ -83,7 +83,9 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length
     /* rtos层接口初始化挂载 */
     if(Uart_Rtos_Init(uart_instance,queue_length,queue_data) != 1)
     {
+        /* 调用free请务必顺便将其置为NULL,避免指针悬空 */
         free(uart_instance);
+        uart_instance = NULL;
         return NULL;
     }
 
