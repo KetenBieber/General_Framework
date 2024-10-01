@@ -358,7 +358,7 @@ size_t xTotalHeapSize = configTOTAL_HEAP_SIZE;
 	at the end of the heap space. */
 	uxAddress = ( ( size_t ) pucAlignedHeap ) + xTotalHeapSize;
 	uxAddress -= xHeapStructSize;
-	uxAddress &= ~( ( size_t ) portBYTE_ALIGNMENT_MASK );
+	uxAddress &= ~( ( size_t ) portBYTE_ALIGNMENT_MASK );// 做对齐处理
 	pxEnd = ( void * ) uxAddress;
 	pxEnd->xBlockSize = 0;
 	pxEnd->pxNextFreeBlock = NULL;

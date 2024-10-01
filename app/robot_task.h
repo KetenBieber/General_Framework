@@ -16,16 +16,21 @@
 #include "logtest.h"
 #include "Action_Sensor.h"
 
+/* module层接口头文件 */
+#include "soft_iwdg.h"
+
 /* Definitions for TaskHand */
 osThreadId_t LogTaskHandle;
 extern osThreadId_t Action_SensorTaskHandle;
 osThreadId_t MotorTaskHandle;
+osThreadId_t IWDGTaskHandle;
 
 
 /* Definitions for TaskFunc */
 void LogTask(void *argument);
 void Action_SensorTask(void *argument);
 void MotorTask(void *argument);
+void IWDGTask(void *argument);
 /**
  * @brief os任务创建初始化函数
  * 
@@ -42,7 +47,7 @@ void osTaskInit(void)
 
     const osThreadAttr_t Action_SensorTaskHandle_attributes = {
     .name = "Action_SensorTaskHandle",
-    .stack_size = 128 * 4,
+    .stack_size = 128 * 8,
     .priority = (osPriority_t) osPriorityNormal,
     };
     Action_SensorTaskHandle = osThreadNew(Action_SensorTask, NULL, &Action_SensorTaskHandle_attributes);
@@ -50,10 +55,17 @@ void osTaskInit(void)
 
     const osThreadAttr_t MotorTaskHandle_attributes = {
     .name = "MotorTaskHandle",
-    .stack_size = 128 * 4,
+    .stack_size = 128 *4,
     .priority = (osPriority_t) osPriorityNormal,
     };
     MotorTaskHandle = osThreadNew(MotorTask, NULL, &MotorTaskHandle_attributes);
+
+    const osThreadAttr_t IWDGTaskHandle_attributes = {
+    .name = "IWDGTaskHandle",
+    .stack_size = 128*4 ,
+    .priority = (osPriority_t) osPriorityNormal,
+    };
+    IWDGTaskHandle = osThreadNew(IWDGTask, NULL, &IWDGTaskHandle_attributes);
 
 }
 
@@ -98,6 +110,26 @@ __attribute((noreturn)) void MotorTask(void *argument)
         if(Motor_dt > 1)
         {
             LOGERROR("MotorTask is being DELAY!!! dt= [%s] ms", sMotor_dt);
+        }
+        osDelay(1);
+    }
+}
+
+__attribute((noreturn)) void IWDGTask(void *argument)
+{
+    static float IWDG_start;
+    static float IWDG_dt;
+    static char sIWDG_dt[20];
+    for(;;)
+    {
+        IWDG_start = DWT_GetTimeline_ms();
+        IWDG_Task();
+        LOGINFO("the dog is hungry!");
+        IWDG_dt = DWT_GetTimeline_ms() - IWDG_start;
+        Float2Str(sIWDG_dt,IWDG_dt);
+        if(IWDG_dt > 1)
+        {
+            LOGERROR("IWDGTask is being DELAY!!! dt= [%s] ms", sIWDG_dt);
         }
         osDelay(1);
     }

@@ -650,6 +650,30 @@
 				"file" : 1,
 				"line" : 5,
 				"parent" : 103
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 99
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 105
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 99
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 107
 			}
 		]
 	},
@@ -805,7 +829,7 @@
 				},
 				{
 					"backtrace" : 26,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/topics"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 28,
@@ -962,6 +986,14 @@
 				{
 					"backtrace" : 104,
 					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+				},
+				{
+					"backtrace" : 106,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 108,
+					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
 			"language" : "C",
@@ -1030,7 +1062,9 @@
 				52,
 				53,
 				54,
-				55
+				55,
+				56,
+				57
 			]
 		},
 		{
@@ -1186,7 +1220,7 @@
 				},
 				{
 					"backtrace" : 26,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/topics"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 28,
@@ -1343,13 +1377,21 @@
 				{
 					"backtrace" : 104,
 					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+				},
+				{
+					"backtrace" : 106,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 108,
+					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
 			"language" : "ASM",
 			"sourceIndexes" : 
 			[
-				56,
-				57
+				58,
+				59
 			]
 		}
 	],
@@ -1527,16 +1569,18 @@
 				52,
 				53,
 				54,
-				55
+				55,
+				56,
+				57
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				56,
-				57,
-				58
+				58,
+				59,
+				60
 			]
 		}
 	],
@@ -1593,7 +1637,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Bsp/topics/bsp_topics.c",
+			"path" : "Bsp/soft_reset/soft_reset.c",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -1876,6 +1920,18 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Module/action/action.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Module/soft_iwdg/soft_iwdg.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Module/topics/topics.c",
 			"sourceGroupIndex" : 0
 		},
 		{

@@ -12,7 +12,13 @@
         "robot.h": "c",
         "queue.h": "c",
         "semphr.h": "c",
-        "usart.h": "c"
+        "usart.h": "c",
+        "bsp_can.h": "c",
+        "soft_reset.h": "c",
+        "soft_iwdg.h": "c",
+        "action.h": "c",
+        "action_sensor.h": "c",
+        "bsp_usart.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
 }

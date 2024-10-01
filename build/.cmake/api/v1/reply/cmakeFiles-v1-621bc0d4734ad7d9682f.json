@@ -21,7 +21,7 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
-			"path" : "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeMinGWFindMake.cmake"
+			"path" : "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake"
 		},
 		{
 			"isCMake" : true,

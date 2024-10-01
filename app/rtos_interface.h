@@ -21,6 +21,6 @@
  */
 #define CHECK_QUEUE_RECEIVE(queue, msg, ticks)  (xQueueReceive((queue),(msg),(ticks)) == pdPASS)
 
-#define DELETE_THREAD(thread)                    vTaskDelete(thread) 
+#define DELETE_MYSELF_THREAD()                   vTaskDelete(NULL) 
 
 

@@ -1,5 +1,5 @@
 /**
- * @file bsp_can.c
+ * @file bsp_topics.c
  * @author Keten (2863861004@qq.com)
  * @brief 
  * @version 0.1
@@ -11,6 +11,4 @@
  * @note :
  * @versioninfo :
  */
-#include "bsp_can.h"
-
-
+#include "topics.h"

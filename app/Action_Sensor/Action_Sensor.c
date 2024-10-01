@@ -13,13 +13,13 @@
  */
 #include "Action_Sensor.h"
 
-/* 创建任务句柄 */
 osThreadId_t Action_SensorTaskHandle;
 
 /* action所用uart实例声明，以便被外部调用 */
 Uart_Instance_t *action_uart_instance = NULL;
 uint8_t rx_buffer[30];// 配置用来装储存数据的buffer
 Action_Instance_t *action_instance = NULL;
+
 
 /**
  * @brief 测试调试的函数任务
@@ -43,17 +43,33 @@ __attribute((noreturn)) void Action_SensorTask(void *argument)
     {
         /* 如果action设备创建失败，就删除本task，防止占cpu */
         LOGWARNING("uart register failed!");
-        DELETE_THREAD(Action_SensorTaskHandle);
+        vTaskDelete(NULL);
+    }
+    /* 看门狗注册流程 */
+    iwdg_config_t action_iwdg_config = {
+        .reload_count = 1000,
+        .init_count = 10000,
+        .callback = action_iwdg_callback,
+    };
+    IWDG_Instance_t *action_iwdg_instance = NULL;
+    action_iwdg_instance = IWDG_Register(&action_iwdg_config);
+    if(action_iwdg_instance == NULL)
+    {
+        /* 如果action设备创建失败，就删除本task，防止占cpu */
+        LOGWARNING("iwdg register failed!");
+        vTaskDelete(NULL);
     }
     /* action设备注册流程 */
-    action_instance = Action_Init(action_uart_instance);    
+    action_instance = Action_Init(action_uart_instance,action_iwdg_instance);    
     if(action_instance == NULL)
     {
         /* 如果action设备创建失败，就删除本task，防止占cpu */
         LOGWARNING("action device init failed!");
-        DELETE_THREAD(Action_SensorTaskHandle);
+        vTaskDelete(NULL);
     }
     /* 创建实例完毕，开始进入接收task */
+    action_instance->action_iwdg_instance->fall_asleep(action_instance->action_iwdg_instance);
+
     for(;;)
     {
         Action_Sensor_start = DWT_GetTimeline_ms();

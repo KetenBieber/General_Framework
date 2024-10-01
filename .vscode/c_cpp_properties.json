@@ -32,7 +32,8 @@
                 "ARM_MATH_LOOPUNROLL",
                 "DISABLEFLOAT16",
                 "USE_RTOS_FOR_UART",
-                "USE_FULL_ASSERT"
+                "USE_FULL_ASSERT",
+                "USE_RTOS"
             ],
             "cStandard": "c17",
             "cppStandard": "c++17",

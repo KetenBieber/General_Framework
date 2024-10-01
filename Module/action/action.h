@@ -19,11 +19,22 @@ extern "C"{
 #endif
 
 /*----------------------------------include-----------------------------------*/
-#include "bsp_usart.h"
+/* rtos层接口 */
+#include "FreeRTOS.h"
+#include "task.h"
+
+/* hal库接口 */
 #include "usart.h"
+
+/* bsp层接口 */
+#include "bsp_usart.h"
 #include "bsp_log.h"
-#include "arm_math.h"
 #include "data_pool.h"
+#include "soft_iwdg.h"
+
+
+#include "arm_math.h"
+
 /*-----------------------------------macro------------------------------------*/
 #define USE_DIFF_GET_DATA           // 使用差分运算获取action模块返回值宏，定义了就可以获取
 #define ACTION_DATA_NUM 28          // action一个数据包的字节数
@@ -67,6 +78,7 @@ typedef struct
 typedef struct 
 {
     Uart_Instance_t *action_uart_instance;// 继承自串口设备
+	IWDG_Instance_t *action_iwdg_instance;// 继承自看门狗设备,使用看门狗进行监护
     action_original_info *action_orin_data;// 存放未经处理的action数据
 #ifdef USE_DIFF_GET_DATA
     robot_info_from_action *action_diff_data;// 存放经过差分运算过后的action数据
@@ -74,17 +86,17 @@ typedef struct
     uint8_t (*action_get_data)(uint8_t *, action_original_info*, robot_info_from_action* );// 获取action返回的值
     uint8_t (*action_refresh_data)(void);// 刷新action模块初始值
     uint8_t (*action_task)(void* action_instance);
+	uint8_t (*action_deinit)(void* action_instance);
 }Action_Instance_t;
 
 /*----------------------------------function----------------------------------*/
-
 /**
  * @brief action实例初始化函数
  * 
  * @param action_uart 
  * @return Action_Instance_t 
  */
-Action_Instance_t* Action_Init(Uart_Instance_t *action_uart);
+Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *action_iwdg);
 
 
 /**
@@ -123,6 +135,22 @@ uint8_t Action_RxCallback_Fun(Uart_Instance_t *action_instance, uint16_t data_le
  * @return uint8_t 
  */
 uint8_t Action_RefreshData(void);
+
+
+/**
+ * @brief action设备注册到看门狗中的回调函数
+ * 
+ */
+uint8_t action_iwdg_callback(void *instance);
+
+
+/**
+ * @brief 
+ * 
+ * @param action_instance 
+ * @return uint8_t 
+ */
+uint8_t Action_Deinit(void *action_instance);
 
 #ifdef __cplusplus
 }

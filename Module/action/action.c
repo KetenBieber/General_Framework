@@ -15,7 +15,11 @@
  */
 #include "action.h"
 #include "bsp_usart.h"
+#include "cmsis_os2.h"
 
+
+extern osThreadId_t Action_SensorTaskHandle;
+extern osThreadId_t MotorTaskHandle;
 union 
 {
     uint8_t posture[24];
@@ -23,46 +27,60 @@ union
 }action_posture;
 
 
-Action_Instance_t* Action_Init(Uart_Instance_t *action_uart)
+Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *action_iwdg)
 {
     if(action_uart == NULL)
     {
         LOGERROR("action uart is not prepared!");
         return NULL;
     }
-    Action_Instance_t *temp_action_instance = (Action_Instance_t*)malloc(sizeof(Action_Instance_t));
+    if(action_iwdg == NULL)
+    {
+        LOGERROR("action iwdg is not prepared!");
+        return NULL;
+    }
+    Action_Instance_t *temp_action_instance = (Action_Instance_t*)pvPortMalloc(sizeof(Action_Instance_t));
     if(temp_action_instance == NULL)
     {
-        /* 如果malloc失败了 */
-        LOGERROR("action malloc failed!");
+        /* 如果pvPortMalloc失败了 */
+        LOGERROR("action pvPortMalloc failed!");
         return NULL;
     }
     /* 挂载外部接口 */
+    /* 检查看门狗是否挂载成功 */
+    if(action_iwdg->dog_config == NULL || action_iwdg->fall_asleep == NULL || action_iwdg->feed_dog == NULL || action_iwdg->is_dog_online == NULL || action_iwdg->sleep_func_interface == NULL)
+    {
+        LOGERROR("action_iwdg have something is not valid!");
+        return NULL;
+    }
+    action_iwdg->owner_id = (void*)temp_action_instance;// 挂载看门狗实例
+    temp_action_instance->action_iwdg_instance = action_iwdg;// 挂载看门狗实例
+    /* 检查串口设备是否检查 */
     if(action_uart->rtos_for_uart ==NULL || action_uart->uart_package == NULL)
     {
         LOGERROR("action_uart have somethong is not vaild!");
-        free(temp_action_instance);
+        vPortFree(temp_action_instance);
         temp_action_instance = NULL;
         return NULL;
     }
-    temp_action_instance->action_uart_instance = action_uart;
+    temp_action_instance->action_uart_instance = action_uart;// 在这里闲聊几句:开发流程中,一般是先开发bsp层,然后向编写module层的人提供bsp层暴露的接口,module层通过使用这些api开发module层,最终再向app层开发人员提供module层接口
 
     /* 挂载内部接口 */
-    temp_action_instance->action_orin_data = (action_original_info*)malloc(sizeof(action_original_info));
+    temp_action_instance->action_orin_data = (action_original_info*)pvPortMalloc(sizeof(action_original_info));
     if(temp_action_instance->action_orin_data == NULL)
     {
-        LOGERROR("action_orin_data malloc failed!");
-        free(temp_action_instance);
+        LOGERROR("action_orin_data pvPortMalloc failed!");
+        vPortFree(temp_action_instance);
         temp_action_instance = NULL;
         return NULL;
     }
     memset(temp_action_instance->action_orin_data,0,sizeof(action_original_info));
 
-    temp_action_instance->action_diff_data = (robot_info_from_action*)malloc(sizeof(robot_info_from_action));
+    temp_action_instance->action_diff_data = (robot_info_from_action*)pvPortMalloc(sizeof(robot_info_from_action));
     if(temp_action_instance->action_diff_data == NULL)
     {
-        LOGERROR("action_diff_data malloc failed!");
-        free(temp_action_instance);
+        LOGERROR("action_diff_data pvPortMalloc failed!");
+        vPortFree(temp_action_instance);
         temp_action_instance = NULL;
         return NULL;
     }
@@ -71,6 +89,8 @@ Action_Instance_t* Action_Init(Uart_Instance_t *action_uart)
     temp_action_instance->action_get_data = Action_GetData;
     temp_action_instance->action_refresh_data = Action_RefreshData;
     temp_action_instance->action_task = Action_Task;
+    assert_param(Action_Deinit != NULL);
+    temp_action_instance->action_deinit = Action_Deinit;
     LOGINFO("action is prepared!");
     return temp_action_instance;
 }
@@ -84,6 +104,7 @@ uint8_t Action_Task(void* action_instance)
     {
         LOGINFO("action task is running!");
         temp_action_instance->action_get_data(Msg.data_addr,temp_action_instance->action_orin_data,temp_action_instance->action_diff_data);
+        temp_action_instance->action_iwdg_instance->feed_dog(temp_action_instance->action_iwdg_instance);
         return 1;
     }
     LOGERROR("action task is not running!");
@@ -183,3 +204,90 @@ uint8_t Action_RefreshData(void)
     return 1;
 }
 
+
+uint8_t action_iwdg_callback(void *instance)
+{
+    if(instance == NULL)
+    {
+        return 0;
+    }
+    Action_Instance_t *temp_action_instance = (Action_Instance_t*)instance;  
+    LOGINFO("action has not response!");
+    if (temp_action_instance == NULL)
+    {
+        LOGERROR("temp_action_instance is NULL!");
+        return 0;
+    }
+
+    if (temp_action_instance->action_deinit == NULL)
+    {
+        LOGERROR("action_deinit function pointer is NULL!");
+        return 0;
+    }    
+    temp_action_instance->action_deinit(temp_action_instance);
+    if(Action_SensorTaskHandle != NULL)
+    {
+        if(xTaskAbortDelay(Action_SensorTaskHandle) == pdPASS)
+        {
+            LOGINFO("action task is abort!");
+            vTaskDelete(Action_SensorTaskHandle);
+            Action_SensorTaskHandle = NULL;
+        }
+        else
+        {
+            LOGERROR("action task is not abort!");
+        }
+    }
+
+    return 1;
+}
+
+
+// 又在这里瞎叭叭几句：为什么有的deinit需要传二级指针呢？因为在函数内部需要对指针进行操作，而在函数外部需要对指针进行释放，所以需要传二级指针
+// 那为什么这里的不用呢？因为我在内部已经使用了一个指针指向了你传入的指针所指的地址，所以就可以直接实现对指针的操作了
+uint8_t Action_Deinit(void *action_instance)
+{
+    /* 编写设备类的要点,记得调用所有父类的deinit函数 */
+    if(action_instance == NULL)
+    {
+        LOGERROR("In Deinit action_instance is not valid!");
+        return 0;
+    }
+    Action_Instance_t *temp_action_instance = action_instance;
+    /* 注销父类,将串口设备类注销 */
+    if(temp_action_instance->action_uart_instance->Uart_Deinit((temp_action_instance->action_uart_instance)) == 0)
+    {
+        LOGERROR("action uart deinit failed!");
+        return 0;
+    }
+    /* 注销父类,将看门狗类注销 */
+    if(temp_action_instance->action_iwdg_instance->iwdg_Deinit((temp_action_instance->action_iwdg_instance)) == 0)
+    {
+        LOGERROR("action iwdg deinit failed!");
+        return 0;
+    }
+    LOGINFO("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+    /* 清除action设备中的接口 */
+    if(temp_action_instance->action_orin_data != NULL)
+    {
+        vPortFree(temp_action_instance->action_orin_data);
+        temp_action_instance->action_orin_data = NULL;
+    }
+    if(temp_action_instance->action_diff_data != NULL)
+    {
+        vPortFree(temp_action_instance->action_diff_data);
+        temp_action_instance->action_diff_data = NULL;
+    }
+
+    /* 清除内部函数接口 */
+    temp_action_instance->action_task = NULL;
+    temp_action_instance->action_get_data = NULL;
+    temp_action_instance->action_refresh_data = NULL;
+    temp_action_instance->action_deinit = NULL;
+
+    /* 清除action设备实例 */
+    vPortFree(temp_action_instance);
+    action_instance = NULL;
+
+    return 1;
+}

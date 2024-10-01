@@ -91,7 +91,7 @@ struct Uart_Instance_t
 #endif
     /* 串口接收包结构体 */
     uart_package_t *uart_package;
-    
+    uint8_t (*Uart_Deinit)(void *);// 串口设备注销函数
 };
 
 /*----------------------------------function----------------------------------*/
@@ -116,6 +116,15 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length
  *                 --- 0 :failed
  */
 uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance);
+
+
+/**
+ * @brief 串口注销函数
+ * 
+ * @param uart_instance 
+ * @return uint8_t 
+ */
+uint8_t Uart_UnRegister(void *uart_instance);
 
 #ifdef __cplusplus
 }

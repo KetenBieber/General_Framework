@@ -22,7 +22,7 @@ TARGET = new_build
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -Og
+OPT = -O0
 
 
 #######################################
@@ -84,11 +84,13 @@ C_SOURCES =  \
 ../Bsp/usart/bsp_usart.c \
 ../Bsp/can/bsp_can.c \
 ../Bsp/gpio/bsp_gpio.c \
-../Bsp/topics/bsp_topics.c \
+../Bsp/soft_reset/soft_reset.c \
 ../App/Action_Sensor/Action_Sensor.c \
 ../App/logtest/logtest.c \
 ../App/robot.c \
 ../Module/action/action.c \
+../Module/topics/topics.c \
+../Module/soft_iwdg/soft_iwdg.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/syscalls.c  \
 
@@ -171,12 +173,14 @@ C_INCLUDES =  \
 -I../Bsp/usart \
 -I../Bsp/gpio \
 -I../Bsp/can \
--I../Bsp/topics \
+-I../Bsp/soft_reset \
 -I../Bsp/ \
 -I../App/Action_Sensor \
 -I../App/logtest \
 -I../App \
 -I../Module/action \
+-I../Module/topics \
+-I../Module/soft_iwdg \
 -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include \
 -I../Drivers/CMSIS/Include \
 -I../Middlewares/ST/ARM/DSP/Inc \

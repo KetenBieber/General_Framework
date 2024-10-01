@@ -22,7 +22,7 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-
+#include "bsp_log.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -119,8 +119,9 @@ void StartDefaultTask(void *argument)
   for(;;)
   {
     // 一般可以在这个任务线程完成一些比较额外的初始化工作(但还是建议分app,实现不同的app数据池被限制在自己的线程中)
-
+    // LOGINFO("task is running!");
     osThreadTerminate(defaultTaskHandle); // 避免空置和切换占用cpu
+    // osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
 }

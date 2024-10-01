@@ -140,7 +140,7 @@ extern "C" {
 #endif
 
 #ifndef INCLUDE_xTaskAbortDelay
-	#define INCLUDE_xTaskAbortDelay 0
+	#define INCLUDE_xTaskAbortDelay 1
 #endif
 
 #ifndef INCLUDE_xQueueGetMutexHolder

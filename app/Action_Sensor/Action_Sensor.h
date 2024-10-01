@@ -26,6 +26,7 @@
 #include "bsp_dwt.h"
 /* module层接口 */
 #include "action.h"
+#include "soft_iwdg.h"
 
 
 
