@@ -30,7 +30,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 109,
+				"line" : 110,
 				"parent" : 0
 			},
 			{
@@ -48,7 +48,7 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 104,
+				"line" : 105,
 				"parent" : 0
 			},
 			{
@@ -60,7 +60,7 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 105,
+				"line" : 106,
 				"parent" : 0
 			},
 			{
@@ -674,6 +674,42 @@
 				"file" : 1,
 				"line" : 5,
 				"parent" : 107
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 99
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 109
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 99
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 111
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 99
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 113
 			}
 		]
 	},
@@ -985,14 +1021,26 @@
 				},
 				{
 					"backtrace" : 104,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 106,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 108,
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+				},
+				{
+					"backtrace" : 110,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 112,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 114,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
@@ -1063,6 +1111,350 @@
 				53,
 				54,
 				55,
+				58,
+				59
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -std=gnu++17"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-pipe"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mcpu=cortex-m4"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mthumb"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mthumb-interwork"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mfloat-abi=hard"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-mfpu=fpv4-sp-d16"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-Werror"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fmessage-length=0"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-fno-common"
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "-Og"
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "-gdwarf-2"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 5,
+					"define" : "ARM_MATH_CM4"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "ARM_MATH_LOOPUNROLL"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "ARM_MATH_MATRIX_CHECK"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "ARM_MATH_ROUNDING"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "DISABLEFLOAT16"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "ESC_DEBUG"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "STM32F407xx"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "USE_FULL_ASSERT"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "USE_HAL_DRIVER"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "USE_RTOS_FOR_UART"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 8,
+					"path" : "C:/c_plusplus_try/new_build/App"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/c_plusplus_try/new_build/App/Action_Sensor"
+				},
+				{
+					"backtrace" : 12,
+					"path" : "C:/c_plusplus_try/new_build/App/com2ros"
+				},
+				{
+					"backtrace" : 14,
+					"path" : "C:/c_plusplus_try/new_build/App/logtest"
+				},
+				{
+					"backtrace" : 16,
+					"path" : "C:/c_plusplus_try/new_build/Bsp"
+				},
+				{
+					"backtrace" : 18,
+					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
+				},
+				{
+					"backtrace" : 20,
+					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
+				},
+				{
+					"backtrace" : 22,
+					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
+				},
+				{
+					"backtrace" : 24,
+					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
+				},
+				{
+					"backtrace" : 26,
+					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
+				},
+				{
+					"backtrace" : 28,
+					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
+				},
+				{
+					"backtrace" : 30,
+					"path" : "C:/c_plusplus_try/new_build/Core"
+				},
+				{
+					"backtrace" : 32,
+					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
+				},
+				{
+					"backtrace" : 34,
+					"path" : "C:/c_plusplus_try/new_build/Core/Src"
+				},
+				{
+					"backtrace" : 36,
+					"path" : "C:/c_plusplus_try/new_build/Drivers"
+				},
+				{
+					"backtrace" : 38,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
+				},
+				{
+					"backtrace" : 40,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
+				},
+				{
+					"backtrace" : 42,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
+				},
+				{
+					"backtrace" : 44,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
+				},
+				{
+					"backtrace" : 46,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+				},
+				{
+					"backtrace" : 48,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
+				},
+				{
+					"backtrace" : 50,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
+				},
+				{
+					"backtrace" : 52,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
+				},
+				{
+					"backtrace" : 54,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
+				},
+				{
+					"backtrace" : 56,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
+				},
+				{
+					"backtrace" : 58,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+				},
+				{
+					"backtrace" : 60,
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
+				},
+				{
+					"backtrace" : 62,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares"
+				},
+				{
+					"backtrace" : 64,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
+				},
+				{
+					"backtrace" : 66,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
+				},
+				{
+					"backtrace" : 68,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
+				},
+				{
+					"backtrace" : 70,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
+				},
+				{
+					"backtrace" : 72,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
+				},
+				{
+					"backtrace" : 74,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
+				},
+				{
+					"backtrace" : 76,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
+				},
+				{
+					"backtrace" : 78,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
+				},
+				{
+					"backtrace" : 80,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+				},
+				{
+					"backtrace" : 82,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
+				},
+				{
+					"backtrace" : 84,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
+				},
+				{
+					"backtrace" : 86,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+				},
+				{
+					"backtrace" : 88,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+				},
+				{
+					"backtrace" : 90,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+				},
+				{
+					"backtrace" : 92,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
+				},
+				{
+					"backtrace" : 94,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
+				},
+				{
+					"backtrace" : 96,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
+				},
+				{
+					"backtrace" : 98,
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+				},
+				{
+					"backtrace" : 100,
+					"path" : "C:/c_plusplus_try/new_build/Module"
+				},
+				{
+					"backtrace" : 102,
+					"path" : "C:/c_plusplus_try/new_build/Module/action"
+				},
+				{
+					"backtrace" : 104,
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+				},
+				{
+					"backtrace" : 106,
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+				},
+				{
+					"backtrace" : 108,
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+				},
+				{
+					"backtrace" : 110,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 112,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 114,
+					"path" : "C:/c_plusplus_try/new_build/Module/topics"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
 				56,
 				57
 			]
@@ -1376,22 +1768,34 @@
 				},
 				{
 					"backtrace" : 104,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 106,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 108,
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+				},
+				{
+					"backtrace" : 110,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 112,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 114,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
 			"language" : "ASM",
 			"sourceIndexes" : 
 			[
-				58,
-				59
+				60,
+				61
 			]
 		}
 	],
@@ -1499,7 +1903,7 @@
 				"role" : "flags"
 			}
 		],
-		"language" : "C"
+		"language" : "CXX"
 	},
 	"name" : "new_build.elf",
 	"nameOnDisk" : "new_build.elf",
@@ -1571,16 +1975,18 @@
 				54,
 				55,
 				56,
-				57
+				57,
+				58,
+				59
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				58,
-				59,
-				60
+				60,
+				61,
+				62
 			]
 		}
 	],
@@ -1924,6 +2330,18 @@
 		},
 		{
 			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Module/algorithm/filter.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Module/controller/pid_controller.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Module/soft_iwdg/soft_iwdg.c",
 			"sourceGroupIndex" : 0
@@ -1936,13 +2354,13 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 1,
+			"compileGroupIndex" : 2,
 			"path" : "ToolChain/startup_stm32f407xx.s",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 1,
+			"compileGroupIndex" : 2,
 			"path" : "Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_ASM_ARMv7M.s",
 			"sourceGroupIndex" : 1
 		},

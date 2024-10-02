@@ -78,6 +78,7 @@ file(GLOB_RECURSE SOURCES
     "Bsp/*.c"
     "Module/*.c"
     "test/*.c"
+    "Module/*.cpp"
 )
 
 # 汇编文件路径

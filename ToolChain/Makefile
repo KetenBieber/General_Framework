@@ -94,6 +94,11 @@ C_SOURCES =  \
 ../Core/Src/sysmem.c \
 ../Core/Src/syscalls.c  \
 
+# C++ sources
+CXX_SOURCES = \
+../Module/algorithm/filter.cpp \
+../Module/controller/pid_controller.cpp \
+
 # ASM sources 添加汇编文件
 ASM_SOURCES =  \
 startup_stm32f407xx.s \
@@ -101,7 +106,6 @@ startup_stm32f407xx.s \
 
 # ASM sources
 ASMM_SOURCES = 
-
 
 #######################################
 # binaries
@@ -111,11 +115,13 @@ PREFIX = arm-none-eabi-
 # either it can be added to the PATH environment variable.
 ifdef GCC_PATH
 CC = $(GCC_PATH)/$(PREFIX)gcc
+CXX = $(GCC_PATH)/$(PREFIX)g++
 AS = $(GCC_PATH)/$(PREFIX)gcc -x assembler-with-cpp
 CP = $(GCC_PATH)/$(PREFIX)objcopy
 SZ = $(GCC_PATH)/$(PREFIX)size
 else
 CC = $(PREFIX)gcc
+CXX = $(PREFIX)g++
 AS = $(PREFIX)gcc -x assembler-with-cpp
 CP = $(PREFIX)objcopy
 SZ = $(PREFIX)size
@@ -129,13 +135,13 @@ BIN = $(CP) -O binary -S
 # cpu
 CPU = -mcpu=cortex-m4
 
-# fpu
+# fpu 启用ARM Cortex-M4 fpu单精度浮点单元
 FPU = -mfpu=fpv4-sp-d16
 
-# float-abi
+# float-abi 使用硬件浮点单元
 FLOAT-ABI = -mfloat-abi=hard
 
-# mcu
+# mcu 定义了CPU，FPU，FLOAT-ABI
 MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 
 # macros for gcc
@@ -159,7 +165,7 @@ AS_INCLUDES =  \
 -I../Core/Inc
 
 # C includes
-C_INCLUDES =  \
+C_CPP_INCLUDES =  \
 -I../Core/Inc \
 -I../Drivers/STM32F4xx_HAL_Driver/Inc \
 -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy \
@@ -181,6 +187,9 @@ C_INCLUDES =  \
 -I../Module/action \
 -I../Module/topics \
 -I../Module/soft_iwdg \
+-I../Module/controller \
+-I../Module/tool \
+-I../Module/algorithm \
 -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include \
 -I../Drivers/CMSIS/Include \
 -I../Middlewares/ST/ARM/DSP/Inc \
@@ -189,16 +198,19 @@ C_INCLUDES =  \
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -DARM_MATH_CM4
+CFLAGS += $(MCU) $(C_DEFS) $(C_CPP_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -DARM_MATH_CM4
+
+CXXFLAGS += $(MCU) $(C_DEFS) $(C_CPP_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -DARM_MATH_CM4
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
+CXXFLAGS += -g -gdwarf-2
 endif
 
 
 # Generate dependency information
 CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
-
+CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 
 #######################################
 # LDFLAGS
@@ -211,7 +223,7 @@ LIBS = -lc -lm -lnosys  \
 -l:libarm_cortexM4lf_math.a
 LIBDIR =  \
 -L../Middlewares/ST/ARM/DSP/Lib
-LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
+LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections -lstdc++
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
@@ -223,6 +235,9 @@ all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET
 # list of objects
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
 vpath %.c $(sort $(dir $(C_SOURCES)))
+# list of cpp program objects
+OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(CXX_SOURCES:.cpp=.o)))
+vpath %.cpp $(sort $(dir $(CXX_SOURCES)))
 # list of ASM program objects
 OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
 vpath %.s $(sort $(dir $(ASM_SOURCES)))
@@ -232,6 +247,9 @@ vpath %.S $(sort $(dir $(ASMM_SOURCES)))
 $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
 	@$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 	@echo $(notdir $(<:.c=.o))
+$(BUILD_DIR)/%.o: %.cpp Makefile | $(BUILD_DIR)
+	@$(CXX) -c $(CXXFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.cpp=.lst)) $< -o $@
+	@echo $(notdir $(<:.cpp=.o))
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
 	@$(AS) -c $(CFLAGS) $< -o $@
 	@echo $(notdir $(<:.s=.o))

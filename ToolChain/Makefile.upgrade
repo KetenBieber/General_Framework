@@ -22,7 +22,7 @@ TARGET = new_build
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -Og
+OPT = -O0
 
 
 #######################################
@@ -38,6 +38,9 @@ BUILD_DIR = ../build
 C_SOURCES =  \
 ../Core/Src/main.c \
 ../Core/Src/gpio.c \
+../Core/Src/usart.c \
+../Core/Src/can.c \
+../Core/Src/dma.c \
 ../Core/Src/freertos.c \
 ../Core/Src/stm32f4xx_it.c \
 ../Core/Src/stm32f4xx_hal_msp.c \
@@ -57,6 +60,8 @@ C_SOURCES =  \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c \
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
 ../Core/Src/system_stm32f4xx.c \
 ../Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
 ../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
@@ -76,9 +81,16 @@ C_SOURCES =  \
 ../Middlewares/Third_Party/SystemView/Config/SEGGER_SYSVIEW_Config_FreeRTOS.c \
 ../Bsp/log/bsp_log.c \
 ../Bsp/dwt/bsp_dwt.c \
-../App/debug/debug.c \
+../Bsp/usart/bsp_usart.c \
+../Bsp/can/bsp_can.c \
+../Bsp/gpio/bsp_gpio.c \
+../Bsp/soft_reset/soft_reset.c \
+../App/Action_Sensor/Action_Sensor.c \
 ../App/logtest/logtest.c \
 ../App/robot.c \
+../Module/action/action.c \
+../Module/topics/topics.c \
+../Module/soft_iwdg/soft_iwdg.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/syscalls.c  \
 
@@ -117,13 +129,13 @@ BIN = $(CP) -O binary -S
 # cpu
 CPU = -mcpu=cortex-m4
 
-# fpu
+# fpu 启用ARM Cortex-M4 fpu单精度浮点单元
 FPU = -mfpu=fpv4-sp-d16
 
-# float-abi
+# float-abi 使用硬件浮点单元
 FLOAT-ABI = -mfloat-abi=hard
 
-# mcu
+# mcu 定义了CPU，FPU，FLOAT-ABI
 MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 
 # macros for gcc
@@ -136,6 +148,7 @@ C_DEFS =  \
 -DUSE_HAL_DRIVER \
 -DSTM32F407xx \
 -DUSE_FULL_ASSERT \
+-DUSE_RTOS_FOR_UART
 # -DDISABLE_LOG_SYSTEM \
 # -DDISABLE_SYSVIEW_SYSTEM \
 
@@ -157,10 +170,17 @@ C_INCLUDES =  \
 -I../Middlewares/Third_Party/SystemView/Config \
 -I../Bsp/log \
 -I../Bsp/dwt \
+-I../Bsp/usart \
+-I../Bsp/gpio \
+-I../Bsp/can \
+-I../Bsp/soft_reset \
 -I../Bsp/ \
--I../App/debug \
+-I../App/Action_Sensor \
 -I../App/logtest \
--I../App/ \
+-I../App \
+-I../Module/action \
+-I../Module/topics \
+-I../Module/soft_iwdg \
 -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include \
 -I../Drivers/CMSIS/Include \
 -I../Middlewares/ST/ARM/DSP/Inc \
@@ -169,7 +189,7 @@ C_INCLUDES =  \
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -DARM_MATH_CM4
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
@@ -210,16 +230,17 @@ OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASMM_SOURCES:.S=.o)))
 vpath %.S $(sort $(dir $(ASMM_SOURCES)))
 
 $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
-	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
-
+	@$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+	@echo $(notdir $(<:.c=.o))
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
-	$(AS) -c $(CFLAGS) $< -o $@
+	@$(AS) -c $(CFLAGS) $< -o $@
+	@echo $(notdir $(<:.s=.o))
 $(BUILD_DIR)/%.o: %.S Makefile | $(BUILD_DIR)
-	$(AS) -c $(CFLAGS) $< -o $@
-
+	@$(AS) -c $(CFLAGS) $< -o $@
+	@echo $(notdir $(<:.S=.o))
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
-	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
-	$(SZ) $@
+	@$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+	@$(SZ) $@
 
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(HEX) $< $@
@@ -234,7 +255,7 @@ $(BUILD_DIR):
 # clean up
 #######################################
 clean:
-	-rm -fR $(BUILD_DIR)
+	-rm -fR $(BUILD_DIR) /s/q
   
 #######################################
 # dependencies
