@@ -13,8 +13,9 @@
 #include "bsp_bitband.h"
 
 /* app 层接口头文件 */
-#include "logtest.h"
 #include "Action_Sensor.h"
+#include "com_config.h"
+#include "chassis_task.h"
 
 /* module层接口头文件 */
 #include "soft_iwdg.h"
@@ -24,6 +25,8 @@ osThreadId_t LogTaskHandle;
 extern osThreadId_t Action_SensorTaskHandle;
 osThreadId_t MotorTaskHandle;
 osThreadId_t IWDGTaskHandle;
+extern osThreadId_t CAN1_Send_TaskHandle;
+extern osThreadId_t Debug_TaskHandle;
 
 
 /* Definitions for TaskFunc */
@@ -31,6 +34,8 @@ void LogTask(void *argument);
 void Action_SensorTask(void *argument);
 void MotorTask(void *argument);
 void IWDGTask(void *argument);
+void CAN1_Send_Task(void *argument);
+void Debug_Task(void *argument);
 /**
  * @brief os任务创建初始化函数
  * 
@@ -45,12 +50,12 @@ void osTaskInit(void)
     LogTaskHandle = osThreadNew(LogTask, NULL, &LogTaskHandle_attributes);
 
 
-    const osThreadAttr_t Action_SensorTaskHandle_attributes = {
-    .name = "Action_SensorTaskHandle",
-    .stack_size = 128 * 8,
-    .priority = (osPriority_t) osPriorityNormal,
-    };
-    Action_SensorTaskHandle = osThreadNew(Action_SensorTask, NULL, &Action_SensorTaskHandle_attributes);
+    // const osThreadAttr_t Action_SensorTaskHandle_attributes = {
+    // .name = "Action_SensorTaskHandle",
+    // .stack_size = 128 * 8,
+    // .priority = (osPriority_t) osPriorityNormal,
+    // };
+    // Action_SensorTaskHandle = osThreadNew(Action_SensorTask, NULL, &Action_SensorTaskHandle_attributes);
 
 
     const osThreadAttr_t MotorTaskHandle_attributes = {
@@ -67,6 +72,19 @@ void osTaskInit(void)
     };
     IWDGTaskHandle = osThreadNew(IWDGTask, NULL, &IWDGTaskHandle_attributes);
 
+    const osThreadAttr_t CAN1_SendTaskHandle_attributes = {
+    .name = "CAN1_Send_TaskHandle",
+    .stack_size = 128*4 ,
+    .priority = (osPriority_t) osPriorityNormal,
+    };
+    CAN1_Send_TaskHandle = osThreadNew(CAN1_Send_Task, NULL, &CAN1_SendTaskHandle_attributes);
+
+    const osThreadAttr_t DebugTaskHandle_attributes = {
+    .name = "Debug_TaskHandle",
+    .stack_size = 128*4 ,
+    .priority = (osPriority_t) osPriorityNormal,
+    };
+    Debug_TaskHandle = osThreadNew(Debug_Task, NULL, &DebugTaskHandle_attributes);
 }
 
 /**
@@ -79,13 +97,14 @@ __attribute((noreturn)) void LogTask(void *argument)
     static float Log_start;
     static float Log_dt;
     static char sLog_dt[20];
+
+
     for(;;)
     {
         Log_start = DWT_GetTimeline_ms();
         LOGINFO("LogTask is running!");
         Log_dt = DWT_GetTimeline_ms() - Log_start;
         Float2Str(sLog_dt,Log_dt);
-        PEout(12) = 1;
         if(Log_dt > 1)
         {
             LOGERROR("LogTask is being DELAY!!! dt= [%s] ms", sLog_dt);
@@ -103,7 +122,7 @@ __attribute((noreturn)) void MotorTask(void *argument)
     for(;;)
     {
         Motor_start = DWT_GetTimeline_ms();
-        LOGINFO("MotorTask is running!");
+        // LOGINFO("MotorTask is running!");
         Motor_dt = DWT_GetTimeline_ms() - Motor_start;
         Float2Str(sMotor_dt,Motor_dt);
         PEout(12) = 0;
@@ -124,7 +143,6 @@ __attribute((noreturn)) void IWDGTask(void *argument)
     {
         IWDG_start = DWT_GetTimeline_ms();
         IWDG_Task();
-        LOGINFO("the dog is hungry!");
         IWDG_dt = DWT_GetTimeline_ms() - IWDG_start;
         Float2Str(sIWDG_dt,IWDG_dt);
         if(IWDG_dt > 1)

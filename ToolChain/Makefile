@@ -22,7 +22,7 @@ TARGET = new_build
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -O0
+OPT = -Og
 
 
 #######################################
@@ -86,18 +86,22 @@ C_SOURCES =  \
 ../Bsp/gpio/bsp_gpio.c \
 ../Bsp/soft_reset/soft_reset.c \
 ../App/Action_Sensor/Action_Sensor.c \
-../App/logtest/logtest.c \
 ../App/robot.c \
 ../Module/action/action.c \
 ../Module/topics/topics.c \
 ../Module/soft_iwdg/soft_iwdg.c \
+../Module/tool/user_tool.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/syscalls.c  \
 
 # C++ sources
 CXX_SOURCES = \
 ../Module/algorithm/filter.cpp \
-../Module/controller/pid_controller.cpp \
+../App/robot_com/com_config.cpp \
+../App/chassis_task/chassis_task.cpp \
+../App/debug_task/debug_task.cpp \
+
+
 
 # ASM sources 添加汇编文件
 ASM_SOURCES =  \
@@ -154,7 +158,7 @@ C_DEFS =  \
 -DUSE_HAL_DRIVER \
 -DSTM32F407xx \
 -DUSE_FULL_ASSERT \
--DUSE_RTOS_FOR_UART
+-DUSE_RTOS_FOR_UART \
 # -DDISABLE_LOG_SYSTEM \
 # -DDISABLE_SYSVIEW_SYSTEM \
 
@@ -182,14 +186,17 @@ C_CPP_INCLUDES =  \
 -I../Bsp/soft_reset \
 -I../Bsp/ \
 -I../App/Action_Sensor \
--I../App/logtest \
+-I../App/chassis_task \
+-I../App/robot_com \
+-I../App/debug_task \
 -I../App \
 -I../Module/action \
 -I../Module/topics \
 -I../Module/soft_iwdg \
 -I../Module/controller \
 -I../Module/tool \
--I../Module/algorithm \
+-I../Module/motor \
+-I../Module \
 -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include \
 -I../Drivers/CMSIS/Include \
 -I../Middlewares/ST/ARM/DSP/Inc \
@@ -200,7 +207,7 @@ ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffuncti
 
 CFLAGS += $(MCU) $(C_DEFS) $(C_CPP_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -DARM_MATH_CM4
 
-CXXFLAGS += $(MCU) $(C_DEFS) $(C_CPP_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -DARM_MATH_CM4
+CXXFLAGS += $(MCU) $(C_DEFS) $(C_CPP_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -DARM_MATH_CM4 -std=c++11
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2

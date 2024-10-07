@@ -22,7 +22,7 @@ extern "C"{
 /* rtos层接口 */
 #include "FreeRTOS.h"
 #include "task.h"
-
+#include "queue.h"
 /* hal库接口 */
 #include "usart.h"
 
@@ -74,9 +74,23 @@ typedef struct
     float yaw_rate;// 角速度
 }robot_info_from_action;
 
+
+
+/* 引入FREERTOS接口 */
+/* 其实相当于为module层露出了rtos的接口，只要挂载了对应的rtos api，就可以调用 */
+typedef struct
+{
+    uint32_t queue_length;// 通过调整队列长度，可以调节队列缓冲
+    QueueHandle_t xQueue;// 队列句柄
+    BaseType_t (*queue_send)(QueueHandle_t xQueue, const void *pvItemToQueue,BaseType_t *pxHigherPriorityTaskWoken);
+    BaseType_t (*queue_receive)(QueueHandle_t xQueue,void *pvBuffer,TickType_t xTicksToWait);// 从队列读数据
+}rtos_interface_t;
+
+
 /* Action设备实例，使用时需创建完实例和接口 */
 typedef struct 
 {
+	rtos_interface_t *rtos_for_action;
     Uart_Instance_t *action_uart_instance;// 继承自串口设备
 	IWDG_Instance_t *action_iwdg_instance;// 继承自看门狗设备,使用看门狗进行监护
     action_original_info *action_orin_data;// 存放未经处理的action数据
@@ -91,12 +105,14 @@ typedef struct
 
 /*----------------------------------function----------------------------------*/
 /**
- * @brief action实例初始化函数
+ * @brief action设备初始化函数
  * 
  * @param action_uart 
- * @return Action_Instance_t 
+ * @param action_iwdg 
+ * @param queue_length 
+ * @return Action_Instance_t* 
  */
-Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *action_iwdg);
+Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *action_iwdg,uint32_t queue_length);
 
 
 /**
@@ -126,7 +142,7 @@ uint8_t Action_GetData(uint8_t *data,action_original_info *action_data,robot_inf
  * @param data_len 
  * @return uint8_t 
  */
-uint8_t Action_RxCallback_Fun(Uart_Instance_t *action_instance, uint16_t data_len);
+uint8_t Action_RxCallback_Fun(void *action_instance, uint16_t data_len);
 
 
 /**
@@ -145,7 +161,7 @@ uint8_t action_iwdg_callback(void *instance);
 
 
 /**
- * @brief 
+ * @brief action设备注销函数
  * 
  * @param action_instance 
  * @return uint8_t 

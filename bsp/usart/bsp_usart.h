@@ -40,38 +40,18 @@ extern "C"{
 /* bsp层直接操作hal库底层 */
 #include "usart.h"
 
-/* rtos层接口头文件 */
-#ifdef USE_RTOS_FOR_UART
+/* freertos接口，用于提供堆管理 */
 #include "FreeRTOS.h"
-#include "queue.h"
-#include "Semphr.h"
-#endif
-
+#include "task.h"
 /*-----------------------------------macro------------------------------------*/
 #define DEVICE_UART_CNT 8 // 学院设计的外设板至多分配8个串口
 #define UART_RXBUFF_LIMIT 256 // 如果协议需要更大的buff,请修改这里
 /*----------------------------------typedef-----------------------------------*/
-/* 前向声明 */
-typedef struct Uart_Instance_t Uart_Instance_t;
-
-#ifdef USE_RTOS
-/* 引入FREERTOS接口 */
-/* 其实相当于为module层露出了rtos的接口，只要挂载了对应的rtos api，就可以调用 */
-typedef struct
-{
-    QueueHandle_t xQueue;// 队列句柄
-    BaseType_t (*queue_send)(QueueHandle_t xQueue, const void *pvItemToQueue,BaseType_t *pxHigherPriorityTaskWoken);
-    BaseType_t (*queue_receive)(QueueHandle_t xQueue,void *pvBuffer,TickType_t xTicksToWait);// 从队列读数据
-}rtos_interface_t;
-#endif //USE_RTOS
-
 /**
- * @brief 串口回调函数指针
+ * @brief 串口回调函数定义
  * 
- * @param uart_device 串口设备实例，记得在回调函数内部定义局部实例获取强转之后的void* 
- * @param rx_buf_num  收到的数据量，这个就是你串口一次中断收到的数据量，可以用于解析
  */
-typedef uint8_t (*uart_callback_t)(Uart_Instance_t* uart_device,uint16_t rx_buf_num);// 定义回调函数类型
+typedef uint8_t (*uart_callback_t)(void* uart_device,uint16_t rx_buf_num);// 定义回调函数类型
 
 /* 串口包数据结构体类型 */
 typedef struct
@@ -83,16 +63,12 @@ typedef struct
 }uart_package_t;
 
 /* uart instance 串口设备实例 */
-struct Uart_Instance_t
+typedef struct 
 {
-#ifdef USE_RTOS
-    /* rtos的接口 */
-    rtos_interface_t *rtos_for_uart;
-#endif
     /* 串口接收包结构体 */
     uart_package_t *uart_package;
     uint8_t (*Uart_Deinit)(void *);// 串口设备注销函数
-};
+}Uart_Instance_t;
 
 /*----------------------------------function----------------------------------*/
 /**
@@ -105,7 +81,8 @@ struct Uart_Instance_t
  * @return Uart_Instance_t* NULL 创建失败
  *                          实例  创建成功
  */
-Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length,size_t queue_data);
+Uart_Instance_t* Uart_Register(uart_package_t *uart_config);
+
 
 /**
  * @brief 串口中断管理函数

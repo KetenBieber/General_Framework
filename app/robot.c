@@ -28,12 +28,15 @@ void Robot_Init()
     /* 关闭中断，防止在初始化过程中发生中断 */
     __disable_irq();
 
-    osTaskInit();
     Bsp_Init();
-    
+    CAN_Init(&hcan1,CAN1_Rx_Callback);
+    CAN_Init(&hcan2,CAN2_Rx_Callback);    
+    Common_Service_Init();
+    Chassis_Init();
+    osTaskInit();
   /* 使用systemview需要在系统调度前初始化 */
 #ifndef DISABLE_SYSVIEW_SYSTEM
-  SEGGER_SYSVIEW_Conf();
+    SEGGER_SYSVIEW_Conf();
 #endif    
 
     /*初始化完成，开启中断 */

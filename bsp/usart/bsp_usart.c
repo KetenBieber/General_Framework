@@ -9,31 +9,27 @@
  * 
  * @attention :串口管理方面，用一个 static instance 数组来管理，在每次接收到数据的时候去调用
  *              功能方面，目前暂时先支持DMA空闲中断接收
+ *             队列设置方面：发送不能阻塞！只有接收可以阻塞！
  * @note :
  * @versioninfo :
  */
 #include "bsp_usart.h"
 #include "bsp_log.h"
-#include "queue.h"
 #include <string.h>
 #include <stddef.h>
 #include <stdlib.h>
 
-/* 由于xQueueSendFromISR为宏定义，不能直接挂载函数指针，所以先用函数包装一下 */
-static BaseType_t queue_send_wrapper(QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t *pxHigherPriorityTaskWoken) {
-    return xQueueSendFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
-}
+
 
 /* uart实例数组，所有注册了uart的模块信息会被保存在这里 */
 static uint8_t idx = 0;
 static Uart_Instance_t *Usart_Device[DEVICE_UART_CNT] = {NULL};
 
-static uint8_t Uart_Rtos_Init(Uart_Instance_t* uart_instance,uint32_t queue_length,size_t queue_data);
 static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance);
 static uint8_t Uart_Deinit(Uart_Instance_t **uart_instance);
 
 
-Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length,size_t queue_data)
+Uart_Instance_t* Uart_Register(uart_package_t *uart_config)
 {   
     if(uart_config == NULL)
     {
@@ -58,7 +54,6 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length
 
     // 经过上面的检查，可以进行注册了！
     Uart_Instance_t *uart_instance = (Uart_Instance_t *)pvPortMalloc(sizeof(Uart_Instance_t));// 为uart实例分配内存
-    // Uart_Instance_t *uart_instance = (Uart_Instance_t *)malloc(sizeof(Uart_Instance_t));// 为uart实例分配内存
 
     /* 为什么使用pvPortMalloc，动态创建，这样你在函数内部能管理的东西就更多了 */
     if(uart_instance == NULL)
@@ -77,68 +72,11 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config,uint32_t queue_length
     __HAL_UART_ENABLE_IT(uart_instance->uart_package->uart_handle, UART_IT_IDLE);// 使能UART的空闲中断
     HAL_UART_Receive_DMA(uart_instance->uart_package->uart_handle, uart_instance->uart_package->rx_buffer, uart_instance->uart_package->rx_buffer_size);// 启动DMA接收
 
-
-    /* rtos层接口初始化挂载 */
-    if(Uart_Rtos_Init(uart_instance,queue_length,queue_data) != 1)
-    {
-        /* 调用vPortFree之后请务必顺便将其置为NULL,避免指针悬空 */
-        vPortFree(uart_instance);
-        // free(uart_instance);
-        uart_instance = NULL;
-        return NULL;
-    }
-
     /* 将实例添加到数组中 */
     Usart_Device[idx++] = uart_instance;
     // 注册成功，返回实例
     LOGINFO("uart instance create successfully!");
     return uart_instance;
-}
-
-/**
- * @brief rtos对uart的支持初始化函数 static
- *      
- * @param uart_instance 
- * @param queue_length 
- * @param queue_data 
- * @return uint8_t --- 1 :success
- *                 --- 0 :failed
- */
-static uint8_t Uart_Rtos_Init(Uart_Instance_t* uart_instance,uint32_t queue_length,size_t queue_data)
-{
-    if(uart_instance == NULL)
-    {
-        LOGERROR("uart_rtos init failed!");
-        return 0;
-    }
-    rtos_interface_t *rtos_interface = (rtos_interface_t *)pvPortMalloc(sizeof(rtos_interface_t));
-    if(rtos_interface == NULL)
-    {
-        LOGERROR("rtos_interface pvPortMalloc failed!");
-        return 0;
-    }
-    memset(rtos_interface,0,sizeof(rtos_interface_t));
-    rtos_interface->queue_receive = xQueueReceive;
-    rtos_interface->queue_send = queue_send_wrapper;
-
-    // 注册获取一个Freertos 队列句柄
-    QueueHandle_t queue = xQueueCreate(queue_length,queue_data);
-    if(queue == NULL)
-    {
-        /* 如果队列创建失败 */
-        LOGERROR("queue for uart create failed!");
-        vPortFree(rtos_interface);
-        rtos_interface = NULL;
-        return 0;
-    }
-    else
-    {
-        // 如果队列创建成功，将队列句柄传递给rtos接口
-        rtos_interface->xQueue = queue;
-    }
-    uart_instance->rtos_for_uart = rtos_interface;
-    LOGINFO("uart rtos init success!");
-    return 1;
 }
 
 
@@ -204,6 +142,7 @@ static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance)
     return 1;
 }
 
+
 uint8_t Uart_UnRegister(void *uart_instance)
 {
     if (uart_instance == NULL)
@@ -236,6 +175,13 @@ uint8_t Uart_UnRegister(void *uart_instance)
     return 0;
 }
 
+
+/**
+ * @brief 
+ * 
+ * @param uart_instance 
+ * @return uint8_t 
+ */
 static uint8_t Uart_Deinit(Uart_Instance_t **uart_instance)
 {
     if(uart_instance == NULL || *uart_instance == NULL) 
@@ -244,19 +190,6 @@ static uint8_t Uart_Deinit(Uart_Instance_t **uart_instance)
         return 0;
     }
     Uart_Instance_t *temp_uart_instance = *uart_instance;
-    /* 删除uart->rtos */
-    if(temp_uart_instance->rtos_for_uart != NULL)
-    {
-        if(temp_uart_instance->rtos_for_uart->xQueue != NULL)
-        {
-            vQueueDelete(temp_uart_instance->rtos_for_uart->xQueue);
-            temp_uart_instance->rtos_for_uart->xQueue = NULL;
-        }
-        temp_uart_instance->rtos_for_uart->queue_receive = NULL;
-        temp_uart_instance->rtos_for_uart->queue_send = NULL;
-        vPortFree(temp_uart_instance->rtos_for_uart);
-        temp_uart_instance->rtos_for_uart = NULL;
-    }
     
     /* 删除uart->package */
     /* 规定uart->package必须将其生命域锁在任务函数中，所以不能对这块内存进行释放，需要操作的就只有将函数置空 */

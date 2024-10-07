@@ -183,7 +183,7 @@ extern "C" {
 	#define INCLUDE_xTaskGetCurrentTaskHandle 0
 #endif
 
-#if configUSE_CO_ROUTINES 
+#if configUSE_CO_ROUTINES != 0
 	#ifndef configMAX_CO_ROUTINE_PRIORITIES
 		#error configMAX_CO_ROUTINE_PRIORITIES must be greater than or equal to 1.
 	#endif

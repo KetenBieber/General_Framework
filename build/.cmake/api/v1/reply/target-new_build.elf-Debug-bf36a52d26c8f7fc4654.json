@@ -30,7 +30,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 110,
+				"line" : 111,
 				"parent" : 0
 			},
 			{
@@ -48,7 +48,7 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 105,
+				"line" : 106,
 				"parent" : 0
 			},
 			{
@@ -60,7 +60,7 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 106,
+				"line" : 107,
 				"parent" : 0
 			},
 			{
@@ -113,9 +113,9 @@
 			},
 			{
 				"command" : 5,
-				"file" : 0,
-				"line" : 65,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 7
 			},
 			{
 				"command" : 4,
@@ -127,7 +127,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 15
+				"parent" : 7
 			},
 			{
 				"command" : 4,
@@ -139,7 +139,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 15
+				"parent" : 7
 			},
 			{
 				"command" : 4,
@@ -149,9 +149,9 @@
 			},
 			{
 				"command" : 5,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 15
+				"file" : 0,
+				"line" : 65,
+				"parent" : 0
 			},
 			{
 				"command" : 4,
@@ -163,7 +163,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 15
+				"parent" : 21
 			},
 			{
 				"command" : 4,
@@ -175,7 +175,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 15
+				"parent" : 21
 			},
 			{
 				"command" : 4,
@@ -187,7 +187,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 15
+				"parent" : 21
 			},
 			{
 				"command" : 4,
@@ -197,9 +197,9 @@
 			},
 			{
 				"command" : 5,
-				"file" : 0,
-				"line" : 66,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 21
 			},
 			{
 				"command" : 4,
@@ -211,7 +211,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 29
+				"parent" : 21
 			},
 			{
 				"command" : 4,
@@ -223,7 +223,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 29
+				"parent" : 21
 			},
 			{
 				"command" : 4,
@@ -234,7 +234,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 67,
+				"line" : 66,
 				"parent" : 0
 			},
 			{
@@ -259,7 +259,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 37
+				"parent" : 35
 			},
 			{
 				"command" : 4,
@@ -269,9 +269,9 @@
 			},
 			{
 				"command" : 5,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 39
+				"file" : 0,
+				"line" : 67,
+				"parent" : 0
 			},
 			{
 				"command" : 4,
@@ -307,7 +307,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 43
+				"parent" : 45
 			},
 			{
 				"command" : 4,
@@ -331,7 +331,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 37
+				"parent" : 49
 			},
 			{
 				"command" : 4,
@@ -343,7 +343,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 35
+				"parent" : 49
 			},
 			{
 				"command" : 4,
@@ -367,7 +367,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 55
+				"parent" : 43
 			},
 			{
 				"command" : 4,
@@ -379,7 +379,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 53
+				"parent" : 41
 			},
 			{
 				"command" : 4,
@@ -389,45 +389,45 @@
 			},
 			{
 				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 59
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 61
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 61
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 63
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 59
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 65
+			},
+			{
+				"command" : 5,
 				"file" : 0,
 				"line" : 68,
 				"parent" : 0
-			},
-			{
-				"command" : 4,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 61
-			},
-			{
-				"command" : 5,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 61
-			},
-			{
-				"command" : 4,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 63
-			},
-			{
-				"command" : 5,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 63
-			},
-			{
-				"command" : 4,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 65
-			},
-			{
-				"command" : 5,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 65
 			},
 			{
 				"command" : 4,
@@ -451,7 +451,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 67
+				"parent" : 69
 			},
 			{
 				"command" : 4,
@@ -463,7 +463,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 61
+				"parent" : 71
 			},
 			{
 				"command" : 4,
@@ -487,7 +487,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 75
+				"parent" : 73
 			},
 			{
 				"command" : 4,
@@ -499,7 +499,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 77
+				"parent" : 67
 			},
 			{
 				"command" : 4,
@@ -511,7 +511,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 77
+				"parent" : 79
 			},
 			{
 				"command" : 4,
@@ -523,7 +523,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 77
+				"parent" : 81
 			},
 			{
 				"command" : 4,
@@ -547,7 +547,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 85
+				"parent" : 83
 			},
 			{
 				"command" : 4,
@@ -571,7 +571,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 73
+				"parent" : 89
 			},
 			{
 				"command" : 4,
@@ -595,7 +595,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 91
+				"parent" : 89
 			},
 			{
 				"command" : 4,
@@ -607,7 +607,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 95
+				"parent" : 79
 			},
 			{
 				"command" : 4,
@@ -617,9 +617,9 @@
 			},
 			{
 				"command" : 5,
-				"file" : 0,
-				"line" : 69,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 97
 			},
 			{
 				"command" : 4,
@@ -631,7 +631,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 99
+				"parent" : 97
 			},
 			{
 				"command" : 4,
@@ -643,7 +643,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 99
+				"parent" : 101
 			},
 			{
 				"command" : 4,
@@ -653,9 +653,9 @@
 			},
 			{
 				"command" : 5,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 99
+				"file" : 0,
+				"line" : 69,
+				"parent" : 0
 			},
 			{
 				"command" : 4,
@@ -667,7 +667,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 99
+				"parent" : 105
 			},
 			{
 				"command" : 4,
@@ -679,7 +679,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 99
+				"parent" : 105
 			},
 			{
 				"command" : 4,
@@ -691,7 +691,7 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 99
+				"parent" : 105
 			},
 			{
 				"command" : 4,
@@ -703,13 +703,61 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 99
+				"parent" : 105
 			},
 			{
 				"command" : 4,
 				"file" : 1,
 				"line" : 5,
 				"parent" : 113
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 105
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 115
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 105
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 117
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 105
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 119
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 105
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 121
 			}
 		]
 	},
@@ -837,210 +885,226 @@
 				},
 				{
 					"backtrace" : 12,
-					"path" : "C:/c_plusplus_try/new_build/App/com2ros"
+					"path" : "C:/c_plusplus_try/new_build/App/chassis_task"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "C:/c_plusplus_try/new_build/App/logtest"
+					"path" : "C:/c_plusplus_try/new_build/App/com2ros"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "C:/c_plusplus_try/new_build/Bsp"
+					"path" : "C:/c_plusplus_try/new_build/App/control_task"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
+					"path" : "C:/c_plusplus_try/new_build/App/debug_task"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
+					"path" : "C:/c_plusplus_try/new_build/App/robot_com"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
+					"path" : "C:/c_plusplus_try/new_build/Bsp"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
 				},
 				{
 					"backtrace" : 26,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "C:/c_plusplus_try/new_build/Core"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
 				},
 				{
 					"backtrace" : 32,
-					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 34,
-					"path" : "C:/c_plusplus_try/new_build/Core/Src"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
 				},
 				{
 					"backtrace" : 36,
-					"path" : "C:/c_plusplus_try/new_build/Drivers"
+					"path" : "C:/c_plusplus_try/new_build/Core"
 				},
 				{
 					"backtrace" : 38,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
+					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
 				},
 				{
 					"backtrace" : 40,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
+					"path" : "C:/c_plusplus_try/new_build/Core/Src"
 				},
 				{
 					"backtrace" : 42,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
+					"path" : "C:/c_plusplus_try/new_build/Drivers"
 				},
 				{
 					"backtrace" : 44,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 46,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 48,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 50,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 52,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 54,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
 				},
 				{
 					"backtrace" : 56,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
 				},
 				{
 					"backtrace" : 58,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 60,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 62,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 64,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 66,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 68,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares"
 				},
 				{
 					"backtrace" : 70,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
 				},
 				{
 					"backtrace" : 72,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 74,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 76,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 78,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 80,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 82,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 84,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 86,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 88,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 90,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 92,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 94,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 96,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 98,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 100,
-					"path" : "C:/c_plusplus_try/new_build/Module"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 102,
-					"path" : "C:/c_plusplus_try/new_build/Module/action"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 104,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 106,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module"
 				},
 				{
 					"backtrace" : 108,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/action"
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 114,
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+				},
+				{
+					"backtrace" : 116,
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+				},
+				{
+					"backtrace" : 118,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 120,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 122,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
@@ -1056,12 +1120,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1,
 				2,
-				3,
-				4,
 				5,
-				6,
 				7,
 				8,
 				9,
@@ -1111,8 +1171,12 @@
 				53,
 				54,
 				55,
+				56,
+				57,
 				58,
-				59
+				61,
+				62,
+				63
 			]
 		},
 		{
@@ -1237,210 +1301,226 @@
 				},
 				{
 					"backtrace" : 12,
-					"path" : "C:/c_plusplus_try/new_build/App/com2ros"
+					"path" : "C:/c_plusplus_try/new_build/App/chassis_task"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "C:/c_plusplus_try/new_build/App/logtest"
+					"path" : "C:/c_plusplus_try/new_build/App/com2ros"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "C:/c_plusplus_try/new_build/Bsp"
+					"path" : "C:/c_plusplus_try/new_build/App/control_task"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
+					"path" : "C:/c_plusplus_try/new_build/App/debug_task"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
+					"path" : "C:/c_plusplus_try/new_build/App/robot_com"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
+					"path" : "C:/c_plusplus_try/new_build/Bsp"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
 				},
 				{
 					"backtrace" : 26,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "C:/c_plusplus_try/new_build/Core"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
 				},
 				{
 					"backtrace" : 32,
-					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 34,
-					"path" : "C:/c_plusplus_try/new_build/Core/Src"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
 				},
 				{
 					"backtrace" : 36,
-					"path" : "C:/c_plusplus_try/new_build/Drivers"
+					"path" : "C:/c_plusplus_try/new_build/Core"
 				},
 				{
 					"backtrace" : 38,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
+					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
 				},
 				{
 					"backtrace" : 40,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
+					"path" : "C:/c_plusplus_try/new_build/Core/Src"
 				},
 				{
 					"backtrace" : 42,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
+					"path" : "C:/c_plusplus_try/new_build/Drivers"
 				},
 				{
 					"backtrace" : 44,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 46,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 48,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 50,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 52,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 54,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
 				},
 				{
 					"backtrace" : 56,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
 				},
 				{
 					"backtrace" : 58,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 60,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 62,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 64,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 66,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 68,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares"
 				},
 				{
 					"backtrace" : 70,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
 				},
 				{
 					"backtrace" : 72,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 74,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 76,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 78,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 80,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 82,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 84,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 86,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 88,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 90,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 92,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 94,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 96,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 98,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 100,
-					"path" : "C:/c_plusplus_try/new_build/Module"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 102,
-					"path" : "C:/c_plusplus_try/new_build/Module/action"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 104,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 106,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module"
 				},
 				{
 					"backtrace" : 108,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/action"
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 114,
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+				},
+				{
+					"backtrace" : 116,
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+				},
+				{
+					"backtrace" : 118,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 120,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 122,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
@@ -1455,8 +1535,12 @@
 			},
 			"sourceIndexes" : 
 			[
-				56,
-				57
+				1,
+				3,
+				4,
+				6,
+				59,
+				60
 			]
 		},
 		{
@@ -1584,218 +1668,234 @@
 				},
 				{
 					"backtrace" : 12,
-					"path" : "C:/c_plusplus_try/new_build/App/com2ros"
+					"path" : "C:/c_plusplus_try/new_build/App/chassis_task"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "C:/c_plusplus_try/new_build/App/logtest"
+					"path" : "C:/c_plusplus_try/new_build/App/com2ros"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "C:/c_plusplus_try/new_build/Bsp"
+					"path" : "C:/c_plusplus_try/new_build/App/control_task"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
+					"path" : "C:/c_plusplus_try/new_build/App/debug_task"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
+					"path" : "C:/c_plusplus_try/new_build/App/robot_com"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
+					"path" : "C:/c_plusplus_try/new_build/Bsp"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
 				},
 				{
 					"backtrace" : 26,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "C:/c_plusplus_try/new_build/Core"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
 				},
 				{
 					"backtrace" : 32,
-					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 34,
-					"path" : "C:/c_plusplus_try/new_build/Core/Src"
+					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
 				},
 				{
 					"backtrace" : 36,
-					"path" : "C:/c_plusplus_try/new_build/Drivers"
+					"path" : "C:/c_plusplus_try/new_build/Core"
 				},
 				{
 					"backtrace" : 38,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
+					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
 				},
 				{
 					"backtrace" : 40,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
+					"path" : "C:/c_plusplus_try/new_build/Core/Src"
 				},
 				{
 					"backtrace" : 42,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
+					"path" : "C:/c_plusplus_try/new_build/Drivers"
 				},
 				{
 					"backtrace" : 44,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 46,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 48,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 50,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 52,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 54,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
 				},
 				{
 					"backtrace" : 56,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
 				},
 				{
 					"backtrace" : 58,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 60,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 62,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 64,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 66,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
+					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 68,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares"
 				},
 				{
 					"backtrace" : 70,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
 				},
 				{
 					"backtrace" : 72,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 74,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 76,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 78,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 80,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 82,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 84,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 86,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 88,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 90,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 92,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 94,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 96,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 98,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 100,
-					"path" : "C:/c_plusplus_try/new_build/Module"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 102,
-					"path" : "C:/c_plusplus_try/new_build/Module/action"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 104,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 106,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module"
 				},
 				{
 					"backtrace" : 108,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/action"
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 114,
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+				},
+				{
+					"backtrace" : 116,
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+				},
+				{
+					"backtrace" : 118,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 120,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 122,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
 			"language" : "ASM",
 			"sourceIndexes" : 
 			[
-				60,
-				61
+				64,
+				65
 			]
 		}
 	],
@@ -1977,16 +2077,20 @@
 				56,
 				57,
 				58,
-				59
+				59,
+				60,
+				61,
+				62,
+				63
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				60,
-				61,
-				62
+				64,
+				65,
+				66
 			]
 		}
 	],
@@ -2000,20 +2104,38 @@
 		},
 		{
 			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "App/chassis_task/chassis_task.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "App/com2ros/com2ros.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "App/logtest/logtest.c",
+			"compileGroupIndex" : 1,
+			"path" : "App/control_task/control_task.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "App/debug_task/debug_task.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "App/robot.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "App/robot_com/com_config.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -2344,6 +2466,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Module/soft_iwdg/soft_iwdg.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Module/tool/user_tool.c",
 			"sourceGroupIndex" : 0
 		},
 		{

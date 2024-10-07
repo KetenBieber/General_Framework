@@ -26,8 +26,15 @@ union
     float ActVal[6];
 }action_posture;
 
+/* 由于xQueueSendFromISR为宏定义，不能直接挂载函数指针，所以先用函数包装一下 */
+static BaseType_t queue_send_wrapper(QueueHandle_t xQueue, const void *pvItemToQueue, BaseType_t *pxHigherPriorityTaskWoken) {
+    return xQueueSendFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
+}
 
-Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *action_iwdg)
+static uint8_t Action_Rtos_Init(Action_Instance_t* action_instance,uint32_t queue_length);
+
+
+Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *action_iwdg,uint32_t queue_length)
 {
     if(action_uart == NULL)
     {
@@ -53,10 +60,10 @@ Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *ac
         LOGERROR("action_iwdg have something is not valid!");
         return NULL;
     }
-    action_iwdg->owner_id = (void*)temp_action_instance;// 挂载看门狗实例
+    action_iwdg->owner_id = (void*)temp_action_instance;// 看门狗存储父类
     temp_action_instance->action_iwdg_instance = action_iwdg;// 挂载看门狗实例
     /* 检查串口设备是否检查 */
-    if(action_uart->rtos_for_uart ==NULL || action_uart->uart_package == NULL)
+    if(action_uart->uart_package == NULL)
     {
         LOGERROR("action_uart have somethong is not vaild!");
         vPortFree(temp_action_instance);
@@ -64,6 +71,14 @@ Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *ac
         return NULL;
     }
     temp_action_instance->action_uart_instance = action_uart;// 在这里闲聊几句:开发流程中,一般是先开发bsp层,然后向编写module层的人提供bsp层暴露的接口,module层通过使用这些api开发module层,最终再向app层开发人员提供module层接口
+    /* 挂载rtos接口 */
+    if(Action_Rtos_Init(temp_action_instance,queue_length) != 1)
+    {
+        LOGERROR("rtos for uart init wrong!");
+        vPortFree(temp_action_instance);
+        temp_action_instance = NULL;
+        return NULL;
+    }
 
     /* 挂载内部接口 */
     temp_action_instance->action_orin_data = (action_original_info*)pvPortMalloc(sizeof(action_original_info));
@@ -96,11 +111,49 @@ Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *ac
 }
 
 
+static uint8_t Action_Rtos_Init(Action_Instance_t* action_instance,uint32_t queue_length)
+{
+    if(action_instance == NULL)
+    {
+        LOGERROR("uart_rtos init failed!");
+        return 0;
+    }
+    rtos_interface_t *rtos_interface = (rtos_interface_t *)pvPortMalloc(sizeof(rtos_interface_t));
+    if(rtos_interface == NULL)
+    {
+        LOGERROR("rtos_interface pvPortMalloc failed!");
+        return 0;
+    }
+    memset(rtos_interface,0,sizeof(rtos_interface_t));
+    rtos_interface->queue_receive = xQueueReceive;
+    rtos_interface->queue_send = queue_send_wrapper;
+
+    // 注册获取一个Freertos 队列句柄
+    QueueHandle_t queue = xQueueCreate(queue_length,sizeof(UART_TxMsg));
+    if(queue == NULL)
+    {
+        /* 如果队列创建失败 */
+        LOGERROR("queue for uart create failed!");
+        vPortFree(rtos_interface);
+        rtos_interface = NULL;
+        return 0;
+    }
+    else
+    {
+        // 如果队列创建成功，将队列句柄传递给rtos接口
+        rtos_interface->xQueue = queue;
+    }
+    action_instance->rtos_for_action = rtos_interface;
+    LOGINFO("uart rtos init success!");
+    return 1;
+}
+
 uint8_t Action_Task(void* action_instance)
 {
     UART_TxMsg Msg;
     Action_Instance_t *temp_action_instance = action_instance;
-    if(temp_action_instance->action_uart_instance->rtos_for_uart->queue_receive(temp_action_instance->action_uart_instance->rtos_for_uart->xQueue,&Msg,0) == pdPASS)
+    // 接收方设置为portMAX_DELAY 在未收到数据时阻塞，减少cpu占用
+    if(temp_action_instance->rtos_for_action->queue_receive(temp_action_instance->rtos_for_action->xQueue,&Msg,portMAX_DELAY) == pdPASS)
     {
         LOGINFO("action task is running!");
         temp_action_instance->action_get_data(Msg.data_addr,temp_action_instance->action_orin_data,temp_action_instance->action_diff_data);
@@ -110,6 +163,7 @@ uint8_t Action_Task(void* action_instance)
     LOGERROR("action task is not running!");
     return 0;
 }
+
 
 uint8_t Action_GetData(uint8_t *data,action_original_info *action_data,robot_info_from_action *info_from_action)
 {
@@ -184,20 +238,27 @@ uint8_t Action_GetData(uint8_t *data,action_original_info *action_data,robot_inf
 }
 
 
-uint8_t Action_RxCallback_Fun(Uart_Instance_t *action_instance, uint16_t data_len)
+uint8_t Action_RxCallback_Fun(void *action_instance, uint16_t data_len)
 {
     UART_TxMsg Msg;
-    if(action_instance->rtos_for_uart->xQueue !=NULL)
+    if(action_instance == NULL)
     {
-        Msg.data_addr = action_instance->uart_package->rx_buffer;
+        LOGERROR("action_instance is NULL!");
+        return 0;
+    }
+    Action_Instance_t *temp_action_instance = (Action_Instance_t*)action_instance;
+    if(temp_action_instance->rtos_for_action->xQueue !=NULL)
+    {
+        Msg.data_addr = temp_action_instance->action_uart_instance->uart_package->rx_buffer;
         Msg.len = data_len;
-        Msg.huart = action_instance->uart_package->uart_handle;
-        if(Msg.data_addr != NULL)
-            action_instance->rtos_for_uart->queue_send(action_instance->rtos_for_uart->xQueue,&Msg,NULL);
+        Msg.huart = temp_action_instance->action_uart_instance->uart_package->uart_handle;
+        if(Msg.data_addr != NULL)// 注意发送不能阻塞！
+            temp_action_instance->rtos_for_action->queue_send(temp_action_instance->rtos_for_action->xQueue,&Msg,NULL);
         return 1;
     }
     return 0;
 }
+
 
 uint8_t Action_RefreshData(void)
 {
@@ -266,7 +327,6 @@ uint8_t Action_Deinit(void *action_instance)
         LOGERROR("action iwdg deinit failed!");
         return 0;
     }
-    LOGINFO("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
     /* 清除action设备中的接口 */
     if(temp_action_instance->action_orin_data != NULL)
     {
@@ -279,6 +339,18 @@ uint8_t Action_Deinit(void *action_instance)
         temp_action_instance->action_diff_data = NULL;
     }
 
+    if(temp_action_instance->rtos_for_action != NULL)
+    {
+        temp_action_instance->rtos_for_action->queue_receive =NULL;
+        temp_action_instance->rtos_for_action->queue_send = NULL;
+        if(temp_action_instance->rtos_for_action->xQueue != NULL)
+        {
+            vQueueDelete(temp_action_instance->rtos_for_action->xQueue);
+            temp_action_instance->rtos_for_action->xQueue = NULL;
+        }
+        vPortFree(temp_action_instance->rtos_for_action);
+        temp_action_instance->rtos_for_action = NULL;
+    }
     /* 清除内部函数接口 */
     temp_action_instance->action_task = NULL;
     temp_action_instance->action_get_data = NULL;

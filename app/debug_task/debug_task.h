@@ -1,9 +1,9 @@
 /**
- * @file logtest.h
+ * @file debug_task.h
  * @author Keten (2863861004@qq.com)
  * @brief 
  * @version 0.1
- * @date 2024-09-13
+ * @date 2024-10-07
  * 
  * @copyright Copyright (c) 2024
  * 
@@ -11,17 +11,18 @@
  * @note :
  * @versioninfo :
  */
-
-#ifndef LOGTEST_H 
-#define LOGTEST_H 
+#pragma once
 
 #ifdef __cplusplus
 extern "C"{
 #endif
 
 /*----------------------------------include-----------------------------------*/
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "cmsis_os.h"
 #include "bsp_log.h"
-#include "freertos.h"
+
 /*-----------------------------------macro------------------------------------*/
 
 /*----------------------------------typedef-----------------------------------*/
@@ -31,9 +32,19 @@ extern "C"{
 /*-------------------------------------os-------------------------------------*/
 
 /*----------------------------------function----------------------------------*/
+void Debug_Task(void *argument);
+/*------------------------------------test------------------------------------*/
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif	/* LOGTEST_H */
+#ifdef __cplusplus
+#include "rm_motor.h"
+#include "motor_interface.h"
+#include "chassis_task.h"
+
+#endif
+
+
+

@@ -15,10 +15,12 @@
 
 #include "bsp_log.h"
 #include "bsp_dwt.h"
+#include "bsp_can.h"
 
 void Bsp_Init()
 {
     /* stm32f4 芯片主频 168MHz */
     DWT_Init(168);    
     BSPLogInit();
+
 }

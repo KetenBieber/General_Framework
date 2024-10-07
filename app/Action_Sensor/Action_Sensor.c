@@ -27,29 +27,31 @@ Action_Instance_t *action_instance = NULL;
  */
 __attribute((noreturn)) void Action_SensorTask(void *argument)
 {
+    /* 时间监测 */
     static float Action_Sensor_start;
     static float Action_Sensor_dt;
+
     static char sAction_Sensor_dt[20];
     /* 串口实例注册 */
-    // uint8_t rx_buffer[30];// 配置用来装储存数据的buffer
     uart_package_t action_package = {
         .uart_handle = &huart4,
         .rx_buffer = rx_buffer,
         .rx_buffer_size = ACTION_DATA_NUM,
         .uart_callback = Action_RxCallback_Fun,
     };// 配置uart包
-    action_uart_instance = Uart_Register(&action_package, 10, sizeof(UART_TxMsg));
+    action_uart_instance = Uart_Register(&action_package);
     if(action_uart_instance == NULL)
     {
         /* 如果action设备创建失败，就删除本task，防止占cpu */
         LOGWARNING("uart register failed!");
         vTaskDelete(NULL);
     }
+
     /* 看门狗注册流程 */
     iwdg_config_t action_iwdg_config = {
-        .reload_count = 1000,
-        .init_count = 10000,
-        .callback = action_iwdg_callback,
+        .reload_count = 1000,// 设置重载值为1000，t=1000*看门狗线程周期
+        .init_count = 10000,// 设置action设备初始化所需的时间 t=10000*1ms
+        .callback = action_iwdg_callback,// 设置action看门狗意外触发函数，需要用户提供
     };
     IWDG_Instance_t *action_iwdg_instance = NULL;
     action_iwdg_instance = IWDG_Register(&action_iwdg_config);
@@ -59,8 +61,9 @@ __attribute((noreturn)) void Action_SensorTask(void *argument)
         LOGWARNING("iwdg register failed!");
         vTaskDelete(NULL);
     }
+
     /* action设备注册流程 */
-    action_instance = Action_Init(action_uart_instance,action_iwdg_instance);    
+    action_instance = Action_Init(action_uart_instance,action_iwdg_instance,10);// 设定action队列长度为10    
     if(action_instance == NULL)
     {
         /* 如果action设备创建失败，就删除本task，防止占cpu */

@@ -3,7 +3,6 @@
 #ifdef __cplusplus
 #include <algorithm>
 #include <cstring> 
-#include "string.h"
 
 class LowPassFilter     //低通滤波器
 {

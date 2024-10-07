@@ -18,7 +18,17 @@
         "soft_iwdg.h": "c",
         "action.h": "c",
         "action_sensor.h": "c",
-        "bsp_usart.h": "c"
+        "bsp_usart.h": "c",
+        "cstdint": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "random": "cpp",
+        "chassis_task.h": "c",
+        "rm_motor.h": "c",
+        "stdint.h": "c",
+        "algorithm": "cpp"
     },
-    "C_Cpp.default.compilerPath": "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
+    "C_Cpp.default.compilerPath": "c:/msys64/mingw64/bin/arm-none-eabi-g++.exe",
+    "C_Cpp.errorSquiggles": "enabled"
 }
