@@ -158,10 +158,9 @@ void CAN_Transmit_ExtId(CAN_Tx_Instance_t *can_tx_instance)
 
 
 void CAN_Transmit_StdID(CAN_Tx_Instance_t *can_tx_instance)
-// void CAN_Transmit_StdID(CAN_HandleTypeDef* hcan,uint16_t StdId,uint8_t *pdata,uint8_t length)
 {
     CAN_TxHeaderTypeDef TxHeader;
-    uint32_t tx_mailbox = 0;                                                      // 创建发送句柄
+    uint32_t tx_mailbox = 0;                                                           // 创建发送句柄
     TxHeader.StdId = can_tx_instance->tx_id;                                           // 将发送目标的id记录（内部不对扩展帧or标准帧作判断了，需要用户明确调用！）
     TxHeader.IDE = CAN_ID_STD;                                                         // 设置为发送标准帧模式
     TxHeader.RTR = CAN_RTR_DATA;                                                       // 发送数据帧

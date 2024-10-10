@@ -12,18 +12,28 @@
  * @versioninfo :
  */
 #include "com_config.h"
+#include "topics.h"
 
 extern Motor_C610 m2006;
+extern Motor_C620 chassis_lf;
+extern Motor_C620 chassis_lb;
+extern Motor_C620 chassis_rf;
+extern Motor_C620 chassis_rb;
 
 osThreadId_t CAN1_Send_TaskHandle;
 
 QueueHandle_t CAN1_TxPort;
 QueueHandle_t CAN2_TxPort;
 
+
+
+
 uint8_t Common_Service_Init()
 {
     CAN1_TxPort = xQueueCreate(16,sizeof(CAN_Tx_Instance_t));
     CAN2_TxPort = xQueueCreate(16,sizeof(CAN_Tx_Instance_t));
+    SubPub_Init();// 话题订阅机制开启
+
     return 1;
 }
 
@@ -36,7 +46,22 @@ void CAN1_Rx_Callback(CAN_Rx_Instance_t *can_instance)
         {
             case 0x201:
             {
-                m2006.update(can_instance->can_rx_buff);
+                chassis_lf.update(can_instance->can_rx_buff);
+                break;
+            }
+            case 0x202:
+            {
+                chassis_rf.update(can_instance->can_rx_buff);
+                break;
+            }
+            case 0x203:
+            {
+                chassis_rb.update(can_instance->can_rx_buff);
+                break;
+            }
+            case 0x204:
+            {
+                chassis_lb.update(can_instance->can_rx_buff);
                 break;
             }
         }
@@ -47,7 +72,6 @@ void CAN1_Rx_Callback(CAN_Rx_Instance_t *can_instance)
         {
             case 0x201:
             {
-                m2006.update(can_instance->can_rx_buff);
                 break;
             }
         }
@@ -63,7 +87,6 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance)
         {
             case 0x201:
             {
-                m2006.update(can_instance->can_rx_buff);
                 break;
             }
         }
@@ -85,7 +108,6 @@ __attribute((noreturn)) void CAN1_Send_Task(void *argument)
             if(temp_can_txmsg.isExTid == 1)// 发送扩展帧
                 CAN_Transmit_ExtId(&temp_can_txmsg);
             else    // 发送标准帧
-                // CAN_Transmit_StdID(&hcan1,0x200,temp_can_txmsg.can_tx_buff,temp_can_txmsg.tx_len);
                 CAN_Transmit_StdID(&temp_can_txmsg);
         }
         osDelay(1);

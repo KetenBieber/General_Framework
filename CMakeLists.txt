@@ -53,6 +53,7 @@ add_definitions(
     -DDISABLEFLOAT16
     -DUSE_FULL_ASSERT
     -DUSE_RTOS_FOR_UART
+    -DTOPICS_DEBUG
     # -DDISABLE_LOG_SYSTEM
     # -DDISABLE_SYSVIEW_SYSTEM
     ) # need -D<macro> to define macro

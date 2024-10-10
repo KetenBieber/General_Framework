@@ -45,7 +45,7 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config)
     }
     for(uint8_t i = 0 ; i < idx ; i++)
     {
-        if(uart_config->uart_handle == Usart_Device[i]->uart_package->uart_handle)
+        if(uart_config->uart_handle == Usart_Device[i]->uart_package.uart_handle)
         {
             LOGINFO("uart instance already registered!");// 如果已经被注册过了，即重复注册
             return NULL;
@@ -64,13 +64,16 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config)
     memset(uart_instance,0,sizeof(Uart_Instance_t));// 初始化uart实例
 
     /* 挂载串口包结构体 */
+    
     memset(uart_config->rx_buffer,0,uart_config->rx_buffer_size);// 清空接收缓存
-    uart_instance->uart_package = uart_config;
+    uart_instance->uart_package = *uart_config;
+
     uart_instance->Uart_Deinit = Uart_UnRegister;// 挂载注销函数
+
     /* hal库硬件设置 */
-    __HAL_UART_CLEAR_IDLEFLAG(uart_instance->uart_package->uart_handle);// 清除UART的空闲中断标志位
-    __HAL_UART_ENABLE_IT(uart_instance->uart_package->uart_handle, UART_IT_IDLE);// 使能UART的空闲中断
-    HAL_UART_Receive_DMA(uart_instance->uart_package->uart_handle, uart_instance->uart_package->rx_buffer, uart_instance->uart_package->rx_buffer_size);// 启动DMA接收
+    __HAL_UART_CLEAR_IDLEFLAG(uart_instance->uart_package.uart_handle);// 清除UART的空闲中断标志位
+    __HAL_UART_ENABLE_IT(uart_instance->uart_package.uart_handle, UART_IT_IDLE);// 使能UART的空闲中断
+    HAL_UART_Receive_DMA(uart_instance->uart_package.uart_handle, uart_instance->uart_package.rx_buffer, uart_instance->uart_package.rx_buffer_size);// 启动DMA接收
 
     /* 将实例添加到数组中 */
     Usart_Device[idx++] = uart_instance;
@@ -88,7 +91,7 @@ uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance)
         return 0;
     }
     /* 检查UART的空闲中断标志位是否置位 */
-    if(__HAL_UART_GET_FLAG(uart_instance->uart_package->uart_handle, UART_FLAG_IDLE) != RESET)
+    if(__HAL_UART_GET_FLAG(uart_instance->uart_package.uart_handle, UART_FLAG_IDLE) != RESET)
     {
         Uart_Rx_Idle_Callback(uart_instance);
     }
@@ -120,16 +123,16 @@ static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance)
     static uint16_t uart_rx_num;
 
     /* 清除空闲中断标志位 */
-    __HAL_UART_CLEAR_IDLEFLAG(uart_instance->uart_package->uart_handle);
+    __HAL_UART_CLEAR_IDLEFLAG(uart_instance->uart_package.uart_handle);
 
     /* 停止DMA传输 */
-    HAL_UART_DMAStop(uart_instance->uart_package->uart_handle);
+    HAL_UART_DMAStop(uart_instance->uart_package.uart_handle);
 
-    uart_rx_num = uart_instance->uart_package->rx_buffer_size - ((DMA_Stream_TypeDef*)uart_instance->uart_package->uart_handle->hdmarx->Instance)->NDTR;// 获取接收到的数据长度
-    if(uart_instance->uart_package->uart_callback != NULL)
+    uart_rx_num = uart_instance->uart_package.rx_buffer_size - ((DMA_Stream_TypeDef*)uart_instance->uart_package.uart_handle->hdmarx->Instance)->NDTR;// 获取接收到的数据长度
+    if(uart_instance->uart_package.uart_callback != NULL)
     {
         /* 如果用户自己实现了串口回调中断函数，则调用 */
-        uart_instance->uart_package->uart_callback(uart_instance,uart_rx_num);
+        uart_instance->uart_package.uart_callback(uart_instance,uart_rx_num);
     }
     else
     {
@@ -138,7 +141,7 @@ static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance)
     }
 
     /* 重新开启DMA中断 */
-    HAL_UART_Receive_DMA(uart_instance->uart_package->uart_handle, uart_instance->uart_package->rx_buffer, uart_instance->uart_package->rx_buffer_size);// 重新启动DMA传输
+    HAL_UART_Receive_DMA(uart_instance->uart_package.uart_handle, uart_instance->uart_package.rx_buffer, uart_instance->uart_package.rx_buffer_size);// 重新启动DMA传输
     return 1;
 }
 
@@ -193,10 +196,6 @@ static uint8_t Uart_Deinit(Uart_Instance_t **uart_instance)
     
     /* 删除uart->package */
     /* 规定uart->package必须将其生命域锁在任务函数中，所以不能对这块内存进行释放，需要操作的就只有将函数置空 */
-    if(temp_uart_instance->uart_package != NULL)
-    {
-        temp_uart_instance->uart_package->uart_callback = NULL;
-    }
 
     temp_uart_instance->Uart_Deinit = NULL;
     /* 删除uart实例 */

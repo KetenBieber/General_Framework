@@ -66,7 +66,7 @@ typedef struct
 typedef struct 
 {
     /* 串口接收包结构体 */
-    uart_package_t *uart_package;
+    uart_package_t uart_package;
     uint8_t (*Uart_Deinit)(void *);// 串口设备注销函数
 }Uart_Instance_t;
 

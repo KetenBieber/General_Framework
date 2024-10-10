@@ -44,8 +44,9 @@ extern "C" {
  * @param hcan         CAN句柄
  */
 template <class Motor_Type, int N>
-void Motor_SendMsgs(CAN_Tx_Instance_t &can_tx_instance, Motor_Type (&motor)[N])
+void Motor_SendMsgs(Motor_Type (&motor)[N])
 {
+    CAN_Tx_Instance_t can_tx_instance;
     for(int i=0; i<N; i++)
     {
         motor[i].CanMsg_Process(can_tx_instance);
@@ -66,10 +67,10 @@ void Motor_SendMsgs(CAN_Tx_Instance_t &can_tx_instance, Motor_Type (&motor)[N])
  * @param motor       电机
  */
 template <class Motor_Type>
-void Motor_SendMsgs(CAN_Tx_Instance_t &can_tx_instance, Motor_Type &motor)
+void Motor_SendMsgs(Motor_Type &motor)
 {
     Motor_Type motor_arr[1] = {motor};
-    Motor_SendMsgs(can_tx_instance, motor_arr);
+    Motor_SendMsgs(motor_arr);
 }
 
 #endif

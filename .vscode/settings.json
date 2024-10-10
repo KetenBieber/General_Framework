@@ -27,7 +27,11 @@
         "chassis_task.h": "c",
         "rm_motor.h": "c",
         "stdint.h": "c",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "com_config.h": "c",
+        "robot_ins.h": "c",
+        "data_pool.h": "c",
+        "topics.h": "c"
     },
     "C_Cpp.default.compilerPath": "c:/msys64/mingw64/bin/arm-none-eabi-g++.exe",
     "C_Cpp.errorSquiggles": "enabled"

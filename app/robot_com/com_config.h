@@ -35,11 +35,36 @@ extern QueueHandle_t CAN2_TxPort;
 #define CAN2_TX_QUEUE_SIZE      8
 
 /*----------------------------------function----------------------------------*/
+
+/**
+ * @brief 
+ * 
+ * @return uint8_t 
+ */
 uint8_t Common_Service_Init();
 
+
+/**
+ * @brief 
+ * 
+ * @param can_instance 
+ */
 void CAN1_Rx_Callback(CAN_Rx_Instance_t *can_instance);
+
+
+/**
+ * @brief 
+ * 
+ * @param can_instance 
+ */
 void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance);
 
+
+/**
+ * @brief 
+ * 
+ * @param argument 
+ */
 void CAN1_Send_Task(void *argument);
 
 

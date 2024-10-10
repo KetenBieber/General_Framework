@@ -18,7 +18,7 @@
 #include "cmsis_os2.h"
 
 
-extern osThreadId_t Action_SensorTaskHandle;
+extern osThreadId_t ins_SensorTaskHandle;
 extern osThreadId_t MotorTaskHandle;
 union 
 {
@@ -63,13 +63,14 @@ Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *ac
     action_iwdg->owner_id = (void*)temp_action_instance;// 看门狗存储父类
     temp_action_instance->action_iwdg_instance = action_iwdg;// 挂载看门狗实例
     /* 检查串口设备是否检查 */
-    if(action_uart->uart_package == NULL)
+    if(action_uart->uart_package.rx_buffer == NULL)
     {
         LOGERROR("action_uart have somethong is not vaild!");
         vPortFree(temp_action_instance);
         temp_action_instance = NULL;
         return NULL;
     }
+    
     temp_action_instance->action_uart_instance = action_uart;// 在这里闲聊几句:开发流程中,一般是先开发bsp层,然后向编写module层的人提供bsp层暴露的接口,module层通过使用这些api开发module层,最终再向app层开发人员提供module层接口
     /* 挂载rtos接口 */
     if(Action_Rtos_Init(temp_action_instance,queue_length) != 1)
@@ -101,8 +102,11 @@ Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *ac
     }
     memset(temp_action_instance->action_diff_data,0,sizeof(robot_info_from_action));
     /* 挂载函数指针 */
+    assert_param(Action_GetData != NULL);
     temp_action_instance->action_get_data = Action_GetData;
+    assert_param(Action_RefreshData != NULL);
     temp_action_instance->action_refresh_data = Action_RefreshData;
+    assert_param(Action_Task != NULL);
     temp_action_instance->action_task = Action_Task;
     assert_param(Action_Deinit != NULL);
     temp_action_instance->action_deinit = Action_Deinit;
@@ -119,6 +123,7 @@ static uint8_t Action_Rtos_Init(Action_Instance_t* action_instance,uint32_t queu
         return 0;
     }
     rtos_interface_t *rtos_interface = (rtos_interface_t *)pvPortMalloc(sizeof(rtos_interface_t));
+    assert_param(rtos_interface != NULL);
     if(rtos_interface == NULL)
     {
         LOGERROR("rtos_interface pvPortMalloc failed!");
@@ -143,6 +148,8 @@ static uint8_t Action_Rtos_Init(Action_Instance_t* action_instance,uint32_t queu
         // 如果队列创建成功，将队列句柄传递给rtos接口
         rtos_interface->xQueue = queue;
     }
+    rtos_interface->queue_receive = xQueueReceive;
+    rtos_interface->queue_send = queue_send_wrapper;    
     action_instance->rtos_for_action = rtos_interface;
     LOGINFO("uart rtos init success!");
     return 1;
@@ -153,11 +160,12 @@ uint8_t Action_Task(void* action_instance)
     UART_TxMsg Msg;
     Action_Instance_t *temp_action_instance = action_instance;
     // 接收方设置为portMAX_DELAY 在未收到数据时阻塞，减少cpu占用
+    LOGERROR("coming!");
     if(temp_action_instance->rtos_for_action->queue_receive(temp_action_instance->rtos_for_action->xQueue,&Msg,portMAX_DELAY) == pdPASS)
     {
         LOGINFO("action task is running!");
         temp_action_instance->action_get_data(Msg.data_addr,temp_action_instance->action_orin_data,temp_action_instance->action_diff_data);
-        temp_action_instance->action_iwdg_instance->feed_dog(temp_action_instance->action_iwdg_instance);
+        assert_param( temp_action_instance->action_iwdg_instance->feed_dog(temp_action_instance->action_iwdg_instance) == 1);
         return 1;
     }
     LOGERROR("action task is not running!");
@@ -247,11 +255,13 @@ uint8_t Action_RxCallback_Fun(void *action_instance, uint16_t data_len)
         return 0;
     }
     Action_Instance_t *temp_action_instance = (Action_Instance_t*)action_instance;
+
+
     if(temp_action_instance->rtos_for_action->xQueue !=NULL)
     {
-        Msg.data_addr = temp_action_instance->action_uart_instance->uart_package->rx_buffer;
+        Msg.data_addr = temp_action_instance->action_uart_instance->uart_package.rx_buffer;
         Msg.len = data_len;
-        Msg.huart = temp_action_instance->action_uart_instance->uart_package->uart_handle;
+        Msg.huart = temp_action_instance->action_uart_instance->uart_package.uart_handle;
         if(Msg.data_addr != NULL)// 注意发送不能阻塞！
             temp_action_instance->rtos_for_action->queue_send(temp_action_instance->rtos_for_action->xQueue,&Msg,NULL);
         return 1;
@@ -262,44 +272,6 @@ uint8_t Action_RxCallback_Fun(void *action_instance, uint16_t data_len)
 
 uint8_t Action_RefreshData(void)
 {
-    return 1;
-}
-
-
-uint8_t action_iwdg_callback(void *instance)
-{
-    if(instance == NULL)
-    {
-        return 0;
-    }
-    Action_Instance_t *temp_action_instance = (Action_Instance_t*)instance;  
-    LOGINFO("action has not response!");
-    if (temp_action_instance == NULL)
-    {
-        LOGERROR("temp_action_instance is NULL!");
-        return 0;
-    }
-
-    if (temp_action_instance->action_deinit == NULL)
-    {
-        LOGERROR("action_deinit function pointer is NULL!");
-        return 0;
-    }    
-    temp_action_instance->action_deinit(temp_action_instance);
-    if(Action_SensorTaskHandle != NULL)
-    {
-        if(xTaskAbortDelay(Action_SensorTaskHandle) == pdPASS)
-        {
-            LOGINFO("action task is abort!");
-            vTaskDelete(Action_SensorTaskHandle);
-            Action_SensorTaskHandle = NULL;
-        }
-        else
-        {
-            LOGERROR("action task is not abort!");
-        }
-    }
-
     return 1;
 }
 

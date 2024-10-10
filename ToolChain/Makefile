@@ -22,7 +22,7 @@ TARGET = new_build
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -Og
+OPT = -O0
 
 
 #######################################
@@ -85,18 +85,22 @@ C_SOURCES =  \
 ../Bsp/can/bsp_can.c \
 ../Bsp/gpio/bsp_gpio.c \
 ../Bsp/soft_reset/soft_reset.c \
-../App/Action_Sensor/Action_Sensor.c \
+../App/robot_ins/robot_ins.c \
 ../App/robot.c \
 ../Module/action/action.c \
 ../Module/topics/topics.c \
 ../Module/soft_iwdg/soft_iwdg.c \
 ../Module/tool/user_tool.c \
+../Module/tool/circular_queue.c \
+../Module/tool/cvector.c \
+../Module/controller/pid_controller.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/syscalls.c  \
 
 # C++ sources
 CXX_SOURCES = \
 ../Module/algorithm/filter.cpp \
+../Module/motor/rm_motor.cpp \
 ../App/robot_com/com_config.cpp \
 ../App/chassis_task/chassis_task.cpp \
 ../App/debug_task/debug_task.cpp \
@@ -159,6 +163,7 @@ C_DEFS =  \
 -DSTM32F407xx \
 -DUSE_FULL_ASSERT \
 -DUSE_RTOS_FOR_UART \
+-DTOPICS_DEBUG \
 # -DDISABLE_LOG_SYSTEM \
 # -DDISABLE_SYSVIEW_SYSTEM \
 
@@ -185,7 +190,7 @@ C_CPP_INCLUDES =  \
 -I../Bsp/can \
 -I../Bsp/soft_reset \
 -I../Bsp/ \
--I../App/Action_Sensor \
+-I../App/robot_ins \
 -I../App/chassis_task \
 -I../App/robot_com \
 -I../App/debug_task \
@@ -196,6 +201,7 @@ C_CPP_INCLUDES =  \
 -I../Module/controller \
 -I../Module/tool \
 -I../Module/motor \
+-I../Module/algorithm \
 -I../Module \
 -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include \
 -I../Drivers/CMSIS/Include \

@@ -128,4 +128,31 @@ private:
 	int flag,where_num;
 };
 
+/**
+ * @brief 指数平滑滤波
+ * 
+ * @tparam T 数据类型
+ * @param_to_init smoothingCoefficient 权重系数0~1 ，越靠近1，即越相信新的数据
+ *@note smoothingCoefficient越接近1即变化更快，越接近0即变换较慢，平滑但延迟
+ */
+template <typename T>
+class ExponentialFilter {
+public:
+    ExponentialFilter(float smoothingCoefficient)
+        : smoothingCoefficient(smoothingCoefficient), filteredValue(T()) {}
+
+    inline void update(T newValue) {
+        filteredValue = (1.0f - smoothingCoefficient) * filteredValue +
+                        smoothingCoefficient * newValue;
+    }
+
+    inline T getFilteredValue() const {
+        return filteredValue;
+    }
+
+private:
+    float smoothingCoefficient;
+    T filteredValue;
+};
+
 #endif
