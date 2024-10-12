@@ -25,6 +25,8 @@
 #include "chassis_task.h"
 #include "bsp_can.h"
 #include "rm_motor.h"
+#include "Chassis.h"
+#include "Omni_Chassis.h"
 
 
 /* 即使是大疆电机，也最好做好定义,统一can设备使用方式 */
@@ -181,24 +183,31 @@ Motor_Control_Setting_t m3508_lb_control_instance = {
 
 
 /* 实例化电机，存进读取速度更快的CCMRAM */
-CCMRAM Motor_C620 chassis_lf(1,m3508_lf_rx_instance,m3508_lf_tx_instance,m3508_lf_control_instance);
-CCMRAM Motor_C620 chassis_rf(2,m3508_rf_rx_instance,m3508_rf_tx_instance,m3508_rf_control_instance);
-CCMRAM Motor_C620 chassis_rb(3,m3508_rb_rx_instance,m3508_rb_tx_instance,m3508_rb_control_instance);
-CCMRAM Motor_C620 chassis_lb(4,m3508_lb_rx_instance,m3508_lb_tx_instance,m3508_lb_control_instance);
 
-
+CCMRAM Motor_C620 chassis_motor[4] = {Motor_C620(1,m3508_lf_rx_instance,m3508_lf_tx_instance,m3508_lf_control_instance), 
+                                      Motor_C620(2,m3508_rf_rx_instance,m3508_rf_tx_instance,m3508_rf_control_instance),
+                                      Motor_C620(3,m3508_rb_rx_instance,m3508_rb_tx_instance,m3508_rb_control_instance), 
+                                      Motor_C620(4,m3508_lb_rx_instance,m3508_lb_tx_instance,m3508_lb_control_instance)};
 
 uint8_t Chassis_Init()
 {
-    
-    CAN_Add_Filter(&hcan1,&m3508_lb_rx_instance);
-    CAN_Add_Filter(&hcan1,&m3508_lf_rx_instance);
-    CAN_Add_Filter(&hcan1,&m3508_rb_rx_instance);
-    CAN_Add_Filter(&hcan1,&m3508_rf_rx_instance);
+    /* 创建底盘实例 */
+    Omni_Chassis User_Chassis(4,WHEEL_R,CHASSIS_R);
+    User_Chassis.Chassis_PID_X = {
+        .Kp = 1.0,
+        .Ki = 0.0,
+        .Kd = 0.0,
+    };
+    User_Chassis.Chassis_PID_Y = {
 
-    //CAN_Add_Filter(&hcan2,&m2006.can_rx_for_motor);
-    LOGINFO("can filter init success!");
+    };
+    User_Chassis.Chassis_PID_Omega = {
 
+    };
+
+    User_Chassis.Chassis_Subscribe_Init();
+    User_Chassis.Get_Current_Position();
+    User_Chassis.Get_Current_Posture();
     return 1;
 }
 

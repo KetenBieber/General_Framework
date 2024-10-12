@@ -30,16 +30,4 @@ typedef struct
 }UART_TxMsg;
 
 
-/**
- * @brief can数据传输结构体封装
- * 
- */
-typedef struct CAN_TxMsg
-{
-    uint8_t data[8];//数据数组，8位
-    uint32_t id;	//ID
-    uint8_t len;	//数据长度
-}CAN_TxMsg;
-
-
 #pragma pack()

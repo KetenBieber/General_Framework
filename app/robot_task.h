@@ -48,7 +48,7 @@ void osTaskInit(void)
     .stack_size = 128 * 4,
     .priority = (osPriority_t) osPriorityNormal,
     };
-    LogTaskHandle = osThreadNew(LogTask, NULL, &LogTaskHandle_attributes);
+    // LogTaskHandle = osThreadNew(LogTask, NULL, &LogTaskHandle_attributes);
 
 
     const osThreadAttr_t ins_TaskHandle_attributes = {
@@ -71,21 +71,21 @@ void osTaskInit(void)
     .stack_size = 128*4 ,
     .priority = (osPriority_t) osPriorityNormal,
     };
-    IWDGTaskHandle = osThreadNew(IWDGTask, NULL, &IWDGTaskHandle_attributes);
+    // IWDGTaskHandle = osThreadNew(IWDGTask, NULL, &IWDGTaskHandle_attributes);
 
     const osThreadAttr_t CAN1_SendTaskHandle_attributes = {
     .name = "CAN1_Send_TaskHandle",
     .stack_size = 128*4 ,
     .priority = (osPriority_t) osPriorityNormal,
     };
-    // CAN1_Send_TaskHandle = osThreadNew(CAN1_Send_Task, NULL, &CAN1_SendTaskHandle_attributes);
+    CAN1_Send_TaskHandle = osThreadNew(CAN1_Send_Task, NULL, &CAN1_SendTaskHandle_attributes);
 
     const osThreadAttr_t DebugTaskHandle_attributes = {
     .name = "Debug_TaskHandle",
     .stack_size = 128*4 ,
     .priority = (osPriority_t) osPriorityNormal,
     };
-    // Debug_TaskHandle = osThreadNew(Debug_Task, NULL, &DebugTaskHandle_attributes);
+    Debug_TaskHandle = osThreadNew(Debug_Task, NULL, &DebugTaskHandle_attributes);
 }
 
 /**
@@ -130,7 +130,7 @@ __attribute((noreturn)) void MotorTask(void *argument)
         {
             LOGERROR("MotorTask is being DELAY!!! dt= [%s] ms", sMotor_dt);
         }
-        osDelay(1);
+        osDelay(100);
     }
 }
 
@@ -150,7 +150,7 @@ __attribute((noreturn)) void IWDGTask(void *argument)
         {
             LOGERROR("IWDGTask is being DELAY!!! dt= [%s] ms", sIWDG_dt);
         }
-        osDelay(1);
+        osDelay(100);
     }
 }
 

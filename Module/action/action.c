@@ -102,14 +102,12 @@ Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *ac
     }
     memset(temp_action_instance->action_diff_data,0,sizeof(robot_info_from_action));
     /* 挂载函数指针 */
-    assert_param(Action_GetData != NULL);
     temp_action_instance->action_get_data = Action_GetData;
-    assert_param(Action_RefreshData != NULL);
     temp_action_instance->action_refresh_data = Action_RefreshData;
-    assert_param(Action_Task != NULL);
     temp_action_instance->action_task = Action_Task;
-    assert_param(Action_Deinit != NULL);
     temp_action_instance->action_deinit = Action_Deinit;
+
+    temp_action_instance->action_uart_instance->device = temp_action_instance;
     LOGINFO("action is prepared!");
     return temp_action_instance;
 }
@@ -155,20 +153,23 @@ static uint8_t Action_Rtos_Init(Action_Instance_t* action_instance,uint32_t queu
     return 1;
 }
 
-uint8_t Action_Task(void* action_instance)
+uint8_t Action_Task(void* action_uart_instance)
 {
     UART_TxMsg Msg;
-    Action_Instance_t *temp_action_instance = action_instance;
+    Action_Instance_t *temp_action_instance = action_uart_instance;
     // 接收方设置为portMAX_DELAY 在未收到数据时阻塞，减少cpu占用
-    LOGERROR("coming!");
     if(temp_action_instance->rtos_for_action->queue_receive(temp_action_instance->rtos_for_action->xQueue,&Msg,portMAX_DELAY) == pdPASS)
     {
+#ifdef DEGUG_FOR_ACTION
         LOGINFO("action task is running!");
+#endif
         temp_action_instance->action_get_data(Msg.data_addr,temp_action_instance->action_orin_data,temp_action_instance->action_diff_data);
-        assert_param( temp_action_instance->action_iwdg_instance->feed_dog(temp_action_instance->action_iwdg_instance) == 1);
+        temp_action_instance->action_iwdg_instance->feed_dog(temp_action_instance->action_iwdg_instance);
         return 1;
     }
+#ifdef DEGUG_FOR_ACTION
     LOGERROR("action task is not running!");
+#endif
     return 0;
 }
 
@@ -240,7 +241,10 @@ uint8_t Action_GetData(uint8_t *data,action_original_info *action_data,robot_inf
     info_from_action->yaw_rate = action_data->W_Z*PI/180;
 
 #endif
+
+#ifdef DEGUG_FOR_ACTION
     LOGINFO("receive data!");
+#endif
     memset(data,0,28);
     return 1;
 }
@@ -254,17 +258,19 @@ uint8_t Action_RxCallback_Fun(void *action_instance, uint16_t data_len)
         LOGERROR("action_instance is NULL!");
         return 0;
     }
-    Action_Instance_t *temp_action_instance = (Action_Instance_t*)action_instance;
+    Uart_Instance_t *temp_uart_instance = (Uart_Instance_t*)action_instance;
+    Action_Instance_t *temp_action_instance = temp_uart_instance->device;
 
-
-    if(temp_action_instance->rtos_for_action->xQueue !=NULL)
+    if(temp_action_instance->rtos_for_action->xQueue !=NULL && temp_action_instance->action_uart_instance != NULL)
     {
         Msg.data_addr = temp_action_instance->action_uart_instance->uart_package.rx_buffer;
         Msg.len = data_len;
         Msg.huart = temp_action_instance->action_uart_instance->uart_package.uart_handle;
         if(Msg.data_addr != NULL)// 注意发送不能阻塞！
+        {
             temp_action_instance->rtos_for_action->queue_send(temp_action_instance->rtos_for_action->xQueue,&Msg,NULL);
-        return 1;
+            return 1;
+        }
     }
     return 0;
 }

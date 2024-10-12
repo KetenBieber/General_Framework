@@ -67,6 +67,7 @@ typedef struct
 {
     /* 串口接收包结构体 */
     uart_package_t uart_package;
+    void *device;// 父指针，储存设备指针
     uint8_t (*Uart_Deinit)(void *);// 串口设备注销函数
 }Uart_Instance_t;
 

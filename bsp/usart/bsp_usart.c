@@ -82,7 +82,6 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config)
     return uart_instance;
 }
 
-
 uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance)
 {
     if(uart_instance == NULL)
@@ -103,7 +102,6 @@ uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance)
     }
     return 1;
 }
-
 
 /**
  * @brief 串口空闲中断回调函数，static

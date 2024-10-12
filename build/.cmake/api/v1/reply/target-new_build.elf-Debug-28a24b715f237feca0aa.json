@@ -30,43 +30,43 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 112,
+				"line" : 115,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 37,
+				"line" : 38,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 34,
+				"line" : 35,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 107,
+				"line" : 110,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 46,
+				"line" : 47,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 108,
+				"line" : 111,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 65,
+				"line" : 68,
 				"parent" : 0
 			},
 			{
@@ -150,7 +150,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 66,
+				"line" : 69,
 				"parent" : 0
 			},
 			{
@@ -234,7 +234,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 67,
+				"line" : 70,
 				"parent" : 0
 			},
 			{
@@ -270,7 +270,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 68,
+				"line" : 71,
 				"parent" : 0
 			},
 			{
@@ -426,7 +426,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 69,
+				"line" : 72,
 				"parent" : 0
 			},
 			{
@@ -654,7 +654,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 70,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
@@ -758,6 +758,18 @@
 				"file" : 1,
 				"line" : 5,
 				"parent" : 121
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 105
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 123
 			}
 		]
 	},
@@ -799,10 +811,6 @@
 				},
 				{
 					"backtrace" : 3,
-					"fragment" : "-Werror"
-				},
-				{
-					"backtrace" : 3,
 					"fragment" : "-fmessage-length=0"
 				},
 				{
@@ -850,6 +858,10 @@
 				},
 				{
 					"backtrace" : 5,
+					"define" : "DEBUG_FOR_ACTION"
+				},
+				{
+					"backtrace" : 5,
 					"define" : "DISABLEFLOAT16"
 				},
 				{
@@ -863,6 +875,10 @@
 				{
 					"backtrace" : 5,
 					"define" : "TOPICS_DEBUG"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "USE_ACTION_FOR_IMU"
 				},
 				{
 					"backtrace" : 5,
@@ -1085,30 +1101,34 @@
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 114,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 116,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
 				},
 				{
 					"backtrace" : 118,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
 				},
 				{
 					"backtrace" : 120,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 122,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 124,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
@@ -1129,7 +1149,8 @@
 				4,
 				6,
 				60,
-				62
+				61,
+				63
 			]
 		},
 		{
@@ -1168,10 +1189,6 @@
 				},
 				{
 					"backtrace" : 3,
-					"fragment" : "-Werror"
-				},
-				{
-					"backtrace" : 3,
 					"fragment" : "-fmessage-length=0"
 				},
 				{
@@ -1219,6 +1236,10 @@
 				},
 				{
 					"backtrace" : 5,
+					"define" : "DEBUG_FOR_ACTION"
+				},
+				{
+					"backtrace" : 5,
 					"define" : "DISABLEFLOAT16"
 				},
 				{
@@ -1232,6 +1253,10 @@
 				{
 					"backtrace" : 5,
 					"define" : "TOPICS_DEBUG"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "USE_ACTION_FOR_IMU"
 				},
 				{
 					"backtrace" : 5,
@@ -1454,30 +1479,34 @@
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 114,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 116,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
 				},
 				{
 					"backtrace" : 118,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
 				},
 				{
 					"backtrace" : 120,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 122,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 124,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
@@ -1547,12 +1576,12 @@
 				57,
 				58,
 				59,
-				61,
-				63,
+				62,
 				64,
 				65,
 				66,
-				67
+				67,
+				68
 			]
 		},
 		{
@@ -1588,10 +1617,6 @@
 				{
 					"backtrace" : 3,
 					"fragment" : "-Wall"
-				},
-				{
-					"backtrace" : 3,
-					"fragment" : "-Werror"
 				},
 				{
 					"backtrace" : 3,
@@ -1645,6 +1670,10 @@
 				},
 				{
 					"backtrace" : 5,
+					"define" : "DEBUG_FOR_ACTION"
+				},
+				{
+					"backtrace" : 5,
 					"define" : "DISABLEFLOAT16"
 				},
 				{
@@ -1658,6 +1687,10 @@
 				{
 					"backtrace" : 5,
 					"define" : "TOPICS_DEBUG"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "USE_ACTION_FOR_IMU"
 				},
 				{
 					"backtrace" : 5,
@@ -1880,38 +1913,42 @@
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 114,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 116,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
 				},
 				{
 					"backtrace" : 118,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
 				},
 				{
 					"backtrace" : 120,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 122,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 124,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
 				}
 			],
 			"language" : "ASM",
 			"sourceIndexes" : 
 			[
-				68,
-				69
+				69,
+				70
 			]
 		}
 	],
@@ -2101,16 +2138,17 @@
 				64,
 				65,
 				66,
-				67
+				67,
+				68
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				68,
 				69,
-				70
+				70,
+				71
 			]
 		}
 	],
@@ -2474,6 +2512,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
 			"path" : "Module/action/action.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Module/alarm/buzzer.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

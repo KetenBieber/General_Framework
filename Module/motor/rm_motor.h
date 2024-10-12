@@ -1,7 +1,7 @@
 /**
  * @file rm_motor.h  --adapted from Yang JianYi
  * @author Keten (2863861004@qq.com)
- * @brief 大疆电机分类封装
+ * @brief 大疆电机分类封装，对获取角速度进行封装
  * @version 0.1
  * @date 2024-10-03
  * 
@@ -10,6 +10,7 @@
  * @attention :
  * @note :
  * @versioninfo :
+ * @todo： 1.GM6020电机的测试
 
  */
 #pragma once
@@ -54,11 +55,17 @@ protected:
         encoder = (uint16_t)(can_rx_data[0] << 8 | can_rx_data[1]);
         if(encoder_is_init)
         {   
-            if(this->encoder - this->last_encoder < -4096)
-                this->round_cnt++;
-            else if(this->encoder - this->last_encoder > 4096)
-                this->round_cnt--;
-            else{}
+            int16_t delta_encoder = encoder - last_encoder;
+
+            // 处理编码器值的溢出情况
+            if(delta_encoder < -4096)
+                round_cnt++;
+            else if(delta_encoder > 4096)
+                round_cnt--;
+
+            // 更新总编码器值
+            int32_t total_encoder = round_cnt * 8192 + encoder - encoder_offset;
+            angle = static_cast<float>(total_encoder) / encoder_angle_ratio / motor_reduction_ratio;
         }
         else 
         {
@@ -66,9 +73,8 @@ protected:
             encoder_is_init = true;
         }
 
-        this->last_encoder = this->encoder;
-        int32_t total_encoder = round_cnt*8192 + encoder - encoder_offset;
-        angle = total_encoder / encoder_angle_ratio/motor_reduction_ratio;
+        // 更新上一次的编码器值
+        last_encoder = encoder;
     }
 
     /* 更新电机转子速度函数 */
@@ -78,7 +84,7 @@ protected:
     } 
     inline virtual void update_speed_aps() override
     {
-        static ExponentialFilter<float> aps_filter(0.85f);// 指数平滑系数，填1则无滤波
+        ExponentialFilter<float> aps_filter(0.85f);// 指数平滑系数，填1则无滤波
         aps_filter.update(RPM_PER_MIN_2_ANGLE_PER_SEC*(float)(this->speed));
         speed_aps = aps_filter.getFilteredValue();
     }
@@ -169,6 +175,7 @@ public:
     {
         update_angle(can_rx_data);
         update_speed(can_rx_data);
+        update_speed_aps();
         update_current(can_rx_data);
         updata_temperature(can_rx_data);        
     }
@@ -206,6 +213,7 @@ public:
     {
         update_angle(can_rx_data);
         update_speed(can_rx_data);
+        update_speed_aps();
         update_current(can_rx_data);
         updata_temperature(can_rx_data);
     }

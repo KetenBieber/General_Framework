@@ -31,7 +31,8 @@ set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/ToolChain/STM32F407ZGTx_FLASH.ld") # 指�
 # 定义选项
 
 # Generic compiler settings for optimization and basic link lib
-add_compile_options(-pipe ${MCU_FLAGS} -Wall -Werror -fmessage-length=0 # basic options
+# add_compile_options(-pipe ${MCU_FLAGS} -Wall -Werror -fmessage-length=0 # basic options
+add_compile_options(-pipe ${MCU_FLAGS} -Wall -fmessage-length=0 # basic options
 -ffunction-sections -fdata-sections -fno-common # optimize options 
 )
 add_link_options(-pipe ${MCU_FLAGS} -T${LINKER_SCRIPT} -Wl,--no-warn-rwx-segments # close RWX warning
@@ -54,6 +55,8 @@ add_definitions(
     -DUSE_FULL_ASSERT
     -DUSE_RTOS_FOR_UART
     -DTOPICS_DEBUG
+    -DDEBUG_FOR_ACTION 
+    -DUSE_ACTION_FOR_IMU
     # -DDISABLE_LOG_SYSTEM
     # -DDISABLE_SYSVIEW_SYSTEM
     ) # need -D<macro> to define macro

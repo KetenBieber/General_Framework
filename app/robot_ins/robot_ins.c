@@ -16,7 +16,7 @@
 osThreadId_t ins_TaskHandle;
 
 /* action所用uart实例声明，以便被外部调用 */
-uint8_t rx_buffer[30];// 配置用来装储存数据的buffer
+uint8_t rx_buffer[28];// 配置用来装储存数据的buffer
 
 Uart_Instance_t *action_uart_instance = NULL;
 Action_Instance_t *action_instance = NULL;
@@ -74,11 +74,6 @@ uint8_t action_iwdg_callback(void *instance)
  */
 __attribute((noreturn)) void ins_Task(void *argument)
 {
-    /* 时间监测 */
-    static float ins_start;
-    static float ins_dt;
-
-    static char s_ins_dt[20];
     /* 串口实例注册 */
     uart_package_t action_package = {
         .uart_handle = &huart4,
@@ -96,7 +91,7 @@ __attribute((noreturn)) void ins_Task(void *argument)
 
     /* 看门狗注册流程 */
     iwdg_config_t action_iwdg_config = {
-        .reload_count = 1000,// 设置重载值为1000，t=1000*看门狗线程周期
+        .reload_count = 5000,// 设置重载值为1000，t=1000*看门狗线程周期
         .init_count = 9000,// 设置action设备初始化所需的时间 t=10000*1ms
         .callback = action_iwdg_callback,// 设置action看门狗意外触发函数，需要用户提供
     };
@@ -110,7 +105,7 @@ __attribute((noreturn)) void ins_Task(void *argument)
     }
 
     /* action设备注册流程 */
-    action_instance = Action_Init(action_uart_instance,action_iwdg_instance,10);// 设定action队列长度为10    
+    action_instance = Action_Init(action_uart_instance,action_iwdg_instance,20);// 设定action队列长度为10    
     if(action_instance == NULL)
     {
         /* 如果action设备创建失败，就删除本task，防止占cpu */
@@ -121,14 +116,17 @@ __attribute((noreturn)) void ins_Task(void *argument)
     
     action_instance->action_iwdg_instance->fall_asleep(action_instance->action_iwdg_instance);
     
-    /* 发布订阅准备 */
+    // /* 发布订阅准备 */
+    publish_data p_chassis_imu_data;
+    publish_data p_chassis_pos_data;
+    ins_interface.imu_data = (pub_imu_yaw*)pvPortMalloc(sizeof(pub_imu_yaw));
+    assert_param(ins_interface.imu_data != NULL);
+    ins_interface.pos_data = (pub_Chassis_Pos*)pvPortMalloc(sizeof(pub_Chassis_Pos));
+    assert_param(ins_interface.pos_data != NULL);
     ins_interface.chassis_imu_pub = register_pub("chassis_imu_pub");
     ins_interface.chassis_pos_pub = register_pub("chassis_pos_pub");
-    publish_data chassis_imu_data;
-    publish_data chassis_pos_data;
     for(;;)
     {
-        ins_start = DWT_GetTimeline_ms();
         LOGINFO("Action_SensorTask is running!");
 
         /* 调用action设备中读数据的函数,记得要检查实例有无最终挂载成功,才可以调用,其实如果action作为一个设备的话
@@ -137,24 +135,19 @@ __attribute((noreturn)) void ins_Task(void *argument)
         if(action_instance != NULL)
         {
             action_instance->action_task(action_instance);
-            // ins_interface.imu_data->yaw = action_instance->action_diff_data->yaw;
-            // ins_interface.pos_data->x = action_instance->action_diff_data->x;
-            // ins_interface.pos_data->y = action_instance->action_diff_data->y;
-            // ins_interface.pos_data->yaw = action_instance->action_diff_data->yaw;
-            // chassis_imu_data.data = (uint8_t *)&(ins_interface.imu_data);
-            // chassis_imu_data.len = sizeof(pub_imu_yaw);
-            // ins_interface.chassis_imu_pub->publish(ins_interface.chassis_imu_pub,chassis_imu_data);
-            // chassis_pos_data.data = (uint8_t *)&(ins_interface.pos_data);  
-            // chassis_pos_data.len = sizeof(pub_Chassis_Pos);
-            // ins_interface.chassis_pos_pub->publish(ins_interface.chassis_pos_pub,chassis_pos_data);
+            ins_interface.imu_data->yaw = action_instance->action_diff_data->yaw;
+            p_chassis_imu_data.data = (uint8_t *)(ins_interface.imu_data);
+            p_chassis_imu_data.len = sizeof(pub_imu_yaw);
+            ins_interface.chassis_imu_pub->publish(ins_interface.chassis_imu_pub,p_chassis_imu_data);
+            ins_interface.pos_data->x = action_instance->action_diff_data->x;
+            ins_interface.pos_data->y = action_instance->action_diff_data->y;
+            ins_interface.pos_data->yaw = action_instance->action_diff_data->yaw;
+            p_chassis_pos_data.data = (uint8_t *)(ins_interface.pos_data);  
+            p_chassis_pos_data.len = sizeof(pub_Chassis_Pos);
+            ins_interface.chassis_pos_pub->publish(ins_interface.chassis_pos_pub,p_chassis_pos_data);
         }
-        ins_dt = DWT_GetTimeline_ms() - ins_start;
-        Float2Str(s_ins_dt,ins_dt);
-        if(ins_dt > 1)
-        {
-            LOGERROR("Action_SensorTask is being DELAY!!! dt= [%s] ms", s_ins_dt);
-        }
-        osDelay(5);
+
+        osDelay(1);
     }
 }
 

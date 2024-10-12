@@ -18,7 +18,6 @@
 
 #pragma pack(1)
 
-
 /* 机器人姿态发布底盘当前位置以及航向角姿态，由姿态任务发布 */
 typedef struct 
 {
@@ -32,5 +31,11 @@ typedef struct
 {
     float yaw;
 }pub_imu_yaw;
+
+typedef struct
+{
+    uint8_t control_way;// 控制方式，遥控OR自动
+    uint8_t STOP;// 置0为移动状态，置1停止速度输出
+}pub_chassis_status;
 
 #pragma pack()

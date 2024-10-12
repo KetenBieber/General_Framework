@@ -34,7 +34,6 @@ typedef struct
 {
     Publisher *chassis_imu_pub;
     pub_imu_yaw *imu_data;// 将发布的航向角数据
-
     Publisher *chassis_pos_pub;
     pub_Chassis_Pos *pos_data;// 将发布的坐标数据
 }Robot_Ins_t;

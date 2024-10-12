@@ -31,7 +31,7 @@ extern "C"{
 /* bsp层接口 */
 #include "bsp_usart.h"
 #include "bsp_log.h"
-#include "data_pool.h"
+#include "data_type.h"
 #include "soft_iwdg.h"
 #include "arm_math.h"
 

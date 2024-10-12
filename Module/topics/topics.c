@@ -25,6 +25,10 @@ struct internal_topic {
 cvector* topics;
 
 void SubPub_Init() { topics = cvector_create(sizeof(struct internal_topic*)); }
+static void pub_commit(struct publisher_t* pub, publish_data data);
+static publish_data sub_get(struct subscriber_t* sub);
+static struct internal_topic* register_topic(const char* topic);
+
 
 
 /**
@@ -34,7 +38,7 @@ void SubPub_Init() { topics = cvector_create(sizeof(struct internal_topic*)); }
  * @param pub 
  * @param data 
  */
-void pub_commit(struct publisher_t* pub, publish_data data) {
+static void pub_commit(struct publisher_t* pub, publish_data data) {
     for (uint32_t i = 0; i < pub->topic->subs->cv_len; ++i) {
         Subscriber* now = *(Subscriber**)cvector_val_at(pub->topic->subs, i);
         if (now->queue->cq_len == now->queue->cq_max_len) circular_queue_pop(now->queue);
@@ -50,7 +54,7 @@ void pub_commit(struct publisher_t* pub, publish_data data) {
  * @param sub 
  * @return publish_data 
  */
-publish_data sub_get(struct subscriber_t* sub) {
+static publish_data sub_get(struct subscriber_t* sub) {
     publish_data now;
     now.data = NULL;
     now.len = -1;
@@ -68,7 +72,7 @@ publish_data sub_get(struct subscriber_t* sub) {
  * @param topic 
  * @return struct internal_topic* 
  */
-struct internal_topic* register_topic(const char* topic) {
+static struct internal_topic* register_topic(const char* topic) {
     for (uint32_t i = 0; i < topics->cv_len; ++i) {
         struct internal_topic* now = *(struct internal_topic**)cvector_val_at(topics, i);
         if (!strcmp(now->topic_str, topic)) {
@@ -84,13 +88,6 @@ struct internal_topic* register_topic(const char* topic) {
 }
 
 
-/**
- * @brief 注册发布者函数
- *        如果话题已存在发布者，则返回现有的发布者，否则创建一个新的发布者并关联到话题
- * 
- * @param topic 
- * @return Publisher* 
- */
 Publisher* register_pub(const char* topic) {
     struct internal_topic* now_topic = register_topic(topic);
     if (now_topic->pub != NULL) return now_topic->pub;
@@ -103,14 +100,6 @@ Publisher* register_pub(const char* topic) {
 }
 
 
-/**
- * @brief 注册订阅者函数
- *        创建一个新的订阅者，初始化其队列，并将其添加到话题的订阅者动态数组中
- * 
- * @param topic 
- * @param buffer_len 
- * @return Subscriber* 
- */
 Subscriber* register_sub(const char* topic, uint32_t buffer_len) {
     struct internal_topic* now_topic = register_topic(topic);
     Subscriber* obj = malloc(sizeof(Subscriber));

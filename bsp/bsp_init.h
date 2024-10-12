@@ -22,5 +22,7 @@ void Bsp_Init()
     /* stm32f4 芯片主频 168MHz */
     DWT_Init(168);    
     BSPLogInit();
-
+    /* 初始化can */
+    CAN_Filter_Init(&hcan1,CanFilter_0|CanFifo_0|Can_STDID|Can_DataType,0,0);
+    CAN_Filter_Init(&hcan1,CanFilter_1|CanFifo_1|Can_STDID|Can_DataType,0,0);
 }

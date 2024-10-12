@@ -15,10 +15,6 @@
 #include "topics.h"
 
 extern Motor_C610 m2006;
-extern Motor_C620 chassis_lf;
-extern Motor_C620 chassis_lb;
-extern Motor_C620 chassis_rf;
-extern Motor_C620 chassis_rb;
 
 osThreadId_t CAN1_Send_TaskHandle;
 
@@ -37,7 +33,10 @@ uint8_t Common_Service_Init()
     return 1;
 }
 
-
+uint32_t aa = 0;
+uint32_t b = 0;
+uint32_t c = 0;
+uint32_t d = 0;
 void CAN1_Rx_Callback(CAN_Rx_Instance_t *can_instance)
 {
     if(can_instance->RxHeader.IDE == CAN_ID_STD)
@@ -46,22 +45,26 @@ void CAN1_Rx_Callback(CAN_Rx_Instance_t *can_instance)
         {
             case 0x201:
             {
-                chassis_lf.update(can_instance->can_rx_buff);
+                chassis_motor[0].update(can_instance->can_rx_buff);
+                aa++;
                 break;
             }
             case 0x202:
             {
-                chassis_rf.update(can_instance->can_rx_buff);
+                chassis_motor[1].update(can_instance->can_rx_buff);
+                b++;
                 break;
             }
             case 0x203:
             {
-                chassis_rb.update(can_instance->can_rx_buff);
+                chassis_motor[2].update(can_instance->can_rx_buff);
+                c++;
                 break;
             }
             case 0x204:
             {
-                chassis_lb.update(can_instance->can_rx_buff);
+                chassis_motor[3].update(can_instance->can_rx_buff);
+                d++;
                 break;
             }
         }

@@ -66,12 +66,12 @@ void Motor_SendMsgs(Motor_Type (&motor)[N])
  * @param hcan        CAN句柄
  * @param motor       电机
  */
-template <class Motor_Type>
-void Motor_SendMsgs(Motor_Type &motor)
-{
-    Motor_Type motor_arr[1] = {motor};
-    Motor_SendMsgs(motor_arr);
-}
+// template <class Motor_Type>
+// void Motor_SendMsgs(Motor_Type &motor)
+// {
+//     Motor_Type motor_arr[1] = {motor};
+//     Motor_SendMsgs(motor_arr);
+// }
 
 #endif
 

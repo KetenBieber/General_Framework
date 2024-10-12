@@ -140,7 +140,8 @@ uint8_t CAN_Init(CAN_HandleTypeDef* hcan, void (*pFunc)(CAN_Rx_Instance_t*));
  * @param can_rx_instance can接收设备实例
  * @return uint8_t 
  */
-uint8_t CAN_Add_Filter(CAN_HandleTypeDef *hcan,CAN_Rx_Instance_t *can_rx_instance);
+// uint8_t CAN_Add_Filter(CAN_HandleTypeDef *hcan,CAN_Rx_Instance_t *can_rx_instance);
+void CAN_Filter_Init(CAN_HandleTypeDef * hcan, uint8_t object_para,uint32_t Id,uint32_t MaskId);
 
 
 /**
