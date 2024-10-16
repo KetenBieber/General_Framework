@@ -32,7 +32,11 @@
         "robot_ins.h": "c",
         "data_pool.h": "c",
         "topics.h": "c",
-        "stm32f4xx_it.h": "c"
+        "stm32f4xx_it.h": "c",
+        "vofa.h": "c",
+        "bsp_gpio.h": "c",
+        "gpio.h": "c",
+        "air_joy.h": "c"
     },
     "C_Cpp.default.compilerPath": "c:/msys64/mingw64/bin/arm-none-eabi-g++.exe",
     "C_Cpp.errorSquiggles": "enabled"

@@ -27,13 +27,18 @@ void Robot_Init()
 {
     /* 关闭中断，防止在初始化过程中发生中断 */
     __disable_irq();
-
+    /* bsp层初始化 */
     Bsp_Init();
+    /* 实际应用的can总线初始化 */
     CAN_Init(&hcan1,CAN1_Rx_Callback);
     CAN_Init(&hcan2,CAN2_Rx_Callback);    
+    /* 机器人通信系统初始化 */
     Common_Service_Init();
+    /* 机器人底盘系统初始化 */
     Chassis_Init();
+    /* freertos任务调度初始化 */
     osTaskInit();
+
   /* 使用systemview需要在系统调度前初始化 */
 #ifndef DISABLE_SYSVIEW_SYSTEM
     SEGGER_SYSVIEW_Conf();

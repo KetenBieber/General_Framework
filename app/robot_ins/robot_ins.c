@@ -67,7 +67,6 @@ uint8_t action_iwdg_callback(void *instance)
 }
 
 
-
 /**
  * @brief 机器人姿态获取函数
  * 
@@ -77,6 +76,7 @@ __attribute((noreturn)) void ins_Task(void *argument)
     /* 串口实例注册 */
     uart_package_t action_package = {
         .uart_handle = &huart4,
+        .use_static_length_data = 1,
         .rx_buffer = rx_buffer,
         .rx_buffer_size = ACTION_DATA_NUM,
         .uart_callback = Action_RxCallback_Fun,

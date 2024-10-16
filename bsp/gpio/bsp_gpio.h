@@ -28,8 +28,7 @@ extern "C"{
 /*-----------------------------------macro------------------------------------*/
 #define GPIO_MX_DEVICE_NUM 10
 /*----------------------------------typedef-----------------------------------*/
-/* 前向声明 */
-typedef struct GPIO_Instance_t GPIO_Instance_t;
+
 
 typedef enum
 {
@@ -40,19 +39,23 @@ typedef enum
     GPIO_EXTI_MODE_NONE,
 }exit_mode_e;
 
-typedef uint8_t (*exit_callback_fun) (GPIO_Instance_t *gpio_instance);
+typedef uint8_t (*exit_callback_fun) (void* gpio_instance);
 
-struct GPIO_Instance_t
+/**
+ * @brief gpio结构体，只需要配置GPIOX、GPIO_PIN
+ *        mode 和 callback函数由调用gpio的模块自己编写并挂载！
+ * 
+ */
+typedef struct
 {
     GPIO_TypeDef *GPIOx;        // GPIOA,GPIOB,GPIOC...
     uint16_t gpio_pin;          // io口序号
-    GPIO_PinState pin_state;    // io口状态
     exit_mode_e mode;           // 中断模式
     uint8_t (*read_io)(GPIO_TypeDef* goiox, uint16_t pin);// 读io口状态
     uint8_t (*write_io)(GPIO_TypeDef* goiox, uint16_t pin, GPIO_PinState state);// 写io口状态
     uint8_t (*toogle_io)(GPIO_TypeDef* goiox, uint16_t pin);// 翻转io口状态
     exit_callback_fun exit_callback;// 中断回调函数接口，需要用户自己实现
-};
+}GPIO_Instance_t;
 
 /*----------------------------------function----------------------------------*/
 /**
@@ -65,19 +68,7 @@ struct GPIO_Instance_t
  * @param exit_callback io 口外部中断函数指针
  * @return GPIO_Instance_t* 
  */
-GPIO_Instance_t* GPIO_Pin_Register(GPIO_TypeDef* gpiox, uint16_t gpio_pin, GPIO_PinState state, exit_mode_e mode, exit_callback_fun exit_callback);
-
-
-/**
- * @brief io口中断管理函数，放在it.c中
- * 
- * @param gpio_pin 
- * @param gpio_device 
- * @return uint8_t 
- */
-uint8_t Exit_GPIO_Handler(uint16_t gpio_pin,GPIO_Instance_t* gpio_device);
-
-
+GPIO_Instance_t* GPIO_Pin_Register(GPIO_TypeDef* gpiox, uint16_t gpio_pin);
 
 #ifdef __cplusplus
 }

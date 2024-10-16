@@ -82,6 +82,7 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config)
     return uart_instance;
 }
 
+
 uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance)
 {
     if(uart_instance == NULL)
@@ -201,4 +202,27 @@ static uint8_t Uart_Deinit(Uart_Instance_t **uart_instance)
     *uart_instance = NULL;
     return 1;
 }
+
+
+uint8_t Uart_Tx_By_Blocking(Uart_Tx_Package_t tx_package)
+{
+    HAL_UART_Transmit(tx_package.uart_handle, tx_package.tx_buffer, tx_package.tx_buffer_size, 20);
+    return 1;
+}
+
+
+uint8_t Uart_Tx_By_It(Uart_Tx_Package_t tx_package)
+{
+    HAL_UART_Transmit_IT(tx_package.uart_handle, tx_package.tx_buffer, tx_package.tx_buffer_size);
+    return 1;
+}
+
+
+uint8_t Uart_Tx_By_DMA(Uart_Tx_Package_t tx_package)
+{
+    HAL_UART_Transmit_DMA(tx_package.uart_handle, tx_package.tx_buffer, tx_package.tx_buffer_size);
+    return 1;
+}
+
+
 

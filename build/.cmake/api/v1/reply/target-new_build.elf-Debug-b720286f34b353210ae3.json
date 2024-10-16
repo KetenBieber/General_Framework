@@ -30,7 +30,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 115,
+				"line" : 116,
 				"parent" : 0
 			},
 			{
@@ -48,7 +48,7 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 110,
+				"line" : 111,
 				"parent" : 0
 			},
 			{
@@ -60,13 +60,13 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 111,
+				"line" : 112,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 68,
+				"line" : 69,
 				"parent" : 0
 			},
 			{
@@ -150,7 +150,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 69,
+				"line" : 70,
 				"parent" : 0
 			},
 			{
@@ -234,7 +234,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 70,
+				"line" : 71,
 				"parent" : 0
 			},
 			{
@@ -270,7 +270,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 71,
+				"line" : 72,
 				"parent" : 0
 			},
 			{
@@ -426,7 +426,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 72,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
@@ -654,7 +654,7 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 73,
+				"line" : 74,
 				"parent" : 0
 			},
 			{
@@ -770,6 +770,42 @@
 				"file" : 1,
 				"line" : 5,
 				"parent" : 123
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 105
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 125
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 105
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 127
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 105
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 129
 			}
 		]
 	},
@@ -858,6 +894,10 @@
 				},
 				{
 					"backtrace" : 5,
+					"define" : "CHASSIS_TO_DEBUG"
+				},
+				{
+					"backtrace" : 5,
 					"define" : "DEBUG_FOR_ACTION"
 				},
 				{
@@ -1101,35 +1141,47 @@
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
+					"path" : "C:/c_plusplus_try/new_build/Module/air_joy"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
 				},
 				{
 					"backtrace" : 114,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 116,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 118,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
 				},
 				{
 					"backtrace" : 120,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
 				},
 				{
 					"backtrace" : 122,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/ros_com"
 				},
 				{
 					"backtrace" : 124,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 126,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 128,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
+				},
+				{
+					"backtrace" : 130,
+					"path" : "C:/c_plusplus_try/new_build/Module/vofa"
 				}
 			],
 			"language" : "CXX",
@@ -1148,9 +1200,9 @@
 				3,
 				4,
 				6,
-				60,
 				61,
-				63
+				62,
+				64
 			]
 		},
 		{
@@ -1236,6 +1288,10 @@
 				},
 				{
 					"backtrace" : 5,
+					"define" : "CHASSIS_TO_DEBUG"
+				},
+				{
+					"backtrace" : 5,
 					"define" : "DEBUG_FOR_ACTION"
 				},
 				{
@@ -1479,35 +1535,47 @@
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
+					"path" : "C:/c_plusplus_try/new_build/Module/air_joy"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
 				},
 				{
 					"backtrace" : 114,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 116,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 118,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
 				},
 				{
 					"backtrace" : 120,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
 				},
 				{
 					"backtrace" : 122,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/ros_com"
 				},
 				{
 					"backtrace" : 124,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 126,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 128,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
+				},
+				{
+					"backtrace" : 130,
+					"path" : "C:/c_plusplus_try/new_build/Module/vofa"
 				}
 			],
 			"language" : "C",
@@ -1576,12 +1644,15 @@
 				57,
 				58,
 				59,
-				62,
-				64,
+				60,
+				63,
 				65,
 				66,
 				67,
-				68
+				68,
+				69,
+				70,
+				71
 			]
 		},
 		{
@@ -1670,6 +1741,10 @@
 				},
 				{
 					"backtrace" : 5,
+					"define" : "CHASSIS_TO_DEBUG"
+				},
+				{
+					"backtrace" : 5,
 					"define" : "DEBUG_FOR_ACTION"
 				},
 				{
@@ -1913,42 +1988,54 @@
 				},
 				{
 					"backtrace" : 110,
-					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
+					"path" : "C:/c_plusplus_try/new_build/Module/air_joy"
 				},
 				{
 					"backtrace" : 112,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
 				},
 				{
 					"backtrace" : 114,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
 				},
 				{
 					"backtrace" : 116,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
 				},
 				{
 					"backtrace" : 118,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "C:/c_plusplus_try/new_build/Module/controller"
 				},
 				{
 					"backtrace" : 120,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+					"path" : "C:/c_plusplus_try/new_build/Module/motor"
 				},
 				{
 					"backtrace" : 122,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+					"path" : "C:/c_plusplus_try/new_build/Module/ros_com"
 				},
 				{
 					"backtrace" : 124,
+					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
+				},
+				{
+					"backtrace" : 126,
+					"path" : "C:/c_plusplus_try/new_build/Module/tool"
+				},
+				{
+					"backtrace" : 128,
 					"path" : "C:/c_plusplus_try/new_build/Module/topics"
+				},
+				{
+					"backtrace" : 130,
+					"path" : "C:/c_plusplus_try/new_build/Module/vofa"
 				}
 			],
 			"language" : "ASM",
 			"sourceIndexes" : 
 			[
-				69,
-				70
+				72,
+				73
 			]
 		}
 	],
@@ -2139,16 +2226,19 @@
 				65,
 				66,
 				67,
-				68
+				68,
+				69,
+				70,
+				71
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				69,
-				70,
-				71
+				72,
+				73,
+				74
 			]
 		}
 	],
@@ -2516,6 +2606,12 @@
 		},
 		{
 			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Module/air_joy/air_joy.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Module/alarm/buzzer.cpp",
 			"sourceGroupIndex" : 0
@@ -2536,6 +2632,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Module/motor/rm_motor.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Module/ros_com/ros_com.c",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -2566,6 +2668,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
 			"path" : "Module/topics/topics.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Module/vofa/vofa.c",
 			"sourceGroupIndex" : 0
 		},
 		{

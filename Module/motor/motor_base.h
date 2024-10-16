@@ -15,7 +15,7 @@
  *              对于派生类中重载基类的函数，请务必加上 override 声明，以便于阅读
  *              对于不会修改的变量，请加上 const 声明，以便于阅读，这是一种声明，也是一种约定
  * 
- * @note :      有点莫名其妙的，类的创建最好都放在头文件最上面，不然编译器会报错...奇奇怪怪的
+ * @note :      
  * @versioninfo :
  * @todo : 1.为电机类添加新成员：mesure_data，mesure_data将用于内环pid计算
  *         并且使用指数平滑滤波器对电调返回数据做适当平滑处理，将其存入mesure_data
@@ -130,7 +130,7 @@ public:
     inline float get_speed() const {return speed; }// 获取当前电机转速
 
      float encoder_offset;// 编码器初始偏移值
-     int16_t Out;// 输出值,为电流值 单位：mA
+     int16_t Out = 0.0;// 输出值,为电流值 单位：mA
     /* 声明can句柄，表明这里是一个can设备 */
      CAN_Tx_Instance_t can_tx_for_motor = {0};
      CAN_Rx_Instance_t can_rx_for_motor = {0};
@@ -141,7 +141,7 @@ public:
      virtual void enable_the_motor() = 0;// 使能电机
      virtual void pid_control_to_motor() = 0;// 电机pid计算out输出
      
-protected:
+public:
     /* 编码器相关 */
      uint16_t encoder = 0;// 编码器位置
      float last_encoder = 0;// 上一次编码器位置

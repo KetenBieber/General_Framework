@@ -19,7 +19,16 @@
  *        也就是说，最终调用的set_motor_ref（必须是转子的期望速度）
  */
 #include "rm_motor.h"
+#include "motor_interface.h"
 #include "pid_controller.h"
+
+void RM_Common::Motor_Ctrl(float ref)
+{
+    this->enable_the_motor();
+    this->set_motor_ref(ref);
+    this->pid_control_to_motor();
+}
+
 
 /**
  * @brief 设定电机参考量 
@@ -59,9 +68,9 @@ void RM_Common::enable_the_motor()
  *        目标就是计算Out值，这个值是电流值，单位为mA
  * 
  */
+Motor_PIDController_Setting_t temp_pidcontrol_setting;
 void RM_Common::pid_control_to_motor() 
 {
-    Motor_PIDController_Setting_t temp_pidcontrol_setting;
 
     temp_pidcontrol_setting = this->ctrl_motor_config.motor_controller_setting;
 
@@ -95,6 +104,8 @@ void RM_Common::pid_control_to_motor()
 
     this->Out = this->aps_to_current(pid_ref);
 }
+
+
 
 
 

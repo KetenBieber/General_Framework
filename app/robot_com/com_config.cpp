@@ -22,8 +22,6 @@ QueueHandle_t CAN1_TxPort;
 QueueHandle_t CAN2_TxPort;
 
 
-
-
 uint8_t Common_Service_Init()
 {
     CAN1_TxPort = xQueueCreate(16,sizeof(CAN_Tx_Instance_t));

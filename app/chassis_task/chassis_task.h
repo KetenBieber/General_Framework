@@ -24,9 +24,16 @@ extern "C"{
 /*----------------------------------include-----------------------------------*/
 
 #include <stdint.h>
+/* freertos接口 */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "cmsis_os.h"
+
+/* bsp层接口 */
+#include "bsp_can.h"
 /* module层接口 */
 #include "soft_iwdg.h"
-#include "bsp_can.h"
+#include "topics.h"
 #include "ccmram.h"
 /*-----------------------------------macro------------------------------------*/
 
@@ -46,7 +53,7 @@ extern "C"{
 uint8_t Chassis_Init();
 
 
-uint8_t Chassis_Control();
+void Chassis_Task(void *argument);
 
 
 /*------------------------------------test------------------------------------*/
@@ -54,11 +61,14 @@ uint8_t Chassis_Control();
 #ifdef __cplusplus
 }
 #endif
-
+  
 #ifdef __cplusplus
 #include "rm_motor.h"
-
+#include "Omni_Chassis.h"
 extern Motor_C620 chassis_motor[4];
+
+uint8_t Chassis(Omni_Chassis &user_chassis);
+
 #endif
 
 

@@ -1,9 +1,9 @@
 /**
- * @file debug_task.h
+ * @file ros_com.h
  * @author Keten (2863861004@qq.com)
  * @brief 
  * @version 0.1
- * @date 2024-10-07
+ * @date 2024-10-14
  * 
  * @copyright Copyright (c) 2024
  * 
@@ -11,18 +11,14 @@
  * @note :
  * @versioninfo :
  */
-#pragma once
+#ifndef ROS_COM_H 
+#define ROS_COM_H 
 
 #ifdef __cplusplus
 extern "C"{
 #endif
 
 /*----------------------------------include-----------------------------------*/
-#include "FreeRTOS.h"
-#include "queue.h"
-#include "cmsis_os.h"
-#include "bsp_log.h"
-
 
 /*-----------------------------------macro------------------------------------*/
 
@@ -33,19 +29,11 @@ extern "C"{
 /*-------------------------------------os-------------------------------------*/
 
 /*----------------------------------function----------------------------------*/
-void Debug_Task(void *argument);
+
 /*------------------------------------test------------------------------------*/
 
 #ifdef __cplusplus
 }
 #endif
 
-#ifdef __cplusplus
-#include "rm_motor.h"
-#include "motor_interface.h"
-#include "chassis_task.h"
-
-#endif
-
-
-
+#endif	/* ROS_COM_H */

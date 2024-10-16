@@ -85,15 +85,15 @@ void Fuzzy_Rule_Implementation(FuzzyRule_t *fuzzyRule, float measure, float ref)
 /******************************* PID CONTROL *********************************/
 typedef enum pid_Improvement_e
 {
-    NONE = 0X00,                        //0000 0000
-    Integral_Limit = 0x01,              //0000 0001
-    Derivative_On_Measurement = 0x02,   //0000 0010
-    Trapezoid_Intergral = 0x04,         //0000 0100
-    Proportional_On_Measurement = 0x08, //0000 1000
-    OutputFilter = 0x10,                //0001 0000
-    ChangingIntegrationRate = 0x20,     //0010 0000
-    DerivativeFilter = 0x40,            //0100 0000
-    ErrorHandle = 0x80,                 //1000 0000
+    NONE = 0X00,                        //0000 0000 不使用任何优化环节
+    Integral_Limit = 0x01,              //0000 0001 使用积分限幅
+    Derivative_On_Measurement = 0x02,   //0000 0010 微分先行
+    Trapezoid_Intergral = 0x04,         //0000 0100 使用梯形积分
+    Proportional_On_Measurement = 0x08, //0000 1000 比例先行
+    OutputFilter = 0x10,                //0001 0000 输出滤波（LR）
+    ChangingIntegrationRate = 0x20,     //0010 0000 变速积分
+    DerivativeFilter = 0x40,            //0100 0000 微分滤波（LR）
+    ErrorHandle = 0x80,                 //1000 0000 错误处理（电机堵转）
 } PID_Improvement_e;
 
 
@@ -162,7 +162,7 @@ typedef struct PACKED pid_t
 
     FuzzyRule_t *FuzzyRule;
 
-    uint8_t Improve;
+    uint8_t Improve;// 配置pid优化环节，使用 | 运算符连接，详细见枚举 PID_Improvement_e
 
     PID_ErrorHandler_t ERRORHandler;
 
@@ -209,11 +209,11 @@ typedef struct PACKED
     uint32_t DWT_CNT;
     float dt;
 
-    float LPF_RC; // RC = 1/omegac
+    float LPF_RC; // RC = 1/omegac 低通滤波器的时间常数
 
-    float Ref_dot;
-    float Ref_ddot;
-    float Last_Ref_dot;
+    float Ref_dot;// 参考信号的一阶导数
+    float Ref_ddot;// 参考信号的二阶导数
+    float Last_Ref_dot;// 上一次计算的一阶导数
 
     uint16_t Ref_dot_OLS_Order;
     Ordinary_Least_Squares_t Ref_dot_OLS;

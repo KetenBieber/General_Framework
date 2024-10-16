@@ -12,14 +12,16 @@
 #include "bsp_dwt.h"
 #include "bsp_bitband.h"
 
-/* app 层接口头文件 */
+/* app 层接口头文件 一般是extern了任务函数才会在这里include */
 #include "com_config.h"
 #include "chassis_task.h"
 #include "robot_ins.h"
+#include "control_task.h"
 
 /* module层接口头文件 */
 #include "soft_iwdg.h"
 #include "topics.h"
+
 
 /* Definitions for TaskHand */
 osThreadId_t LogTaskHandle;
@@ -28,7 +30,8 @@ osThreadId_t MotorTaskHandle;
 osThreadId_t IWDGTaskHandle;
 extern osThreadId_t CAN1_Send_TaskHandle;
 extern osThreadId_t Debug_TaskHandle;
-
+extern osThreadId_t Chassis_TaskHandle;
+extern osThreadId_t Control_TaskHandle;
 
 /* Definitions for TaskFunc */
 void LogTask(void *argument);
@@ -37,6 +40,8 @@ void MotorTask(void *argument);
 void IWDGTask(void *argument);
 void CAN1_Send_Task(void *argument);
 void Debug_Task(void *argument);
+void Chassis_Task(void *argument);
+void Control_Task(void *argument);
 /**
  * @brief os任务创建初始化函数
  * 
@@ -64,7 +69,7 @@ void osTaskInit(void)
     .stack_size = 128 *4,
     .priority = (osPriority_t) osPriorityNormal,
     };
-    MotorTaskHandle = osThreadNew(MotorTask, NULL, &MotorTaskHandle_attributes);
+    // MotorTaskHandle = osThreadNew(MotorTask, NULL, &MotorTaskHandle_attributes);
 
     const osThreadAttr_t IWDGTaskHandle_attributes = {
     .name = "IWDGTaskHandle",
@@ -85,7 +90,22 @@ void osTaskInit(void)
     .stack_size = 128*4 ,
     .priority = (osPriority_t) osPriorityNormal,
     };
-    Debug_TaskHandle = osThreadNew(Debug_Task, NULL, &DebugTaskHandle_attributes);
+    // Debug_TaskHandle = osThreadNew(Debug_Task, NULL, &DebugTaskHandle_attributes);
+
+    const osThreadAttr_t ChassisTaskHandle_attributes = {
+    .name = "Chassis_TaskHandle",
+    .stack_size = 128*4 ,
+    .priority = (osPriority_t) osPriorityNormal,
+    };
+    Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &ChassisTaskHandle_attributes);
+
+    const osThreadAttr_t ControlTaskHandle_attributes = {
+    .name = "Control_TaskHandle",
+    .stack_size = 128*4 ,
+    .priority = (osPriority_t) osPriorityNormal,
+    };
+    Control_TaskHandle = osThreadNew(Control_Task, NULL, &ControlTaskHandle_attributes);
+
 }
 
 /**

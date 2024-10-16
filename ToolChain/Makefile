@@ -94,6 +94,8 @@ C_SOURCES =  \
 ../Module/tool/circular_queue.c \
 ../Module/tool/cvector.c \
 ../Module/controller/pid_controller.c \
+../Module/vofa/vofa.c \
+../Module/air_joy/air_joy.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/syscalls.c  \
 
@@ -104,6 +106,8 @@ CXX_SOURCES = \
 ../App/robot_com/com_config.cpp \
 ../App/chassis_task/chassis_task.cpp \
 ../App/debug_task/debug_task.cpp \
+../App/chassis_task/Omni_Chassis.cpp \
+../App/control_task/control_task.cpp \
 
 
 
@@ -166,6 +170,7 @@ C_DEFS =  \
 -DTOPICS_DEBUG \
 -DDISABLE_LOG_SYSTEM \
 -DDEBUG_FOR_ACTION \
+-DCHASSIS_TO_DEBUG \
 # -DDISABLE_SYSVIEW_SYSTEM \
 
 
@@ -195,6 +200,7 @@ C_CPP_INCLUDES =  \
 -I../App/chassis_task \
 -I../App/robot_com \
 -I../App/debug_task \
+-I../App/control_task \
 -I../App \
 -I../Module/action \
 -I../Module/topics \
@@ -203,6 +209,8 @@ C_CPP_INCLUDES =  \
 -I../Module/tool \
 -I../Module/motor \
 -I../Module/algorithm \
+-I../Module/vofa \
+-I../Module/air_joy \
 -I../Module \
 -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include \
 -I../Drivers/CMSIS/Include \

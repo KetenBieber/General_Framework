@@ -31,21 +31,16 @@ public:
     RM_Common(uint8_t id,
               const CAN_Rx_Instance_t& can_rx_instance,const CAN_Tx_Instance_t& can_tx_instance,
               const Motor_Control_Setting_t& ctrl_config,
-              int16_t max_current, uint8_t reduction_ratio,
-                uint32_t rx_id,uint32_t s_id_high, uint32_t s_id_low) 
-            : Motor(id,can_rx_instance,can_tx_instance,ctrl_config,max_current,reduction_ratio),
-                    receive_id(rx_id),send_id_high{s_id_high}, send_id_low{s_id_low}{}
+              int16_t max_current, uint8_t reduction_ratio) 
+            : Motor(id,can_rx_instance,can_tx_instance,ctrl_config,max_current,reduction_ratio){}
 
     virtual ~RM_Common() = default;
     virtual void set_motor_ref(float ref) override;
     virtual void stop_the_motor() override;
     virtual void enable_the_motor() override;
     virtual void pid_control_to_motor() override;
+    void Motor_Ctrl(float ref);
 protected:
-    /* can id 设置，需要根据不同电调协议进行设置，这里初始化选择了较多型号所采用的类型 */
-     uint32_t receive_id =  0x200;// 设置can通讯初始化id
-     uint32_t send_id_high = 0x1FF;// 设置发送高位id
-     uint32_t send_id_low = 0x200;// 设置发送低位id
     /* 根据大疆电机can通讯协议重写对应的更新函数 */
 
     /* 更新电机角度函数 */
@@ -84,7 +79,7 @@ protected:
     } 
     inline virtual void update_speed_aps() override
     {
-        ExponentialFilter<float> aps_filter(0.85f);// 指数平滑系数，填1则无滤波
+        ExponentialFilter<float> aps_filter(0.750f);// 指数平滑系数，填1则无滤波
         aps_filter.update(RPM_PER_MIN_2_ANGLE_PER_SEC*(float)(this->speed));
         speed_aps = aps_filter.getFilteredValue();
     }
@@ -134,7 +129,7 @@ class Motor_C610 : public RM_Common
 public:
     Motor_C610(uint8_t id,const CAN_Rx_Instance_t& can_rx_instance,const CAN_Tx_Instance_t& can_tx_instance,
                const Motor_Control_Setting_t& ctrl_config)
-     :RM_Common(id,can_rx_instance,can_tx_instance,ctrl_config,10000,36,0x200,0x1ff,0x200) {}
+     :RM_Common(id,can_rx_instance,can_tx_instance,ctrl_config,10000,36) {}
     virtual ~Motor_C610() = default;
    
     virtual void update(uint8_t can_rx_data[]) override
@@ -168,7 +163,7 @@ class Motor_C620 :public RM_Common
 public:
     Motor_C620(uint8_t id,const CAN_Rx_Instance_t& can_rx_instance,const CAN_Tx_Instance_t& can_tx_instance,
                 const Motor_Control_Setting_t& ctrl_config)
-     :RM_Common(id,can_rx_instance,can_tx_instance,ctrl_config,16384,19,0x200,0x1FF,0x200) {}
+     :RM_Common(id,can_rx_instance,can_tx_instance,ctrl_config,16384,19) {}
     virtual ~Motor_C620() = default;
 
     virtual void update(uint8_t can_rx_data[]) override
@@ -185,6 +180,7 @@ public:
     {
         return (int16_t)input_ref * (16384.0f/20000.0f);
     }
+
 protected:
 
 };
@@ -199,7 +195,7 @@ class Motor_GM6020 :public RM_Common
 public:
     Motor_GM6020(uint8_t id,const CAN_Rx_Instance_t& can_rx_instance,const CAN_Tx_Instance_t& can_tx_instance,
                  const Motor_Control_Setting_t& ctrl_config)
-     :RM_Common(id,can_rx_instance,can_tx_instance,ctrl_config,30000,1,0x204,0x2ff,0x1ff) {}
+     :RM_Common(id,can_rx_instance,can_tx_instance,ctrl_config,30000,1) {}
     virtual ~Motor_GM6020() = default;
 
     inline uint16_t set_encoder_offset(uint16_t offset)
@@ -223,6 +219,7 @@ public:
     {
         return 0;
     }
+
 protected:
 
 };

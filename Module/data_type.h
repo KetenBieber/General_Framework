@@ -29,5 +29,20 @@ typedef struct
     void* data_addr;// 数据地址，使用时把地址赋值给这个指针，数值强转为uint8_t
 }UART_TxMsg;
 
+typedef struct
+{
+    float Kp;
+    float Ki;
+    float Kd;
+    float ref;
+}pub_vofa_pid;
+
+typedef struct
+{
+    float linear_x;// x方向速度 m/s
+    float linear_y;// y方向速度 m/s
+    float Omega;   // 转动速度 rad/s
+    uint8_t Status;
+}pub_Control_Data;
 
 #pragma pack()

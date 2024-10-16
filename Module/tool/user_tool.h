@@ -99,16 +99,16 @@ typedef struct
 
 typedef struct PACKED
 {
-    uint16_t Order;
-    uint32_t Count;
+    uint16_t Order;// 最小二乘法的阶数
+    uint32_t Count;// 已经存储的样本数
 
-    float *x;
-    float *y;
+    float *x;// 存储样本时间间隔的数组
+    float *y;// 存储样本信号值的数组
 
-    float k;
-    float b;
+    float k;// 表示拟合直线的斜率
+    float b;// 拟合直线的截距
 
-    float StandardDeviation;
+    float StandardDeviation;// 拟合直线与样本点之间的标准差，用于评估拟合效果
 
     float t[4];
 } Ordinary_Least_Squares_t;

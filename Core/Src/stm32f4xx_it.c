@@ -27,7 +27,7 @@
 #include "bsp_usart.h"
 /* app层接口 */
 #include "robot_ins.h"
-
+#include "debug_task.h"
 
 /* USER CODE END Includes */
 
@@ -76,6 +76,7 @@ extern TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN EV */
 extern Uart_Instance_t *action_uart_instance;
+extern Uart_Instance_t *vofa_uart_instance;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -177,6 +178,20 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles EXTI line1 interrupt.
+  */
+void EXTI1_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI1_IRQn 0 */
+
+  /* USER CODE END EXTI1_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
+  /* USER CODE BEGIN EXTI1_IRQn 1 */
+
+  /* USER CODE END EXTI1_IRQn 1 */
+}
+
+/**
   * @brief This function handles DMA1 stream2 global interrupt.
   */
 void DMA1_Stream2_IRQHandler(void)
@@ -218,7 +233,6 @@ void DMA1_Stream6_IRQHandler(void)
   /* USER CODE END DMA1_Stream6_IRQn 1 */
 }
 
-uint8_t cc =0;
 /**
   * @brief This function handles CAN1 RX0 interrupts.
   */
@@ -229,7 +243,6 @@ void CAN1_RX0_IRQHandler(void)
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
-  cc++;
   /* USER CODE END CAN1_RX0_IRQn 1 */
 }
 
@@ -271,7 +284,7 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-
+  Uart_Receive_Handler(vofa_uart_instance);
   /* USER CODE END USART1_IRQn 1 */
 }
 

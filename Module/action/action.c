@@ -44,7 +44,7 @@ Action_Instance_t* Action_Init(Uart_Instance_t *action_uart, IWDG_Instance_t *ac
     if(action_iwdg == NULL)
     {
         LOGERROR("action iwdg is not prepared!");
-        return NULL;
+        return NULL; 
     }
     Action_Instance_t *temp_action_instance = (Action_Instance_t*)pvPortMalloc(sizeof(Action_Instance_t));
     if(temp_action_instance == NULL)
@@ -128,8 +128,6 @@ static uint8_t Action_Rtos_Init(Action_Instance_t* action_instance,uint32_t queu
         return 0;
     }
     memset(rtos_interface,0,sizeof(rtos_interface_t));
-    rtos_interface->queue_receive = xQueueReceive;
-    rtos_interface->queue_send = queue_send_wrapper;
 
     // 注册获取一个Freertos 队列句柄
     QueueHandle_t queue = xQueueCreate(queue_length,sizeof(UART_TxMsg));

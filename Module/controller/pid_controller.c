@@ -271,8 +271,11 @@ float PID_Calculate(PID_t *pid, float measure, float ref)
     return pid->Output;
 }
 
+
+// 梯形积分，积分项为两次采样值的平均
 static void f_Trapezoid_Intergral(PID_t *pid)
 {
+    // 是否使用模糊pid
     if (pid->FuzzyRule == NULL)
         pid->ITerm = pid->Ki * ((pid->Err + pid->Last_Err) / 2) * pid->dt;
     else
@@ -288,8 +291,9 @@ static void f_Changing_Integration_Rate(PID_t *pid)
         if (abs(pid->Err) <= pid->CoefB)
             return; // Full integral
         if (abs(pid->Err) <= (pid->CoefA + pid->CoefB))
-            pid->ITerm *= (pid->CoefA - abs(pid->Err) + pid->CoefB) / pid->CoefA;
+            pid->ITerm *= (pid->CoefA - abs(pid->Err) + pid->CoefB) / pid->CoefA;// 变速积分 CoefA <
         else
+            // 误差较大，停止积分，避免积分饱和过冲
             pid->ITerm = 0;
     }
 }
@@ -323,8 +327,10 @@ static void f_Integral_Limit(PID_t *pid)
 
 static void f_Derivative_On_Measurement(PID_t *pid)
 {
+    // 是否使用模糊PID
     if (pid->FuzzyRule == NULL)
     {
+        // 使用OLS提取信号微分
         if (pid->OLS_Order > 2)
             pid->Dout = pid->Kd * OLS_Derivative(&pid->OLS, pid->dt, -pid->Measure);
         else
@@ -332,6 +338,7 @@ static void f_Derivative_On_Measurement(PID_t *pid)
     }
     else
     {
+        // 使用模糊pid
         if (pid->OLS_Order > 2)
             pid->Dout = (pid->Kd + pid->FuzzyRule->KdFuzzy) * OLS_Derivative(&pid->OLS, pid->dt, -pid->Measure);
         else
@@ -339,18 +346,24 @@ static void f_Derivative_On_Measurement(PID_t *pid)
     }
 }
 
+// 对微分输出部分进行低通滤波
 static void f_Derivative_Filter(PID_t *pid)
 {
+    // 指数平均滤波实现
     pid->Dout = pid->Dout * pid->dt / (pid->Derivative_LPF_RC + pid->dt) +
                 pid->Last_Dout * pid->Derivative_LPF_RC / (pid->Derivative_LPF_RC + pid->dt);
 }
 
+// 对输出进行低通滤波
 static void f_Output_Filter(PID_t *pid)
 {
+    // 指数平均滤波实现
     pid->Output = pid->Output * pid->dt / (pid->Output_LPF_RC + pid->dt) +
                   pid->Last_Output * pid->Output_LPF_RC / (pid->Output_LPF_RC + pid->dt);
 }
 
+
+// 输出限幅
 static void f_Output_Limit(PID_t *pid)
 {
     if (pid->Output > pid->MaxOut)
@@ -363,6 +376,8 @@ static void f_Output_Limit(PID_t *pid)
     }
 }
 
+
+// 限制比例控制器输出
 static void f_Proportion_Limit(PID_t *pid)
 {
     if (pid->Pout > pid->MaxOut)
@@ -375,7 +390,7 @@ static void f_Proportion_Limit(PID_t *pid)
     }
 }
 
-// PID ERRORHandle Function
+// PID ERRORHandle Function 电机堵转检测
 static void f_PID_ErrorHandle(PID_t *pid)
 {
     /*Motor Blocked Handle*/

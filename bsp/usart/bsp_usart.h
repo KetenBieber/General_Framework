@@ -21,6 +21,7 @@
  *                  1.创建实例并且extern
  *                  2.调用初始化函数
  *                  3.it.c中包含app层的.h，以便获取串口实例
+ *              2024-10-13 添加发送模块，提供几种发送模式：阻塞发送、非阻塞发送、DMA发送
  * 
  *              
  * @note :
@@ -57,6 +58,7 @@ typedef uint8_t (*uart_callback_t)(void* uart_device,uint16_t rx_buf_num);// 定
 typedef struct
 {
     UART_HandleTypeDef *uart_handle;// hal库usart句柄成员
+    uint8_t use_static_length_data;// 是否接收定长数据，1：是 0：否
     uint16_t rx_buffer_size;// 定义buffer的大小
     uint8_t *rx_buffer;// 定义一个buffer
     uart_callback_t uart_callback;// 定义回调函数指针
@@ -71,6 +73,12 @@ typedef struct
     uint8_t (*Uart_Deinit)(void *);// 串口设备注销函数
 }Uart_Instance_t;
 
+typedef struct 
+{
+    UART_HandleTypeDef *uart_handle;// hal库usart句柄成员
+    uint8_t *tx_buffer;// 发送缓存
+    uint8_t tx_buffer_size;// 发送缓存大小
+}Uart_Tx_Package_t;
 /*----------------------------------function----------------------------------*/
 /**
  * @brief 串口设备注册函数，用户通过创建一个实例指针和串口数据包，然后通过调用此函数以及将实例传入本函数来获取返回值的实例
@@ -103,6 +111,34 @@ uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance);
  * @return uint8_t 
  */
 uint8_t Uart_UnRegister(void *uart_instance);
+
+
+/**
+ * @brief 阻塞式发送，不推荐使用，会阻塞线程
+ * 
+ * @param tx_package 
+ * @return uint8_t 
+ */
+uint8_t Uart_Tx_By_Blocking(Uart_Tx_Package_t tx_package);
+
+
+/**
+ * @brief 不阻塞发送，利用中断发送，推荐打开发送中断，做一些操作来显示是否正常发送，当然也可以不开，可有可无的操作
+ * 
+ * @param tx_package 
+ * @return uint8_t 
+ */
+uint8_t Uart_Tx_By_It(Uart_Tx_Package_t tx_package);
+
+
+/**
+ * @brief 利用DMA进行发送，需要先在cubemx打开配置，推荐使用！
+ * 
+ * @param tx_package 
+ * @return uint8_t 
+ */
+uint8_t Uart_Tx_By_DMA(Uart_Tx_Package_t tx_package);
+
 
 #ifdef __cplusplus
 }
