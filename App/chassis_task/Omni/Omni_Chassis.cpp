@@ -59,7 +59,7 @@ float Omni_Chassis::Kinematics_Inverse_Resolution(size_t count,Robot_Twist_t ref
         switch (count)
         {
          case 0:
-            return WHEEL_TO_MOTOR*(ref_twist.linear_x * (-COS30) + ref_twist.linear_y * SIN30 + ref_twist.omega * this->Wheel_To_Center);
+            return WHEEL_TO_MOTOR*1*(ref_twist.linear_x * (-COS30) + ref_twist.linear_y * SIN30 + ref_twist.omega * this->Wheel_To_Center);
          case 1:
             return WHEEL_TO_MOTOR*(ref_twist.linear_x * COS30 - ref_twist.linear_y * SIN30 + ref_twist.omega * this->Wheel_To_Center);
          case 2:
@@ -150,6 +150,8 @@ void Omni_Chassis::Dynamics_Inverse_Resolution()
                      this->Chassis_Reset_Output();// 清空之前底盘输出
                 }
                 Yaw_Adjust(&this->Chassis_Yaw_Adjust, this->current_angle_to_keep, this->imu_data->yaw, -179, 179);
+                int a = 0;
+                a++;
                 torque_omega = this->Chassis_Yaw_Adjust.Output;
                 break;
             case AUTO_MOVING:
