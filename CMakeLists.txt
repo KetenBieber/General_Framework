@@ -95,6 +95,7 @@ include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Core)
 include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Drivers)
 include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Middlewares)
 include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Module)
+include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/USB_DEVICE)
 
 # add source, only surfix .c .cpp 添加源文件路径 
 # GLOB_RECURSE 递归查找 将匹配的文件路径存储在变量 SOURCES 中
@@ -107,6 +108,7 @@ file(GLOB_RECURSE SOURCES
     "Module/*.c"
     "Module/*.cpp"
     "App/*.cpp"
+    "USB_DEVICE/*.c"
 )
 
 # 汇编文件路径

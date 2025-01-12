@@ -42,6 +42,7 @@
 extern "C"{
 #endif
 
+
 #define RAD_2_DEGREE                        57.2957795f    // 180/pi  弧度转换成角度
 #define DEGREE_2_RAD                        0.01745329252f // pi/180  角度转化成弧度
 #define RPM_PER_MIN_2_ANGLE_PER_SEC         6.0f        // 360/60,转每分钟 转化 度每秒    

@@ -8,7 +8,9 @@
  * @copyright Copyright (c) 2024
  * 
  * @attention :
- * @note :
+ * @note : 开发需求，一些运动所需的跟踪器
+ *         1.角度跟踪器
+ *         2.位置跟踪器 
  * @versioninfo :
  */
 #ifndef TRACKING_H 

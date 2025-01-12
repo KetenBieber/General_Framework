@@ -9,7 +9,7 @@
  * 
  * @attention :
  * @note :此为底盘基类.h，请创建具体底盘类型的实例使用，其他类型的底盘均已提供对应的底盘解算以及动力学解算
- *        底盘进行机器人坐标系和世界坐标系的灵活转换的前提是---获取了机器人的姿态，请确保机器人在posture层已经接入了姿态传感器的接口
+ *        底盘进行机器人坐标系123和世界坐标系的灵活转换的前提是---获取了机器人的姿态，请确保机器人在posture层已经接入了姿态传感器的接口
  *        注意使用坐标系为
  *          前x、左y       
  *        机器人使用pub-sub获取姿态数据，订阅chassis_imu_pub 获取 yaw角数据
@@ -22,6 +22,7 @@
 #pragma once
 
 /*----------------------------------include-----------------------------------*/
+#define  __FPU_PRESENT  1U
 #include "arm_math.h"
 #include "robot_def.h"
 #include "motor_base.h"
@@ -110,6 +111,7 @@ public:
             pos_data = (pub_Chassis_Pos*)(chassis_pos_data.data);
         }
     }
+    // 机器人坐标系下速度转世界坐标系下速度
     void RoboSpeed_To_WorldSpeed()
     {
         float COSANGLE = arm_cos_f32(this->imu_data->yaw*DEGREE_2_RAD);
@@ -118,7 +120,7 @@ public:
         this->WorldSpeed.linear_y = this->RoboSpeed.linear_x * SINANGLE + this->RoboSpeed.linear_y * COSANGLE;
         this->WorldSpeed.omega = this->RoboSpeed.omega;  
     }
-
+    // 世界坐标系下速度转机器人坐标系下速度
     void RefWorldSpeed_To_RefRoboSpeed()
     {
         float COSANGLE = arm_cos_f32(this->imu_data->yaw * DEGREE_2_RAD);// cos90 = 0

@@ -26,7 +26,7 @@
 #include "chassis_task.h"
 #include "rm_motor.h"
 #include "Chassis.h"
-#include "Omni_Chassis.h"
+#include "Omni/Omni_Chassis.h"
 #include "motor_interface.h"
 
 #ifdef TEST_YAW_ADJUST

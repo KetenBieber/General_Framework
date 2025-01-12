@@ -42,7 +42,10 @@
         "pid_controller.h": "c",
         "limits": "cpp",
         "tracking.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "omni_chassis.h": "c",
+        "cmsis_os.h": "c",
+        "bsp_dwt.h": "c"
     },
     // 这里要改成你自己的编译器的路径
     "C_Cpp.default.compilerPath": "arm-none-eabi-g++",

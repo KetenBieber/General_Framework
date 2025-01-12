@@ -26,7 +26,7 @@ typedef enum pid_Improvement_e
 ## 变速积分（和积分分离解决同一个问题）
 - 解决什么问题？
 超调项实在没办法通过调节p来解决了，使用这个选项（或许）可以解决问题
-![alt text](image.png)
+![alt text](./../../image/pid_image.png)
 思想：在积分成累加趋势时，根据误差的大小来做
 - 通过调节这两个选项进行调节：
 ```c
@@ -56,7 +56,7 @@ static void f_Changing_Integration_Rate(PID_t *pid)
 
 
 ## 梯形积分
-![alt text](image-1.png)
+![alt text](./../../image/pid_image-1.png)
 
 
 ## 积分限幅 + 抗积分饱和
@@ -102,7 +102,7 @@ pid->Dout = pid->Kd * (pid->Err - pid->Last_Err) / pid->dt;
 
 
 ## 不完全微分
-![alt text](image-2.png)
+![alt text](./../../image/pid_image-2.png)
 说人话：就是给微分输出加以低通滤波器，滤除高频噪声
 ```c
 // 对微分输出部分进行低通滤波
@@ -116,13 +116,13 @@ static void f_Derivative_Filter(PID_t *pid)
                                 较小时，可能会引入更多噪声
         注意：dt是你使用pid控制器的时间周期，对于电机来说是0.001左右（由dwt计算得到的实际控制周期时间）
         看图：代码展开为公式是
-![alt text](f12f09104bd0d2574f2ac82a76b2e58.jpg)
+![alt text](./../../image/pid_image-3.jpg)
 你调整这个Derivative_LPF_RC实际上是调a
 
 
 ## 输出滤波
 - 同前面对微分输出做的低通滤波器一样，代码转化为公式：
-![alt text](ce04c7f131512c54023ed4ed1a00a7e.jpg)
+![alt text](./../../image/pid_image-4.jpg)
 
 
 # 模糊pid 学习

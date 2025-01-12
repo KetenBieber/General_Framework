@@ -64,7 +64,7 @@ void Chassis_Task(void *argument);
   
 #ifdef __cplusplus
 #include "rm_motor.h"
-#include "Omni_Chassis.h"
+#include "Omni/Omni_Chassis.h"
 extern Motor_C620 chassis_motor[4];
 
 uint8_t Chassis(Omni_Chassis &user_chassis);
