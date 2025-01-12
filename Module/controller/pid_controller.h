@@ -124,7 +124,7 @@ typedef struct PACKED
  * @brief 
  * 
  */
-typedef struct PACKED pid_t 
+typedef struct PACKED PID_T 
 {
     float Ref;
     float Kp;
@@ -169,8 +169,8 @@ typedef struct PACKED pid_t
 
     PID_ErrorHandler_t ERRORHandler;
 
-    void (*User_Func1_f)(struct pid_t *pid);
-    void (*User_Func2_f)(struct pid_t *pid);
+    void (*User_Func1_f)(struct PID_T *pid);
+    void (*User_Func2_f)(struct PID_T *pid);
 } PID_t;
 
 void PID_Init(PID_t *pid);

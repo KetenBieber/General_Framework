@@ -15,7 +15,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-addr2line.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-addr2line.exe"
 		},
 		{
 			"name" : "CMAKE_ASM_COMPILER_AR",
@@ -31,7 +31,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc-ar.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_ASM_COMPILER_RANLIB",
@@ -47,7 +47,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc-ranlib.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_ASM_COMPILER_WORKS",
@@ -147,11 +147,11 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
 				}
 			],
 			"type" : "STRING",
-			"value" : "Debug"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CACHEFILE_DIR",
@@ -163,7 +163,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/c_plusplus_try/new_build/build"
+			"value" : "f:/Git/General_Framework/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -187,7 +187,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "30"
+			"value" : "31"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -211,7 +211,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/CMake/bin/cmake.exe"
+			"value" : "F:/cmake/bin/cmake.exe"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -223,7 +223,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/CMake/bin/cpack.exe"
+			"value" : "F:/cmake/bin/cpack.exe"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -235,19 +235,23 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/CMake/bin/ctest.exe"
+			"value" : "F:/cmake/bin/ctest.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
 			"properties" : 
 			[
 				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-g++.exe"
+			"type" : "STRING",
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-g++.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -263,7 +267,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc-ar.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_RANLIB",
@@ -279,7 +283,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc-ranlib.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -366,12 +370,16 @@
 			"properties" : 
 			[
 				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "C compiler"
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc.exe"
+			"type" : "STRING",
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -387,7 +395,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc-ar.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -403,7 +411,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-gcc-ranlib.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -499,7 +507,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/dlltool.exe"
+			"value" : "C:/Program Files/mingw64/bin/dlltool.exe"
 		},
 		{
 			"name" : "CMAKE_EDIT_COMMAND",
@@ -511,7 +519,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/CMake/bin/cmake-gui.exe"
+			"value" : "F:/cmake/bin/cmake-gui.exe"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -606,16 +614,20 @@
 			"value" : ""
 		},
 		{
-			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
+			"name" : "CMAKE_EXPORT_BUILD_DATABASE",
 			"properties" : 
 			[
 				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "Enable/Disable output of build database during the build."
 				}
 			],
 			"type" : "BOOL",
-			"value" : "TRUE"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
@@ -639,7 +651,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/c_plusplus_try/new_build/build/CMakeFiles/pkgRedirects"
+			"value" : "F:/Git/General_Framework/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -699,7 +711,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/c_plusplus_try/new_build"
+			"value" : "F:/Git/General_Framework"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -727,7 +739,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-ld.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-ld.exe"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
@@ -743,7 +755,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/ninja/ninja.exe"
+			"value" : "F:/ninja/ninja.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -839,7 +851,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-nm.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-nm.exe"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -915,7 +927,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-ranlib.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_READELF",
@@ -931,7 +943,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-readelf.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-readelf.exe"
 		},
 		{
 			"name" : "CMAKE_ROOT",
@@ -943,7 +955,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files/CMake/share/cmake-3.30"
+			"value" : "F:/cmake/share/cmake-3.31"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1151,7 +1163,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/msys64/mingw64/bin/arm-none-eabi-strip.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-strip.exe"
 		},
 		{
 			"name" : "CMAKE_TAPI",
@@ -1195,7 +1207,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/c_plusplus_try/new_build/build"
+			"value" : "F:/Git/General_Framework/build"
 		},
 		{
 			"name" : "new_build_IS_TOP_LEVEL",
@@ -1219,7 +1231,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/c_plusplus_try/new_build"
+			"value" : "F:/Git/General_Framework"
 		}
 	],
 	"kind" : "cache",

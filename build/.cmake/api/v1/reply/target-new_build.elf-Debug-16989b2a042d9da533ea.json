@@ -352,37 +352,13 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 50
-			},
-			{
-				"command" : 7,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 54
-			},
-			{
-				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 54
-			},
-			{
-				"command" : 7,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 56
-			},
-			{
-				"command" : 8,
-				"file" : 1,
-				"line" : 11,
 				"parent" : 44
 			},
 			{
 				"command" : 7,
 				"file" : 1,
 				"line" : 5,
-				"parent" : 58
+				"parent" : 54
 			},
 			{
 				"command" : 8,
@@ -394,43 +370,43 @@
 				"command" : 7,
 				"file" : 1,
 				"line" : 5,
+				"parent" : 56
+			},
+			{
+				"command" : 8,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 56
+			},
+			{
+				"command" : 7,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 58
+			},
+			{
+				"command" : 8,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 58
+			},
+			{
+				"command" : 7,
+				"file" : 1,
+				"line" : 5,
 				"parent" : 60
 			},
 			{
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 60
+				"parent" : 56
 			},
 			{
 				"command" : 7,
 				"file" : 1,
 				"line" : 5,
 				"parent" : 62
-			},
-			{
-				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 62
-			},
-			{
-				"command" : 7,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 64
-			},
-			{
-				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 60
-			},
-			{
-				"command" : 7,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 66
 			},
 			{
 				"command" : 8,
@@ -442,6 +418,30 @@
 				"command" : 7,
 				"file" : 1,
 				"line" : 5,
+				"parent" : 64
+			},
+			{
+				"command" : 8,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 64
+			},
+			{
+				"command" : 7,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 66
+			},
+			{
+				"command" : 8,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 66
+			},
+			{
+				"command" : 7,
+				"file" : 1,
+				"line" : 5,
 				"parent" : 68
 			},
 			{
@@ -472,7 +472,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 72
+				"parent" : 70
 			},
 			{
 				"command" : 7,
@@ -484,7 +484,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 74
+				"parent" : 64
 			},
 			{
 				"command" : 7,
@@ -496,7 +496,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 74
+				"parent" : 76
 			},
 			{
 				"command" : 7,
@@ -508,7 +508,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 68
+				"parent" : 78
 			},
 			{
 				"command" : 7,
@@ -532,7 +532,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 82
+				"parent" : 80
 			},
 			{
 				"command" : 7,
@@ -544,7 +544,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 84
+				"parent" : 80
 			},
 			{
 				"command" : 7,
@@ -556,7 +556,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 84
+				"parent" : 86
 			},
 			{
 				"command" : 7,
@@ -568,7 +568,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 84
+				"parent" : 88
 			},
 			{
 				"command" : 7,
@@ -580,7 +580,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 90
+				"parent" : 86
 			},
 			{
 				"command" : 7,
@@ -592,7 +592,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 92
+				"parent" : 76
 			},
 			{
 				"command" : 7,
@@ -604,7 +604,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 90
+				"parent" : 94
 			},
 			{
 				"command" : 7,
@@ -616,7 +616,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 80
+				"parent" : 94
 			},
 			{
 				"command" : 7,
@@ -638,9 +638,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 98
+				"file" : 0,
+				"line" : 97,
+				"parent" : 0
 			},
 			{
 				"command" : 7,
@@ -662,9 +662,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 0,
-				"line" : 97,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -676,7 +676,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -688,7 +688,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -700,7 +700,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -712,7 +712,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -724,7 +724,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -736,7 +736,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -748,7 +748,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -760,7 +760,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -772,7 +772,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -784,49 +784,13 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
 				"file" : 1,
 				"line" : 5,
 				"parent" : 126
-			},
-			{
-				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 106
-			},
-			{
-				"command" : 7,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 128
-			},
-			{
-				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 106
-			},
-			{
-				"command" : 7,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 130
-			},
-			{
-				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 106
-			},
-			{
-				"command" : 7,
-				"file" : 1,
-				"line" : 5,
-				"parent" : 132
 			}
 		]
 	},
@@ -836,7 +800,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-g -std=gnu++17"
 				},
 				{
 					"backtrace" : 5,
@@ -970,251 +934,239 @@
 			[
 				{
 					"backtrace" : 11,
-					"path" : "C:/c_plusplus_try/new_build/App"
+					"path" : "F:/Git/General_Framework/App"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/c_plusplus_try/new_build/App/chassis_task"
+					"path" : "F:/Git/General_Framework/App/chassis_task"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "C:/c_plusplus_try/new_build/App/control_task"
+					"path" : "F:/Git/General_Framework/App/control_task"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "C:/c_plusplus_try/new_build/App/debug_task"
+					"path" : "F:/Git/General_Framework/App/debug_task"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "C:/c_plusplus_try/new_build/App/robot_com"
+					"path" : "F:/Git/General_Framework/App/robot_com"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "C:/c_plusplus_try/new_build/App/robot_ins"
+					"path" : "F:/Git/General_Framework/App/robot_ins"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "C:/c_plusplus_try/new_build/Bsp"
+					"path" : "F:/Git/General_Framework/Bsp"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
+					"path" : "F:/Git/General_Framework/Bsp/can"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
+					"path" : "F:/Git/General_Framework/Bsp/dwt"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
+					"path" : "F:/Git/General_Framework/Bsp/gpio"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
+					"path" : "F:/Git/General_Framework/Bsp/log"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
+					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
+					"path" : "F:/Git/General_Framework/Bsp/usart"
 				},
 				{
 					"backtrace" : 37,
-					"path" : "C:/c_plusplus_try/new_build/Core"
+					"path" : "F:/Git/General_Framework/Core"
 				},
 				{
 					"backtrace" : 39,
-					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
+					"path" : "F:/Git/General_Framework/Core/Inc"
 				},
 				{
 					"backtrace" : 41,
-					"path" : "C:/c_plusplus_try/new_build/Core/Src"
+					"path" : "F:/Git/General_Framework/Core/Src"
 				},
 				{
 					"backtrace" : 43,
-					"path" : "C:/c_plusplus_try/new_build/Drivers"
+					"path" : "F:/Git/General_Framework/Drivers"
 				},
 				{
 					"backtrace" : 45,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 47,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 49,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 51,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 53,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 55,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 57,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 59,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 61,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 63,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 65,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "F:/Git/General_Framework/Middlewares"
 				},
 				{
 					"backtrace" : 67,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST"
 				},
 				{
 					"backtrace" : 69,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 71,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 73,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 75,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 77,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 79,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 81,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 83,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 85,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 87,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 89,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 91,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 93,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 95,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 97,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 99,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 101,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 103,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "F:/Git/General_Framework/Module"
 				},
 				{
 					"backtrace" : 105,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "F:/Git/General_Framework/Module/action"
 				},
 				{
 					"backtrace" : 107,
-					"path" : "C:/c_plusplus_try/new_build/Module"
+					"path" : "F:/Git/General_Framework/Module/air_joy"
 				},
 				{
 					"backtrace" : 109,
-					"path" : "C:/c_plusplus_try/new_build/Module/action"
+					"path" : "F:/Git/General_Framework/Module/alarm"
 				},
 				{
 					"backtrace" : 111,
-					"path" : "C:/c_plusplus_try/new_build/Module/air_joy"
+					"path" : "F:/Git/General_Framework/Module/algorithm"
 				},
 				{
 					"backtrace" : 113,
-					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
+					"path" : "F:/Git/General_Framework/Module/controller"
 				},
 				{
 					"backtrace" : 115,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "F:/Git/General_Framework/Module/motor"
 				},
 				{
 					"backtrace" : 117,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "F:/Git/General_Framework/Module/movebase"
 				},
 				{
 					"backtrace" : 119,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "F:/Git/General_Framework/Module/ros_com"
 				},
 				{
 					"backtrace" : 121,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 123,
-					"path" : "C:/c_plusplus_try/new_build/Module/movebase"
+					"path" : "F:/Git/General_Framework/Module/tool"
 				},
 				{
 					"backtrace" : 125,
-					"path" : "C:/c_plusplus_try/new_build/Module/ros_com"
+					"path" : "F:/Git/General_Framework/Module/topics"
 				},
 				{
 					"backtrace" : 127,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
-				},
-				{
-					"backtrace" : 129,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
-				},
-				{
-					"backtrace" : 131,
-					"path" : "C:/c_plusplus_try/new_build/Module/topics"
-				},
-				{
-					"backtrace" : 133,
-					"path" : "C:/c_plusplus_try/new_build/Module/vofa"
+					"path" : "F:/Git/General_Framework/Module/vofa"
 				}
 			],
 			"language" : "CXX",
@@ -1377,251 +1329,239 @@
 			[
 				{
 					"backtrace" : 11,
-					"path" : "C:/c_plusplus_try/new_build/App"
+					"path" : "F:/Git/General_Framework/App"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/c_plusplus_try/new_build/App/chassis_task"
+					"path" : "F:/Git/General_Framework/App/chassis_task"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "C:/c_plusplus_try/new_build/App/control_task"
+					"path" : "F:/Git/General_Framework/App/control_task"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "C:/c_plusplus_try/new_build/App/debug_task"
+					"path" : "F:/Git/General_Framework/App/debug_task"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "C:/c_plusplus_try/new_build/App/robot_com"
+					"path" : "F:/Git/General_Framework/App/robot_com"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "C:/c_plusplus_try/new_build/App/robot_ins"
+					"path" : "F:/Git/General_Framework/App/robot_ins"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "C:/c_plusplus_try/new_build/Bsp"
+					"path" : "F:/Git/General_Framework/Bsp"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
+					"path" : "F:/Git/General_Framework/Bsp/can"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
+					"path" : "F:/Git/General_Framework/Bsp/dwt"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
+					"path" : "F:/Git/General_Framework/Bsp/gpio"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
+					"path" : "F:/Git/General_Framework/Bsp/log"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
+					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
+					"path" : "F:/Git/General_Framework/Bsp/usart"
 				},
 				{
 					"backtrace" : 37,
-					"path" : "C:/c_plusplus_try/new_build/Core"
+					"path" : "F:/Git/General_Framework/Core"
 				},
 				{
 					"backtrace" : 39,
-					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
+					"path" : "F:/Git/General_Framework/Core/Inc"
 				},
 				{
 					"backtrace" : 41,
-					"path" : "C:/c_plusplus_try/new_build/Core/Src"
+					"path" : "F:/Git/General_Framework/Core/Src"
 				},
 				{
 					"backtrace" : 43,
-					"path" : "C:/c_plusplus_try/new_build/Drivers"
+					"path" : "F:/Git/General_Framework/Drivers"
 				},
 				{
 					"backtrace" : 45,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 47,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 49,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 51,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 53,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 55,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 57,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 59,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 61,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 63,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 65,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "F:/Git/General_Framework/Middlewares"
 				},
 				{
 					"backtrace" : 67,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST"
 				},
 				{
 					"backtrace" : 69,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 71,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 73,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 75,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 77,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 79,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 81,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 83,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 85,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 87,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 89,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 91,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 93,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 95,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 97,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 99,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 101,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 103,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "F:/Git/General_Framework/Module"
 				},
 				{
 					"backtrace" : 105,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "F:/Git/General_Framework/Module/action"
 				},
 				{
 					"backtrace" : 107,
-					"path" : "C:/c_plusplus_try/new_build/Module"
+					"path" : "F:/Git/General_Framework/Module/air_joy"
 				},
 				{
 					"backtrace" : 109,
-					"path" : "C:/c_plusplus_try/new_build/Module/action"
+					"path" : "F:/Git/General_Framework/Module/alarm"
 				},
 				{
 					"backtrace" : 111,
-					"path" : "C:/c_plusplus_try/new_build/Module/air_joy"
+					"path" : "F:/Git/General_Framework/Module/algorithm"
 				},
 				{
 					"backtrace" : 113,
-					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
+					"path" : "F:/Git/General_Framework/Module/controller"
 				},
 				{
 					"backtrace" : 115,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "F:/Git/General_Framework/Module/motor"
 				},
 				{
 					"backtrace" : 117,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "F:/Git/General_Framework/Module/movebase"
 				},
 				{
 					"backtrace" : 119,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "F:/Git/General_Framework/Module/ros_com"
 				},
 				{
 					"backtrace" : 121,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 123,
-					"path" : "C:/c_plusplus_try/new_build/Module/movebase"
+					"path" : "F:/Git/General_Framework/Module/tool"
 				},
 				{
 					"backtrace" : 125,
-					"path" : "C:/c_plusplus_try/new_build/Module/ros_com"
+					"path" : "F:/Git/General_Framework/Module/topics"
 				},
 				{
 					"backtrace" : 127,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
-				},
-				{
-					"backtrace" : 129,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
-				},
-				{
-					"backtrace" : 131,
-					"path" : "C:/c_plusplus_try/new_build/Module/topics"
-				},
-				{
-					"backtrace" : 133,
-					"path" : "C:/c_plusplus_try/new_build/Module/vofa"
+					"path" : "F:/Git/General_Framework/Module/vofa"
 				}
 			],
 			"language" : "C",
@@ -1843,251 +1783,239 @@
 			[
 				{
 					"backtrace" : 11,
-					"path" : "C:/c_plusplus_try/new_build/App"
+					"path" : "F:/Git/General_Framework/App"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "C:/c_plusplus_try/new_build/App/chassis_task"
+					"path" : "F:/Git/General_Framework/App/chassis_task"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "C:/c_plusplus_try/new_build/App/control_task"
+					"path" : "F:/Git/General_Framework/App/control_task"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "C:/c_plusplus_try/new_build/App/debug_task"
+					"path" : "F:/Git/General_Framework/App/debug_task"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "C:/c_plusplus_try/new_build/App/robot_com"
+					"path" : "F:/Git/General_Framework/App/robot_com"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "C:/c_plusplus_try/new_build/App/robot_ins"
+					"path" : "F:/Git/General_Framework/App/robot_ins"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "C:/c_plusplus_try/new_build/Bsp"
+					"path" : "F:/Git/General_Framework/Bsp"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/can"
+					"path" : "F:/Git/General_Framework/Bsp/can"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/dwt"
+					"path" : "F:/Git/General_Framework/Bsp/dwt"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/gpio"
+					"path" : "F:/Git/General_Framework/Bsp/gpio"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/log"
+					"path" : "F:/Git/General_Framework/Bsp/log"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/soft_reset"
+					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "C:/c_plusplus_try/new_build/Bsp/usart"
+					"path" : "F:/Git/General_Framework/Bsp/usart"
 				},
 				{
 					"backtrace" : 37,
-					"path" : "C:/c_plusplus_try/new_build/Core"
+					"path" : "F:/Git/General_Framework/Core"
 				},
 				{
 					"backtrace" : 39,
-					"path" : "C:/c_plusplus_try/new_build/Core/Inc"
+					"path" : "F:/Git/General_Framework/Core/Inc"
 				},
 				{
 					"backtrace" : 41,
-					"path" : "C:/c_plusplus_try/new_build/Core/Src"
+					"path" : "F:/Git/General_Framework/Core/Src"
 				},
 				{
 					"backtrace" : 43,
-					"path" : "C:/c_plusplus_try/new_build/Drivers"
+					"path" : "F:/Git/General_Framework/Drivers"
 				},
 				{
 					"backtrace" : 45,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 47,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 49,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 51,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 53,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 55,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 57,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 59,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/CMSIS/Include"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 61,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 63,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 65,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "F:/Git/General_Framework/Middlewares"
 				},
 				{
 					"backtrace" : 67,
-					"path" : "C:/c_plusplus_try/new_build/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST"
 				},
 				{
 					"backtrace" : 69,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 71,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 73,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 75,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 77,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 79,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 81,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 83,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 85,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 87,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 89,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 91,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 93,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 95,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 97,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 99,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 101,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/Config"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 103,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "F:/Git/General_Framework/Module"
 				},
 				{
 					"backtrace" : 105,
-					"path" : "C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "F:/Git/General_Framework/Module/action"
 				},
 				{
 					"backtrace" : 107,
-					"path" : "C:/c_plusplus_try/new_build/Module"
+					"path" : "F:/Git/General_Framework/Module/air_joy"
 				},
 				{
 					"backtrace" : 109,
-					"path" : "C:/c_plusplus_try/new_build/Module/action"
+					"path" : "F:/Git/General_Framework/Module/alarm"
 				},
 				{
 					"backtrace" : 111,
-					"path" : "C:/c_plusplus_try/new_build/Module/air_joy"
+					"path" : "F:/Git/General_Framework/Module/algorithm"
 				},
 				{
 					"backtrace" : 113,
-					"path" : "C:/c_plusplus_try/new_build/Module/alarm"
+					"path" : "F:/Git/General_Framework/Module/controller"
 				},
 				{
 					"backtrace" : 115,
-					"path" : "C:/c_plusplus_try/new_build/Module/algorithm"
+					"path" : "F:/Git/General_Framework/Module/motor"
 				},
 				{
 					"backtrace" : 117,
-					"path" : "C:/c_plusplus_try/new_build/Module/bmi088"
+					"path" : "F:/Git/General_Framework/Module/movebase"
 				},
 				{
 					"backtrace" : 119,
-					"path" : "C:/c_plusplus_try/new_build/Module/controller"
+					"path" : "F:/Git/General_Framework/Module/ros_com"
 				},
 				{
 					"backtrace" : 121,
-					"path" : "C:/c_plusplus_try/new_build/Module/motor"
+					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 123,
-					"path" : "C:/c_plusplus_try/new_build/Module/movebase"
+					"path" : "F:/Git/General_Framework/Module/tool"
 				},
 				{
 					"backtrace" : 125,
-					"path" : "C:/c_plusplus_try/new_build/Module/ros_com"
+					"path" : "F:/Git/General_Framework/Module/topics"
 				},
 				{
 					"backtrace" : 127,
-					"path" : "C:/c_plusplus_try/new_build/Module/soft_iwdg"
-				},
-				{
-					"backtrace" : 129,
-					"path" : "C:/c_plusplus_try/new_build/Module/tool"
-				},
-				{
-					"backtrace" : 131,
-					"path" : "C:/c_plusplus_try/new_build/Module/topics"
-				},
-				{
-					"backtrace" : 133,
-					"path" : "C:/c_plusplus_try/new_build/Module/vofa"
+					"path" : "F:/Git/General_Framework/Module/vofa"
 				}
 			],
 			"language" : "ASM",
@@ -2143,7 +2071,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-TC:/c_plusplus_try/new_build/ToolChain/STM32F407ZGTx_FLASH.ld",
+				"fragment" : "-TF:/Git/General_Framework/ToolChain/STM32F407ZGTx_FLASH.ld",
 				"role" : "flags"
 			},
 			{
@@ -2188,7 +2116,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-Wl,-Map=C:/c_plusplus_try/new_build/build/new_build.map",
+				"fragment" : "-Wl,-Map=F:/Git/General_Framework/build/new_build.map",
 				"role" : "flags"
 			},
 			{
@@ -2203,7 +2131,7 @@
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "-LC:\\c_plusplus_try\\new_build\\Middlewares\\ST\\ARM\\DSP\\Lib",
+				"fragment" : "-LF:\\Git\\General_Framework\\Middlewares\\ST\\ARM\\DSP\\Lib",
 				"role" : "libraryPath"
 			},
 			{

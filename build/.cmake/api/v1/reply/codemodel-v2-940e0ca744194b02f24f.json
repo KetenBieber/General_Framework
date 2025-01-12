@@ -48,7 +48,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "new_build.elf::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-new_build.elf-Debug-cc1e987009ae9b4fa838.json",
+					"jsonFile" : "target-new_build.elf-Debug-16989b2a042d9da533ea.json",
 					"name" : "new_build.elf",
 					"projectIndex" : 0
 				}
@@ -58,8 +58,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/c_plusplus_try/new_build/build",
-		"source" : "C:/c_plusplus_try/new_build"
+		"build" : "F:/Git/General_Framework/build",
+		"source" : "F:/Git/General_Framework"
 	},
 	"version" : 
 	{
