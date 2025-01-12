@@ -36,13 +36,13 @@ float Omni_Chassis::Kinematics_Inverse_Resolution(size_t count,Robot_Twist_t ref
 {
      if(this->Wheel_Num == 4)
      {
-      static float COS45 = arm_cos_f32(45*DEGREE_2_RAD);
-      static float SIN45 = arm_sin_f32(45*DEGREE_2_RAD);
+      static float COS45 = arm_cos_f32(45*DEGREE_2_RAD*1);
+      static float SIN45 = arm_sin_f32(45*DEGREE_2_RAD*1);
       // 四全向轮解算
       switch (count)
       {
          case 0:
-            return WHEEL_TO_MOTOR*(ref_twist.linear_x * (-COS45) + ref_twist.linear_y * SIN45 + ref_twist.omega * this->Wheel_To_Center);
+            return WHEEL_TO_MOTOR*1.0*(ref_twist.linear_x * (-COS45) + ref_twist.linear_y * SIN45 + ref_twist.omega * this->Wheel_To_Center);
          case 1:
             return WHEEL_TO_MOTOR*(ref_twist.linear_x * (-COS45) - ref_twist.linear_y * SIN45 + ref_twist.omega * this->Wheel_To_Center); 
          case 2:
