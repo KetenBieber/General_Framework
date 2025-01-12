@@ -36,11 +36,11 @@ uint8_t Yaw_Adjust(PID_t *yaw_pid,float Target_Yaw,float Current_Yaw,float measu
         {
             if(Current_Yaw > 0)
             {
-                temp_yaw_error = Target_Yaw - (Current_Yaw - (measure_max - measure_min));
+                temp_yaw_error = 1*Target_Yaw - (Current_Yaw - (measure_max - measure_min));
             }
             else
             {
-                temp_yaw_error = (Target_Yaw + (measure_max - measure_min)) - Current_Yaw;
+                temp_yaw_error = 1*(Target_Yaw + (measure_max - measure_min)) - Current_Yaw;
             }
         }
     }
