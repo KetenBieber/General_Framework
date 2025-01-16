@@ -956,7 +956,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17"
+					"fragment" : "-g"
 				},
 				{
 					"backtrace" : 5,

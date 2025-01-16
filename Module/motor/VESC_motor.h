@@ -56,8 +56,8 @@ public:
     virtual void stop_the_motor() override;
     virtual void enable_the_motor() override;
     virtual void pid_control_to_motor() override;
-    void Rpm_Control(float rpm); //电机转速控制
-    void Cur_Control(float current);//电机电流控制
+    void Rpm_Control(float rpm); //电机转速控制 rpm
+    void Cur_Control(float current);//电机电流控制 mA
 
 public:
     inline virtual void update(uint8_t can_rx_data[8]) override
@@ -69,7 +69,7 @@ public:
         
         motor_current = (int16_t)((can_rx_data[4] << 8) | can_rx_data[5]);
 
-        motor_current=(float)motor_current*0.01f;
+        motor_current=(float)motor_current*0.01f;// A
         speed = (float)speed/((float)motor_polse);
     }
 

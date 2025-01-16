@@ -7,7 +7,7 @@
 			{
 				"id" : "GNU",
 				"implicit" : {},
-				"path" : "D:/GNU Arm Embedded Toolchain/10 2021.10/bin/arm-none-eabi-gcc.exe",
+				"path" : "D:/msys64/mingw64/bin/arm-none-eabi-gcc.exe",
 				"version" : ""
 			},
 			"language" : "ASM",
@@ -29,8 +29,8 @@
 					"linkFrameworkDirectories" : [],
 					"linkLibraries" : []
 				},
-				"path" : "D:/GNU Arm Embedded Toolchain/10 2021.10/bin/arm-none-eabi-gcc.exe",
-				"version" : "10.3.1"
+				"path" : "D:/msys64/mingw64/bin/arm-none-eabi-gcc.exe",
+				"version" : "12.2.0"
 			},
 			"language" : "C",
 			"sourceFileExtensions" : 
@@ -50,8 +50,8 @@
 					"linkFrameworkDirectories" : [],
 					"linkLibraries" : []
 				},
-				"path" : "D:/GNU Arm Embedded Toolchain/10 2021.10/bin/arm-none-eabi-g++.exe",
-				"version" : "10.3.1"
+				"path" : "D:/msys64/mingw64/bin/arm-none-eabi-g++.exe",
+				"version" : "12.2.0"
 			},
 			"language" : "CXX",
 			"sourceFileExtensions" : 
