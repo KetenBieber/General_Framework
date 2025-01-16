@@ -19,6 +19,7 @@
 #include "air_joy.h"
 #include "arm_math.h"
 
+
 #ifdef CHASSIS_TO_DEBUG
 #include "pid_controller.h"
 #endif 
@@ -34,6 +35,26 @@ pub_Control_Data debug_pid;
 VOFA_Instance_t *vofa_instance = NULL;
 Uart_Instance_t *vofa_uart_instance = NULL;
 extern uart_package_t VOFA_uart_package;
+
+#ifdef TEST_VESC
+CAN_Rx_Instance_t VESC_rx_instance = {
+    .can_handle = &hcan2,
+    .RxHeader = {0},
+    .rx_len = 8,
+    .can_rx_buff = {0},
+};
+
+CAN_Tx_Instance_t VESC_tx_instance = {
+    .can_handle = &hcan2,
+    .isExTid = 1,
+    .tx_mailbox = 0,
+    .tx_len = 8,
+    .can_tx_buff = {0},
+};
+Motor_Control_Setting_t VESC_motor_ctrl = {0};
+
+VESC vesc[1]={VESC(1,VESC_rx_instance,VESC_tx_instance,VESC_motor_ctrl,0,1)};
+#endif
 
 #ifdef TEST_SYSTEM_TURNER
 extern Motor_C610 m2006[1];
@@ -56,11 +77,13 @@ CAN_Rx_Instance_t go1_rx_instance = {
 
 CAN_Tx_Instance_t go1_tx_instance = {
     .can_handle = &hcan2,
-    .isExTid = 0,
+    .isExTid = 1,
     .tx_mailbox = 0,
     .tx_len = 8,
     .can_tx_buff = {0},
 };
+
+
 
 Motor_Control_Setting_t go1_motor_ctrl = {0};
 // 较为特殊的go1电机，有些选项不需要配置！
@@ -107,6 +130,10 @@ __attribute((noreturn)) void Debug_Task(void *argument)
 
     for(;;)
     {
+#ifdef TEST_VESC
+    vesc[0].Cur_Control(200);
+    Motor_SendMsgs(vesc);
+#endif
 
 #ifdef VOFA_TO_DEBUG
         vofa_instance->vofa_task(vofa_instance);
@@ -180,16 +207,16 @@ __attribute((noreturn)) void Debug_Task(void *argument)
 #endif
 
 #ifdef DEBUG_GO1_MOTOR
-        if(debug <= 5000 || debug >= 10000)
-        {
-            go1_motor[0].GO_Motor_Speed_Ctrl(5,0.02);
-            debug++;
-        }
-        else
-        {
-            go1_motor[0].GO_Motor_No_Tarque_Ctrl();
-            debug++;
-        }
+        // if(debug <= 5000 || debug >= 10000)
+        // {
+        //     go1_motor[0].GO_Motor_Speed_Ctrl(5,0.02);
+        //     debug++;
+        // }
+        // else
+        // {
+        //     go1_motor[0].GO_Motor_No_Tarque_Ctrl();
+        //     debug++;
+        // }
 #endif
         osDelay(1);
     }

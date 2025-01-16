@@ -75,6 +75,7 @@ void CAN2_Send_Task(void *argument);
 #ifdef __cplusplus
 #include "chassis_task.h"
 #include "Unitree_Go1.h"
+#include "debug_task.h"
 
 #endif
 

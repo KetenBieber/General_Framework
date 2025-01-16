@@ -198,7 +198,7 @@ public:
      inline float get_speed_after_low(){ return this->speed / motor_reduction_ratio; }// 获取减速箱操作之后的速度
      inline float get_speed_aps_after_low(){ return this->speed_aps / motor_reduction_ratio; }// 获取减速箱操作之后的角速度
     /* 电机当前电流值 */
-     uint8_t motor_current = 0;
+     float motor_current = 0;
      /* 电机当前温度 */
      int16_t motor_temperature = 0;
 

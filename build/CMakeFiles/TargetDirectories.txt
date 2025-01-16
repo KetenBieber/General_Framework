@@ -1,0 +1,4 @@
+C:/Users/Lenovo/Desktop/new_build/General_Framework/build/CMakeFiles/new_build.elf.dir
+C:/Users/Lenovo/Desktop/new_build/General_Framework/build/CMakeFiles/download_jlink.dir
+C:/Users/Lenovo/Desktop/new_build/General_Framework/build/CMakeFiles/edit_cache.dir
+C:/Users/Lenovo/Desktop/new_build/General_Framework/build/CMakeFiles/rebuild_cache.dir

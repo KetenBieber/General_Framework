@@ -44,7 +44,7 @@ set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/ToolChain/STM32F407ZGTx_FLASH.ld") # æŒ‡å
 add_compile_options(-pipe ${MCU_FLAGS} -Wall -fmessage-length=0 # basic options
 -ffunction-sections -fdata-sections -fno-common # optimize options 
 )
-add_link_options(-pipe ${MCU_FLAGS} -T${LINKER_SCRIPT} -Wl,--no-warn-rwx-segments # close RWX warning
+add_link_options(-pipe ${MCU_FLAGS} -T${LINKER_SCRIPT}  # close RWX warning
 -lc -lstdc++ -lm  # lib options
 -Wl,--gc-sections -flto -specs=nano.specs -specs=nosys.specs # optimize options
 -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map -Wl,--cref -Wl,--print-memory-usage # map options
@@ -71,7 +71,7 @@ add_definitions(
     -DTOPICS_DEBUG
     -DDEBUG_FOR_ACTION 
     -DUSE_ACTION_FOR_IMU
-    -DCHASSIS_TO_DEBUG
+    # -DCHASSIS_TO_DEBUG
     # -DTEST_SYSTEM_TURNER
     # -DTEST_SYSTEM_M3508 
     # -DTEST_SYSTEM_M2006
@@ -81,7 +81,8 @@ add_definitions(
     -DDEBUG_TASK_RUN 
     # -DDEBUG_NO_TRACKING
     # -DTEST_YAW_ADJUST
-    -DDEBUG_GO1_MOTOR
+    # -DDEBUG_GO1_MOTOR
+    -DTEST_VESC
     ) # need -D<macro> to define macro
     
 

@@ -1,6 +1,7 @@
 {
     // 用于配置文件关联的设置，允许用户指定文件关联的语言模式
     "files.associations": {
+        "*.h": "c",
         "freertos.h": "c",
         "compare": "c",
         "cstdlib": "cpp",
@@ -45,10 +46,12 @@
         "main.h": "c",
         "omni_chassis.h": "c",
         "cmsis_os.h": "c",
-        "bsp_dwt.h": "c"
+        "bsp_dwt.h": "c",
+        "functional": "cpp"
     },
     // 这里要改成你自己的编译器的路径
-    "C_Cpp.default.compilerPath": "arm-none-eabi-g++",
+    "C_Cpp.default.compilerPath": "D:\\msys64\\mingw64\\bin\\arm-none-eabi-g++.exe",
     "C_Cpp.errorSquiggles": "enabled",
-    "makefile.makefilePath": "ToolChain/Makefile"
+    "makefile.makefilePath": "ToolChain/Makefile",
+    "Codegeex.RepoIndex": true
 }

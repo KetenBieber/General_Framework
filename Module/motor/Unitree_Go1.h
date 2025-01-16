@@ -31,7 +31,6 @@ extern "C"{
 #endif
 /*----------------------------------typedef-----------------------------------*/
 
-
 typedef enum
 {
     NORMAL_WORKING = 0,
@@ -157,7 +156,7 @@ public:
               const CAN_Rx_Instance_t& can_rx_instance,const CAN_Tx_Instance_t& can_tx_instance,
               const Motor_Control_Setting_t& ctrl_config,
               int16_t max_current, float reduction_ratio,
-              uint32_t module_id) 
+              uint32_t module_id)
             : Motor(id,can_rx_instance,can_tx_instance,ctrl_config,max_current,reduction_ratio)
             ,module_id(module_id)
             {

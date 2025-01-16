@@ -222,12 +222,15 @@ void Air_Joy_Process()
     switch(air_instance->process_method)
     {
         case NORMAL:
+        {
             air_instance->control_data.linear_x = (air_instance->LEFT_Y - 1500) / 500.0f * MAX_VELOCITY;
             air_instance->control_data.linear_y = -(air_instance->LEFT_X - 1500) / 500.0f * MAX_VELOCITY;
             air_instance->control_data.Omega = (air_instance->RIGHT_X - 1500) / 500.0f * MAX_VELOCITY;
             Air_Joy_Publish();
             break;
+        }
         case TRAPEZOIDAL:
+        {
             /* 初始化梯形规划状态量 */
             static TrapezoidalState left_y_state = {0.0f, 0.0f};
             static TrapezoidalState left_x_state = {0.0f, 0.0f};
@@ -245,6 +248,7 @@ void Air_Joy_Process()
             air_instance->control_data.Omega = right_x_state.current_velocity;
             Air_Joy_Publish();
             break;
+        }
     }
 }
 

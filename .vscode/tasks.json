@@ -62,7 +62,7 @@
             "options": {
                 "shell": {
                     /* 添加你自己的MSYS2 bash终端安装路径，记得需要添加到环境变量中 */
-                    "executable": "C:\\msys64\\usr\\bin\\bash.exe",
+                    "executable": "D:\\msys64\\usr\\bin\\bash.exe",
                     /* 传递给Bash的参数 -l：使 Bash 作为登录 shell 启动 -c:传递命令字符串给 Bash 执行 */
                     "args": ["-l", "-c"]
                 }
