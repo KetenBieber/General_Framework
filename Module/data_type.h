@@ -15,6 +15,7 @@
 #pragma once
 #include "usart.h"
 #include "can.h"
+#include <stdbool.h>
 
 #pragma pack(1)
 
@@ -55,5 +56,15 @@ typedef struct
     float data5;
     float data6;
 }pub_ros_package;
+
+typedef struct
+{
+    bool btnY;
+    //这里填写你需要传输的Xbox按键摇杆等数据
+    //bool btnY;
+    //bool btnY_last;
+    //......
+
+}pub_Xbox_Data;
 
 #pragma pack()

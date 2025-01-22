@@ -56,9 +56,9 @@ CAN_Rx_Instance_t m2006_rx_instance = {
     .rx_id = 0x201,
     .can_rx_buff = {0},
 };
-
 Motor_Control_Setting_t m2006_control_instance = {
-    .motor_controller_setting.speed_PID = {
+    .motor_controller_setting = {
+        .speed_PID = {
         .Kp = 20,
         .Ki = 18.6129837,
         .Kd = 0.0911037326,
@@ -71,6 +71,7 @@ Motor_Control_Setting_t m2006_control_instance = {
         .Derivative_LPF_RC = 0,
         .OLS_Order = 0,
         .Improve = OutputFilter | Trapezoid_Intergral | Integral_Limit | Derivative_On_Measurement, 
+        },
     },
     .outer_loop_type = SPEED_LOOP,
     .inner_loop_type = SPEED_LOOP,

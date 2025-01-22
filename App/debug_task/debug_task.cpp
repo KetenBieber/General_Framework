@@ -18,6 +18,7 @@
 #include "vofa.h"
 #include "air_joy.h"
 #include "arm_math.h"
+#include "xbox.h"
 
 #ifdef CHASSIS_TO_DEBUG
 #include "pid_controller.h"

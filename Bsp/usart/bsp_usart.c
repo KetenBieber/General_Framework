@@ -26,6 +26,7 @@ static uint8_t idx = 0;
 static Uart_Instance_t *Usart_Device[DEVICE_UART_CNT] = {NULL};
 
 static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance);
+static uint8_t Uart_Rx_IT_Callback(Uart_Instance_t *uart_instance);
 static uint8_t Uart_Deinit(Uart_Instance_t **uart_instance);
 
 
@@ -71,10 +72,16 @@ Uart_Instance_t* Uart_Register(uart_package_t *uart_config)
     uart_instance->Uart_Deinit = Uart_UnRegister;// 挂载注销函数
 
     /* hal库硬件设置 */
-    __HAL_UART_CLEAR_IDLEFLAG(uart_instance->uart_package.uart_handle);// 清除UART的空闲中断标志位
-    __HAL_UART_ENABLE_IT(uart_instance->uart_package.uart_handle, UART_IT_IDLE);// 使能UART的空闲中断
-    HAL_UART_Receive_DMA(uart_instance->uart_package.uart_handle, uart_instance->uart_package.rx_buffer, uart_instance->uart_package.rx_buffer_size);// 启动DMA接收
-
+    if(uart_instance->uart_package.IT_CHOOSE == 0)
+    {
+        __HAL_UART_CLEAR_IDLEFLAG(uart_instance->uart_package.uart_handle);// 清除UART的空闲中断标志位
+        __HAL_UART_ENABLE_IT(uart_instance->uart_package.uart_handle, UART_IT_IDLE);// 使能UART的空闲中断
+        HAL_UART_Receive_DMA(uart_instance->uart_package.uart_handle, uart_instance->uart_package.rx_buffer, uart_instance->uart_package.rx_buffer_size);// 启动DMA接收
+    }
+    if (uart_instance->uart_package.IT_CHOOSE == 1)
+    {
+        __HAL_UART_ENABLE_IT(uart_instance->uart_package.uart_handle, UART_IT_IDLE);// 使能UART的空闲中断
+    }
     /* 将实例添加到数组中 */
     Usart_Device[idx++] = uart_instance;
     // 注册成功，返回实例
@@ -90,7 +97,11 @@ uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance)
         LOGERROR("Uart_Receive_Handler failed!");
         return 0;
     }
-    /* 检查UART的空闲中断标志位是否置位 */
+    
+    #ifdef XBOX_CONTROL
+        Uart_Rx_IT_Callback(uart_instance);//这里用了简单的接收中断，没有用DMA
+    #else 
+        /* 检查UART的空闲中断标志位是否置位 */
     if(__HAL_UART_GET_FLAG(uart_instance->uart_package.uart_handle, UART_FLAG_IDLE) != RESET)
     {
         Uart_Rx_Idle_Callback(uart_instance);
@@ -101,6 +112,8 @@ uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance)
         LOGERROR("Uart_Receive_Handler NO FLAG!");
         return 0;
     }
+    #endif
+    
     return 1;
 }
 
@@ -144,6 +157,16 @@ static uint8_t Uart_Rx_Idle_Callback(Uart_Instance_t *uart_instance)
     return 1;
 }
 
+static uint8_t Uart_Rx_IT_Callback(Uart_Instance_t *uart_instance)
+{
+    if(uart_instance->uart_package.uart_callback != NULL)
+    {
+        /* 如果用户自己实现了串口回调中断函数，则调用 */
+        uart_instance->uart_package.uart_callback(uart_instance,1);
+    }
+    HAL_UART_Receive_IT(uart_instance->uart_package.uart_handle, uart_instance->uart_package.rx_buffer, uart_instance->uart_package.rx_buffer_size);
+    return 1;
+}
 
 uint8_t Uart_UnRegister(void *uart_instance)
 {

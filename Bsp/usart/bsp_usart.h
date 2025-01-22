@@ -62,6 +62,7 @@ typedef struct
     uint16_t rx_buffer_size;// 定义buffer的大小
     uint8_t *rx_buffer;// 定义一个buffer
     uart_callback_t uart_callback;// 定义回调函数指针
+    uint8_t IT_CHOOSE ;//0：DWA空闲接收中断 1：关闭DWA，普通中断
 }uart_package_t;
 
 /* uart instance 串口设备实例 */
@@ -84,7 +85,7 @@ typedef struct
  * @brief 串口设备注册函数，用户通过创建一个实例指针和串口数据包，然后通过调用此函数以及将实例传入本函数来获取返回值的实例
  *        实现串口设备的动态注册，如果创建失败会自动free内存
  * 
- * @param uart_config     uart_package_t* 串口数据包
+ * @param uart_config     uart_package_t* 串口数据包 ,IDLE空闲中断是否开启，IT中断是否开启，DMA是否开启
  * @param queue_length    uint32_t 队列中所能存储的元素数
  * @param queue_data      size_t 队列元素的大小，使用 sizeof() 获取，注意数据类型是size_t
  * @return Uart_Instance_t* NULL 创建失败

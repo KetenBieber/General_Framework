@@ -72,9 +72,9 @@ add_definitions(
     -DDEBUG_FOR_ACTION 
     -DUSE_ACTION_FOR_IMU
     -DCHASSIS_TO_DEBUG
-    # -DTEST_SYSTEM_TURNER
+    -DTEST_SYSTEM_TURNER
     # -DTEST_SYSTEM_M3508 
-    # -DTEST_SYSTEM_M2006
+    #  -DTEST_SYSTEM_M2006
     # -DTEST_SYSTEM_GM6020 
     -DDISABLE_LOG_SYSTEM
     # -DDISABLE_SYSVIEW_SYSTEM
@@ -82,6 +82,8 @@ add_definitions(
     # -DDEBUG_NO_TRACKING
     # -DTEST_YAW_ADJUST
     -DDEBUG_GO1_MOTOR
+    #-DAIR_JOY_CONTROL
+    -DXBOX_CONTROL
     ) # need -D<macro> to define macro
     
 

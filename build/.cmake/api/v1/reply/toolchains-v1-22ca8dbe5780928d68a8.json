@@ -7,7 +7,7 @@
 			{
 				"id" : "GNU",
 				"implicit" : {},
-				"path" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe",
+				"path" : "F:/MSYS/mingw64/bin/arm-none-eabi-gcc.exe",
 				"version" : ""
 			},
 			"language" : "ASM",
@@ -29,8 +29,8 @@
 					"linkFrameworkDirectories" : [],
 					"linkLibraries" : []
 				},
-				"path" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe",
-				"version" : "10.2.1"
+				"path" : "F:/MSYS/mingw64/bin/arm-none-eabi-gcc.exe",
+				"version" : "12.2.0"
 			},
 			"language" : "C",
 			"sourceFileExtensions" : 
@@ -50,8 +50,8 @@
 					"linkFrameworkDirectories" : [],
 					"linkLibraries" : []
 				},
-				"path" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-g++.exe",
-				"version" : "10.2.1"
+				"path" : "F:/MSYS/mingw64/bin/arm-none-eabi-g++.exe",
+				"version" : "12.2.0"
 			},
 			"language" : "CXX",
 			"sourceFileExtensions" : 
