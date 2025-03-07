@@ -37,23 +37,57 @@ Uart_Instance_t *vofa_uart_instance = NULL;
 extern uart_package_t VOFA_uart_package;
 
 #ifdef TEST_VESC
-CAN_Rx_Instance_t VESC_rx_instance = {
+int count = 0;
+CAN_Rx_Instance_t VESC_rx_instance1 = {
     .can_handle = &hcan2,
     .RxHeader = {0},
     .rx_len = 8,
     .can_rx_buff = {0},
 };
 
-CAN_Tx_Instance_t VESC_tx_instance = {
+CAN_Tx_Instance_t VESC_tx_instance1 = {
     .can_handle = &hcan2,
     .isExTid = 1,
     .tx_mailbox = 0,
     .tx_len = 8,
     .can_tx_buff = {0},
 };
+
+CAN_Rx_Instance_t VESC_rx_instance2 = {
+    .can_handle = &hcan2,
+    .RxHeader = {0},
+    .rx_len = 8,
+    .can_rx_buff = {0},
+};
+
+CAN_Tx_Instance_t VESC_tx_instance2 = {
+    .can_handle = &hcan2,
+    .isExTid = 1,
+    .tx_mailbox = 0,
+    .tx_len = 8,
+    .can_tx_buff = {0},
+};
+
+CAN_Rx_Instance_t VESC_rx_instance3 = {
+    .can_handle = &hcan2,
+    .RxHeader = {0},
+    .rx_len = 8,
+    .can_rx_buff = {0},
+};
+
+CAN_Tx_Instance_t VESC_tx_instance3 = {
+    .can_handle = &hcan2,
+    .isExTid = 1,
+    .tx_mailbox = 0,
+    .tx_len = 8,
+    .can_tx_buff = {0},
+};
+
 Motor_Control_Setting_t VESC_motor_ctrl = {0};
 
-VESC vesc[1]={VESC(1,VESC_rx_instance,VESC_tx_instance,VESC_motor_ctrl,0,1)};
+VESC vesc[3]={VESC(1,VESC_rx_instance1,VESC_tx_instance1,VESC_motor_ctrl,0,1),
+            VESC(2,VESC_rx_instance2,VESC_tx_instance2,VESC_motor_ctrl,0,1),
+            VESC(3,VESC_rx_instance3,VESC_tx_instance3,VESC_motor_ctrl,0,1)};
 #endif
 
 #ifdef TEST_SYSTEM_TURNER
@@ -131,7 +165,28 @@ __attribute((noreturn)) void Debug_Task(void *argument)
     for(;;)
     {
 #ifdef TEST_VESC
-    vesc[0].Cur_Control(200);
+    count++;
+    if(count <= 500)
+    {
+        vesc[0].Rpm_Control(500);
+        // vesc[1].Rpm_Control(1000);
+        // vesc[2].Rpm_Control(1000);
+    }
+    else if(count > 500)
+    {
+        vesc[0].Rpm_Control(2000);
+        // vesc[1].Rpm_Control(-1000);
+        // vesc[2].Rpm_Control(-1000);
+    }
+    else if(count>1000)
+    {
+        vesc[0].Rpm_Control(5000);
+        // vesc[1].Rpm_Control(5000);
+        // vesc[2].Rpm_Control(5000);
+    }
+    // vesc[0].Rpm_Control(-2000);
+    // vesc[1].Rpm_Control(-2000);
+    // vesc[2].Rpm_Control(-2000);
     Motor_SendMsgs(vesc);
 #endif
 

@@ -128,13 +128,16 @@ void Omni_Chassis::Dynamics_Inverse_Resolution()
         switch (this->Moving_Status)
         {
             case FREE:
+            {
                 if(this->Reset_Control_Bit(cnt, KEEP_NONE))
                 {
                      this->Chassis_Reset_Output();// 清空之前底盘输出
                 }
                 torque_omega = PID_Calculate(&this->Chassis_PID_Omega, this->RoboSpeed.omega, this->Ref_RoboSpeed.omega);
                 break;
+            }
             case KEEP_X_MOVING:
+            {
                 if(Set_Control_Bit(cnt, KEEP_1, KEEP_2 | KEEP_3 | KEEP_4))
                 {
                      this->current_angle_to_keep = this->imu_data->yaw;// 将当前角赋值
@@ -143,7 +146,9 @@ void Omni_Chassis::Dynamics_Inverse_Resolution()
                 Yaw_Adjust(&this->Chassis_Yaw_Adjust, this->current_angle_to_keep, this->imu_data->yaw, -179, 179);
                 torque_omega = this->Chassis_Yaw_Adjust.Output;
                 break;
+            }
             case KEEP_Y_MOVING:
+            {
                 if(Set_Control_Bit(cnt, KEEP_2, KEEP_1 | KEEP_3 | KEEP_4))
                 {
                      this->current_angle_to_keep = this->imu_data->yaw;// 将当前角赋值
@@ -154,6 +159,7 @@ void Omni_Chassis::Dynamics_Inverse_Resolution()
                 a++;
                 torque_omega = this->Chassis_Yaw_Adjust.Output;
                 break;
+            }
             case AUTO_MOVING:
                 break;
         }

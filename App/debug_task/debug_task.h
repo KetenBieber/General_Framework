@@ -47,7 +47,7 @@ void Debug_Task(void *argument);
 #include "Unitree_Go1.h"
 #include "VESC_motor.h"
 class VESC;
-extern VESC vesc[1];
+extern VESC vesc[3];
 #endif
 
 
