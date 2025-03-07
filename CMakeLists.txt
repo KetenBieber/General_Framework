@@ -26,93 +26,34 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
-# 指定交叉编译工具链，不论是在Linux还是Windows下，都使用arm-none-eabi
-set(CMAKE_SYSTEM_PROCESSOR arm) # 指定目标处理器架构为 arm
-set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY) # 指示cmake在尝试编译时生成静态库
-# 指定工具链
+# Set the project name
+set(CMAKE_PROJECT_NAME new_build)
 
-set(CMAKE_C_COMPILER_FORCED TRUE) # skip compiler test 跳过编译器测试，直接使用指定的编译器
-set(CMAKE_CXX_COMPILER_FORCED TRUE)
-set(CMAKE_C_COMPILER arm-none-eabi-gcc) # 指定c语言编译器为arm-none-eabi-gcc
-set(CMAKE_CXX_COMPILER arm-none-eabi-g++) # 指定c++语言编译器为arm-none-eabi-g++
-set(CMAKE_ASM_COMPILER arm-none-eabi-gcc) # 指定汇编编译器为arm-none-eabi-gcc
-set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
-set(CMAKE_OBJDUMP arm-none-eabi-objdump)
-set(SIZE arm-none-eabi-size) 
-set(CMAKE_AR arm-none-eabi-ar)
+# Include toolchain file 设置arm-none-eabi 工具链
+include("cmake/gcc-arm-none-eabi.cmake")
 
-set(CMAKE_CXX_STANDARD 17) # 指定c++标准
-set(CMAKE_C_STANDARD 17) # 指定c标准
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 生成编译命令的JSON文件
-# 指定工程名称和语言类型
-project(new_build C CXX ASM)  
+# Enable compile command to ease indexing with e.g. clangd
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
-# 选择构建类型
-set(CMAKE_BUILD_TYPE Debug) # Debug Release RelWithDebInfo MinSizeRel
+# Enable CMake support for ASM and C C++ languages
+enable_language(C CXX ASM)
 
-# board specific settings, arch/fpu/instruction
-set(MCU_FLAGS -mcpu=cortex-m4 -mthumb -mthumb-interwork -mfloat-abi=hard -mfpu=fpv4-sp-d16)
-set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/ToolChain/STM32F407ZGTx_FLASH.ld") # 指定链接脚本
+# Core project settings
+project(${CMAKE_PROJECT_NAME})
+message("Build type: " ${CMAKE_BUILD_TYPE})
 
+# Create an executable object type
+add_executable(${CMAKE_PROJECT_NAME})
 
-# Generic compiler settings for optimization and basic link lib
-# add_compile_options(-pipe ${MCU_FLAGS} -Wall -Werror -fmessage-length=0 # basic options
-add_compile_options(-pipe ${MCU_FLAGS} -Wall -fmessage-length=0 # basic options
--ffunction-sections -fdata-sections -fno-common # optimize options 
+# Add STM32CubeMX generated sources 这里主要是你通过CubeMX生成的部分，这部分源码CubeMX会自动帮你打包到cmake/stm32cubemx/CMakeLists.txt中
+add_subdirectory(cmake/stm32cubemx)
+# Add SEGGER sources 添加SEGGER的源码，这部分源码SEGGER会自动帮你打包到cmake/SEGGER/CMakeLists.txt中
+add_subdirectory(cmake/SEGGER)
+
+# Link directories setup
+target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    # Add user defined library search paths
 )
-add_link_options(-pipe ${MCU_FLAGS} -T${LINKER_SCRIPT}  # close RWX warning
--lc -lstdc++ -lm  # lib options
--Wl,--gc-sections -flto -specs=nano.specs -specs=nosys.specs # optimize options
--Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map -Wl,--cref -Wl,--print-memory-usage # map options
-) # if your executable is too large , try option '-s' to strip symbols
-
-# 开启f4系列芯片的FPU单精度浮点运算
-add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
-add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
-add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
-
-# add_compile_definitions() works for compile stage
-# while add_definitions() works for both compile and link stage
-# 定义预处理宏
-add_definitions(
-    -DUSE_HAL_DRIVER 
-    -DSTM32F407xx 
-    -DARM_MATH_CM4 
-    -DARM_MATH_MATRIX_CHECK 
-    -DARM_MATH_ROUNDING 
-    -DARM_MATH_LOOPUNROLL 
-    -DDISABLEFLOAT16
-    -DUSE_FULL_ASSERT
-    -DUSE_RTOS_FOR_UART
-    -DTOPICS_DEBUG
-    -DDEBUG_FOR_ACTION 
-    -DUSE_ACTION_FOR_IMU
-    # -DCHASSIS_TO_DEBUG
-    # -DTEST_SYSTEM_TURNER
-    # -DTEST_SYSTEM_M3508 
-    # -DTEST_SYSTEM_M2006
-    # -DTEST_SYSTEM_GM6020 
-    -DDISABLE_LOG_SYSTEM
-    # -DDISABLE_SYSVIEW_SYSTEM
-    -DDEBUG_TASK_RUN 
-    # -DDEBUG_NO_TRACKING
-    # -DTEST_YAW_ADJUST
-    # -DDEBUG_GO1_MOTOR
-    -DTEST_VESC
-    ) # need -D<macro> to define macro
-    
-
-# add inc 添加头文件路径
-# .cmake是cmake的脚本文件，用于定义构建系统的配置和行为
-include(${CMAKE_SOURCE_DIR}/ToolChain/find_header.cmake) # 递归包含头文件的函数，添加该文件的位置
-# 使用函数，传入根目录下的子目录名，递归包含所有子目录
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/App)
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Bsp)
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Core)
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Drivers)
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Middlewares)
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/Module)
-include_sub_directories_recursively(${CMAKE_SOURCE_DIR}/USB_DEVICE)
 
 # Add sources to executable 
 file(GLOB_RECURSE SOURCES
@@ -169,6 +110,7 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     DEBUG_GO1_MOTOR
     RUBBER_ANGLE_OPTIMIZE # 使用舵向劣弧优化
     TRY_AUTO_CONTROL # 使用自动控制
+    TEST_VESC
 )
 
 # Add linked libraries

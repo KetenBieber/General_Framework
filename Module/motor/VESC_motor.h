@@ -18,7 +18,6 @@
 #include "motor_interface.h"
 #include "FreeRTOS.h"
 #include "queue.h"
-#include "com_config.h"
 #ifdef __cplusplus
 extern "C"{
 #endif

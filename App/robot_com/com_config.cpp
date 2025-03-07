@@ -49,6 +49,8 @@ extern Motor_C620 chassis_motor[4];
 // 舵向电机实例
 extern Motor_GM6020 rubber_motor[4];
 
+extern VESC vesc[3];
+
 uint8_t Common_Service_Init()
 {
     CAN1_TxPort = xQueueCreate(16,sizeof(CAN_Tx_Instance_t));
@@ -219,9 +221,7 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance)
             }
         }
     }
-
 }
-
 
 __attribute((noreturn)) void CAN1_Send_Task(void *argument)
 {

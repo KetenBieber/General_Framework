@@ -24,6 +24,7 @@ extern "C"{
 #include "cmsis_os.h"
 #include "bsp_can.h"
 #include "ros_com.h"
+
 /*------------------------------------extern------------------------------------*/
 
 extern QueueHandle_t CAN1_TxPort;

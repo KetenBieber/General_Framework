@@ -187,7 +187,7 @@ __attribute((noreturn)) void Debug_Task(void *argument)
     // vesc[0].Rpm_Control(-2000);
     // vesc[1].Rpm_Control(-2000);
     // vesc[2].Rpm_Control(-2000);
-    Motor_SendMsgs(vesc);
+    COMMON_Motor_SendMsgs(vesc);
 #endif
 
 #ifdef VOFA_TO_DEBUG
