@@ -7,22 +7,20 @@
  * 
  * @copyright Copyright (c) 2024
  * 
- * @attention :
+ * @attention : 2025-1-21 发现当前航模遥控和底盘任务耦合太大了，不合适，需要解耦，直接把收到的航模遥控
+ *                        数据发送出去，由app层的人自行编写处理航模数据的函数
  * @note :
  * @versioninfo :
  */
 #include "air_joy.h"
 
 
-static void update_trapezoidal_state(TrapezoidalState *state, float target_velocity);
-static void Air_SWO_Event_Process();
-
 
 // 留一个指针值，不管最终有无创建，也只占4字节的指针内存
 Air_Joy_Instance_t *air_instance;
 
 
-uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance,Process_method_e method)
+uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance)
 {
     if(gpio_instance == NULL)
     {
@@ -36,8 +34,6 @@ uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance,Process_method_e method)
         return 0;
     }
     memset(air_instance,0,sizeof(Air_Joy_Instance_t));
-    /* 设置控制模式 */
-    air_instance->process_method = method;
     /* 进行gpio中断的设置 */
     air_instance->air_joy_gpio = gpio_instance;
     gpio_instance->exit_callback = Air_Update;
@@ -63,10 +59,9 @@ uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance,Process_method_e method)
     /* 注册发布者 */
     air_instance->air_joy_pub = register_pub("air_joy_pub");
 
-    air_instance->control_data.linear_x = 0;
-    air_instance->control_data.linear_y = 0;
-    air_instance->control_data.Omega = 0;
-    air_instance->control_data.Status = 0;
+    air_instance->air_joy_data.LEFT_X = 0;air_instance->air_joy_data.LEFT_Y = 0;air_instance->air_joy_data.RIGHT_X = 0;air_instance->air_joy_data.RIGHT_Y = 0;
+    air_instance->air_joy_data.SWA = 0;air_instance->air_joy_data.SWB = 0;air_instance->air_joy_data.SWC = 0;air_instance->air_joy_data.SWD = 0;
+
     return 1;
 }
 
@@ -113,6 +108,9 @@ void Air_Update(void *instance)
         air_instance->ppm_update_flag = 0;
     }
 
+    /* 发布控制信息 */
+    Air_Joy_Publish();
+}   
     if(air_instance->SWA - air_instance->last_swo_buf[0] >= 500 || air_instance->SWA - air_instance->last_swo_buf[0] <= -500)
     {
         air_instance->swo_event |= SWA_EVENT;
@@ -256,9 +254,10 @@ void Air_Joy_Process()
 uint8_t Air_Joy_Publish()
 {
     publish_data temp_data;
-    temp_data.data = (uint8_t*)&air_instance->control_data;
-    temp_data.len = sizeof(pub_Control_Data);
+    temp_data.data = (uint8_t*)&air_instance->air_joy_data;
+    temp_data.len = sizeof(pub_air_joy_data);
     air_instance->air_joy_pub->publish(air_instance->air_joy_pub,temp_data);
+    /* 写一个 */
     return 1;
 }
 

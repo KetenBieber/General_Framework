@@ -31,7 +31,7 @@
     而且CMake 和 Makefile 使用 更加快速、现代的工具链 arm-none-eabi-gcc / g++，更加快速，可以根据实际计算机性能调用多核编译（相比之下Keil的arm-cc单核编译就显得垃圾了）
 - CMakeLists.txt 和 Makefile 两者：目前c_cpp 的插件仅支持CMake tools直接识别CMakeLists.txt 然后对你的vscode提供更多的可视化操作
     ege：如果使用宏定义开关，那么如果c_cpp插件识别到你的宏定义，那么在那些没有开启的宏开关部分，就会用浅色的色调来显示，更加便于其他用户进行开发，而且vscode对于插件的操作是很符合程序猿思维的，只要你动手去自己修改几个setting.json之后就会懂得其他应该怎么设置了
-    ![alt text](/image/image.png)
+    ![alt text](Docs//image/image.png)
 - 目前完成进度：
     1. CMakeList.txt 比较容易操作，而且开发后需要修改的部分比较少（不用说添加新的源文件就得修改，现在的模板可以直接在路径中去搜索已存在的源文件），并且支持c_cpp插件，且可以搭配ninja实现更加快速地编译；根目录下的CMakeLists.txt是适配于本工程的，可以看着改（结合gpt不难
     已经默认开启了c/cpp混编（c采用gcc，c++使用g++）和fpu单精度浮点运算，链接了arm_math 高速数学运算DSP库
@@ -46,7 +46,7 @@
 可以买9.9的jlink OB（缺点：容易掉固件，质量较差；无法进行cortex-m7的调试）
 也可以买六七十块的JLink仿真器（贵有贵的道理，连接稳定，质量好，支持cortex-m7的调试）
 当然也可以根据上面所给文章中修改，配置cmsis-dap的支持，但是笔者试过：ozone会经常报不支持的窗口，systemview只支持一段时间的记录，然后就会报错，所以还是建议买一个jlink仿真器(当然也可以找我们借)
-![alt text](image/image17.jpg)
+![alt text](Docs/image/image17.jpg)
 
 ## 工作链准备
 根据上面所留的（https://gitee.com/hnuyuelurm/basic_framework 查看doc/vscode篇）配置好MS2Y2、JLINK和工作链的东西
@@ -56,33 +56,33 @@
 工程管理工具：CMake及CMakeLists.txt文件
 上面在CubeMX中配置好过程后，已经自动生成了CMakeLists.txt文件，用于指导CMake进行编译。
 首先我们下载并安装cmake，链接如下：https://cmake.org/
-![alt text](image/image4.png)
+![alt text](Docs/image/image4.png)
 
 在命令行运行 cmake --version，有输出，即表示安装完成
-![alt text](image/image6.png)
+![alt text](Docs/image/image6.png)
 
 我们可以看到，cmake支持生成的配置工具文件有很多：包括ninja、make、VS等
-![alt text](image/image7.png)
+![alt text](Docs/image/image7.png)
 这里我们选择ninja，因为ninja是一个更加快速的构建工具，可以根据实际计算机性能调用多核编译，而且ninja的编译速度比make快很多
 
 上面我们选择了CMake进行工程管理，CMake可以生成ninja的build.ninja配置文件，ninja按照该配置文件指导编译器进行依次编译即可。
 首先我们下载ninja，官网：https://ninja-build.org/
 下载链接：https://github.com/ninja-build/ninja/releases
-![alt text](image/image8.png)
+![alt text](Docs/image/image8.png)
 下载好后，解压，将目录添加到系统环境变量：
-![alt text](image/image9.png)
+![alt text](Docs/image/image9.png)
 在终端中输入 
 ninja --version 可以查看ninja是否成功安装且被系统识别
-![alt text](image/image10.png)
+![alt text](Docs/image/image10.png)
 然后回到vscode，安装cmake和cmake-tools两个插件
 然后进入cmake 扩展设置：
-![alt text](image/image11.png)
+![alt text](Docs/image/image11.png)
 做好修改之后
 ctrl+shift+p 
-![alt text](image/image12.png)
+![alt text](Docs/image/image12.png)
 进行一波配置
 输出中出现：
-![alt text](image/image13.png)
+![alt text](Docs/image/image13.png)
 则cmake配置成功！
 然后就是看我工作区下的.vscode/task.json中的东西
 
@@ -99,13 +99,13 @@ ctrl+shift+p
 分点：
 
 插件 cortex-debug 的配置,这个插件是用来调试的，但是我不推荐使用vscode调试，因为ozone更加强大
-![alt text](image/image3.png)
+![alt text](Docs/image/image3.png)
 注意具体的工具链和调试器的配置路径换成你的电脑中的路径（在这之前一定要先将这些路径添加环境变量，然后在终端中输入xxx --version 看看会不会返回版本号来验证*（小坑：有时候要退掉所有vscode再重开这些环境变量才会真正被添加（注意是所有，不能只关一个当前的）*，然后再输入--version验证，有版本号返回就是成功））
 
 
 - 使用CMake tools 时，默认的构建方式是MinGW Makefiles，而我的工程使用的是cmake + ninja 构建，所以在使用过ninja构建过后，使用CMake tools 配置时，会报错：
 这只需要在这里修改一下就可以
-![alt text](/image/image-1.png) 
+![alt text](Docs//image/image-1.png) 
 - c_cpp_properties.json
 *（笔者在好长一段时间内使用vscode开发没有任何代码提示、错误提醒时居然没有一点怀疑）*
 只需要看着抄就可以了（可视化包括代码提示、错误提醒、代码补全等等）
@@ -239,6 +239,23 @@ cd build ; cmake -G \"Ninja\" .. ; ninja
 ```
 发现编译failed！因为.json文件中""是表示键值的，所以说当我们的命令中同时也含有""时，就会和.json的语法冲突,这里的 \"其实是表示在键值中的""
 下面的task中注意把路径该改的改了
+> 最新修改：将clean的task修改了，因为用原有的commands会删不干净，所以采用最暴力的方式--删除目录，再新建一个
+这个任务存在的必要性？--在提交东西到git上时，必须调用一次清除一下build的内容，这些都是编译产生的中间文件以及可执行文件，如果本地和远程都没清除就提交的话，很有可能两个可执行文件内容发生冲突，导致你不得不需要去修改二进制文件来解决冲突，那将非常麻烦
+==所以务必clean一下再提交！！！==
+
+请将下面中的clean任务修改为这个
+```json
+    {
+        "label": "clean",
+        "type": "shell",
+        "command": "rm -r build ; mkdir build",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        },
+    }
+```
+
 
 ```json
 {
@@ -334,7 +351,7 @@ cd build ; cmake -G \"Ninja\" .. ; ninja
 改完别急，这时你的终端默认打开还是window下的UNIX终端，而我的task中的指令默认是在类Linux的终端中执行的
 所以需要修改task默认打开的终端
 CTRL + shift + P
-![alt text](image/image14.png)
+![alt text](Docs/image/image14.png)
 然后找到类似下面的部分，修改：
 ```json
 "terminal.integrated.profiles.windows": {
@@ -357,20 +374,21 @@ CTRL + shift + P
 ```
 然后保存，退出，这时就可以使用任务来一键启动了
 CTRL + shift + B
-![alt text](image/image15.png)
+![alt text](Docs/image/image15.png)
 这里我编写了很多任务，分别支持windows/Linux下的cmake、makefile编译下载操作
-
-然后来到配置一键下载操作，找到我们之前安装的J-Flash
-![alt text](image/image16.png)
+下载程序需要用到JFlash，以及其下载文件：.jflash文件
+这个文件如何获取呢？
+找到我们之前安装的J-Flash
+![alt text](Docs/image/image16.png)
 然后
-![alt text](image/image17.png)
+![alt text](Docs/image/image17.png)
 然后连接一下
-![alt text](image/image18.png)
+![alt text](Docs/image/image18.png)
 在下面的终端出现
-![alt text](image/image19.png)
-这步操作只需要做一次，以后就不用了
+![alt text](Docs/image/image19.png)
+这步操作只需要做一次，然后保存.jflash文件到你的工程目录下指定位置（我是指定放在了ToolChain下）
 接下来可以直接CTRL + shift + B
-![alt text](image/image20.png)
+![alt text](Docs/image/image20.png)
 按理来说，就可以进行一键下载到开发板了
 
 

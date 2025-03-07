@@ -27,15 +27,22 @@
 #include "action.h"
 #include "soft_iwdg.h"
 #include "topics.h"
+#include "motor_base.h"
 /* app层接口 */
 #include "data_pool.h"
 
+
 typedef struct 
 {
+    uint32_t DWT_CNT;// 时间基准
+    float dt;
+
     Publisher *chassis_imu_pub;
     pub_imu_yaw *imu_data;// 将发布的航向角数据
     Publisher *chassis_pos_pub;
     pub_Chassis_Pos *pos_data;// 将发布的坐标数据
+    Publisher *chassis_spe_pub;
+    pub_chassis_spe *spe_data;
 }Robot_Ins_t;
 
 

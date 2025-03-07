@@ -159,4 +159,7 @@ float OLS_Smooth(Ordinary_Least_Squares_t *OLS, float deltax, float y);
 float Get_OLS_Derivative(Ordinary_Least_Squares_t *OLS);
 float Get_OLS_Smooth(Ordinary_Least_Squares_t *OLS);
 
+unsigned char serial_get_crc8_value(unsigned char *data, unsigned char len);
+
+
 #endif

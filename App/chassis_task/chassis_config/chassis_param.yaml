@@ -1,0 +1,57 @@
+# param list
+
+# 八期R1
+User_Chassis.Chassis_PID_X = {
+    .Kp = 15,
+    .Ki = 25,
+    .Kd = 1.5,
+    .MaxOut = 2,
+    .IntegralLimit = 70.0,
+    .DeadBand = 0,
+    .CoefA = 0,
+    .CoefB = 1.0,
+    .Output_LPF_RC = 0.85,
+    .Derivative_LPF_RC = 0,
+    .Improve = Integral_Limit|OutputFilter|DerivativeFilter|ChangingIntegrationRate|Derivative_On_Measurement,
+};
+User_Chassis.Chassis_PID_Y = {
+    .Kp = 15,
+    .Ki = 25,
+    .Kd = 1.5,
+    .MaxOut = 2,
+    .IntegralLimit = 70.0,
+    .DeadBand = 0,
+    .CoefA = 1.2,
+    .CoefB = 0,
+    .Output_LPF_RC = 0.85,
+    .Derivative_LPF_RC = 0,
+    .Improve = Integral_Limit|OutputFilter|DerivativeFilter|ChangingIntegrationRate|Derivative_On_Measurement,
+};
+User_Chassis.Chassis_PID_Omega = {
+    .Kp = 9.24445,
+    .Ki = 23.131,
+    .Kd = 0.45841,
+    .MaxOut = 2,
+    .IntegralLimit = 70.0,
+    .DeadBand = 0,
+    .CoefA = 1.2,
+    .CoefB = 0,
+    .Output_LPF_RC = 0.85,
+    .Derivative_LPF_RC = 0,
+    .Improve = Integral_Limit|OutputFilter|DerivativeFilter|ChangingIntegrationRate|Derivative_On_Measurement,
+};
+User_Chassis.Chassis_Yaw_Adjust = {
+    .Kp = 0.05,
+    .Ki = 0,
+    .Kd = 0.0188,
+    .MaxOut = 1.8,
+    .IntegralLimit = 10.0,
+    .DeadBand = 2,
+    .CoefA = 0,
+    .CoefB = 0,
+    .Output_LPF_RC = 0.85,
+    .Derivative_LPF_RC = 0,
+    .Improve = OutputFilter|DerivativeFilter|Derivative_On_Measurement,
+};
+
+# 九期扣篮车舵轮底盘

@@ -8,7 +8,12 @@
  * @copyright Copyright (c) 2024
  * 
  * @attention :
- * @note :
+ * @note :  2025-1-31 是时候复活了，ins任务，需要完成状态观测器的工作，底盘任务将会从这里去获取机器人的坐标
+ *                    然后，底盘实例不需要订阅机器人坐标，只需要订阅底盘速度即可
+ *                    哪里需要订阅坐标呢？---路径跟踪器
+ *                    何为观测器？ ---现在只是差分坐标得到速度数据，后面会加入数据融合的部分！
+ *                  
+ *                    将速度发布到 chassis_spe_pub    
  * @versioninfo :
  */
 #include "robot_ins.h"
@@ -68,6 +73,42 @@ uint8_t action_iwdg_callback(void *instance)
 
 
 /**
+ * @brief 当前提供的方法为简单的根据action传感器差分得到速度
+ * 
+ * @param now_pos_x 
+ * @param now_pos_y 
+ * @param now_yaw_angle 
+ * @param last_pos_x 
+ * @param last_pos_y 
+ * @param last_yaw_angle 
+ * @param dt 
+ * @param robo_vx 
+ * @param robo_vy 
+ * @param robo_omega 
+ * @param world_vx 
+ * @param world_vy 
+ * @param world_omega 
+ */
+void ins_spe_get_easyily(float *now_pos_x,float *now_pos_y,float *now_yaw_angle,
+                 float *last_pos_x,float *last_pos_y,
+                 float dt,
+                 float *robo_vx,float *robo_vy,
+                 float *world_vx,float *world_vy)
+{
+    *world_vx = (*now_pos_x - *last_pos_x)/dt;
+    *world_vy = (*now_pos_y - *last_pos_y)/dt;
+
+    float COSANGLE = arm_cos_f32(*now_yaw_angle * DEGREE_2_RAD);
+    float SINANGLE = arm_sin_f32(*now_yaw_angle * DEGREE_2_RAD);
+
+    *robo_vx = *world_vx * COSANGLE - *world_vy * SINANGLE;
+    *robo_vx = *world_vx * SINANGLE + *world_vy * COSANGLE;
+    // *robo_omega由action直接读
+
+    *last_pos_x = *now_pos_x;*last_pos_y = *now_pos_y;
+}
+
+/**
  * @brief 机器人姿态获取函数
  * 
  */
@@ -116,15 +157,23 @@ __attribute((noreturn)) void ins_Task(void *argument)
     
     action_instance->action_iwdg_instance->fall_asleep(action_instance->action_iwdg_instance);
     
+
+    float last_pos_x = 0,last_pos_y = 0,last_yaw_angle = 0;
     // /* 发布订阅准备 */
-    publish_data p_chassis_imu_data;
-    publish_data p_chassis_pos_data;
+    publish_data p_chassis_imu_data;// 发布姿态角数据
+    publish_data p_chassis_pos_data;// 发布坐标数据
+    publish_data p_chassis_spe_data;// 发布机器人速度数据
+
     ins_interface.imu_data = (pub_imu_yaw*)pvPortMalloc(sizeof(pub_imu_yaw));
     assert_param(ins_interface.imu_data != NULL);
     ins_interface.pos_data = (pub_Chassis_Pos*)pvPortMalloc(sizeof(pub_Chassis_Pos));
     assert_param(ins_interface.pos_data != NULL);
+    ins_interface.spe_data = (pub_chassis_spe*)pvPortMalloc(sizeof(pub_chassis_spe));
+    assert_param(ins_interface.spe_data != NULL);
+    
     ins_interface.chassis_imu_pub = register_pub("chassis_imu_pub");
     ins_interface.chassis_pos_pub = register_pub("chassis_pos_pub");
+    ins_interface.chassis_spe_pub = register_pub("chassis_spe_pub");
     for(;;)
     {
         LOGINFO("Action_SensorTask is running!");
@@ -134,17 +183,32 @@ __attribute((noreturn)) void ins_Task(void *argument)
             位置,这里是为了保持良好习惯,因为以后可能不会说action独占一个线程,可能会包含其它传感器数据的接收 */
         if(action_instance != NULL)
         {
+            ins_interface.dt = DWT_GetDeltaT(&ins_interface.DWT_CNT);
             action_instance->action_task(action_instance);
+
             ins_interface.imu_data->yaw = action_instance->action_diff_data->yaw;
             p_chassis_imu_data.data = (uint8_t *)(ins_interface.imu_data);
             p_chassis_imu_data.len = sizeof(pub_imu_yaw);
             ins_interface.chassis_imu_pub->publish(ins_interface.chassis_imu_pub,p_chassis_imu_data);
+
             ins_interface.pos_data->x = action_instance->action_diff_data->x;
             ins_interface.pos_data->y = action_instance->action_diff_data->y;
             ins_interface.pos_data->yaw = action_instance->action_diff_data->yaw;
             p_chassis_pos_data.data = (uint8_t *)(ins_interface.pos_data);  
             p_chassis_pos_data.len = sizeof(pub_Chassis_Pos);
             ins_interface.chassis_pos_pub->publish(ins_interface.chassis_pos_pub,p_chassis_pos_data);
+            
+            ins_spe_get_easyily(&ins_interface.pos_data->x,&ins_interface.pos_data->y,&ins_interface.pos_data->yaw,
+                                &last_pos_x,&last_pos_y,
+                                ins_interface.dt,
+                                &ins_interface.spe_data->robo_vx,&ins_interface.spe_data->robo_vy,
+                                &ins_interface.spe_data->world_vx,&ins_interface.spe_data->world_vy);
+            ins_interface.spe_data->robo_omega = action_instance->action_diff_data->yaw_rate;
+            ins_interface.spe_data->world_omega = action_instance->action_diff_data->yaw_rate;
+
+            p_chassis_spe_data.data = (uint8_t *)(ins_interface.spe_data);
+            p_chassis_spe_data.len = sizeof(pub_chassis_spe);
+            ins_interface.chassis_spe_pub->publish(ins_interface.chassis_spe_pub,p_chassis_spe_data);
         }
 
         osDelay(1);

@@ -46,9 +46,7 @@ protected:
     };// 轮子相对底盘中心的方位角
 
 private:
-    // 可能是专供这种全向底盘控制的，所以丢private里了，只可能在该类中的成员函数中调用，外界不可调用
-    uint8_t Set_Control_Bit(uint8_t &cnt, uint8_t setFlag, uint8_t clearFlags);
-    uint8_t Reset_Control_Bit(uint8_t &cnt, uint8_t value);
+
 };
 
 #endif

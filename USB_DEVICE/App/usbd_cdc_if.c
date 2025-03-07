@@ -22,7 +22,7 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "ros_com.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,6 +31,7 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+extern ROS_Com_Instance_t *ros_instance;
 
 /* USER CODE END PV */
 
@@ -261,6 +262,16 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
+  UART_TxMsg Msg;
+  if(ros_instance->rtos_for_roscom->xQueue != NULL  && ros_instance->rtos_for_roscom->queue_send != NULL)
+  {
+     Msg.data_addr = Buf;
+     Msg.len = *Len;
+     if(Msg.data_addr != NULL)
+     {
+        ros_instance->rtos_for_roscom->queue_send(ros_instance->rtos_for_roscom->xQueue,&Msg,NULL);
+     }
+  }
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
   return (USBD_OK);

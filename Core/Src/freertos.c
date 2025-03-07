@@ -22,7 +22,7 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-#include "bsp_log.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -54,6 +54,27 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for LogTaskHandle */
+osThreadId_t LogTaskHandleHandle;
+const osThreadAttr_t LogTaskHandle_attributes = {
+  .name = "LogTaskHandle",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for DebugTaskHandle */
+osThreadId_t DebugTaskHandleHandle;
+const osThreadAttr_t DebugTaskHandle_attributes = {
+  .name = "DebugTaskHandle",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for MotorTaskHandle */
+osThreadId_t MotorTaskHandleHandle;
+const osThreadAttr_t MotorTaskHandle_attributes = {
+  .name = "MotorTaskHandle",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -61,9 +82,30 @@ const osThreadAttr_t defaultTask_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
+extern void LogTestTask(void *argument);
+extern void DebugTask(void *argument);
+extern void MotorTask(void *argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+
+/* Hook prototypes */
+void vApplicationIdleHook(void);
+
+/* USER CODE BEGIN 2 */
+void vApplicationIdleHook( void )
+{
+   /* vApplicationIdleHook() will only be called if configUSE_IDLE_HOOK is set
+   to 1 in FreeRTOSConfig.h. It will be called on each iteration of the idle
+   task. It is essential that code added to this hook function never attempts
+   to block in any way (for example, call xQueueReceive() with a block time
+   specified, or call vTaskDelay()). If the application makes use of the
+   vTaskDelete() API function (as this demo application does) then it is also
+   important that vApplicationIdleHook() is permitted to return to its calling
+   function, because it is the responsibility of the idle task to clean up
+   memory allocated by the kernel to any task that has since been deleted. */
+}
+/* USER CODE END 2 */
 
 /**
   * @brief  FreeRTOS initialization
@@ -91,9 +133,6 @@ void MX_FREERTOS_Init(void) {
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 
-  /* Create the thread(s) */
-  /* creation of defaultTask */
-  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -120,9 +159,9 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    // 一般可以在这个任务线程完成一些比较额外的初始化工作(但还是建议分app,实现不同的app数据池被限制在自己的线程中)
+    // 涓?鑸彲浠ュ湪杩欎釜浠诲姟绾跨▼瀹屾垚涓?浜涙瘮杈冮澶栫殑鍒濆鍖栧伐浣?(浣嗚繕鏄缓璁垎app,瀹炵幇涓嶅悓鐨刟pp鏁版嵁姹犺闄愬埗鍦ㄨ嚜宸辩殑绾跨▼涓?)
     // LOGINFO("task is running!");
-    osThreadTerminate(defaultTaskHandle); // 避免空置和切换占用cpu
+    osThreadTerminate(defaultTaskHandle); // 閬垮厤绌虹疆鍜屽垏鎹㈠崰鐢╟pu
     // osDelay(1);
   }
   /* USER CODE END StartDefaultTask */

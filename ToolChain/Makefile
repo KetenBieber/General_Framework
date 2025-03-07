@@ -115,7 +115,7 @@ CXX_SOURCES = \
 
 # ASM sources 添加汇编文件
 ASM_SOURCES =  \
-startup_stm32f407xx.s \
+../startup_stm32f407xx.s \
 ../Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_ASM_ARMv7M.s \
 
 # ASM sources

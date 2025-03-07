@@ -1,0 +1,29 @@
+
+
+OpenDocument="startup_stm32f407xx.s", FilePath="C:/c_plusplus_try/new_build/ToolChain/startup_stm32f407xx.s", Line=49
+OpenDocument="stm32f4xx_it.c", FilePath="C:/c_plusplus_try/new_build/Core/Src/stm32f4xx_it.c", Line=76
+OpenDocument="main.c", FilePath="C:/c_plusplus_try/new_build/Core/Src/main.c", Line=92
+OpenDocument="tasks.c", FilePath="C:/c_plusplus_try/new_build/Middlewares/Third_Party/FreeRTOS/Source/tasks.c", Line=3424
+OpenDocument="robot.c", FilePath="C:/c_plusplus_try/new_build/App/robot.c", Line=0
+OpenDocument="robot.h", FilePath="C:/c_plusplus_try/new_build/App/robot.h", Line=0
+OpenDocument="robot_task.h", FilePath="C:/c_plusplus_try/new_build/App/robot_task.h", Line=83
+OpenDocument="SEGGER_RTT_printf.c", FilePath="C:/c_plusplus_try/new_build/Middlewares/Third_Party/SystemView/SEGGER/SEGGER_RTT_printf.c", Line=331
+OpenToolbar="Debug", Floating=0, x=0, y=0
+OpenWindow="Disassembly", DockArea=RIGHT, x=0, y=0, w=892, h=163, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Memory 1", DockArea=BOTTOM, x=2, y=0, w=955, h=337, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, EditorAddress=0x0
+OpenWindow="Functions", DockArea=LEFT, x=0, y=0, w=300, h=1155, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Terminal", DockArea=BOTTOM, x=1, y=0, w=966, h=337, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Data Sampling", DockArea=RIGHT, x=0, y=1, w=892, h=551, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, VisibleTab=0, UniformSampleSpacing=0
+OpenWindow="Timeline", DockArea=RIGHT, x=0, y=2, w=892, h=439, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=1, DataPaneShown=1, PowerPaneShown=1, CodePaneShown=1, PinCursor="Cursor Movable", TimePerDiv="1 ns / Div", TimeStampFormat="Time", DataGraphDrawAsPoints=0, DataGraphLegendShown=1, DataGraphUniformSampleSpacing=0, DataGraphLegendPosition="610;-63", PowerGraphDrawAsPoints=0, PowerGraphLegendShown=1, PowerGraphAvgFilterTime=Off, PowerGraphAvgFilterLen=Off, PowerGraphUniformSampleSpacing=0, PowerGraphLegendPosition="610;-91", CodeGraphLegendShown=1, CodeGraphLegendPosition="616;0"
+OpenWindow="Console", DockArea=BOTTOM, x=0, y=0, w=957, h=337, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+TableHeader="Functions", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Address";"Size";"#Insts";"Source"], ColWidths=[2264;131;100;116;432]
+TableHeader="Data Sampling Table", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time"], ColWidths=[100;100]
+TableHeader="Data Sampling Setup", SortCol="Value", SortOrder="ASCENDING", VisibleCols=["Expression";"Type";"Value";"Min";"Max";"Average";"# Changes";"Min. Change";"Max. Change"], ColWidths=[160;100;105;100;100;127;149;171;171]
+TableHeader="Power Sampling", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
+TableHeader="RegisterSelectionDialog", SortCol="None", SortOrder="ASCENDING", VisibleCols=[], ColWidths=[]
+TableHeader="TargetExceptionDialog", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Address";"Description"], ColWidths=[200;100;100;957]
+WatchedExpression="sLog_dt", RefreshRate=1, Window=Watched Data 1
+WatchedExpression="Log_dt", RefreshRate=1, Window=Watched Data 1
+WatchedExpression="Log_start", RefreshRate=1, Window=Watched Data 1
+WatchedExpression="Debug_dt", RefreshRate=1, Window=Watched Data 1
+WatchedExpression="Motor_start", Window=Watched Data 1
