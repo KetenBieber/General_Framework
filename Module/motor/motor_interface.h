@@ -53,10 +53,10 @@ void Motor_SendMsgs(Motor_Type (&motor)[N])
         LOGINFO("data is ready!");
     }
 
-    if(can_tx_instance.can_handle == &hcan1)
-        xQueueSend(CAN1_TxPort, &can_tx_instance, portMAX_DELAY);
-    else if(can_tx_instance.can_handle == &hcan2)
-        xQueueSend(CAN2_TxPort, &can_tx_instance, portMAX_DELAY);
+        if(can_tx_instance.can_handle == &hcan1)
+            xQueueSend(CAN1_TxPort, &can_tx_instance, portMAX_DELAY);
+        else if(can_tx_instance.can_handle == &hcan2)
+            xQueueSend(CAN2_TxPort, &can_tx_instance, portMAX_DELAY);
 }
 
 

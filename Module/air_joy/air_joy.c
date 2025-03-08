@@ -24,7 +24,7 @@ uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance)
 {
     if(gpio_instance == NULL)
     {
-        LOGERROR("gpio_instance is not prepared!");
+        LOGERROR("AIR_JOY gpio_instance is not prepared!");
         return 0;
     }
     air_instance = (Air_Joy_Instance_t*)pvPortMalloc(sizeof(Air_Joy_Instance_t));
@@ -122,6 +122,5 @@ uint8_t Air_Joy_Publish()
     /* 写一个 */
     return 1;
 }
-
 
 

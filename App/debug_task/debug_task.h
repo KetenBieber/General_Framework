@@ -45,6 +45,8 @@ void Debug_Task(void *argument);
 #include "motor_interface.h"
 #include "chassis_task.h"
 #include "Unitree_Go1.h"
+#include "VESC_motor.h"
+
 
 #endif
 

@@ -1,6 +1,7 @@
 {
     // 用于配置文件关联的设置，允许用户指定文件关联的语言模式
     "files.associations": {
+        "*.h": "c",
         "freertos.h": "c",
         "compare": "c",
         "cstdlib": "cpp",
@@ -85,11 +86,12 @@
         "typeinfo": "cpp",
         "usbd_cdc_if.h": "c",
         "ros_com.h": "c",
-        "motor_base.h": "c"
+        "motor_base.h": "c",
+        "xbox.h": "c",
     },
     // 这里要改成你自己的编译器的路径
-    "C_Cpp.default.compilerPath": "arm-none-eabi-g++",
+    "C_Cpp.default.compilerPath": "D:\\msys64\\mingw64\\bin\\arm-none-eabi-g++.exe",
     "C_Cpp.errorSquiggles": "enabled",
     "makefile.makefilePath": "ToolChain/Makefile",
-    "ros.distro": "noetic"
+    "Codegeex.RepoIndex": true
 }

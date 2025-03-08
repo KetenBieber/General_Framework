@@ -49,6 +49,8 @@ extern Motor_C620 chassis_motor[4];
 // 舵向电机实例
 extern Motor_GM6020 rubber_motor[4];
 
+extern VESC vesc[3];
+
 uint8_t Common_Service_Init()
 {
     CAN1_TxPort = xQueueCreate(16,sizeof(CAN_Tx_Instance_t));
@@ -144,12 +146,39 @@ void CAN1_Rx_Callback(CAN_Rx_Instance_t *can_instance)
 }
 
 // 现在打算can2专控go1电机，当然也可以换上别的电机，只是暂时先用
+// can2可控制 go1 / VESC
 void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance)
 {
+
+    uint8_t temp_vesc_id = can_instance->RxHeader.ExtId & 0xFF;//解析电调ID
+    uint16_t temp_vesc_flag = can_instance->RxHeader.ExtId >> 8;//解析电调命令标识符
+    //只解析速度和电流所在的数据包
+    if(temp_vesc_flag == CAN_PACKET_STATUS)
+    {
+        switch(temp_vesc_id)
+        {
+            case 1:
+            {
+                vesc[0].update(can_instance->can_rx_buff);
+                break;
+            }
+            case 2:
+            {
+                vesc[1].update(can_instance->can_rx_buff);
+                break;
+            }
+            case 3:
+            {
+                vesc[2].update(can_instance->can_rx_buff);
+                break;
+            }
+        }
+    }
+
     uint32_t data_of_id = (uint32_t)can_instance->RxHeader.ExtId & 0x07FFFFFF;
     uint8_t temp_module_id = CAN_To_RS485_Module_ID_Callback((uint8_t)(can_instance->RxHeader.ExtId >> 27) & 0x03);// 解析出标识符（模块id）
     uint8_t temp_motor_id = GO_Motor_ID_Callback(data_of_id);// 解析出扩展帧中的数据部分
-
+    
     if(temp_motor_id < 0)
     {
         return;
@@ -202,9 +231,7 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance)
             }
         }
     }
-
 }
-
 
 __attribute((noreturn)) void CAN1_Send_Task(void *argument)
 {
