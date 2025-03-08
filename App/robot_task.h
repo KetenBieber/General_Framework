@@ -118,6 +118,9 @@ void osTaskInit(void)
 
 __attribute((noreturn)) void IWDGTask(void *argument)
 {
+    portTickType currentTime;
+    currentTime = xTaskGetTickCount();
+
     static float IWDG_start;
     static float IWDG_dt;
     static char sIWDG_dt[20];
@@ -132,7 +135,7 @@ __attribute((noreturn)) void IWDGTask(void *argument)
         {
             LOGERROR("IWDGTask is being DELAY!!! dt= [%s] ms", sIWDG_dt);
         }
-        osDelay(100);
+        vTaskDelayUntil(&currentTime,100);
     }
 }
 

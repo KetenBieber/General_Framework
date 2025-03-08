@@ -614,6 +614,9 @@ uint8_t Chassis_Init()
  */
 __attribute((noreturn)) void Chassis_Task(void *argument)
 {
+    portTickType currentTime;
+    currentTime = xTaskGetTickCount();
+
     Chassis_Init();
     publish_data temp_data;
     publish_data ros_serial_data;
@@ -739,7 +742,7 @@ __attribute((noreturn)) void Chassis_Task(void *argument)
 #endif
         User_Chassis.Chassis_Parking_Control();// 长时间未控制时自动进入驻车模式
         Chassis();       
-        osDelay(1);
+        vTaskDelayUntil(&currentTime,1);
     }
 }
 

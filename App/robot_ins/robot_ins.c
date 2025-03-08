@@ -114,6 +114,9 @@ void ins_spe_get_easyily(float *now_pos_x,float *now_pos_y,float *now_yaw_angle,
  */
 __attribute((noreturn)) void ins_Task(void *argument)
 {
+    portTickType currentTime;
+    currentTime = xTaskGetTickCount();
+
     /* 串口实例注册 */
     uart_package_t action_package = {
         .uart_handle = &huart4,
@@ -210,8 +213,7 @@ __attribute((noreturn)) void ins_Task(void *argument)
             p_chassis_spe_data.len = sizeof(pub_chassis_spe);
             ins_interface.chassis_spe_pub->publish(ins_interface.chassis_spe_pub,p_chassis_spe_data);
         }
-
-        osDelay(1);
+        vTaskDelayUntil(&currentTime,1);
     }
 }
 

@@ -235,6 +235,9 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance)
 
 __attribute((noreturn)) void CAN1_Send_Task(void *argument)
 {
+    portTickType currentTime;
+    currentTime = xTaskGetTickCount();
+
     CAN_Tx_Instance_t temp_can_txmsg;
     uint8_t free_can_mailbox;
     for(;;)
@@ -249,13 +252,16 @@ __attribute((noreturn)) void CAN1_Send_Task(void *argument)
             else    // 发送标准帧
                 CAN_Transmit_StdID(&temp_can_txmsg);
         }
-        osDelay(1);
+        vTaskDelayUntil(&currentTime,1);
     }
 }
 
 
 __attribute((noreturn)) void CAN2_Send_Task(void *argument)
 {
+    portTickType currentTime;
+    currentTime = xTaskGetTickCount();
+
     CAN_Tx_Instance_t temp_can_txmsg;
     uint8_t free_can_mailbox;
     for(;;)
@@ -270,7 +276,7 @@ __attribute((noreturn)) void CAN2_Send_Task(void *argument)
             else    // 发送标准帧
                 CAN_Transmit_StdID(&temp_can_txmsg);
         }
-        osDelay(1);
+        vTaskDelayUntil(&currentTime,1);
     }
 }
 
@@ -279,6 +285,9 @@ extern ROS_Com_Instance_t *ros_instance;
 
 __attribute((noreturn)) void ROSCOM_Task(void *argument)
 {
+    portTickType currentTime;
+    currentTime = xTaskGetTickCount();
+
     uint8_t task_flag = 0;
     if(ROS_Communication_Init() != 1)
     {
@@ -312,7 +321,7 @@ __attribute((noreturn)) void ROSCOM_Task(void *argument)
             temp_data.len = sizeof(pub_Control_Data);
             twist_pub->publish(twist_pub,temp_data);// 发布自动控制速度指令
         }
-        osDelay(1);
+        vTaskDelayUntil(&currentTime,1);
     }
 }
 
