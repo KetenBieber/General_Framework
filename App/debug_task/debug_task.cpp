@@ -18,7 +18,8 @@
 #include "vofa.h"
 #include "air_joy.h"
 #include "arm_math.h"
-
+#include "xbox.h"
+#include "data_type.h"
 
 #ifdef CHASSIS_TO_DEBUG
 #include "pid_controller.h"
@@ -32,11 +33,16 @@ uint8_t debug_buffer[9];
 Subscriber *sub_debug;
 pub_Control_Data debug_pid;
 
+Subscriber *xbox_data;
+pub_Xbox_Data xbox_data_pub;
+
+
 VOFA_Instance_t *vofa_instance = NULL;
 Uart_Instance_t *vofa_uart_instance = NULL;
 extern uart_package_t VOFA_uart_package;
 
 #ifdef TEST_VESC
+
 int count = 0;
 CAN_Rx_Instance_t VESC_rx_instance1 = {
     .can_handle = &hcan2,
@@ -88,11 +94,13 @@ Motor_Control_Setting_t VESC_motor_ctrl = {0};
 VESC vesc[3]={VESC(1,VESC_rx_instance1,VESC_tx_instance1,VESC_motor_ctrl,0,1),
             VESC(2,VESC_rx_instance2,VESC_tx_instance2,VESC_motor_ctrl,0,1),
             VESC(3,VESC_rx_instance3,VESC_tx_instance3,VESC_motor_ctrl,0,1)};
+
+extern Motor_C620 chassis_motor[4];
 #endif
 
 #ifdef TEST_SYSTEM_TURNER
-extern Motor_C610 m2006[1];
 extern Motor_C620 chassis_motor[4];
+extern Motor_C610 m2006[1];
 extern Motor_GM6020 gm6020[1];
 
 #endif
@@ -162,32 +170,36 @@ __attribute((noreturn)) void Debug_Task(void *argument)
     int debug = 0;
 #endif
 
+#ifdef TEST_VESC
+    publish_data xbox_;
+    xbox_data=register_sub("xbox",1);
+    uint16_t ratio=11000/1024;
+    uint16_t ratio1=5000/1024;
+
+#endif
+
     for(;;)
     {
 #ifdef TEST_VESC
     count++;
-    if(count <= 500)
+    xbox_=xbox_data->getdata(xbox_data);
+    if (xbox_.len!=-1)
     {
-        vesc[0].Rpm_Control(500);
-        // vesc[1].Rpm_Control(1000);
-        // vesc[2].Rpm_Control(1000);
+        xbox_data_pub = *(pub_Xbox_Data*)xbox_.data;
     }
-    else if(count > 500)
-    {
-        vesc[0].Rpm_Control(2000);
-        // vesc[1].Rpm_Control(-1000);
-        // vesc[2].Rpm_Control(-1000);
-    }
-    else if(count>1000)
-    {
-        vesc[0].Rpm_Control(5000);
-        // vesc[1].Rpm_Control(5000);
-        // vesc[2].Rpm_Control(5000);
-    }
-    // vesc[0].Rpm_Control(-2000);
-    // vesc[1].Rpm_Control(-2000);
-    // vesc[2].Rpm_Control(-2000);
+
+    if(xbox_data_pub.btnY)chassis_motor[1].Motor_Ctrl(-3000);
+    else if(xbox_data_pub.btnA)chassis_motor[1].Motor_Ctrl(3000);
+    else chassis_motor[1].Motor_Ctrl(0);
+    Motor_SendMsgs(chassis_motor);
+
+    vesc[0].Rpm_Control(ratio1*xbox_data_pub.trigLT);
+    vesc[1].Rpm_Control(ratio*xbox_data_pub.trigLT);
+    vesc[2].Rpm_Control(ratio*xbox_data_pub.trigLT);    
     COMMON_Motor_SendMsgs(vesc);
+
+
+    
 #endif
 
 #ifdef VOFA_TO_DEBUG

@@ -78,6 +78,7 @@ extern TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN EV */
 extern Uart_Instance_t *action_uart_instance;
 extern Uart_Instance_t *vofa_uart_instance;
+extern Uart_Instance_t *xbox_uart_instance;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -214,7 +215,7 @@ void DMA1_Stream5_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
 
   /* USER CODE END DMA1_Stream5_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_usart2_rx);
+  // HAL_DMA_IRQHandler(&hdma_usart2_rx);
   /* USER CODE BEGIN DMA1_Stream5_IRQn 1 */
 
   /* USER CODE END DMA1_Stream5_IRQn 1 */
@@ -298,8 +299,11 @@ void USART2_IRQHandler(void)
 
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
-  /* USER CODE BEGIN USART2_IRQn 1 */
 
+  /* USER CODE BEGIN USART2_IRQn 1 */
+#ifdef XBOX_CONTROL
+  Uart_Receive_Handler(xbox_uart_instance);
+#endif
   /* USER CODE END USART2_IRQn 1 */
 }
 

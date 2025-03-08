@@ -86,7 +86,8 @@
         "typeinfo": "cpp",
         "usbd_cdc_if.h": "c",
         "ros_com.h": "c",
-        "motor_base.h": "c"
+        "motor_base.h": "c",
+        "xbox.h": "c",
     },
     // 这里要改成你自己的编译器的路径
     "C_Cpp.default.compilerPath": "D:\\msys64\\mingw64\\bin\\arm-none-eabi-g++.exe",

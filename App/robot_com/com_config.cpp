@@ -162,6 +162,16 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance)
                 vesc[0].update(can_instance->can_rx_buff);
                 break;
             }
+            case 2:
+            {
+                vesc[1].update(can_instance->can_rx_buff);
+                break;
+            }
+            case 3:
+            {
+                vesc[2].update(can_instance->can_rx_buff);
+                break;
+            }
         }
     }
 
@@ -182,7 +192,7 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance)
         case 2:
             break;
         case 3:// 模块出厂id为3
-            // go1_motor[temp_motor_id].update_Go1(can_instance->can_rx_buff,data_of_id);
+            go1_motor[temp_motor_id].update_Go1(can_instance->can_rx_buff,data_of_id);
             break;
     }
     // 如果不是go1的协议，为大疆电机的协议，则会进入这个分支

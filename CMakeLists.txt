@@ -95,9 +95,10 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     DEBUG_FOR_ACTION 
     USE_ACTION_FOR_IMU
     # CHASSIS_TO_DEBUG # 当前板是否为底盘控制板
-    # USE_OMNI_CHASSIS # 使用全向轮底盘
-    USE_SWERVE_CHASSIS # 使用舵轮底盘
-    USE_AIRJOY_CONTROL # 使用航模遥控
+    USE_OMNI_CHASSIS # 使用全向轮底盘
+    # USE_SWERVE_CHASSIS # 使用舵轮底盘
+    # USE_AIRJOY_CONTROL # 使用航模遥控
+    XBOX_CONTROL
     # TEST_SYSTEM_TURNER
     # TEST_SYSTEM_M3508 
     # TEST_SYSTEM_M2006

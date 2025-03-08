@@ -27,7 +27,7 @@ extern "C"{
 
 
 #include "air_joy.h"
-
+#include "xbox.h"
 #include "data_pool.h"
 /*-----------------------------------macro------------------------------------*/
 #define MAX_ACCELERATION 0.5f
