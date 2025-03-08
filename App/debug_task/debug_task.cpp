@@ -81,6 +81,10 @@ float speed_aps = 0;
 
 __attribute((noreturn)) void Debug_Task(void *argument)
 {
+    portTickType currentTime;
+    currentTime = xTaskGetTickCount();
+
+
 #ifdef TEST_SYSTEM_TURNER
     int count = 0;
 #endif
@@ -191,6 +195,6 @@ __attribute((noreturn)) void Debug_Task(void *argument)
             debug++;
         }
 #endif
-        osDelay(1);
+        vTaskDelayUntil(&currentTime,1);
     }
 }

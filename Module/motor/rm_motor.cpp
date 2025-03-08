@@ -83,16 +83,23 @@ void RM_Common::pid_control_to_motor()
     {
        pid_ref *=-1;
     }
+
+    /* 
+        常见搭配：外位置环+内速度环 = outer 为位置环 inner 为速度环
+                单速度环 = out 和 inner 都为速度环
+                单位置环 = out 和 inner 都为位置环
+     */
+
     /* pid_ref会顺次通过被启用的闭环充当数据的载体 */
-    /* 位置环计算，只有外部闭环为位置环且内部启用位置环，才会进行位置环计算输出 */
-    if((this->ctrl_motor_config.outer_loop_type & ANGLE_LOOP) && (this->ctrl_motor_config.inner_loop_type & ANGLE_LOOP))
+    /* 位置环计算，只要外环设置为位置环，就执行位置环 */
+    if(this->ctrl_motor_config.outer_loop_type & ANGLE_LOOP)
     {
         pid_measure = this->angle;
         pid_ref = PID_Calculate(&this->ctrl_motor_config.motor_controller_setting.angle_PID,pid_measure,pid_ref);
     }
 
-    /* 速度环计算，只有外部闭环为速度环且内部启用位置环或速度环才会进行速度环计算输出 */
-    if((this->ctrl_motor_config.outer_loop_type & SPEED_LOOP) && (this->ctrl_motor_config.inner_loop_type & (SPEED_LOOP|ANGLE_LOOP)))
+    /* 速度环计算，只要内环设置为速度环，就执行速度环 */
+    if(this->ctrl_motor_config.inner_loop_type & SPEED_LOOP)
     {
         pid_measure = this->speed_aps;
         pid_ref = PID_Calculate(&this->ctrl_motor_config.motor_controller_setting.speed_PID,pid_measure,pid_ref);

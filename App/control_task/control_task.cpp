@@ -114,6 +114,9 @@ void Air_Joy_Process()
 
 __attribute((noreturn)) void Control_Task(void *argument)
 {
+
+    portTickType currentTime;
+    currentTime = xTaskGetTickCount();
     /* 机器人控制接口，这里选用航模遥控 */
     /* 航模遥控 */
     GPIO_Instance_t *gpio_instance = GPIO_Pin_Register(GPIOA, GPIO_PIN_1);
@@ -143,7 +146,7 @@ __attribute((noreturn)) void Control_Task(void *argument)
             temp_ctrl_data.len = sizeof(pub_Control_Data);
             ctrl_pub->publish(ctrl_pub,temp_ctrl_data);
         }
-        osDelay(2);
+        vTaskDelayUntil(&currentTime,2);
     }
 }
 

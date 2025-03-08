@@ -88,7 +88,6 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined symbols
-    DISABLEFLOAT16
     USE_FULL_ASSERT
     USE_RTOS_FOR_UART
     TOPICS_DEBUG
