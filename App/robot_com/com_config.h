@@ -24,6 +24,7 @@ extern "C"{
 #include "cmsis_os.h"
 #include "bsp_can.h"
 #include "ros_com.h"
+
 /*------------------------------------extern------------------------------------*/
 
 extern QueueHandle_t CAN1_TxPort;
@@ -76,6 +77,7 @@ void ROSCOM_Task(void *argument);
 #ifdef __cplusplus
 #include "chassis_task.h"
 #include "Unitree_Go1.h"
+#include "debug_task.h"
 
 #endif
 

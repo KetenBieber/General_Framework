@@ -97,11 +97,11 @@ uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance)
         LOGERROR("Uart_Receive_Handler failed!");
         return 0;
     }
-    
+
     #ifdef XBOX_CONTROL
         Uart_Rx_IT_Callback(uart_instance);//这里用了简单的接收中断，没有用DMA
     #else 
-        /* 检查UART的空闲中断标志位是否置位 */
+    /* 检查UART的空闲中断标志位是否置位 */
     if(__HAL_UART_GET_FLAG(uart_instance->uart_package.uart_handle, UART_FLAG_IDLE) != RESET)
     {
         Uart_Rx_Idle_Callback(uart_instance);
@@ -113,7 +113,7 @@ uint8_t Uart_Receive_Handler(Uart_Instance_t *uart_instance)
         return 0;
     }
     #endif
-    
+
     return 1;
 }
 

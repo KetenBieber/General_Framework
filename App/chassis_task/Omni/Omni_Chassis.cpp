@@ -17,7 +17,6 @@
 void Omni_Chassis::Chassis_TrackingController_Init()
 {
    // todo:对底盘加入前馈控制器
-
    PID_Init(&this->Chassis_PID_X);
    PID_Init(&this->Chassis_PID_Y);
    PID_Init(&this->Chassis_PID_Omega);
@@ -80,23 +79,24 @@ float Omni_Chassis::Kinematics_Inverse_Resolution(size_t count,Robot_Twist_t ref
  */
 void Omni_Chassis::Kinematics_forward_Resolution(float wheel_1,float wheel_2,float wheel_3,float wheel_4)
 {
-     
      if(this->Wheel_Num == 4)
      {
          static float COS45 = arm_cos_f32(45*DEGREE_2_RAD);
          static float SIN45 = arm_sin_f32(45*DEGREE_2_RAD);
          // 四全向轮正解算
-         this->RoboSpeed.linear_x = (wheel_1 * (-COS45) + wheel_2 * (-COS45) + wheel_3 * COS45 + wheel_4 * COS45) * MOTOR_TO_WHEEL;
-         this->RoboSpeed.linear_y = (wheel_1 * SIN45 + wheel_2 * (-SIN45) + wheel_3 * (-SIN45) + wheel_4 * SIN45) * MOTOR_TO_WHEEL;
-         this->RoboSpeed.omega = (wheel_1 + wheel_2 + wheel_3 + wheel_4) * MOTOR_TO_WHEEL / (4 * this->Wheel_To_Center);
+         this->self_RoboSpeed.linear_x = (wheel_1 * (-COS45) + wheel_2 * (-COS45) + wheel_3 * COS45 + wheel_4 * COS45) * MOTOR_TO_WHEEL;
+         this->self_RoboSpeed.linear_y = (wheel_1 * SIN45 + wheel_2 * (-SIN45) + wheel_3 * (-SIN45) + wheel_4 * SIN45) * MOTOR_TO_WHEEL;
+         this->self_RoboSpeed.omega = (wheel_1 + wheel_2 + wheel_3 + wheel_4) * MOTOR_TO_WHEEL / (4 * this->Wheel_To_Center);
      }
      else
      {
          // 三全向轮正解算
-         this->RoboSpeed.linear_x = (TWOTHIRD*wheel_1 - ONETHIRD*wheel_2 - ONETHIRD*wheel_3)*MOTOR_TO_WHEEL;
-         this->RoboSpeed.linear_y = (0 * wheel_1 + (-SQR3_OF_THIRD)*wheel_2 + SQR3_OF_THIRD*wheel_3)*MOTOR_TO_WHEEL;
-         this->RoboSpeed.omega = (ONETHIRD*wheel_1 + ONETHIRD*wheel_2 + ONETHIRD*wheel_3)*MOTOR_TO_WHEEL/(this->Wheel_To_Center);
+         this->self_RoboSpeed.linear_x = (TWOTHIRD*wheel_1 - ONETHIRD*wheel_2 - ONETHIRD*wheel_3)*MOTOR_TO_WHEEL;
+         this->self_RoboSpeed.linear_y = (0 * wheel_1 + (-SQR3_OF_THIRD)*wheel_2 + SQR3_OF_THIRD*wheel_3)*MOTOR_TO_WHEEL;
+         this->self_RoboSpeed.omega = (ONETHIRD*wheel_1 + ONETHIRD*wheel_2 + ONETHIRD*wheel_3)*MOTOR_TO_WHEEL/(this->Wheel_To_Center);
      }
+     // 再转换一手得到自身解算的世界速度
+     this->RoboTwist_To_WorldTwist(this->self_RoboSpeed,this->self_WorldSpeed);
 }
 
 
@@ -117,42 +117,18 @@ void Omni_Chassis::Dynamics_Inverse_Resolution()
         this->ref_twist.omega = torque_omega;
         return;
     }
-    if (this->Chassis_Status == ROBOT_CHASSIS || this->Chassis_Status == WORLD_CHASSIS)
+    // 改进：直接根据模式对对应的速度进行闭环，将锁角度的操作放到task中处理
+    if(this->Chassis_Status == ROBOT_CHASSIS)
     {
-        if (this->Chassis_Status == WORLD_CHASSIS)
-        {
-            this->RefWorldSpeed_To_RefRoboSpeed();// 将参考世界坐标系转换为机器人坐标系
-        }
         force_x = PID_Calculate(&this->Chassis_PID_X, this->RoboSpeed.linear_x, this->Ref_RoboSpeed.linear_x);
         force_y = PID_Calculate(&this->Chassis_PID_Y, this->RoboSpeed.linear_y, this->Ref_RoboSpeed.linear_y);
-        switch (this->Moving_Status)
-        {
-            case FREE:
-                if(this->Reset_Control_Bit(cnt, KEEP_NONE))
-                {
-                     this->Chassis_Reset_Output();// 清空之前底盘输出
-                }
-                torque_omega = PID_Calculate(&this->Chassis_PID_Omega, this->RoboSpeed.omega, this->Ref_RoboSpeed.omega);
-                break;
-            case KEEP_X_MOVING:
-                if(Set_Control_Bit(cnt, KEEP_1, KEEP_2 | KEEP_3 | KEEP_4))
-                {
-                     this->current_angle_to_keep = this->imu_data->yaw;// 将当前角赋值
-                     this->Chassis_Reset_Output();// 清空之前底盘输出
-                }
-                Yaw_Adjust(&this->Chassis_Yaw_Adjust, this->current_angle_to_keep, this->imu_data->yaw, -179, 179);
-                torque_omega = this->Chassis_Yaw_Adjust.Output;
-                break;
-            case KEEP_Y_MOVING:
-                if(Set_Control_Bit(cnt, KEEP_2, KEEP_1 | KEEP_3 | KEEP_4))
-                {
-                     this->current_angle_to_keep = this->imu_data->yaw;// 将当前角赋值
-                     this->Chassis_Reset_Output();// 清空之前底盘输出
-                }
-                Yaw_Adjust(&this->Chassis_Yaw_Adjust, this->current_angle_to_keep, this->imu_data->yaw, -179, 179);
-                torque_omega = this->Chassis_Yaw_Adjust.Output;
-                break;
-        }
+        torque_omega = PID_Calculate(&this->Chassis_PID_Omega, this->RoboSpeed.omega, this->Ref_RoboSpeed.omega);
+    }
+    else // 世界坐标系 
+    {
+        force_x = PID_Calculate(&this->Chassis_PID_X, this->WorldSpeed.linear_x, this->Ref_WorldSpeed.linear_x);
+        force_y = PID_Calculate(&this->Chassis_PID_Y, this->WorldSpeed.linear_y, this->Ref_WorldSpeed.linear_y);
+        torque_omega = PID_Calculate(&this->Chassis_PID_Omega, this->WorldSpeed.omega, this->Ref_WorldSpeed.omega);
     }
 
    this->ref_twist.linear_x = force_x;
@@ -181,28 +157,6 @@ void Omni_Chassis::Chassis_Reset_Output()
    PID_Reset(&this->Chassis_Yaw_Adjust);
 }
 
-
-// 比较定制化的函数，用于清除位,并将上次角度赋值，清空上次底盘pid控制器速度输出
-uint8_t Omni_Chassis::Set_Control_Bit(uint8_t &cnt, uint8_t setFlag, uint8_t clearFlags)
-{
-    if (!(cnt & setFlag))
-    {
-        cnt |= setFlag;
-        cnt &= ~clearFlags;
-        return 1;
-    }
-    return 0;
-}
-
-uint8_t Omni_Chassis::Reset_Control_Bit(uint8_t &cnt, uint8_t value)
-{
-    if(cnt != value)
-    {
-      cnt = value;
-      return 1;
-    }
-    return 0;
-}
 
 
 

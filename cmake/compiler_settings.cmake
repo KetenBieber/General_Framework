@@ -1,0 +1,3 @@
+set(CMAKE_CXX_STANDARD 20) # 指定c++标准
+set(CMAKE_C_STANDARD 17) # 指定c标准
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 生成编译命令的JSON文件

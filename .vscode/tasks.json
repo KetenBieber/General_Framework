@@ -53,30 +53,23 @@
             // 若使用daplink,则将log任务设置为依赖于jlink launch任务,保证jlink launch任务先于log任务执行
         },
         {
-            /* 清除build目录下生成的可执行文件 */
-            "label": "clean",
+            /* 使用cmake构建项目，编译生成可执行文件,生成Debug目标 */
+            "label": "[build]-[Debug]",
             "type": "shell",
-            /* 使用MSYS2下bash终端，因为其支持Linux下的所有命令 */
-            "command": "workspace_path=$(cygpath \"${workspaceFolder}\") && cd \"$workspace_path/build\" && rm -rf ./*",
-            /* 添加options项，区分默认使用powershell终端，这样就可以直接打开MSYS2下的bash终端 */
-            "options": {
-                "shell": {
-                    /* 添加你自己的MSYS2 bash终端安装路径，记得需要添加到环境变量中 */
-                    "executable": "F:\\MSYS\\usr\\bin\\bash.exe",
-                    /* 传递给Bash的参数 -l：使 Bash 作为登录 shell 启动 -c:传递命令字符串给 Bash 执行 */
-                    "args": ["-l", "-c"]
-                }
-            },
+            // "command": "cd build ; cmake -G \"Ninja\" .. ; ninja",
+            "command": "cmake --preset Debug ; cmake --build --preset Debug",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
+            "dependsOn": ["clean"] // 添加依赖项，每次构建都必须删除原build目录下的东西 
         },
         {
-            /* 使用cmake构建项目，编译生成可执行文件 */
-            "label": "build_by_cmake",
+            /* 使用cmake构建项目，编译生成可执行文件,生成Release目标 */
+            "label": "[build]-[Release]",
             "type": "shell",
-            "command": "cd build ; cmake -G \"Ninja\" .. ; ninja",
+            // "command": "cd build ; cmake -G \"Ninja\" .. ; ninja",
+            "command": "cmake --preset Release ; cmake --build --preset Release",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -85,46 +78,24 @@
         },
         {
             /* 使用cmake构建项目，编译生成可执行项目之后，烧录到单片机中 */
-            "label": "download_jlink_after_cmake",
+            "label": "[download]",
             "type": "shell",
-            /* 暂时没有找到为什么不能通过ninja下载的原因 */
-            "command": "mingw32-make -C ToolChain download_jlink",
+            /* 通过CMake提供的add_custom_target运行JFlash命令 */
+            "command": "cmake --build --preset Debug --target download_jlink",
             "group": {
-                "kind": "build",
+                "kind": "test",
                 "isDefault": true
             },
         },
         {
-            /* 使用cmake构建项目，编译生成可执行文件 */
-            "label": "build_by_cmake_Linux",
+            "label": "clean",
             "type": "shell",
-            "command": "cd build ; cmake -G \"Ninja\" .. ; ninja",
+            "command": "rm -r build ; mkdir build",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "dependsOn": ["clean_Linux"] // 添加依赖项，每次构建都必须删除原build目录下的东西 
-        },
-        {
-            /* 使用cmake构建项目，编译生成可执行项目之后，烧录到单片机中 */
-            "label": "download_jlink_after_cmake_Linux",
-            "type": "shell",
-            /* 暂时没有找到为什么不能通过ninja下载的原因 */
-            "command": "mingw32-make -C ToolChain download_jlink",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-        },
-        {
-            "label": "clean_Linux",
-            "type": "shell",
-            "command": "cd build ; rm * -rf",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-        },
+        }
     ]
 
 }

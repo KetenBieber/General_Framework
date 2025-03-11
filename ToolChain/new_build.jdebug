@@ -4,9 +4,9 @@
 *                         www.segger.com                             *
 **********************************************************************
 
-File          : C:/c_plusplus_try/new_build/new_build.jdebug
-Created       : 15 Sep 2024 00:49
-Ozone Version : V3.24
+File          : C:/c_plusplus_try/new_build/ToolChain/new_build.jdebug
+Created       : 9 Mar 2025 12:54
+Ozone Version : V3.26i
 */
 
 /*********************************************************************
@@ -22,18 +22,19 @@ void OnProjectLoad (void) {
   //
   // Dialog-generated settings
   //
-  Project.AddPathSubstitute ("C:/c_plusplus_try/new_build", "$(ProjectDir)");
-  Project.AddPathSubstitute ("c:/c_plusplus_try/new_build", "$(ProjectDir)");
-  Project.SetDevice ("Cortex-M4");
-  Project.SetHostIF ("USB", "1040849617");
+  Project.AddPathSubstitute ("C:/c_plusplus_try/new_build/ToolChain", "$(ProjectDir)");
+  Project.AddPathSubstitute ("c:/c_plusplus_try/new_build/toolchain", "$(ProjectDir)");
+  Project.SetDevice ("STM32F407ZG");
+  Project.SetHostIF ("USB", "602712882");
   Project.SetTargetIF ("SWD");
   Project.SetTIFSpeed ("4 MHz");
   Project.AddSvdFile ("$(InstallDir)/Config/CPU/Cortex-M4F.svd");
-  Project.AddSvdFile ("$(InstallDir)/Config/Peripherals/STM32F407IG.svd");
+  Project.AddSvdFile ("C:/c_plusplus_try/new_build/ToolChain/STM32F407.svd");
   //
   // User settings
   //
-  File.Open ("$(ProjectDir)/build/new_build.elf");
+  File.Open ("C:/c_plusplus_try/new_build/build/Debug/new_build.elf");
+  Project.SetOSPlugin ("FreeRTOSPlugin");
 }
 
 /*********************************************************************
@@ -298,6 +299,18 @@ void AfterTargetDownload (void) {
 **********************************************************************
 */
 //void OnError (void) {
+//}
+
+/*********************************************************************
+*
+*       AfterProjectLoad
+*
+* Function description
+*   After Project load routine. Optional.
+*
+**********************************************************************
+*/
+//void AfterProjectLoad (void) {
 //}
 
 /*********************************************************************

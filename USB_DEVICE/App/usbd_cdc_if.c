@@ -244,10 +244,8 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   /* USER CODE END 5 */
 }
 
-
 /**
-  * @brief  接收回调函数
-  *         Data received over USB OUT endpoint are sent over CDC interface
+  * @brief  Data received over USB OUT endpoint are sent over CDC interface
   *         through this function.
   *
   *         @note
@@ -257,8 +255,8 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   *         it will result in receiving more data while previous ones are still
   *         not sent.
   *
-  * @param  Buf: Buffer of data to be received 接收到这一包数据指针
-  * @param  Len: Number of data received (in bytes) 接收到的数据长度
+  * @param  Buf: Buffer of data to be received
+  * @param  Len: Number of data received (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)

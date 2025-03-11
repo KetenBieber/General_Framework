@@ -1,7 +1,7 @@
 /**
  * @file robot_def.h
  * @author Keten (2863861004@qq.com)
- * @brief 机器人的参数配置文件
+ * @brief 机器人的参数配置文件，类似于 yaml文件
  * @version 0.1
  * @date 2024-09-14
  * 

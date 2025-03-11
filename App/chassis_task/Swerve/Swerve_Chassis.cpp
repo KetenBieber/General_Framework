@@ -24,8 +24,8 @@ void Swerve_Chassis::Chassis_TrackingController_Init()
 float Swerve_Chassis::Kinematics_Inverse_Resolution(size_t count,Robot_Twist_t ref_twist)
 {
     // 轮系解算，对单个舵轮进行速度分解
-    float wheel_vx = 0;
-    float wheel_vy = 0;
+    float wheel_vx = 0.0f;
+    float wheel_vy = 0.0f;
     if(this->Wheel_Num == 4)// 四舵轮解算
     {
         switch(count)
@@ -97,9 +97,12 @@ void Swerve_Chassis::Kinematics_forward_Resolution(float wheel_1,float wheel_2,f
 
         float wz = (M1 + M2 + M3 + M4) / 4.0f;
 
-        this->RoboSpeed.linear_x = vx;
-        this->RoboSpeed.linear_y = vy;
-        this->RoboSpeed.omega = wz;
+        this->self_RoboSpeed.linear_x = vx;
+        this->self_RoboSpeed.linear_y = vy;
+        this->self_RoboSpeed.omega = wz;
+
+        // 再转换一下得到世界坐标系下速度
+        this->RoboTwist_To_WorldTwist(this->self_RoboSpeed,this->self_WorldSpeed);
     }
     else
     {
@@ -109,17 +112,40 @@ void Swerve_Chassis::Kinematics_forward_Resolution(float wheel_1,float wheel_2,f
 }
 
 
+// 动力学解算，对机器人整体速度进行闭环
 void Swerve_Chassis::Dynamics_Inverse_Resolution()
 {
+    float force_x = 0,force_y = 0,torque_omega = 0;
+    if (this->Chassis_Status == CHASSIS_STOP)
+    {
+        this->ref_twist.linear_x = force_x;
+        this->ref_twist.linear_y = force_y;
+        this->ref_twist.omega = torque_omega;
+        return;
+    }
+    // 如果是机器人坐标系下操作，则采集机器人坐标系下速度进行闭环
+    if(this->Chassis_Status == ROBOT_CHASSIS)
+    {
+        force_x = PID_Calculate(&this->Chassis_PID_X,this->RoboSpeed.linear_x,this->Ref_RoboSpeed.linear_x);
+        force_y = PID_Calculate(&this->Chassis_PID_Y,this->RoboSpeed.linear_y,this->Ref_RoboSpeed.linear_y);
+        torque_omega = PID_Calculate(&this->Chassis_PID_Omega,this->RoboSpeed.omega,this->Ref_RoboSpeed.omega);
+    }
+    else// 世界坐标系
+    {
+        force_x = PID_Calculate(&this->Chassis_PID_X,this->WorldSpeed.linear_x,this->Ref_WorldSpeed.linear_x);
+        force_y = PID_Calculate(&this->Chassis_PID_Y,this->WorldSpeed.linear_y,this->Ref_WorldSpeed.linear_y);
+        torque_omega = PID_Calculate(&this->Chassis_PID_Omega,this->WorldSpeed.omega,this->Ref_WorldSpeed.omega);
+    }
 
+    this->ref_twist.linear_x = force_x;
+    this->ref_twist.linear_y = force_y;
+    this->ref_twist.omega = torque_omega;
 }
 
 
 void Swerve_Chassis::Chassis_Parking_Control()
 {
     // 驻车模式
-    static int reset_flag = 0;
-    static int32_t stop_start_time = 0;
 
 }
 
@@ -127,8 +153,10 @@ void Swerve_Chassis::Chassis_Parking_Control()
 void Swerve_Chassis::Chassis_Reset_Output()
 {
     // 重置底盘
-    
-
+    PID_Reset(&this->Chassis_PID_X);
+    PID_Reset(&this->Chassis_PID_Y);
+    PID_Reset(&this->Chassis_PID_Omega);
+    PID_Reset(&this->Chassis_Yaw_Adjust);
 }
 
 

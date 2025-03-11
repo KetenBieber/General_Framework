@@ -35,6 +35,17 @@ typedef struct
 
 typedef struct
 {
+    float robo_vx;
+    float robo_vy;
+    float robo_omega;
+
+    float world_vx;
+    float world_vy;
+    float world_omega;
+}pub_chassis_spe;
+
+typedef struct
+{
     uint8_t control_way;// 控制方式，遥控OR自动
     uint8_t STOP;// 置0为移动状态，置1停止速度输出
 }pub_chassis_status;
