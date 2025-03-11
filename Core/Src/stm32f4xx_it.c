@@ -23,9 +23,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-/* bsp层接�? */
+
+
 #include "bsp_usart.h"
-/* app层接�? */
+
+
 #include "robot_ins.h"
 #include "debug_task.h"
 
@@ -286,7 +288,7 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-  Uart_Receive_Handler(vofa_uart_instance);
+  // Uart_Receive_Handler(vofa_uart_instance);
   /* USER CODE END USART1_IRQn 1 */
 }
 

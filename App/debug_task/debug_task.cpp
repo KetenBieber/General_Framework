@@ -127,23 +127,25 @@ __attribute((noreturn)) void Debug_Task(void *argument)
         count++;
         if(count <= 3000)
         {
-            chassis_motor[3].Motor_Ctrl(0);
+            chassis_motor[0].Motor_Ctrl(0);
             Motor_SendMsgs(chassis_motor);           
         }
         else if(count>3000 && count<=6000)
         {
-            chassis_motor[3].Motor_Ctrl(2000);
+            chassis_motor[0].Motor_Ctrl(2000);
             Motor_SendMsgs(chassis_motor);
         }
         else if(count >6000 && count <= 9000){
-            chassis_motor[3].Motor_Ctrl(0);
+            chassis_motor[0].Motor_Ctrl(0);
             Motor_SendMsgs(chassis_motor);
         }
         else
         {
             count = 0;
         }
-        speed_aps = chassis_motor[3].speed_aps;
+        // chassis_motor[0].Motor_Ctrl(sine);
+        // Motor_SendMsgs(chassis_motor);
+        speed_aps = chassis_motor[0].speed_aps;
 
 #endif
 

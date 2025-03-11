@@ -60,6 +60,21 @@ void Motor_SendMsgs(Motor_Type (&motor)[N])
 }
 
 
+template <class Motor_Type, int N>
+void COMMON_Motor_SendMsgs(Motor_Type (&motor)[N])
+{
+    CAN_Tx_Instance_t can_tx_instance;
+    for(int i=0; i<N; i++)
+    {
+        motor[i].CanMsg_Process(can_tx_instance);
+        LOGINFO("data is ready!");
+        if(can_tx_instance.can_handle == &hcan1)
+            xQueueSend(CAN1_TxPort, &can_tx_instance, portMAX_DELAY);
+        else if(can_tx_instance.can_handle == &hcan2)
+            xQueueSend(CAN2_TxPort, &can_tx_instance, portMAX_DELAY);
+    }
+}
+
 #endif
 
 #endif	/* MOTOR_INTERFACE_H */

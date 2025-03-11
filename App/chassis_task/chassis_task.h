@@ -65,9 +65,22 @@ void Chassis_Task(void *argument);
 #ifdef __cplusplus
 #include "rm_motor.h"
 #include "Omni/Omni_Chassis.h"
-extern Motor_C620 chassis_motor[4];
 
-uint8_t Chassis(Omni_Chassis &user_chassis);
+
+/**
+ * @brief Chassis底盘运动函数
+ *        完成功能：
+ *          1.订阅姿态数据
+ *          2.底盘模式switch-case
+ *          3.速度命令解算得到各个轮子的速度
+ *          4.将轮子速度发送到各自电机 
+ * @param user_chassis 
+ * @return uint8_t 
+ */
+uint8_t Chassis();
+
+
+
 
 #endif
 

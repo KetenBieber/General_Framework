@@ -18,6 +18,9 @@
  * 
  * @todo: 1.添加底盘驻车模式，就是底盘如果位于一段时间内没有控制的话，会进入驻车模式，这时底盘会锁0
  *        2.测试一下底盘极限速度
+ *        3.将“获取当前速度”这个方法设计为 函数指针，由使用者自己实现，这样可以适配不同的传感器
+ *          设计出发点：因为不同的传感器获取速度的方法不同，所以这个方法应该由使用者自己实现，从而适配自己的底盘
+ *        4.有些重复的东西应该设计成接口，而不是作为类的成员变量---比如什么机器人坐标系转换，待重构
  */
 #pragma once
 
@@ -33,6 +36,7 @@
 #ifdef __cplusplus
 
 /* 机器人坐标系结构体定义 */
+
 typedef struct
 {
     /* 平动速度 */
@@ -55,8 +59,13 @@ typedef enum
     FREE = 0,// 全向模式
     KEEP_X_MOVING,// 锁x轴方向移动
     KEEP_Y_MOVING,// 锁y轴方向移动
-    AUTO_MOVING,// 自由移动
 }Moving_Status_e;
+
+typedef enum
+{
+    HAND_CONTROL = 0,// 手动模式
+    AUTO_CONTROL // 自动模式 
+}Control_Status_e;
 
 /* 底盘基类 */
 class Chassis 
@@ -75,7 +84,7 @@ public:
 
     Chassis_Status_e Chassis_Status = CHASSIS_STOP;// 初始化为底盘失能状态
     Moving_Status_e Moving_Status = FREE;// 初始化为全向移动状态
-
+    Control_Status_e Control_Status = HAND_CONTROL;// 初始化为手动模式
     uint32_t DWT_CNT;
     float dt;
 
@@ -110,6 +119,25 @@ public:
         {
             pos_data = (pub_Chassis_Pos*)(chassis_pos_data.data);
         }
+    }
+
+    // 提供一个由action传感器获取速度值的方法（更新：如果没有action，在宏定义文件中进行编写，可以启用原先使用的根据编码器正解算的方式得到速度）
+    virtual void Get_Current_Velocity()
+    {
+        this->dt = DWT_GetDeltaT(&this->DWT_CNT);
+        this->current_pos_x = pos_data->x;this->current_pos_y = pos_data->y;
+        /* sensor得到的世界速度 */
+        this->WorldSpeed.linear_x = (this->current_pos_x - this->last_pos_x) / this->dt;
+        this->WorldSpeed.linear_y = (this->current_pos_y - this->last_pos_y) / this->dt;
+        this->WorldSpeed.omega = this->pos_data->omega;
+
+        float COSANGLE = arm_cos_f32(this->imu_data->yaw * DEGREE_2_RAD);// cos90 = 0
+        float SINANGLE = arm_sin_f32(this->imu_data->yaw * DEGREE_2_RAD);// sin90 = 1
+        this->RoboSpeed.linear_x = this->WorldSpeed.linear_x * COSANGLE - this->WorldSpeed.linear_y * SINANGLE;
+        this->RoboSpeed.linear_y = this->WorldSpeed.linear_x * SINANGLE + this->WorldSpeed.linear_y * COSANGLE;
+        this->RoboSpeed.omega = this->WorldSpeed.omega; 
+        
+        this->last_pos_x = this->current_pos_x;this->last_pos_y = this->current_pos_y;
     }
     // 机器人坐标系下速度转世界坐标系下速度
     void RoboSpeed_To_WorldSpeed()
@@ -153,12 +181,15 @@ protected:
     /* 底盘输出重置0 */
     virtual void Chassis_Reset_Output(){}
 public:
+
+    // 解算得到用来的或者由外部传感器得知
     Robot_Twist_t RoboSpeed = {0,0,0};// 机器人坐标系下速度
     Robot_Twist_t WorldSpeed = {0,0,0};// 世界坐标系下速度
 
     Robot_Twist_t Ref_RoboSpeed = {0,0,0};// 期望机器人坐标系下速度
     Robot_Twist_t Ref_WorldSpeed = {0,0,0};// 期望世界坐标系下速度
 
+    // 用于输入的计算变量
     float ref[4];// 期望值，用于各环pid输出到输入
     Robot_Twist_t ref_twist;// 期望速度
 
@@ -171,6 +202,12 @@ public:
     /* 订阅数据类型指针 */
     pub_imu_yaw *imu_data;// 调用它来读yaw值
     pub_Chassis_Pos *pos_data;// 调用它来读位置值
+
+private:
+    float last_pos_x = 0;
+    float last_pos_y = 0;
+    float current_pos_x = 0;
+    float current_pos_y = 0;
 
 };
 

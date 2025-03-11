@@ -28,10 +28,23 @@
 /* imu接口 */
 #define USE_ACTION_FOR_IMU  1               // 使用action作为imu接口
 
+#ifdef USE_OMNI_CHASSIS
 /* 这里以八期r1为示例底盘 */
 #define WHEEL_R                     0.076f  // 轮子半径（单位：m）
 #define CHASSIS_R                   0.40f   // 底盘半径（单位：m）
-#define MOTOR_REDUCTION_RATIO       19                    // 底盘驱动轮系电机的减速比
+#define MOTOR_REDUCTION_RATIO       19.0f                    // 底盘驱动轮系电机的减速比
+
+#endif
+
+
+#ifdef USE_SWERVE_CHASSIS
+/* 九期扣篮车参数 */
+#define WHEEL_R                     0.076f  // 轮子半径 （单位：m）
+#define CHASSIS_R                   0.50f   // 底盘半径 （单位：m）
+#define MOTOR_REDUCTION_RATIO       21.0f   // 轮向电机减速比
+
+
+#endif
 
 
 

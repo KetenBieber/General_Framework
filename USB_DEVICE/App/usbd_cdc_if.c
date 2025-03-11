@@ -22,7 +22,7 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "ros_com.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,6 +31,7 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+extern ROS_Com_Instance_t *ros_instance;
 
 /* USER CODE END PV */
 
@@ -243,8 +244,10 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   /* USER CODE END 5 */
 }
 
+
 /**
-  * @brief  Data received over USB OUT endpoint are sent over CDC interface
+  * @brief  接收回调函数
+  *         Data received over USB OUT endpoint are sent over CDC interface
   *         through this function.
   *
   *         @note
@@ -254,13 +257,23 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   *         it will result in receiving more data while previous ones are still
   *         not sent.
   *
-  * @param  Buf: Buffer of data to be received
-  * @param  Len: Number of data received (in bytes)
+  * @param  Buf: Buffer of data to be received 接收到这一包数据指针
+  * @param  Len: Number of data received (in bytes) 接收到的数据长度
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
+  UART_TxMsg Msg;
+  if(ros_instance->rtos_for_roscom->xQueue != NULL  && ros_instance->rtos_for_roscom->queue_send != NULL)
+  {
+     Msg.data_addr = Buf;
+     Msg.len = *Len;
+     if(Msg.data_addr != NULL)
+     {
+        ros_instance->rtos_for_roscom->queue_send(ros_instance->rtos_for_roscom->xQueue,&Msg,NULL);
+     }
+  }
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
   return (USBD_OK);

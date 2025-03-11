@@ -15,7 +15,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-addr2line.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-addr2line.exe"
 		},
 		{
 			"name" : "CMAKE_ASM_COMPILER_AR",
@@ -31,7 +31,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-gcc-ar.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_ASM_COMPILER_RANLIB",
@@ -47,7 +47,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-gcc-ranlib.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_ASM_COMPILER_WORKS",
@@ -238,6 +238,22 @@
 			"value" : "F:/cmake/bin/ctest.exe"
 		},
 		{
+			"name" : "CMAKE_CXX_COMPILER",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "CXX compiler"
+				}
+			],
+			"type" : "STRING",
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-g++.exe"
+		},
+		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
 			"properties" : 
 			[
@@ -251,7 +267,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-gcc-ar.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_RANLIB",
@@ -267,7 +283,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-gcc-ranlib.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -350,6 +366,22 @@
 			"value" : "-O2 -g -DNDEBUG"
 		},
 		{
+			"name" : "CMAKE_C_COMPILER",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "C compiler"
+				}
+			],
+			"type" : "STRING",
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc.exe"
+		},
+		{
 			"name" : "CMAKE_C_COMPILER_AR",
 			"properties" : 
 			[
@@ -363,7 +395,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-gcc-ar.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -379,7 +411,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-gcc-ranlib.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -475,7 +507,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/dlltool.exe"
+			"value" : "C:/Program Files/mingw64/bin/dlltool.exe"
 		},
 		{
 			"name" : "CMAKE_EDIT_COMMAND",
@@ -707,7 +739,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-ld.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-ld.exe"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
@@ -819,7 +851,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-nm.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-nm.exe"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -895,7 +927,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-ranlib.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_READELF",
@@ -911,7 +943,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-readelf.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-readelf.exe"
 		},
 		{
 			"name" : "CMAKE_ROOT",
@@ -1131,7 +1163,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "F:/MSYS/mingw64/bin/arm-none-eabi-strip.exe"
+			"value" : "C:/Users/Fzhhhhh/.eide/tools/gcc_arm/bin/arm-none-eabi-strip.exe"
 		},
 		{
 			"name" : "CMAKE_TAPI",

@@ -7,22 +7,20 @@
  * 
  * @copyright Copyright (c) 2024
  * 
- * @attention :
+ * @attention : 2025-1-21 发现当前航模遥控和底盘任务耦合太大了，不合适，需要解耦，直接把收到的航模遥控
+ *                        数据发送出去，由app层的人自行编写处理航模数据的函数
  * @note :
  * @versioninfo :
  */
 #include "air_joy.h"
 
 
-static void update_trapezoidal_state(TrapezoidalState *state, float target_velocity);
-static void Air_SWO_Event_Process();
-
 
 // 留一个指针值，不管最终有无创建，也只占4字节的指针内存
 Air_Joy_Instance_t *air_instance;
 
 
-uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance,Process_method_e method)
+uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance)
 {
     if(gpio_instance == NULL)
     {
@@ -36,8 +34,6 @@ uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance,Process_method_e method)
         return 0;
     }
     memset(air_instance,0,sizeof(Air_Joy_Instance_t));
-    /* 设置控制模式 */
-    air_instance->process_method = method;
     /* 进行gpio中断的设置 */
     air_instance->air_joy_gpio = gpio_instance;
     gpio_instance->exit_callback = Air_Update;
@@ -63,10 +59,9 @@ uint8_t Air_Joy_Init(GPIO_Instance_t *gpio_instance,Process_method_e method)
     /* 注册发布者 */
     air_instance->air_joy_pub = register_pub("air_joy_pub");
 
-    air_instance->control_data.linear_x = 0;
-    air_instance->control_data.linear_y = 0;
-    air_instance->control_data.Omega = 0;
-    air_instance->control_data.Status = 0;
+    air_instance->air_joy_data.LEFT_X = 0;air_instance->air_joy_data.LEFT_Y = 0;air_instance->air_joy_data.RIGHT_X = 0;air_instance->air_joy_data.RIGHT_Y = 0;
+    air_instance->air_joy_data.SWA = 0;air_instance->air_joy_data.SWB = 0;air_instance->air_joy_data.SWC = 0;air_instance->air_joy_data.SWD = 0;
+
     return 1;
 }
 
@@ -113,148 +108,18 @@ void Air_Update(void *instance)
         air_instance->ppm_update_flag = 0;
     }
 
-    if(air_instance->SWA - air_instance->last_swo_buf[0] >= 500 || air_instance->SWA - air_instance->last_swo_buf[0] <= -500)
-    {
-        air_instance->swo_event |= SWA_EVENT;
-    }
-    else if(air_instance->SWB - air_instance->last_swo_buf[1] >= 500 || air_instance->SWB - air_instance->last_swo_buf[1] <= -500)
-    {
-        air_instance->swo_event |= SWB_EVENT;
-    }
-    else if(air_instance->SWC - air_instance->last_swo_buf[2] >= 500 || air_instance->SWC - air_instance->last_swo_buf[2] <= -500)
-    {
-        air_instance->swo_event |= SWC_EVENT;
-    }
-    else if(air_instance->SWD - air_instance->last_swo_buf[3] >= 500 || air_instance->SWD - air_instance->last_swo_buf[3] <= -500)
-    {
-        air_instance->swo_event |= SWD_EVENT; 
-    }
-    air_instance->last_swo_buf[0] = air_instance->SWA;
-    air_instance->last_swo_buf[1] = air_instance->SWB;
-    air_instance->last_swo_buf[2] = air_instance->SWC;
-    air_instance->last_swo_buf[3] = air_instance->SWD;
+    /* 发布控制信息 */
+    Air_Joy_Publish();
 }   
-
-
-static void update_trapezoidal_state(TrapezoidalState *state, float target_velocity) 
-{
-    state->target_velocity = target_velocity;
-    if (fabs(state->current_velocity - state->target_velocity) < MAX_ACCELERATION) {
-        state->current_velocity = state->target_velocity;
-    } else if (state->current_velocity < state->target_velocity) {
-        state->current_velocity += MAX_ACCELERATION;
-    } else {
-        state->current_velocity -= MAX_ACCELERATION;
-    }
-}
-
-static void Air_SWO_Event_Process()
-{
-    if(air_instance->swo_event == 0) 
-    {
-        return;
-    }
-    if(air_instance->swo_event & SWB_EVENT)
-    {
-        if(air_instance->SWB > 950 && air_instance->SWB < 1050)
-        {
-            // 三档拨杆，最上状态
-            air_instance->control_data.Status = 0;
-            air_instance->swo_event &= ~SWB_EVENT;
-            return;
-        }
-        if(air_instance->SWB > 1450 && air_instance->SWB < 1550)
-        {
-            // 三档拨杆，中间状态
-            air_instance->control_data.Status = 1;
-            air_instance->swo_event &= ~SWB_EVENT;
-            return;
-        }
-        if(air_instance->SWB > 1950 && air_instance->SWB < 2050)
-        {
-            // 三档拨杆，最下状态
-            air_instance->control_data.Status = 2;
-            air_instance->swo_event &= ~SWB_EVENT;
-            return;
-        }
-    }
-    if(air_instance->swo_event & SWC_EVENT)
-    {
-        if(air_instance->SWC > 950 && air_instance->SWC < 1050)
-        {
-            // 三档拨杆，最上状态
-            air_instance->control_data.Move = 0;
-            air_instance->swo_event &= ~SWC_EVENT;
-            return;
-        }
-        if(air_instance->SWC > 1450 && air_instance->SWC < 1550)
-        {
-            // 三档拨杆，中间状态
-            air_instance->control_data.Move = 1;
-            air_instance->swo_event &= ~SWC_EVENT;
-            return;
-        }
-        if(air_instance->SWC > 1950 && air_instance->SWC < 2050)
-        {
-            // 三档拨杆，最下状态
-            air_instance->control_data.Move = 2;
-            air_instance->swo_event &= ~SWC_EVENT;
-            return;
-        }
-    }
-}
-
-void Air_Joy_Process()
-{
-    /* 在最前面提供拨杆处理，优先处理拨杆再处理摇杆 */
-    Air_SWO_Event_Process();
-
-    /* 遥杆数据浅滤一下 */
-    if(air_instance->LEFT_X > 1400 && air_instance->LEFT_X < 1600)
-        air_instance->LEFT_X = 1500;
-    if(air_instance->LEFT_Y > 1400 && air_instance->LEFT_Y < 1600)  
-        air_instance->LEFT_Y = 1500;
-    if(air_instance->RIGHT_X > 1400 && air_instance->RIGHT_X < 1600)
-        air_instance->RIGHT_X = 1500;
-    if(air_instance->RIGHT_Y > 1400 && air_instance->RIGHT_Y < 1600)
-        air_instance->RIGHT_Y = 1500;
-
-    switch(air_instance->process_method)
-    {
-        case NORMAL:
-            air_instance->control_data.linear_x = (air_instance->LEFT_Y - 1500) / 500.0f * MAX_VELOCITY;
-            air_instance->control_data.linear_y = -(air_instance->LEFT_X - 1500) / 500.0f * MAX_VELOCITY;
-            air_instance->control_data.Omega = (air_instance->RIGHT_X - 1500) / 500.0f * MAX_VELOCITY;
-            Air_Joy_Publish();
-            break;
-        case TRAPEZOIDAL:
-            /* 初始化梯形规划状态量 */
-            static TrapezoidalState left_y_state = {0.0f, 0.0f};
-            static TrapezoidalState left_x_state = {0.0f, 0.0f};
-            static TrapezoidalState right_x_state = {0.0f, 0.0f};
-            float target_linear_x = (air_instance->LEFT_Y - 1500) / 500.0f * MAX_VELOCITY;
-            float target_linear_y = (air_instance->LEFT_X - 1500) / 500.0f * MAX_VELOCITY;
-            float target_omega = (air_instance->RIGHT_X - 1500) / 500.0f * MAX_VELOCITY;
-            /* 更新梯形规划输出值 */
-            update_trapezoidal_state(&left_x_state, target_linear_x);
-            update_trapezoidal_state(&left_y_state, target_linear_y);
-            update_trapezoidal_state(&right_x_state, target_omega);
-
-            air_instance->control_data.linear_x = left_x_state.current_velocity;
-            air_instance->control_data.linear_y = left_y_state.current_velocity;
-            air_instance->control_data.Omega = right_x_state.current_velocity;
-            Air_Joy_Publish();
-            break;
-    }
-}
 
 
 uint8_t Air_Joy_Publish()
 {
     publish_data temp_data;
-    temp_data.data = (uint8_t*)&air_instance->control_data;
-    temp_data.len = sizeof(pub_Control_Data);
+    temp_data.data = (uint8_t*)&air_instance->air_joy_data;
+    temp_data.len = sizeof(pub_air_joy_data);
     air_instance->air_joy_pub->publish(air_instance->air_joy_pub,temp_data);
+    /* 写一个 */
     return 1;
 }
 

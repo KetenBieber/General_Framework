@@ -392,3 +392,22 @@ float Get_OLS_Smooth(Ordinary_Least_Squares_t *OLS)
 }
 
 
+unsigned char serial_get_crc8_value(unsigned char *data, unsigned char len)
+{
+	unsigned char crc = 0;
+	unsigned char i;
+	while(len--)
+	{
+		crc ^= *data++;
+		for(i = 0; i < 8; i++)
+		{
+			if(crc&0x01)
+				crc=(crc>>1)^0x8C;
+			else
+				crc >>= 1;
+		}
+	}
+	return crc;
+}
+
+

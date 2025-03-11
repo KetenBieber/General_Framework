@@ -152,8 +152,6 @@ void Omni_Chassis::Dynamics_Inverse_Resolution()
                 Yaw_Adjust(&this->Chassis_Yaw_Adjust, this->current_angle_to_keep, this->imu_data->yaw, -179, 179);
                 torque_omega = this->Chassis_Yaw_Adjust.Output;
                 break;
-            case AUTO_MOVING:
-                break;
         }
     }
 

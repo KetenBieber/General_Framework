@@ -33,7 +33,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 144,
+				"line" : 148,
 				"parent" : 0
 			},
 			{
@@ -45,13 +45,13 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 142,
+				"line" : 146,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 146,
+				"line" : 150,
 				"parent" : 0
 			},
 			{
@@ -63,7 +63,7 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 137,
+				"line" : 141,
 				"parent" : 0
 			},
 			{
@@ -81,13 +81,13 @@
 			{
 				"command" : 6,
 				"file" : 0,
-				"line" : 138,
+				"line" : 142,
 				"parent" : 0
 			},
 			{
 				"command" : 8,
 				"file" : 0,
-				"line" : 94,
+				"line" : 98,
 				"parent" : 0
 			},
 			{
@@ -136,7 +136,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 10
+				"parent" : 12
 			},
 			{
 				"command" : 7,
@@ -182,9 +182,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 0,
-				"line" : 95,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 10
 			},
 			{
 				"command" : 7,
@@ -194,9 +194,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 26
+				"file" : 0,
+				"line" : 99,
+				"parent" : 0
 			},
 			{
 				"command" : 7,
@@ -208,7 +208,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 26
+				"parent" : 28
 			},
 			{
 				"command" : 7,
@@ -220,7 +220,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 26
+				"parent" : 28
 			},
 			{
 				"command" : 7,
@@ -232,7 +232,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 26
+				"parent" : 28
 			},
 			{
 				"command" : 7,
@@ -244,7 +244,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 26
+				"parent" : 28
 			},
 			{
 				"command" : 7,
@@ -256,7 +256,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 26
+				"parent" : 28
 			},
 			{
 				"command" : 7,
@@ -266,9 +266,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 0,
-				"line" : 96,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 28
 			},
 			{
 				"command" : 7,
@@ -278,9 +278,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 40
+				"file" : 0,
+				"line" : 100,
+				"parent" : 0
 			},
 			{
 				"command" : 7,
@@ -292,7 +292,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 40
+				"parent" : 42
 			},
 			{
 				"command" : 7,
@@ -302,9 +302,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 0,
-				"line" : 97,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 42
 			},
 			{
 				"command" : 7,
@@ -314,9 +314,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 46
+				"file" : 0,
+				"line" : 101,
+				"parent" : 0
 			},
 			{
 				"command" : 7,
@@ -376,7 +376,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 48
+				"parent" : 56
 			},
 			{
 				"command" : 7,
@@ -388,7 +388,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 46
+				"parent" : 50
 			},
 			{
 				"command" : 7,
@@ -400,7 +400,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 60
+				"parent" : 48
 			},
 			{
 				"command" : 7,
@@ -424,7 +424,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 60
+				"parent" : 64
 			},
 			{
 				"command" : 7,
@@ -434,9 +434,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 0,
-				"line" : 98,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 62
 			},
 			{
 				"command" : 7,
@@ -446,9 +446,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 68
+				"file" : 0,
+				"line" : 102,
+				"parent" : 0
 			},
 			{
 				"command" : 7,
@@ -496,7 +496,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 74
+				"parent" : 76
 			},
 			{
 				"command" : 7,
@@ -508,7 +508,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 70
+				"parent" : 76
 			},
 			{
 				"command" : 7,
@@ -520,7 +520,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 80
+				"parent" : 72
 			},
 			{
 				"command" : 7,
@@ -556,7 +556,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 84
+				"parent" : 86
 			},
 			{
 				"command" : 7,
@@ -568,7 +568,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 80
+				"parent" : 86
 			},
 			{
 				"command" : 7,
@@ -580,7 +580,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 90
+				"parent" : 82
 			},
 			{
 				"command" : 7,
@@ -592,7 +592,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 90
+				"parent" : 92
 			},
 			{
 				"command" : 7,
@@ -604,7 +604,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 68
+				"parent" : 92
 			},
 			{
 				"command" : 7,
@@ -616,7 +616,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 96
+				"parent" : 70
 			},
 			{
 				"command" : 7,
@@ -652,7 +652,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 100
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -664,7 +664,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 100
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -676,7 +676,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 102
 			},
 			{
 				"command" : 7,
@@ -700,7 +700,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 106
+				"parent" : 110
 			},
 			{
 				"command" : 7,
@@ -712,7 +712,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 96
+				"parent" : 108
 			},
 			{
 				"command" : 7,
@@ -724,7 +724,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 114
+				"parent" : 98
 			},
 			{
 				"command" : 7,
@@ -736,7 +736,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 114
+				"parent" : 116
 			},
 			{
 				"command" : 7,
@@ -748,7 +748,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 118
+				"parent" : 116
 			},
 			{
 				"command" : 7,
@@ -758,9 +758,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 0,
-				"line" : 99,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 120
 			},
 			{
 				"command" : 7,
@@ -770,9 +770,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 122
+				"file" : 0,
+				"line" : 103,
+				"parent" : 0
 			},
 			{
 				"command" : 7,
@@ -784,7 +784,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -796,7 +796,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -808,7 +808,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -820,7 +820,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -832,7 +832,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -844,7 +844,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -856,7 +856,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -868,7 +868,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -880,7 +880,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -892,7 +892,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -904,7 +904,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -916,7 +916,7 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 122
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -926,9 +926,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 0,
-				"line" : 100,
-				"parent" : 0
+				"file" : 1,
+				"line" : 11,
+				"parent" : 124
 			},
 			{
 				"command" : 7,
@@ -938,9 +938,9 @@
 			},
 			{
 				"command" : 8,
-				"file" : 1,
-				"line" : 11,
-				"parent" : 150
+				"file" : 0,
+				"line" : 104,
+				"parent" : 0
 			},
 			{
 				"command" : 7,
@@ -952,13 +952,25 @@
 				"command" : 8,
 				"file" : 1,
 				"line" : 11,
-				"parent" : 150
+				"parent" : 152
 			},
 			{
 				"command" : 7,
 				"file" : 1,
 				"line" : 5,
 				"parent" : 154
+			},
+			{
+				"command" : 8,
+				"file" : 1,
+				"line" : 11,
+				"parent" : 152
+			},
+			{
+				"command" : 7,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 156
 			}
 		]
 	},
@@ -968,7 +980,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-g -std=gnu++17"
 				},
 				{
 					"backtrace" : 5,
@@ -1047,15 +1059,7 @@
 				},
 				{
 					"backtrace" : 8,
-					"define" : "CHASSIS_TO_DEBUG"
-				},
-				{
-					"backtrace" : 8,
 					"define" : "DEBUG_FOR_ACTION"
-				},
-				{
-					"backtrace" : 8,
-					"define" : "DEBUG_GO1_MOTOR"
 				},
 				{
 					"backtrace" : 8,
@@ -1075,6 +1079,10 @@
 				},
 				{
 					"backtrace" : 8,
+					"define" : "RUBBER_ANGLE_OPTIMIZE"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "STM32F407xx"
 				},
 				{
@@ -1087,6 +1095,10 @@
 				},
 				{
 					"backtrace" : 8,
+					"define" : "TRY_AUTO_CONTROL"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "USE_ACTION_FOR_IMU"
 				},
 				{
@@ -1096,6 +1108,10 @@
 				{
 					"backtrace" : 8,
 					"define" : "USE_HAL_DRIVER"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "USE_OMNI_CHASSIS"
 				},
 				{
 					"backtrace" : 8,
@@ -1126,278 +1142,282 @@
 				},
 				{
 					"backtrace" : 19,
-					"path" : "F:/Git/General_Framework/App/control_task"
+					"path" : "F:/Git/General_Framework/App/chassis_task/chassis_config"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "F:/Git/General_Framework/App/debug_task"
+					"path" : "F:/Git/General_Framework/App/control_task"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "F:/Git/General_Framework/App/robot_com"
+					"path" : "F:/Git/General_Framework/App/debug_task"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "F:/Git/General_Framework/App/robot_ins"
+					"path" : "F:/Git/General_Framework/App/robot_com"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "F:/Git/General_Framework/Bsp"
+					"path" : "F:/Git/General_Framework/App/robot_ins"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "F:/Git/General_Framework/Bsp/can"
+					"path" : "F:/Git/General_Framework/Bsp"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "F:/Git/General_Framework/Bsp/dwt"
+					"path" : "F:/Git/General_Framework/Bsp/can"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "F:/Git/General_Framework/Bsp/gpio"
+					"path" : "F:/Git/General_Framework/Bsp/dwt"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "F:/Git/General_Framework/Bsp/log"
+					"path" : "F:/Git/General_Framework/Bsp/gpio"
 				},
 				{
 					"backtrace" : 37,
-					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
+					"path" : "F:/Git/General_Framework/Bsp/log"
 				},
 				{
 					"backtrace" : 39,
-					"path" : "F:/Git/General_Framework/Bsp/usart"
+					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 41,
-					"path" : "F:/Git/General_Framework/Core"
+					"path" : "F:/Git/General_Framework/Bsp/usart"
 				},
 				{
 					"backtrace" : 43,
-					"path" : "F:/Git/General_Framework/Core/Inc"
+					"path" : "F:/Git/General_Framework/Core"
 				},
 				{
 					"backtrace" : 45,
-					"path" : "F:/Git/General_Framework/Core/Src"
+					"path" : "F:/Git/General_Framework/Core/Inc"
 				},
 				{
 					"backtrace" : 47,
-					"path" : "F:/Git/General_Framework/Drivers"
+					"path" : "F:/Git/General_Framework/Core/Src"
 				},
 				{
 					"backtrace" : 49,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
+					"path" : "F:/Git/General_Framework/Drivers"
 				},
 				{
 					"backtrace" : 51,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 53,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 55,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 57,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 59,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 61,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 63,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 65,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 67,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 69,
-					"path" : "F:/Git/General_Framework/Middlewares"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 71,
-					"path" : "F:/Git/General_Framework/Middlewares/ST"
+					"path" : "F:/Git/General_Framework/Middlewares"
 				},
 				{
 					"backtrace" : 73,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
+					"path" : "F:/Git/General_Framework/Middlewares/ST"
 				},
 				{
 					"backtrace" : 75,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 77,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 79,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 81,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 83,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library"
 				},
 				{
 					"backtrace" : 85,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class"
 				},
 				{
 					"backtrace" : 87,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC"
 				},
 				{
 					"backtrace" : 89,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
 				},
 				{
 					"backtrace" : 91,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src"
 				},
 				{
 					"backtrace" : 93,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core"
 				},
 				{
 					"backtrace" : 95,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
 				},
 				{
 					"backtrace" : 97,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Src"
 				},
 				{
 					"backtrace" : 99,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 101,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 103,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 105,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 107,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 109,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 111,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 113,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 115,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 117,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 119,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 121,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 123,
-					"path" : "F:/Git/General_Framework/Module"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 125,
-					"path" : "F:/Git/General_Framework/Module/action"
+					"path" : "F:/Git/General_Framework/Module"
 				},
 				{
 					"backtrace" : 127,
-					"path" : "F:/Git/General_Framework/Module/air_joy"
+					"path" : "F:/Git/General_Framework/Module/action"
 				},
 				{
 					"backtrace" : 129,
-					"path" : "F:/Git/General_Framework/Module/alarm"
+					"path" : "F:/Git/General_Framework/Module/air_joy"
 				},
 				{
 					"backtrace" : 131,
-					"path" : "F:/Git/General_Framework/Module/algorithm"
+					"path" : "F:/Git/General_Framework/Module/alarm"
 				},
 				{
 					"backtrace" : 133,
-					"path" : "F:/Git/General_Framework/Module/controller"
+					"path" : "F:/Git/General_Framework/Module/algorithm"
 				},
 				{
 					"backtrace" : 135,
-					"path" : "F:/Git/General_Framework/Module/motor"
+					"path" : "F:/Git/General_Framework/Module/controller"
 				},
 				{
 					"backtrace" : 137,
-					"path" : "F:/Git/General_Framework/Module/movebase"
+					"path" : "F:/Git/General_Framework/Module/motor"
 				},
 				{
 					"backtrace" : 139,
-					"path" : "F:/Git/General_Framework/Module/ros_com"
+					"path" : "F:/Git/General_Framework/Module/movebase"
 				},
 				{
 					"backtrace" : 141,
-					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
+					"path" : "F:/Git/General_Framework/Module/ros_com"
 				},
 				{
 					"backtrace" : 143,
-					"path" : "F:/Git/General_Framework/Module/tool"
+					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 145,
-					"path" : "F:/Git/General_Framework/Module/topics"
+					"path" : "F:/Git/General_Framework/Module/tool"
 				},
 				{
 					"backtrace" : 147,
-					"path" : "F:/Git/General_Framework/Module/vofa"
+					"path" : "F:/Git/General_Framework/Module/topics"
 				},
 				{
 					"backtrace" : 149,
-					"path" : "F:/Git/General_Framework/Module/xbox"
+					"path" : "F:/Git/General_Framework/Module/vofa"
 				},
 				{
 					"backtrace" : 151,
-					"path" : "F:/Git/General_Framework/USB_DEVICE"
+					"path" : "F:/Git/General_Framework/Module/xbox"
 				},
 				{
 					"backtrace" : 153,
-					"path" : "F:/Git/General_Framework/USB_DEVICE/App"
+					"path" : "F:/Git/General_Framework/USB_DEVICE"
 				},
 				{
 					"backtrace" : 155,
+					"path" : "F:/Git/General_Framework/USB_DEVICE/App"
+				},
+				{
+					"backtrace" : 157,
 					"path" : "F:/Git/General_Framework/USB_DEVICE/Target"
 				}
 			],
@@ -1508,15 +1528,7 @@
 				},
 				{
 					"backtrace" : 8,
-					"define" : "CHASSIS_TO_DEBUG"
-				},
-				{
-					"backtrace" : 8,
 					"define" : "DEBUG_FOR_ACTION"
-				},
-				{
-					"backtrace" : 8,
-					"define" : "DEBUG_GO1_MOTOR"
 				},
 				{
 					"backtrace" : 8,
@@ -1536,6 +1548,10 @@
 				},
 				{
 					"backtrace" : 8,
+					"define" : "RUBBER_ANGLE_OPTIMIZE"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "STM32F407xx"
 				},
 				{
@@ -1548,6 +1564,10 @@
 				},
 				{
 					"backtrace" : 8,
+					"define" : "TRY_AUTO_CONTROL"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "USE_ACTION_FOR_IMU"
 				},
 				{
@@ -1557,6 +1577,10 @@
 				{
 					"backtrace" : 8,
 					"define" : "USE_HAL_DRIVER"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "USE_OMNI_CHASSIS"
 				},
 				{
 					"backtrace" : 8,
@@ -1587,278 +1611,282 @@
 				},
 				{
 					"backtrace" : 19,
-					"path" : "F:/Git/General_Framework/App/control_task"
+					"path" : "F:/Git/General_Framework/App/chassis_task/chassis_config"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "F:/Git/General_Framework/App/debug_task"
+					"path" : "F:/Git/General_Framework/App/control_task"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "F:/Git/General_Framework/App/robot_com"
+					"path" : "F:/Git/General_Framework/App/debug_task"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "F:/Git/General_Framework/App/robot_ins"
+					"path" : "F:/Git/General_Framework/App/robot_com"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "F:/Git/General_Framework/Bsp"
+					"path" : "F:/Git/General_Framework/App/robot_ins"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "F:/Git/General_Framework/Bsp/can"
+					"path" : "F:/Git/General_Framework/Bsp"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "F:/Git/General_Framework/Bsp/dwt"
+					"path" : "F:/Git/General_Framework/Bsp/can"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "F:/Git/General_Framework/Bsp/gpio"
+					"path" : "F:/Git/General_Framework/Bsp/dwt"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "F:/Git/General_Framework/Bsp/log"
+					"path" : "F:/Git/General_Framework/Bsp/gpio"
 				},
 				{
 					"backtrace" : 37,
-					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
+					"path" : "F:/Git/General_Framework/Bsp/log"
 				},
 				{
 					"backtrace" : 39,
-					"path" : "F:/Git/General_Framework/Bsp/usart"
+					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 41,
-					"path" : "F:/Git/General_Framework/Core"
+					"path" : "F:/Git/General_Framework/Bsp/usart"
 				},
 				{
 					"backtrace" : 43,
-					"path" : "F:/Git/General_Framework/Core/Inc"
+					"path" : "F:/Git/General_Framework/Core"
 				},
 				{
 					"backtrace" : 45,
-					"path" : "F:/Git/General_Framework/Core/Src"
+					"path" : "F:/Git/General_Framework/Core/Inc"
 				},
 				{
 					"backtrace" : 47,
-					"path" : "F:/Git/General_Framework/Drivers"
+					"path" : "F:/Git/General_Framework/Core/Src"
 				},
 				{
 					"backtrace" : 49,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
+					"path" : "F:/Git/General_Framework/Drivers"
 				},
 				{
 					"backtrace" : 51,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 53,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 55,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 57,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 59,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 61,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 63,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 65,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 67,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 69,
-					"path" : "F:/Git/General_Framework/Middlewares"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 71,
-					"path" : "F:/Git/General_Framework/Middlewares/ST"
+					"path" : "F:/Git/General_Framework/Middlewares"
 				},
 				{
 					"backtrace" : 73,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
+					"path" : "F:/Git/General_Framework/Middlewares/ST"
 				},
 				{
 					"backtrace" : 75,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 77,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 79,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 81,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 83,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library"
 				},
 				{
 					"backtrace" : 85,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class"
 				},
 				{
 					"backtrace" : 87,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC"
 				},
 				{
 					"backtrace" : 89,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
 				},
 				{
 					"backtrace" : 91,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src"
 				},
 				{
 					"backtrace" : 93,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core"
 				},
 				{
 					"backtrace" : 95,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
 				},
 				{
 					"backtrace" : 97,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Src"
 				},
 				{
 					"backtrace" : 99,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 101,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 103,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 105,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 107,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 109,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 111,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 113,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 115,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 117,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 119,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 121,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 123,
-					"path" : "F:/Git/General_Framework/Module"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 125,
-					"path" : "F:/Git/General_Framework/Module/action"
+					"path" : "F:/Git/General_Framework/Module"
 				},
 				{
 					"backtrace" : 127,
-					"path" : "F:/Git/General_Framework/Module/air_joy"
+					"path" : "F:/Git/General_Framework/Module/action"
 				},
 				{
 					"backtrace" : 129,
-					"path" : "F:/Git/General_Framework/Module/alarm"
+					"path" : "F:/Git/General_Framework/Module/air_joy"
 				},
 				{
 					"backtrace" : 131,
-					"path" : "F:/Git/General_Framework/Module/algorithm"
+					"path" : "F:/Git/General_Framework/Module/alarm"
 				},
 				{
 					"backtrace" : 133,
-					"path" : "F:/Git/General_Framework/Module/controller"
+					"path" : "F:/Git/General_Framework/Module/algorithm"
 				},
 				{
 					"backtrace" : 135,
-					"path" : "F:/Git/General_Framework/Module/motor"
+					"path" : "F:/Git/General_Framework/Module/controller"
 				},
 				{
 					"backtrace" : 137,
-					"path" : "F:/Git/General_Framework/Module/movebase"
+					"path" : "F:/Git/General_Framework/Module/motor"
 				},
 				{
 					"backtrace" : 139,
-					"path" : "F:/Git/General_Framework/Module/ros_com"
+					"path" : "F:/Git/General_Framework/Module/movebase"
 				},
 				{
 					"backtrace" : 141,
-					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
+					"path" : "F:/Git/General_Framework/Module/ros_com"
 				},
 				{
 					"backtrace" : 143,
-					"path" : "F:/Git/General_Framework/Module/tool"
+					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 145,
-					"path" : "F:/Git/General_Framework/Module/topics"
+					"path" : "F:/Git/General_Framework/Module/tool"
 				},
 				{
 					"backtrace" : 147,
-					"path" : "F:/Git/General_Framework/Module/vofa"
+					"path" : "F:/Git/General_Framework/Module/topics"
 				},
 				{
 					"backtrace" : 149,
-					"path" : "F:/Git/General_Framework/Module/xbox"
+					"path" : "F:/Git/General_Framework/Module/vofa"
 				},
 				{
 					"backtrace" : 151,
-					"path" : "F:/Git/General_Framework/USB_DEVICE"
+					"path" : "F:/Git/General_Framework/Module/xbox"
 				},
 				{
 					"backtrace" : 153,
-					"path" : "F:/Git/General_Framework/USB_DEVICE/App"
+					"path" : "F:/Git/General_Framework/USB_DEVICE"
 				},
 				{
 					"backtrace" : 155,
+					"path" : "F:/Git/General_Framework/USB_DEVICE/App"
+				},
+				{
+					"backtrace" : 157,
 					"path" : "F:/Git/General_Framework/USB_DEVICE/Target"
 				}
 			],
@@ -2037,15 +2065,7 @@
 				},
 				{
 					"backtrace" : 8,
-					"define" : "CHASSIS_TO_DEBUG"
-				},
-				{
-					"backtrace" : 8,
 					"define" : "DEBUG_FOR_ACTION"
-				},
-				{
-					"backtrace" : 8,
-					"define" : "DEBUG_GO1_MOTOR"
 				},
 				{
 					"backtrace" : 8,
@@ -2065,6 +2085,10 @@
 				},
 				{
 					"backtrace" : 8,
+					"define" : "RUBBER_ANGLE_OPTIMIZE"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "STM32F407xx"
 				},
 				{
@@ -2077,6 +2101,10 @@
 				},
 				{
 					"backtrace" : 8,
+					"define" : "TRY_AUTO_CONTROL"
+				},
+				{
+					"backtrace" : 8,
 					"define" : "USE_ACTION_FOR_IMU"
 				},
 				{
@@ -2086,6 +2114,10 @@
 				{
 					"backtrace" : 8,
 					"define" : "USE_HAL_DRIVER"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "USE_OMNI_CHASSIS"
 				},
 				{
 					"backtrace" : 8,
@@ -2116,278 +2148,282 @@
 				},
 				{
 					"backtrace" : 19,
-					"path" : "F:/Git/General_Framework/App/control_task"
+					"path" : "F:/Git/General_Framework/App/chassis_task/chassis_config"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "F:/Git/General_Framework/App/debug_task"
+					"path" : "F:/Git/General_Framework/App/control_task"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "F:/Git/General_Framework/App/robot_com"
+					"path" : "F:/Git/General_Framework/App/debug_task"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "F:/Git/General_Framework/App/robot_ins"
+					"path" : "F:/Git/General_Framework/App/robot_com"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "F:/Git/General_Framework/Bsp"
+					"path" : "F:/Git/General_Framework/App/robot_ins"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "F:/Git/General_Framework/Bsp/can"
+					"path" : "F:/Git/General_Framework/Bsp"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "F:/Git/General_Framework/Bsp/dwt"
+					"path" : "F:/Git/General_Framework/Bsp/can"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "F:/Git/General_Framework/Bsp/gpio"
+					"path" : "F:/Git/General_Framework/Bsp/dwt"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "F:/Git/General_Framework/Bsp/log"
+					"path" : "F:/Git/General_Framework/Bsp/gpio"
 				},
 				{
 					"backtrace" : 37,
-					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
+					"path" : "F:/Git/General_Framework/Bsp/log"
 				},
 				{
 					"backtrace" : 39,
-					"path" : "F:/Git/General_Framework/Bsp/usart"
+					"path" : "F:/Git/General_Framework/Bsp/soft_reset"
 				},
 				{
 					"backtrace" : 41,
-					"path" : "F:/Git/General_Framework/Core"
+					"path" : "F:/Git/General_Framework/Bsp/usart"
 				},
 				{
 					"backtrace" : 43,
-					"path" : "F:/Git/General_Framework/Core/Inc"
+					"path" : "F:/Git/General_Framework/Core"
 				},
 				{
 					"backtrace" : 45,
-					"path" : "F:/Git/General_Framework/Core/Src"
+					"path" : "F:/Git/General_Framework/Core/Inc"
 				},
 				{
 					"backtrace" : 47,
-					"path" : "F:/Git/General_Framework/Drivers"
+					"path" : "F:/Git/General_Framework/Core/Src"
 				},
 				{
 					"backtrace" : 49,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
+					"path" : "F:/Git/General_Framework/Drivers"
 				},
 				{
 					"backtrace" : 51,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS"
 				},
 				{
 					"backtrace" : 53,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device"
 				},
 				{
 					"backtrace" : 55,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST"
 				},
 				{
 					"backtrace" : 57,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx"
 				},
 				{
 					"backtrace" : 59,
-					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
 				},
 				{
 					"backtrace" : 61,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
+					"path" : "F:/Git/General_Framework/Drivers/CMSIS/Include"
 				},
 				{
 					"backtrace" : 63,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver"
 				},
 				{
 					"backtrace" : 65,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc"
 				},
 				{
 					"backtrace" : 67,
-					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
 				},
 				{
 					"backtrace" : 69,
-					"path" : "F:/Git/General_Framework/Middlewares"
+					"path" : "F:/Git/General_Framework/Drivers/STM32F4xx_HAL_Driver/Src"
 				},
 				{
 					"backtrace" : 71,
-					"path" : "F:/Git/General_Framework/Middlewares/ST"
+					"path" : "F:/Git/General_Framework/Middlewares"
 				},
 				{
 					"backtrace" : 73,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
+					"path" : "F:/Git/General_Framework/Middlewares/ST"
 				},
 				{
 					"backtrace" : 75,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM"
 				},
 				{
 					"backtrace" : 77,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP"
 				},
 				{
 					"backtrace" : 79,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Inc"
 				},
 				{
 					"backtrace" : 81,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/ARM/DSP/Lib"
 				},
 				{
 					"backtrace" : 83,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library"
 				},
 				{
 					"backtrace" : 85,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class"
 				},
 				{
 					"backtrace" : 87,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC"
 				},
 				{
 					"backtrace" : 89,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc"
 				},
 				{
 					"backtrace" : 91,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src"
 				},
 				{
 					"backtrace" : 93,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core"
 				},
 				{
 					"backtrace" : 95,
-					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Src"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
 				},
 				{
 					"backtrace" : 97,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
+					"path" : "F:/Git/General_Framework/Middlewares/ST/STM32_USB_Device_Library/Core/Src"
 				},
 				{
 					"backtrace" : 99,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party"
 				},
 				{
 					"backtrace" : 101,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS"
 				},
 				{
 					"backtrace" : 103,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source"
 				},
 				{
 					"backtrace" : 105,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2"
 				},
 				{
 					"backtrace" : 107,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/include"
 				},
 				{
 					"backtrace" : 109,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable"
 				},
 				{
 					"backtrace" : 111,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC"
 				},
 				{
 					"backtrace" : 113,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
 				},
 				{
 					"backtrace" : 115,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang"
 				},
 				{
 					"backtrace" : 117,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView"
 				},
 				{
 					"backtrace" : 119,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/Config"
 				},
 				{
 					"backtrace" : 121,
-					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER"
 				},
 				{
 					"backtrace" : 123,
-					"path" : "F:/Git/General_Framework/Module"
+					"path" : "F:/Git/General_Framework/Middlewares/Third_Party/SystemView/SEGGER/Syscalls"
 				},
 				{
 					"backtrace" : 125,
-					"path" : "F:/Git/General_Framework/Module/action"
+					"path" : "F:/Git/General_Framework/Module"
 				},
 				{
 					"backtrace" : 127,
-					"path" : "F:/Git/General_Framework/Module/air_joy"
+					"path" : "F:/Git/General_Framework/Module/action"
 				},
 				{
 					"backtrace" : 129,
-					"path" : "F:/Git/General_Framework/Module/alarm"
+					"path" : "F:/Git/General_Framework/Module/air_joy"
 				},
 				{
 					"backtrace" : 131,
-					"path" : "F:/Git/General_Framework/Module/algorithm"
+					"path" : "F:/Git/General_Framework/Module/alarm"
 				},
 				{
 					"backtrace" : 133,
-					"path" : "F:/Git/General_Framework/Module/controller"
+					"path" : "F:/Git/General_Framework/Module/algorithm"
 				},
 				{
 					"backtrace" : 135,
-					"path" : "F:/Git/General_Framework/Module/motor"
+					"path" : "F:/Git/General_Framework/Module/controller"
 				},
 				{
 					"backtrace" : 137,
-					"path" : "F:/Git/General_Framework/Module/movebase"
+					"path" : "F:/Git/General_Framework/Module/motor"
 				},
 				{
 					"backtrace" : 139,
-					"path" : "F:/Git/General_Framework/Module/ros_com"
+					"path" : "F:/Git/General_Framework/Module/movebase"
 				},
 				{
 					"backtrace" : 141,
-					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
+					"path" : "F:/Git/General_Framework/Module/ros_com"
 				},
 				{
 					"backtrace" : 143,
-					"path" : "F:/Git/General_Framework/Module/tool"
+					"path" : "F:/Git/General_Framework/Module/soft_iwdg"
 				},
 				{
 					"backtrace" : 145,
-					"path" : "F:/Git/General_Framework/Module/topics"
+					"path" : "F:/Git/General_Framework/Module/tool"
 				},
 				{
 					"backtrace" : 147,
-					"path" : "F:/Git/General_Framework/Module/vofa"
+					"path" : "F:/Git/General_Framework/Module/topics"
 				},
 				{
 					"backtrace" : 149,
-					"path" : "F:/Git/General_Framework/Module/xbox"
+					"path" : "F:/Git/General_Framework/Module/vofa"
 				},
 				{
 					"backtrace" : 151,
-					"path" : "F:/Git/General_Framework/USB_DEVICE"
+					"path" : "F:/Git/General_Framework/Module/xbox"
 				},
 				{
 					"backtrace" : 153,
-					"path" : "F:/Git/General_Framework/USB_DEVICE/App"
+					"path" : "F:/Git/General_Framework/USB_DEVICE"
 				},
 				{
 					"backtrace" : 155,
+					"path" : "F:/Git/General_Framework/USB_DEVICE/App"
+				},
+				{
+					"backtrace" : 157,
 					"path" : "F:/Git/General_Framework/USB_DEVICE/Target"
 				}
 			],

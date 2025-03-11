@@ -111,6 +111,7 @@ protected:
     {
         this->motor_temperature = (int8_t)can_rx_data[6];
     }
+    /* 更新电机加速度函数 */
     inline void update_motor_acceleration()
     {
         this->motor_acceleration = ((this->speed_aps - this->last_speed_aps)*DEGREE_2_RAD / this->dt)*this->alpha + (1 - this->alpha)*this->temp_last_motor_acceleration;
