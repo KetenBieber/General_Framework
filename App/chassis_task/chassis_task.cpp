@@ -69,24 +69,23 @@ CAN_Rx_Instance_t m2006_rx_instance = {
     .rx_id = 0x201,
     .can_rx_buff = {0},
 };
-
 Motor_Control_Setting_t m2006_control_instance = {
-    .motor_controller_setting.speed_PID =
-        {
-            .Kp = 20,
-            .Ki = 18.6129837,
-            .Kd = 0.0911037326,
-            .MaxOut = 10000,
-            .IntegralLimit = 3000,
-            .DeadBand = 10,
-            .CoefA = 0,
-            .CoefB = 0,
-            .Output_LPF_RC = 0,
-            .Derivative_LPF_RC = 0,
-            .OLS_Order = 0,
-            .Improve = OutputFilter | Trapezoid_Intergral | Integral_Limit |
-                       Derivative_On_Measurement,
+    .motor_controller_setting = {
+        .speed_PID = {
+        .Kp = 20,
+        .Ki = 18.6129837,
+        .Kd = 0.0911037326,
+        .MaxOut = 10000,
+        .IntegralLimit = 3000,
+        .DeadBand = 10,
+        .CoefA = 0,
+        .CoefB = 0,
+        .Output_LPF_RC = 0,
+        .Derivative_LPF_RC = 0,
+        .OLS_Order = 0,
+        .Improve = OutputFilter | Trapezoid_Intergral | Integral_Limit | Derivative_On_Measurement, 
         },
+    },
     .outer_loop_type = SPEED_LOOP,
     .inner_loop_type = SPEED_LOOP,
     .motor_is_reverse_flag = MOTOR_DIRECTION_NORMAL,
@@ -167,26 +166,35 @@ CAN_Rx_Instance_t m3508_lf_rx_instance = {
 };
 
 Motor_Control_Setting_t m3508_lf_control_instance = {
-    .motor_controller_setting =
-        {
-            .speed_PID = {.Kp = 80,
-                          .Ki = 10,
-                          .Kd = 8.5,
-                          .MaxOut = 10000,
-                          .IntegralLimit = 1000,
-                          .DeadBand = 5,
-                          .Output_LPF_RC = 0.9,
-                          .Derivative_LPF_RC = 0.85,
-                          .OLS_Order = 1,
-                          .Improve = OutputFilter | Trapezoid_Intergral |
-                                     Derivative_On_Measurement |
-                                     Integral_Limit},
-            .pid_ref = 0,
+    .motor_controller_setting = {
+        .speed_PID = {
+            .Kp = 80,
+            .Ki = 10,
+            .Kd = 8.5,
+            // 设置FFJ（Force Feedback J）的值为0.0
+            .FFJ = 0.0,
+            // 设置FFB（Force Feedback B）的值为0.0
+            .FFB = 0.0,
+            .MaxOut = 10000,
+            // 积分项的最大限制 IntegralLimit
+            .IntegralLimit = 1000,
+            // 死区带宽 DeadBand，用于消除控制误差
+            .DeadBand = 5,
+            // 输出低通滤波器的 RC 常数 Output_LPF_RC
+            .Output_LPF_RC = 0.9,
+            // 微分项低通滤波器的 RC 常数 Derivative_LPF_RC
+            .Derivative_LPF_RC = 0.85,
+            // 预测模型阶数 OLS_Order
+            .OLS_Order = 1,
+            // PID 控制器的改进选项 Improve，包括输出滤波、梯形积分、微分在测量值上、积分限制等
+            .Improve = Feedforward_CONTROLL | OutputFilter | Trapezoid_Intergral | Derivative_On_Measurement | Integral_Limit
         },
-    .outer_loop_type = SPEED_LOOP,                   // 外环控制为速度环
-    .inner_loop_type = SPEED_LOOP,                   // 内环控制为速度环
-    .motor_is_reverse_flag = MOTOR_DIRECTION_NORMAL, // 正转
-    .motor_working_status = MOTOR_ENABLED,           // 使能电机
+        .pid_ref = 0,
+    },
+    .outer_loop_type = SPEED_LOOP,// 外环控制为速度环
+    .inner_loop_type = SPEED_LOOP,// 内环控制为速度环
+    .motor_is_reverse_flag = MOTOR_DIRECTION_NORMAL,// 正转
+    .motor_working_status = MOTOR_ENABLED,// 使能电机
 };
 
 /* m3508电机作rf电机 */

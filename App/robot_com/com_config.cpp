@@ -51,6 +51,8 @@ extern Motor_GM6020 rubber_motor[4];
 
 extern VESC vesc[3];
 
+extern DM_motor dm[1];
+
 uint8_t Common_Service_Init() {
   CAN1_TxPort = xQueueCreate(16, sizeof(CAN_Tx_Instance_t));
   CAN2_TxPort = xQueueCreate(16, sizeof(CAN_Tx_Instance_t));
@@ -152,6 +154,7 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance) {
     }
   }
 #endif
+#ifdef DEBUG_GO1_MOTOR
   uint32_t data_of_id = (uint32_t)can_instance->RxHeader.ExtId & 0x07FFFFFF;
   uint8_t temp_module_id = CAN_To_RS485_Module_ID_Callback(
       (uint8_t)(can_instance->RxHeader.ExtId >> 27) &
@@ -170,12 +173,13 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance) {
   case 2:
     break;
   case 3: // 模块出厂id为3
-#ifdef DEBUG_GO1_MOTOR
+
     go1_motor[temp_motor_id].update_Go1(can_instance->can_rx_buff, data_of_id);
     have_start = 1;
-#endif
+
     break;
   }
+  #endif
   // 如果不是go1的协议，为大疆电机的协议，则会进入这个分支
   if (can_instance->RxHeader.IDE == CAN_ID_STD) {
     switch (can_instance->RxHeader.StdId) {
@@ -192,6 +196,21 @@ void CAN2_Rx_Callback(CAN_Rx_Instance_t *can_instance) {
     }
     case 0x208: {
       break;
+    }
+#endif
+#ifdef TEST_DM
+    case 0x01: {
+      dm[0].update(can_instance->can_rx_buff);
+      break;
+    }
+    case 0x02: {
+      break;
+    }
+    case 0x03: {
+      break;
+    }
+    case 0x04: {
+      
     }
 #endif
     }

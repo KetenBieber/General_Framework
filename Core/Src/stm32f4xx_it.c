@@ -23,9 +23,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-/* bsp灞傛帴鍙? */
+
+
 #include "bsp_usart.h"
-/* app灞傛帴鍙? */
+
+
 #include "robot_ins.h"
 #include "debug_task.h"
 
@@ -299,7 +301,6 @@ void USART2_IRQHandler(void)
 
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
-
   /* USER CODE BEGIN USART2_IRQn 1 */
 #ifdef XBOX_CONTROL
   Uart_Receive_Handler(xbox_uart_instance);

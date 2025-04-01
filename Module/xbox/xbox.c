@@ -13,6 +13,7 @@
  *                                     btnXbox
  *                ↑↓:joyLVert
  *                     0                                       btnY
+>>>>>>> upstream/Keten
  *    左摇杆     0   32768   65535  ←→:joyLHori            btnX      btnB
  *                  65535                                      btnA
  * 目前为止,没有加入DWT驻车模式,因为xbox按键较多,所以通过sub-pub传递的是各按键的具体数据
@@ -30,8 +31,9 @@
 serial_frame_esp32_t rx_frame_esp32;
 XBOX_Instance_t *XBOX_Instance = NULL;
 
-bool bt = 0;
-uint8_t xbox_rx_buffer[1] = {0};
+bool bt=0;
+uint8_t xbox_rx_buffer[1]={0};
+
 
 uart_package_t xbox_uart_package = {
     .uart_handle = &huart2,
@@ -39,7 +41,7 @@ uart_package_t xbox_uart_package = {
     .rx_buffer = xbox_rx_buffer, // 接收缓冲区
     .rx_buffer_size = 1,
     .uart_callback = Xbox_Uart_Rx_Callback, // 接收回调函数
-    .IT_CHOOSE = 1,                         // 选择普通中断
+    .IT_CHOOSE = 1, // 选择普通中断
 };
 
 // 当前状态机状态
@@ -291,4 +293,5 @@ uint8_t Xbox_Uart_Rx_Callback(Uart_Instance_t *uart_instance,
   Xbox_Process(uart_instance->uart_package.rx_buffer[0]);
   // }
   return 0;
+
 }

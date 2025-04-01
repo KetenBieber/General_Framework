@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h>
 
 #define MIN_LEN 5
 #define EXPANED_VAL 1
@@ -27,5 +28,6 @@ void cvector_destroy(cvector* cv);
 size_t cvector_length(cvector* cv);
 void* cvector_pushback(cvector* cv, void* memb);
 void* cvector_val_at(cvector* cv, size_t index);
+char* str_sum(int num, ...);
 
 #endif

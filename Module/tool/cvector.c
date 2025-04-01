@@ -82,3 +82,35 @@ void* cvector_pushback(cvector* cv, void* memb) {
 void* cvector_val_at(cvector* cv, size_t index) {
     return cv->cv_pdata + index * cv->cv_size;
 }
+
+/**
+ * @brief 将各字符串相加
+ *        通过连接字符串的方式实现字符串的拼接，尽量别用，是动态分配，可能造成内存管理报错
+ * @param num 
+ * @param string 
+ * @return char* 
+ */
+char* str_sum(int num,...) {
+    va_list args;
+    va_start(args, num);
+    int total_length = 0;
+    // 计算总长度
+    for (int i = 0; i < num; i++) {
+        char* str = va_arg(args, char*);
+        total_length += strlen(str);
+    }
+    va_end(args);
+
+    // 为结果字符串分配内存，加 1 是为了存储字符串结束符 '\0'
+    char* result = (char*)malloc(total_length + 1);
+    result[0] = '\0';
+    va_start(args, num);
+    // 拼接字符串
+    for (int i = 0; i < num; i++) {
+        char* str = va_arg(args, char*);
+        // 使用 strcat 函数，确保不会溢出
+        strncat(result, str, strlen(str));
+    }
+    va_end(args);
+    return result;
+}

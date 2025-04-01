@@ -96,6 +96,7 @@ typedef enum pid_Improvement_e
     DerivativeFilter = 0x40,            //0100 0000 微分滤波（LR）
     ErrorHandle = 0x80,                 //1000 0000 错误处理（电机堵转）
     IMCREATEMENT_OF_OUT = 0x100,        //0001 0000 0000 启用增量式输出
+    Feedforward_CONTROLL = 0x200,       //0010 0000 0000 前馈控制
 } PID_Improvement_e;
 
 
@@ -131,6 +132,8 @@ typedef struct PACKED PID_T
     float Kp;
     float Ki;
     float Kd;
+    float FFJ;
+    float FFB;
 
     float Measure;
     float Last_Measure;// 上次的测量值
@@ -144,6 +147,7 @@ typedef struct PACKED PID_T
     float Iout;
     float Dout;
     float ITerm;
+    float FFout;
 
     float Output;
     float Last_Output;

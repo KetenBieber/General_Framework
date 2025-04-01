@@ -115,6 +115,7 @@ void Fuzzy_Rule_Implementation(FuzzyRule_t *fuzzyRule, float measure, float ref)
 
 /******************************* PID CONTROL *********************************/
 // PID优化环节函数声明
+static void f_Feedforward(PID_t *pid);                  // 前馈控制
 static void f_Trapezoid_Intergral(PID_t *pid);          // 梯形积分
 static void f_Integral_Limit(PID_t *pid);               // 积分限幅   
 static void f_Derivative_On_Measurement(PID_t *pid);    // 基于测量值的微分
@@ -154,6 +155,7 @@ void PID_Init(PID_t *pid)
     pid->Pout = 0;
     pid->Iout = 0;
     pid->Dout = 0;
+    pid->FFout = 0;
     pid->Output = 0;
 }
 
@@ -224,6 +226,9 @@ float PID_Calculate(PID_t *pid, float measure, float ref)
         if (pid->User_Func2_f != NULL)
             pid->User_Func2_f(pid);
 
+        // 前馈
+        if (pid->Improve & Feedforward_CONTROLL)
+            f_Feedforward(pid);
         // 梯形积分
         if (pid->Improve & Trapezoid_Intergral)
             f_Trapezoid_Intergral(pid);
@@ -244,6 +249,10 @@ float PID_Calculate(PID_t *pid, float measure, float ref)
 
         if(pid->Improve & IMCREATEMENT_OF_OUT)
             pid->Output = pid->Pout + pid->Iout + pid->Dout + pid->Last_Output;// 计算输出项
+        else if (pid->Improve & Feedforward_CONTROLL)
+            pid->Output = pid->Pout + pid->Iout + pid->Dout + pid->FFout;// 计算输出项
+        else if (pid->Improve & IMCREATEMENT_OF_OUT && pid->Improve & Feedforward_CONTROLL)
+            pid->Output = pid->Pout + pid->Iout + pid->Dout + pid->Last_Output + pid->FFout;// 计算输出项
         else
             pid->Output = pid->Pout + pid->Iout + pid->Dout;// 计算输出项
 
@@ -289,6 +298,12 @@ void PID_Reset(PID_t *pid)
     pid->Last_ITerm = 0;
     pid->Last_Dout = 0;
     pid->DWT_CNT = 0;
+}
+//前馈
+static void f_Feedforward(PID_t *pid)
+{
+    //电机速度环的加速度前馈
+    pid->FFout = (pid->FFJ * (pid->Measure - pid->Last_Measure) / pid->dt) + (pid->FFB * pid->Measure);
 }
 
 // 梯形积分，积分项为两次采样值的平均

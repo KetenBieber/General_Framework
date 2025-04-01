@@ -46,6 +46,7 @@ void Debug_Task(void *argument);
 #include "com_config.h"
 #include "motor_interface.h"
 #include "rm_motor.h"
+#include "DM_motor.h"
 
 
 #endif

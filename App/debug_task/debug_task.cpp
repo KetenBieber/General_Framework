@@ -98,6 +98,33 @@ VESC vesc[3] = {
 extern Motor_C620 chassis_motor[4];
 #endif
 
+#ifdef TEST_DM
+CAN_Rx_Instance_t dm_rx_instance = {
+    .can_handle = &hcan2,
+    .RxHeader = {0},
+    .rx_len = 6,
+    .can_rx_buff = {0},
+};
+
+CAN_Tx_Instance_t dm_tx_instance = {
+    .can_handle = &hcan2,
+    .isExTid = 0,
+    .tx_mailbox = 0,
+    .tx_id = 0x01,
+    .tx_len = 8,
+    .can_tx_buff = {0},
+};
+
+Motor_Control_Setting_t DM_motor_ctrl = {0};
+
+DM_motor dm[1] = {
+    DM_motor(1, dm_rx_instance, dm_tx_instance, DM_motor_ctrl,_POS_with_SPEED_CONTROL,0, 10)
+};
+
+float dm_pos = 0;
+float dm_speed = 0;
+#endif
+
 #ifdef TEST_SYSTEM_TURNER
 extern Motor_C620 chassis_motor[4];
 extern Motor_C610 m2006[1];
@@ -210,6 +237,11 @@ __attribute((noreturn)) void Debug_Task(void *argument) {
     vesc[2].Rpm_Control(ratio * xbox_data_pub.trigLT);
     COMMON_Motor_SendMsgs(vesc);
 
+#endif
+
+#ifdef TEST_DM
+    dm[0].POS_with_SPEED_CONTROL(dm_pos,dm_speed);
+    COMMON_Motor_SendMsgs(dm);
 #endif
 
 #ifdef VOFA_TO_DEBUG
