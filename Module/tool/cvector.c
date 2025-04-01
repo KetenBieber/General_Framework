@@ -85,7 +85,7 @@ void* cvector_val_at(cvector* cv, size_t index) {
 
 /**
  * @brief 将各字符串相加
- *        通过连接字符串的方式实现字符串的拼接
+ *        通过连接字符串的方式实现字符串的拼接，尽量别用，是动态分配，可能造成内存管理报错
  * @param num 
  * @param string 
  * @return char* 

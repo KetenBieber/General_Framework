@@ -301,18 +301,10 @@ void USART2_IRQHandler(void)
 
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
-<<<<<<< HEAD
-  /* USER CODE BEGIN USART2_IRQn 1 */
-  #ifdef XBOX_CONTROL
-    Uart_Receive_Handler(xbox_uart_instance);
-  #endif 
-=======
-
   /* USER CODE BEGIN USART2_IRQn 1 */
 #ifdef XBOX_CONTROL
   Uart_Receive_Handler(xbox_uart_instance);
 #endif
->>>>>>> upstream/Keten
   /* USER CODE END USART2_IRQn 1 */
 }
 

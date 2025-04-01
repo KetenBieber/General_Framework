@@ -107,10 +107,11 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     DEBUG_TASK_RUN 
     # DEBUG_NO_TRACKING
     # TEST_YAW_ADJUST
-    DEBUG_GO1_MOTOR
+    # DEBUG_GO1_MOTOR
     RUBBER_ANGLE_OPTIMIZE # 使用舵向劣弧优化
     TRY_AUTO_CONTROL # 使用自动控制
-    TEST_VESC
+    # TEST_VESC
+    TEST_DM
 )
 
 # Add linked libraries
